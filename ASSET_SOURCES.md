@@ -30,3 +30,21 @@ Read-only reference project: C:/Users/Admin/Desktop/tu-tien-game, supplied by th
 11 images were copied from paths registered in js/data/studioAssetRegistry.js: five school illustrations, five school portraits, and the Thien Ngoai Tien Phu background. WebP files were converted to PNG for Unity compatibility. These are user-supplied project assets; no claim is made that they are CC0. Exact source-to-output mapping is in Reports/SectArtSources.json. The sect background now replaces the medieval title illustration. School portraits appear in disciple management; school paintings illustrate sect buildings. These are concept illustrations, not depictions of the procedural in-world models.
 
 Rules consulted: js/data/realms.js, sectBuildings.js, sectPolicies.js, sectTiers.js, recipes.js and js/systems/formulas.js. The Unity adaptation follows nine Qi layers/four later sublevels, base breakthrough chance and one-pill +15 percentage points, and compounded 20% production growth. The other economy costs, timers, recipes, disciples, injuries, missions and tier requirements are deliberately simplified prototype rules, not a complete port or shared runtime of the web game.
+
+## Visual vertical slice — Claude session, 2026-10-26
+
+### Poly Haven (CC0 1.0) — downloaded with user approval
+
+Files are in `Assets/ThirdParty/PolyHaven/`. `PROVENANCE.json` records each file's source URL, SHA-256, byte size, authors and Poly Haven page. Licence: CC0 1.0 Universal (https://polyhaven.com/license). No attribution is required; it is recorded here anyway.
+
+- Textures (1k JPG; diffuse, OpenGL normal, AO/roughness/metal): grey_roof_tiles_02, clay_plaster, japanese_cedar_planks, large_grey_tiles, mossy_stone_wall, mossy_cobblestone, cliff_side, mossy_rock, forest_ground_04, leaves_forest_ground, bamboo_wall.
+- HDRIs (2k .hdr, pure sky): qwantani_sunrise_puresky (dawn), kloofendal_48d_partly_cloudy_puresky (day), kloofendal_28d_misty_puresky (mist), qwantani_night_puresky (night).
+- Fetch script: `work/claude-audit/tools/fetch_polyhaven.py` (fixed list, official API).
+
+### Tools
+
+- Blender 4.5.10 LTS, installed with user approval via winget (`BlenderFoundation.Blender.LTS.4.5`, official blender.org package). GPL tool; models made with it belong to the project.
+
+### Pending
+
+- Commercial stylized Chinese architecture kit: **the user is purchasing it.** Import it untouched into `Assets/ThirdParty/<vendor>/` and record the licence and seat count here.

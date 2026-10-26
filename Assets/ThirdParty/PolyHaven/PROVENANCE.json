@@ -1,0 +1,433 @@
+{
+  "source": "https://polyhaven.com",
+  "license": "CC0 1.0 Universal \u2014 https://polyhaven.com/license",
+  "retrieved": "2026-10-26",
+  "assets": [
+    {
+      "id": "grey_roof_tiles_02",
+      "kind": "texture",
+      "role": "roof tile base (tinted jade in material)",
+      "name": "Grey Roof Tiles 02",
+      "authors": [
+        "Rob Tuytel"
+      ],
+      "page": "https://polyhaven.com/a/grey_roof_tiles_02",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/grey_roof_tiles_02/grey_roof_tiles_02_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grey_roof_tiles_02/grey_roof_tiles_02_diff_1k.jpg",
+          "sha256": "3f001b2f07b5b1f4f8475187ed8fde2699319b15dfcf72ea4741570679560fe7",
+          "bytes": 402212
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/grey_roof_tiles_02/grey_roof_tiles_02_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grey_roof_tiles_02/grey_roof_tiles_02_nor_gl_1k.jpg",
+          "sha256": "94a3f9eebe085b0df60efb34dff132caf85bc77b66c8d50c44404cdcbc5c67e7",
+          "bytes": 570336
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/grey_roof_tiles_02/grey_roof_tiles_02_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grey_roof_tiles_02/grey_roof_tiles_02_arm_1k.jpg",
+          "sha256": "994f7b0a11cd0e00d1a91038511fa030c6db1b93932259778eb9ef1b6da8f374",
+          "bytes": 174316
+        }
+      ]
+    },
+    {
+      "id": "clay_plaster",
+      "kind": "texture",
+      "role": "ivory wall plaster",
+      "name": "Clay Plaster",
+      "authors": [
+        "Amal Kumar"
+      ],
+      "page": "https://polyhaven.com/a/clay_plaster",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/clay_plaster/clay_plaster_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_plaster/clay_plaster_diff_1k.jpg",
+          "sha256": "82e43c68bddebb55a18577ae3cb0d01c02c23f086d342a854ff8a174d9f4fd73",
+          "bytes": 354209
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/clay_plaster/clay_plaster_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_plaster/clay_plaster_nor_gl_1k.jpg",
+          "sha256": "359f814292005ab16be86807678a4a51e8256a87c282ebf5f5333ce18c428fba",
+          "bytes": 784921
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/clay_plaster/clay_plaster_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_plaster/clay_plaster_arm_1k.jpg",
+          "sha256": "f1a6f4c5aa27147b77e9b66a13d96b53814c8b4eb604074e74556ecfa9cabf7e",
+          "bytes": 385592
+        }
+      ]
+    },
+    {
+      "id": "japanese_cedar_planks",
+      "kind": "texture",
+      "role": "pillars, beams, lattice wood",
+      "name": "Japanese Cedar Planks",
+      "authors": [
+        "Charlotte Baglioni",
+        "Rico Cilliers"
+      ],
+      "page": "https://polyhaven.com/a/japanese_cedar_planks",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/japanese_cedar_planks/japanese_cedar_planks_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_planks/japanese_cedar_planks_diff_1k.jpg",
+          "sha256": "cce8e8c5e5e6ba7956a6edf9fa6121c57fa2bfab0ebd672951bede9e053cbec4",
+          "bytes": 704030
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/japanese_cedar_planks/japanese_cedar_planks_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_planks/japanese_cedar_planks_nor_gl_1k.jpg",
+          "sha256": "2537ec9d8589caf8a89ef4e733d015318030d9ee9e2c2fdfa1471154770ebbea",
+          "bytes": 745514
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/japanese_cedar_planks/japanese_cedar_planks_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_planks/japanese_cedar_planks_arm_1k.jpg",
+          "sha256": "b58d152975965c71dfc9b219c6a80b4d2718b7d6c144682d794dd6a11061cfb4",
+          "bytes": 692510
+        }
+      ]
+    },
+    {
+      "id": "large_grey_tiles",
+      "kind": "texture",
+      "role": "courtyard paving",
+      "name": "Large Grey Tiles",
+      "authors": [
+        "Rob Tuytel"
+      ],
+      "page": "https://polyhaven.com/a/large_grey_tiles",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/large_grey_tiles/large_grey_tiles_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/large_grey_tiles/large_grey_tiles_diff_1k.jpg",
+          "sha256": "2cd00e2ddd516fdc165169252c194bf67b3ee483f2925442dc428cbae5fd04c8",
+          "bytes": 445476
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/large_grey_tiles/large_grey_tiles_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/large_grey_tiles/large_grey_tiles_nor_gl_1k.jpg",
+          "sha256": "9185560cc045b0c90434c1bfe64922759a5bebfdad18a1b6af860ed0e332cfc8",
+          "bytes": 388446
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/large_grey_tiles/large_grey_tiles_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/large_grey_tiles/large_grey_tiles_arm_1k.jpg",
+          "sha256": "c71077ce7382460a14ee7ce525ba1b21184fe898e52e163063f6218f5bc770e4",
+          "bytes": 187910
+        }
+      ]
+    },
+    {
+      "id": "mossy_stone_wall",
+      "kind": "texture",
+      "role": "terrace retaining walls, plinths",
+      "name": "Mossy Stone Wall",
+      "authors": [
+        "Amal Kumar"
+      ],
+      "page": "https://polyhaven.com/a/mossy_stone_wall",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_stone_wall/mossy_stone_wall_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_stone_wall/mossy_stone_wall_diff_1k.jpg",
+          "sha256": "7240e55cfc662ea403600fc7d5143f72983fbe8098d55fc6ccae75d21421dce4",
+          "bytes": 939649
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_stone_wall/mossy_stone_wall_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_stone_wall/mossy_stone_wall_nor_gl_1k.jpg",
+          "sha256": "e159e429269bc933743ee47051b4081261e6131e994242bf26e05ab0a0df4542",
+          "bytes": 1282621
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_stone_wall/mossy_stone_wall_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_stone_wall/mossy_stone_wall_arm_1k.jpg",
+          "sha256": "c76fd89a80b95a1daa63af4b467a97117322207a04f7d59b86a5db160bbe8001",
+          "bytes": 716865
+        }
+      ]
+    },
+    {
+      "id": "mossy_cobblestone",
+      "kind": "texture",
+      "role": "paths, stairs",
+      "name": "Mossy Cobblestone",
+      "authors": [
+        "S\u01a1n Nguy\u1ec5n"
+      ],
+      "page": "https://polyhaven.com/a/mossy_cobblestone",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_cobblestone/mossy_cobblestone_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_cobblestone/mossy_cobblestone_diff_1k.jpg",
+          "sha256": "105d6209ff99952ca316e814eebf06c1c3cb244da62184137a97e29aee74b7d7",
+          "bytes": 1089617
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_cobblestone/mossy_cobblestone_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_cobblestone/mossy_cobblestone_nor_gl_1k.jpg",
+          "sha256": "32a128c921cf0311798ebb6c6a766db900a10419233c87cc52f8d226b2aa4cc0",
+          "bytes": 980112
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_cobblestone/mossy_cobblestone_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_cobblestone/mossy_cobblestone_arm_1k.jpg",
+          "sha256": "8d737b10700257d179dc0413f278477c1bdc79d346f2bf6e8b504e850bde7c82",
+          "bytes": 715595
+        }
+      ]
+    },
+    {
+      "id": "cliff_side",
+      "kind": "texture",
+      "role": "mountain cliffs",
+      "name": "Cliff Side",
+      "authors": [
+        "James Ray Cock",
+        "Jenelle van Heerden",
+        "Dario Barresi"
+      ],
+      "page": "https://polyhaven.com/a/cliff_side",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/cliff_side/cliff_side_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cliff_side/cliff_side_diff_1k.jpg",
+          "sha256": "5c6858541108fc34e5726ecf4d8d942d6301155c489e7341619260f2909570c5",
+          "bytes": 859756
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/cliff_side/cliff_side_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cliff_side/cliff_side_nor_gl_1k.jpg",
+          "sha256": "28583860810a7d6d8ffddeaaff463408fc580338fd5a92c67b058207e75375a3",
+          "bytes": 1007837
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/cliff_side/cliff_side_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cliff_side/cliff_side_arm_1k.jpg",
+          "sha256": "6ec77eadb99d00a0a0e68ae40b09e4cc4931941ada1114e5a4d9dd94e8a046dd",
+          "bytes": 551350
+        }
+      ]
+    },
+    {
+      "id": "mossy_rock",
+      "kind": "texture",
+      "role": "boulders, karst rocks",
+      "name": "Mossy Rock",
+      "authors": [
+        "Rob Tuytel"
+      ],
+      "page": "https://polyhaven.com/a/mossy_rock",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_rock/mossy_rock_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_rock/mossy_rock_diff_1k.jpg",
+          "sha256": "4dbf37f1b0465c9c8914213163923be159716f5b97fb6946437b6c5e143ef540",
+          "bytes": 1124438
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_rock/mossy_rock_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_rock/mossy_rock_nor_gl_1k.jpg",
+          "sha256": "232cdd6a9fdfd01bb8bb1f8f604c53dbca79fa0d3d7995edf85c9945757aa8df",
+          "bytes": 995727
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/mossy_rock/mossy_rock_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_rock/mossy_rock_arm_1k.jpg",
+          "sha256": "1c1b8da603c93e863ccb68a8f4fcc6ff02774b83d9a6e9422c7d4aa77397b6a3",
+          "bytes": 926941
+        }
+      ]
+    },
+    {
+      "id": "forest_ground_04",
+      "kind": "texture",
+      "role": "forest floor terrain layer",
+      "name": "Forest Ground 04",
+      "authors": [
+        "Rob Tuytel",
+        "Rico Cilliers"
+      ],
+      "page": "https://polyhaven.com/a/forest_ground_04",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/forest_ground_04/forest_ground_04_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_diff_1k.jpg",
+          "sha256": "50a4dda30875020c64385261aa7e00e2155b592302fa6794165f58fae73cbd2c",
+          "bytes": 1113899
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/forest_ground_04/forest_ground_04_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_nor_gl_1k.jpg",
+          "sha256": "9c3a0200e02ce40edffbbf9f5f623ef08ea9b1b7812b556182ec978f88887151",
+          "bytes": 1326812
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/forest_ground_04/forest_ground_04_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_arm_1k.jpg",
+          "sha256": "1dea651a5626530a08544804a616847bfb47b97bb93ecb8c84f13c4f1d498d83",
+          "bytes": 882694
+        }
+      ]
+    },
+    {
+      "id": "leaves_forest_ground",
+      "kind": "texture",
+      "role": "terrain variation layer",
+      "name": "Leaves Forest Ground",
+      "authors": [
+        "Dario Barresi",
+        "Dimitrios Savva"
+      ],
+      "page": "https://polyhaven.com/a/leaves_forest_ground",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/leaves_forest_ground/leaves_forest_ground_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_diff_1k.jpg",
+          "sha256": "e4aa2be8f80192378bc8aca363fc01b1f01639ebea5a87a3973c549861a01b7a",
+          "bytes": 1135712
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/leaves_forest_ground/leaves_forest_ground_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_nor_gl_1k.jpg",
+          "sha256": "78b24836c2a1ddcfbd81a493de89ee0722319187b39016022a21e63d710c9284",
+          "bytes": 1380468
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/leaves_forest_ground/leaves_forest_ground_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_arm_1k.jpg",
+          "sha256": "353c4b6cf159a0acd89ecc3ebf69fccc9f4876e1f0ddb07f7c38265304b0c270",
+          "bytes": 976450
+        }
+      ]
+    },
+    {
+      "id": "bamboo_wall",
+      "kind": "texture",
+      "role": "bamboo fences",
+      "name": "Bamboo Wall",
+      "authors": [
+        "Amal Kumar"
+      ],
+      "page": "https://polyhaven.com/a/bamboo_wall",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/bamboo_wall/bamboo_wall_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bamboo_wall/bamboo_wall_diff_1k.jpg",
+          "sha256": "5321f063d8d03d8666202e6f0e10619598f4d2814712f1d08f28d11b689ee79a",
+          "bytes": 677974
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/bamboo_wall/bamboo_wall_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bamboo_wall/bamboo_wall_nor_gl_1k.jpg",
+          "sha256": "817783d0ae812d1567839861b0b4c81c392fd2bb77806ce03cb86c44ba3933a2",
+          "bytes": 726676
+        },
+        {
+          "path": "Assets/ThirdParty/PolyHaven/Textures/bamboo_wall/bamboo_wall_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bamboo_wall/bamboo_wall_arm_1k.jpg",
+          "sha256": "6abcc943d5ef93e1c68addcc8c96c48a3736c2c77eb8274d76cec2e9fe5a06e0",
+          "bytes": 586093
+        }
+      ]
+    },
+    {
+      "id": "qwantani_sunrise_puresky",
+      "kind": "hdri",
+      "role": "dawn hero lighting",
+      "name": "Qwantani Sunrise (Pure Sky)",
+      "authors": [
+        "Greg Zaal",
+        "Jarod Guest"
+      ],
+      "page": "https://polyhaven.com/a/qwantani_sunrise_puresky",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/HDRI/qwantani_sunrise_puresky_2k.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/qwantani_sunrise_puresky_2k.hdr",
+          "sha256": "25dd4ac46b584706a6777b9fe69325eecdb9edb541a0ad2dcc18486349474c93",
+          "bytes": 4193865
+        }
+      ]
+    },
+    {
+      "id": "kloofendal_48d_partly_cloudy_puresky",
+      "kind": "hdri",
+      "role": "default day sky",
+      "name": "Kloofendal 48d Partly Cloudy (Pure Sky)",
+      "authors": [
+        "Greg Zaal",
+        "Jarod Guest"
+      ],
+      "page": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/HDRI/kloofendal_48d_partly_cloudy_puresky_2k.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloofendal_48d_partly_cloudy_puresky_2k.hdr",
+          "sha256": "5244534e9cf5b606f2ff513aa00ddb161b0a4826ffd88a0d3bd03ac29247d198",
+          "bytes": 5451493
+        }
+      ]
+    },
+    {
+      "id": "kloofendal_28d_misty_puresky",
+      "kind": "hdri",
+      "role": "misty morning variant",
+      "name": "Kloofendal 28d Misty (Pure Sky)",
+      "authors": [
+        "Greg Zaal",
+        "Jenelle van Heerden"
+      ],
+      "page": "https://polyhaven.com/a/kloofendal_28d_misty_puresky",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/HDRI/kloofendal_28d_misty_puresky_2k.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloofendal_28d_misty_puresky_2k.hdr",
+          "sha256": "7adde668fb821069a05e4dcaf09c08ebf2de6503bdd99fd5bdf7bcfddff4236a",
+          "bytes": 4467957
+        }
+      ]
+    },
+    {
+      "id": "qwantani_night_puresky",
+      "kind": "hdri",
+      "role": "night sky",
+      "name": "Qwantani Night (Pure Sky)",
+      "authors": [
+        "Greg Zaal",
+        "Jarod Guest"
+      ],
+      "page": "https://polyhaven.com/a/qwantani_night_puresky",
+      "license": "CC0 1.0 (Poly Haven)",
+      "files": [
+        {
+          "path": "Assets/ThirdParty/PolyHaven/HDRI/qwantani_night_puresky_2k.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/qwantani_night_puresky_2k.hdr",
+          "sha256": "d458fe7f20969d89eedbb7ae12d346abf68c86d844235696e7d70baad3e04cf0",
+          "bytes": 5461210
+        }
+      ]
+    }
+  ]
+}
