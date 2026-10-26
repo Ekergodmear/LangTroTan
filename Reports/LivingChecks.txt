@@ -1,0 +1,34 @@
+PASS living world starts with finite resources and three neighbors
+PASS survival continues beyond day seven
+PASS calendar advances four hundred days without a victory cap
+PASS spring starts year
+PASS summer and longer daylight
+PASS autumn follows summer
+PASS winter and shorter daylight
+PASS four seasons roll into next year
+PASS seeded weather produces sunshine rain and winter snow
+PASS manual logging reserves one villager
+PASS duplicate harvesting job rejected
+PASS logger travels harvests and returns finite timber
+PASS replanting stump has a cost and growth timer
+PASS planted tree regrows
+PASS manual hunting can be ordered
+PASS hunter completes a finite hunting trip
+PASS crops grow before producing harvest
+PASS mature crop harvested and automatically replanted
+PASS winter reduces crop growth
+PASS player can choose a vegetable crop
+PASS vegetables pause in freezing temperatures
+PASS nearby well irrigates farm
+PASS winter heating consumes stored wood
+PASS diplomatic gift costs food and improves relations
+PASS trade debits both economies atomically
+PASS war changes hostility and blocks trading
+PASS paid peace ends player war
+PASS AI cannot recruit without resources
+PASS AI spends its own resources to recruit
+PASS aggressive neighbor prepares declares war and dispatches an army
+PASS AI villages fight each other without consuming player population
+PASS defeated neighboring village does not auto revive or end sandbox
+PASS old victorious seven-day save migrates to continuing sandbox
+PASS season weather diplomacy and crop state survive save round trip

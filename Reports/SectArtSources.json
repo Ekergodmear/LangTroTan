@@ -1,0 +1,61 @@
+{
+  "referenceProject": "C:\\Users\\Admin\\Desktop\\tu-tien-game",
+  "sourceRegistry": "js/data/studioAssetRegistry.js",
+  "assets": [
+    {
+      "source": "assets/studio/sect_buildings/fantasy_building_kiem-phong-sword-pavilion_s55002_20261017-154007/fantasy_building_kiem-phong-sword-pavilion_s55002_20261017-154007_512.webp",
+      "target": "School0.png",
+      "alt": "Kiếm Phong — kiếm các trên vách núi"
+    },
+    {
+      "source": "assets/studio/characters/lu-han_portrait_portrait_s57001_20261017-210457/lu-han_portrait_portrait_s57001_20261017-210457_256.webp",
+      "target": "Portrait0.png",
+      "alt": "Lục Hàn · Kiếm Phong"
+    },
+    {
+      "source": "assets/studio/sect_buildings/fantasy_building_dan-phong-alchemy-hall_s55102_20261017-154213/fantasy_building_dan-phong-alchemy-hall_s55102_20261017-154213_512.webp",
+      "target": "School1.png",
+      "alt": "Đan Phong — đan các với lò luyện đan"
+    },
+    {
+      "source": "assets/studio/characters/ha-viem_portrait_portrait_s57104_20261017-210742/ha-viem_portrait_portrait_s57104_20261017-210742_256.webp",
+      "target": "Portrait1.png",
+      "alt": "Hạ Viêm · Đan Phong"
+    },
+    {
+      "source": "assets/studio/sect_buildings/fantasy_building_tran-phong-formation-hall_s55204_20261017-154516/fantasy_building_tran-phong-formation-hall_s55204_20261017-154516_512.webp",
+      "target": "School2.png",
+      "alt": "Trận Phong — điện trận với vòng trận pháp"
+    },
+    {
+      "source": "assets/studio/characters/thach-quan_portrait_portrait_s57202_20261017-210858/thach-quan_portrait_portrait_s57202_20261017-210858_256.webp",
+      "target": "Portrait2.png",
+      "alt": "Thạch Quân · Trận Phong"
+    },
+    {
+      "source": "assets/studio/sect_buildings/fantasy_building_phu-phong-talisman-archive_s53001_20261016-214135/fantasy_building_phu-phong-talisman-archive_s53001_20261016-214135_512.webp",
+      "target": "School3.png",
+      "alt": "Phù Phong — lầu lưu trữ phù lục"
+    },
+    {
+      "source": "assets/studio/characters/tieu-van_portrait_portrait_s51002_20261016-213808/tieu-van_portrait_portrait_s51002_20261016-213808_256.webp",
+      "target": "Portrait3.png",
+      "alt": "Tiêu Vân · Phù Phong"
+    },
+    {
+      "source": "assets/studio/sect_buildings/fantasy_building_huyet-phong-blood-hall_s55305_20261017-154752/fantasy_building_huyet-phong-blood-hall_s55305_20261017-154752_512.webp",
+      "target": "School4.png",
+      "alt": "Huyết Phong — huyết điện trên đá đen"
+    },
+    {
+      "source": "assets/studio/characters/mac-huyet_portrait_portrait_s57305_20261017-211241/mac-huyet_portrait_portrait_s57305_20261017-211241_256.webp",
+      "target": "Portrait4.png",
+      "alt": "Mặc Huyết · Huyết Phong"
+    },
+    {
+      "source": "assets/studio/backgrounds/background_bicanh-thien-ngoai-tien-phu_s58305_20261018-170928/background_bicanh-thien-ngoai-tien-phu_s58305_20261018-170928_orig.webp",
+      "target": "SectBackdrop.png",
+      "alt": "Thiên Ngoại Tiên Phủ"
+    }
+  ]
+}

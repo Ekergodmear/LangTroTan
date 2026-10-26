@@ -1,0 +1,5 @@
+{
+  "name": "LangTroTan.Infrastructure",
+  "rootNamespace": "LangTroTan.Infrastructure",
+  "references": ["LangTroTan.Domain"]
+}

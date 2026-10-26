@@ -1,0 +1,11 @@
+{
+  "name": "LangTroTan.Presentation",
+  "rootNamespace": "LangTroTan.Presentation",
+  "references": [
+    "LangTroTan.Domain",
+    "LangTroTan.Infrastructure",
+    "UnityEngine.UI",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Core.Runtime"
+  ]
+}

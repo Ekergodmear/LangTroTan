@@ -1,0 +1,5849 @@
+{
+  "aiGoals": {
+    "AI_GOALS": [
+      {
+        "id": "dominate_continent",
+        "name": "Bá Chủ Một Châu",
+        "desc": "Thâu tóm phần lớn lãnh thổ trong châu của mình để xưng bá một phương.",
+        "personalityAffinity": [
+          "tyrant",
+          "opportunist"
+        ],
+        "territoryShareNeeded": 0.7
+      },
+      {
+        "id": "become_sacred_land",
+        "name": "Trở Thành Thánh Địa",
+        "desc": "Tích lũy đủ lãnh thổ, danh vọng và bậc cao thủ để được thiên hạ công nhận là Thánh Địa.",
+        "personalityAffinity": [
+          "benevolent",
+          "tyrant"
+        ],
+        "territoriesNeeded": 1,
+        "legendFameNeeded": 10000,
+        "legendCountNeeded": 1,
+        "renownNeeded": 5000
+      },
+      {
+        "id": "economic_hegemony",
+        "name": "Bá Chủ Kinh Tế",
+        "desc": "Khống chế giao thương và đan dược khắp thiên hạ.",
+        "personalityAffinity": [
+          "opportunist",
+          "benevolent"
+        ],
+        "renownNeeded": 9000
+      }
+    ]
+  },
+  "ancestorWorship": {
+    "HONOR_MIN_FAME": 15000,
+    "HONOR_TICK_INTERVAL_DAYS": 360,
+    "MAX_STATUES": 5,
+    "MAX_TO_SU": 1,
+    "STATUE_FAMILY_PRESTIGE_BONUS": 500,
+    "STATUE_LOYALTY_TICK_BONUS": 0.3,
+    "TO_SU_FAMILY_PRESTIGE_BONUS": 2000,
+    "TO_SU_LOYALTY_TICK_BONUS": 1
+  },
+  "bicanhTypes": {
+    "BICANH_TYPES": [
+      {
+        "id": "thien_long",
+        "name": "Thiên Long Bí Cảnh",
+        "affinitySchool": "kiem",
+        "epic": false,
+        "omenName": "Thiên Long Hư Ảnh",
+        "rewardFame": 3000,
+        "rewardLabel": "Long Cốt",
+        "desc": "Bí cảnh cổ xưa của kiếm đạo, tương truyền có di cốt chân long ẩn giấu bên trong."
+      },
+      {
+        "id": "co_phat",
+        "name": "Cổ Phật Bí Cảnh",
+        "affinitySchool": "phat",
+        "epic": false,
+        "omenName": "Phạn Âm Vọng Thế",
+        "rewardFame": 3000,
+        "rewardLabel": "Xá Lợi Cổ Phật",
+        "desc": "Tàn tích một ngôi chùa thượng cổ, nơi một vị Phật Đà từng ngồi thiền định hóa."
+      },
+      {
+        "id": "ma_ton_mo",
+        "name": "Ma Tôn Mộ",
+        "affinitySchool": "vo",
+        "epic": false,
+        "omenName": "Ma Khí Xung Thiên",
+        "rewardFame": 3000,
+        "rewardLabel": "Ma Tôn Di Vật",
+        "desc": "Mộ phần của một vị Ma Tôn thượng cổ, ma khí ngàn năm chưa tan."
+      },
+      {
+        "id": "thien_ngoai_tien_phu",
+        "name": "Thiên Ngoại Tiên Phủ",
+        "affinitySchool": "dao",
+        "epic": false,
+        "omenName": "Tiên Vân Giáng Lâm",
+        "rewardFame": 6000,
+        "rewardLabel": "Tiên Phủ Truyền Thừa",
+        "rare": true,
+        "desc": "Tiên phủ rơi từ ngoài trời cao, cực kỳ hiếm gặp, ẩn chứa cơ duyên phi phàm."
+      },
+      {
+        "id": "hong_hoang_di_tich",
+        "name": "Hồng Hoang Di Tích",
+        "affinitySchool": null,
+        "epic": true,
+        "worldWide": true,
+        "omenName": "Hồng Hoang Khí Tức",
+        "rewardFame": 15000,
+        "rewardLabel": "Hồng Hoang Truyền Thừa",
+        "desc": "Di tích từ thời Hồng Hoang, cứ trăm năm mới hé lộ một lần, chấn động toàn bộ Tứ Đại Bộ Châu.",
+        "cooldownDays": 100
+      },
+      {
+        "id": "long_mach_thuc_tinh",
+        "name": "Long Mạch Thức Tỉnh",
+        "affinitySchool": null,
+        "epic": true,
+        "worldWide": true,
+        "omenName": "Đại Địa Chấn Động",
+        "rewardFame": 8000,
+        "rewardLabel": "Long Mạch Chi Khí",
+        "linhKhiMachBonus": 4000,
+        "desc": "Một mạch rồng ngàn năm ngủ yên bỗng thức tỉnh, linh khí cuồn cuộn dâng trào khắp một vùng trời đất.",
+        "cooldownDays": 150
+      },
+      {
+        "id": "di_hoa_xuat_hien",
+        "name": "Dị Hỏa Xuất Hiện",
+        "affinitySchool": "dao",
+        "epic": false,
+        "worldWide": true,
+        "omenName": "Thiên Hỏa Giáng Thế",
+        "rewardFame": 5000,
+        "rewardLabel": "Dị Hỏa Chi Chủng",
+        "desc": "Một ngọn dị hỏa từ thượng cổ bất ngờ xuất hiện, ai luyện được có thể đại tăng uy lực đan đạo.",
+        "cooldownDays": 80
+      },
+      {
+        "id": "ma_ton_chuyen_sinh",
+        "name": "Ma Tôn Chuyển Sinh",
+        "affinitySchool": "vo",
+        "epic": true,
+        "worldWide": true,
+        "omenName": "Ma Khí Nhập Thế",
+        "rewardFame": 10000,
+        "rewardLabel": "Ma Tôn Chi Huyết Mạch",
+        "desc": "Một vị Ma Tôn thượng cổ chuyển sinh vào phàm thân, khắp thiên hạ đều muốn đoạt lấy — hoặc diệt trừ trước khi quá muộn.",
+        "cooldownDays": 120
+      },
+      {
+        "id": "co_nhan_mo",
+        "name": "Cổ Nhân Chi Mộ",
+        "affinitySchool": null,
+        "epic": false,
+        "omenName": "U Khí Tụ Mộ",
+        "rewardFame": 2500,
+        "rewardLabel": "Di Vật Cổ Nhân",
+        "desc": "Mộ phần của một cao thủ đã khuất, di vật bên trong vẫn còn vương sát khí năm xưa."
+      }
+    ]
+  },
+  "bloodlines": {
+    "BLOODLINE_INHERIT_CHANCE": 0.3,
+    "BLOODLINE_MUTATION_CHANCE": 0.05,
+    "BLOODLINE_ORIGIN_CHANCE": 0.35,
+    "MUTATION_STAT_MULTIPLIER": 1.4,
+    "STATIC_BLOODLINES": [
+      {
+        "id": "kiem_thanh_huyet_mach",
+        "name": "Kiếm Thánh Huyết Mạch",
+        "originSchool": "kiem",
+        "hpPct": 0,
+        "atkPct": 0.16,
+        "defPct": 0,
+        "spdPct": 0,
+        "breakthroughPct": 0
+      },
+      {
+        "id": "chan_long_huyet_mach",
+        "name": "Chân Long Huyết Mạch",
+        "originSchool": "vo",
+        "hpPct": 0.14,
+        "atkPct": 0,
+        "defPct": 0.1,
+        "spdPct": 0,
+        "breakthroughPct": 0
+      },
+      {
+        "id": "thien_phuong_huyet_mach",
+        "name": "Thiên Phượng Huyết Mạch",
+        "originSchool": null,
+        "hpPct": 0,
+        "atkPct": 0,
+        "defPct": 0,
+        "spdPct": 0,
+        "breakthroughPct": 0.08
+      }
+    ]
+  },
+  "chanTruyen": {
+    "CHAN_TRUYEN_CHALLENGE_COOLDOWN_DAYS": 60,
+    "CHAN_TRUYEN_DEFECT_CHANCE": 0.2,
+    "CHAN_TRUYEN_ENVY_DAO_TRANG_SIZE": 4,
+    "CHAN_TRUYEN_HEART_DEMON_SCORE": {
+      "kien_dinh": 100,
+      "dao_dong": 60,
+      "ran_nut": 25,
+      "nhap_ma": -50
+    },
+    "CHAN_TRUYEN_MIN_RANK_FOR_HIGH_TIER_MANUAL": 3,
+    "CHAN_TRUYEN_ORDINAL_CHALLENGE_COOLDOWN_DAYS": 90,
+    "CHAN_TRUYEN_ORDINAL_CHALLENGE_MARGIN": 40,
+    "CHAN_TRUYEN_ORDINAL_NAMES": [
+      "Chân Truyền Thủ Tịch",
+      "Chân Truyền Thứ Nhị",
+      "Chân Truyền Thứ Tam",
+      "Chân Truyền Thứ Tứ",
+      "Chân Truyền Thứ Ngũ",
+      "Chân Truyền Thứ Lục",
+      "Chân Truyền Thứ Thất",
+      "Chân Truyền Thứ Bát",
+      "Chân Truyền Thứ Cửu",
+      "Chân Truyền Thứ Thập"
+    ],
+    "CHAN_TRUYEN_SCAN_INTERVAL_DAYS": 10,
+    "THU_TICH_MANUAL_RESERVATION_DAYS": 180
+  },
+  "classics": {
+    "CLASSIC_CHECK_INTERVAL_DAYS": 1800,
+    "CLASSIC_CIVILIZATION_BONUS_PER_WORK": 0.01,
+    "CLASSIC_FAITH_BONUS": 500,
+    "CLASSIC_FIRST_UNDER_HEAVEN_FAME": 30000,
+    "CLASSIC_HEAVENLY_WILL_EASE": 0.01,
+    "CLASSIC_TEMPLATES": {
+      "kiem": {
+        "tam_dac": "Kiếm Đạo Tâm Đắc",
+        "chan_giai": "Kiếm Ý Chân Giải",
+        "first_under_heaven": "Thiên Hạ Kiếm Luận"
+      },
+      "dao": {
+        "tam_dac": "Đan Đạo Tâm Đắc",
+        "chan_giai": "Đan Đạo Chân Giải",
+        "first_under_heaven": "Thiên Cơ Luận"
+      },
+      "phat": {
+        "tam_dac": "Phật Pháp Tâm Đắc",
+        "chan_giai": "Bồ Đề Chân Giải",
+        "first_under_heaven": "Đại Thừa Luận"
+      },
+      "nho": {
+        "tam_dac": "Văn Đạo Tâm Đắc",
+        "chan_giai": "Kinh Bang Chân Giải",
+        "first_under_heaven": "Trị Thế Luận"
+      },
+      "vo": {
+        "tam_dac": "Võ Đạo Tâm Đắc",
+        "chan_giai": "Chiến Đạo Chân Giải",
+        "first_under_heaven": "Vô Địch Luận"
+      }
+    }
+  },
+  "combos": {
+    "COMBOS": [
+      {
+        "id": "ngon_dinh_kiem_diet",
+        "name": "Ngôn Định Kiếm Diệt",
+        "schools": [
+          "nho",
+          "kiem"
+        ],
+        "steps": [
+          {
+            "school": "nho",
+            "skillId": "nho_debuff1",
+            "role": "Nho Gia - Debuff",
+            "note": "Quy tắc thiên địa cưỡng ép đóng băng mục tiêu, bóc tách lớp hộ thể lộ ra da thịt phàm trần."
+          },
+          {
+            "school": "kiem",
+            "skillId": "kiem_buff1",
+            "role": "Kiếm Tu - Buff",
+            "note": "Kích hoạt Nhất Niệm Tâm Kiếm, tốc độ xuất kiếm vượt vận tốc âm thanh."
+          },
+          {
+            "school": "kiem",
+            "skillId": "kiem_single1",
+            "role": "Kiếm Tu - TC Đơn",
+            "note": "Nhất Kiếm Xuyên Tâm găm thẳng vào tử huyệt đã bị cố định. Sát thương nhân 3 lần."
+          }
+        ],
+        "dmgMultiplier": 3
+      },
+      {
+        "id": "kim_cang_su_tu_loi",
+        "name": "Kim Cang Sư Tử Lôi",
+        "schools": [
+          "phat",
+          "dao"
+        ],
+        "steps": [
+          {
+            "school": "phat",
+            "skillId": "phat_aoe2",
+            "role": "Phật Giáo - Debuff/AoE",
+            "note": "Sư Tử Hống làm choáng diện rộng, ép quân địch co cụm vào vị trí trung tâm."
+          },
+          {
+            "school": "dao",
+            "skillId": "dao_debuff2",
+            "role": "Đạo Giáo - Debuff",
+            "note": "Hóa Đạo Trầm Luân biến mặt đất thành bùn lầy, khóa không cho tẩu thoát."
+          },
+          {
+            "school": "dao",
+            "skillId": "dao_aoe3",
+            "role": "Đạo Giáo - TC Tổng",
+            "note": "Trảm Yêu Trừ Ma Ấn nện xuống, sát thương cộng dồn tạo vụ nổ linh lực dây chuyền."
+          }
+        ],
+        "dmgMultiplier": 2.2
+      },
+      {
+        "id": "sat_luc_bat_tu_cuong_ma",
+        "name": "Sát Lục Bất Tử Cuồng Ma",
+        "schools": [
+          "vo"
+        ],
+        "solo": true,
+        "steps": [
+          {
+            "school": "vo",
+            "skillId": "vo_buff2",
+            "role": "Buff nội tại",
+            "note": "Giữ máu ở mức thấp để nhận tối đa buff từ Võ Thánh Chiến Ý."
+          },
+          {
+            "school": "vo",
+            "skillId": "vo_buff1",
+            "role": "Buff chủ động",
+            "note": "Kích hoạt Huyết Khí Trùng Thiên, đẩy lực công kích lên cực hạn."
+          },
+          {
+            "school": "vo",
+            "skillId": "vo_single3",
+            "role": "TC Đơn",
+            "note": "Nhục Thân Phá Trận lao thẳng vào giữa lòng địch như thiên thạch."
+          }
+        ],
+        "dmgMultiplier": 1.8
+      }
+    ]
+  },
+  "daiHoiThienHa": {
+    "CATEGORY_TITLE": {
+      "luan_dao": "Thiên Hạ Đệ Nhất Luận Đạo",
+      "luyen_dan": "Thiên Hạ Đệ Nhất Đan Sư",
+      "luyen_khi": "Thiên Hạ Đệ Nhất Luyện Khí Sư",
+      "tran_phap": "Thiên Hạ Đệ Nhất Trận Pháp Sư",
+      "dau_phap": "Thiên Hạ Đệ Nhất Cao Thủ"
+    },
+    "DAI_HOI_CATEGORIES": [
+      {
+        "id": "luan_dao",
+        "label": "Luận Đạo"
+      },
+      {
+        "id": "luyen_dan",
+        "label": "Luyện Đan"
+      },
+      {
+        "id": "luyen_khi",
+        "label": "Luyện Khí"
+      },
+      {
+        "id": "dau_phap",
+        "label": "Đấu Pháp"
+      },
+      {
+        "id": "tran_phap",
+        "label": "Trận Pháp"
+      }
+    ],
+    "DAI_HOI_CATEGORY_FAME_REWARD": 6000,
+    "DAI_HOI_HISTORY_SIZE": 10,
+    "DAI_HOI_INTERVAL_DAYS": 18000,
+    "DAI_HOI_MAX_ENTRANTS": 16,
+    "DAI_HOI_THANH_TU_NU_REALM_BONUS": 1,
+    "DAI_HOI_WORLD_INFLUENCE_REWARD": 150,
+    "DAU_PHAP_TITLE_BY_SCHOOL": {
+      "kiem": "Thiên Hạ Đệ Nhất Kiếm",
+      "dao": "Thiên Hạ Đệ Nhất Đạo Sĩ",
+      "phat": "Thiên Hạ Đệ Nhất Phật Môn",
+      "nho": "Thiên Hạ Đệ Nhất Nho Sinh",
+      "vo": "Thiên Hạ Đệ Nhất Quyền"
+    },
+    "SCHOOL_CATEGORY_BONUS": {
+      "kiem": {
+        "luan_dao": 0.9,
+        "luyen_dan": 0.85,
+        "luyen_khi": 1.15,
+        "tran_phap": 0.95
+      },
+      "dao": {
+        "luan_dao": 1.15,
+        "luyen_dan": 1.25,
+        "luyen_khi": 1,
+        "tran_phap": 1.15
+      },
+      "phat": {
+        "luan_dao": 1.2,
+        "luyen_dan": 0.95,
+        "luyen_khi": 0.85,
+        "tran_phap": 1.05
+      },
+      "nho": {
+        "luan_dao": 1.3,
+        "luyen_dan": 0.85,
+        "luyen_khi": 0.8,
+        "tran_phap": 1.2
+      },
+      "vo": {
+        "luan_dao": 0.75,
+        "luyen_dan": 0.8,
+        "luyen_khi": 1.1,
+        "tran_phap": 0.9
+      }
+    }
+  },
+  "daiKiep": {
+    "CHINH_SCHOOLS": [
+      "phat",
+      "nho"
+    ],
+    "DAI_KIEP_SKIRMISH_CHANCE": 0.06,
+    "DAI_KIEP_WARNING_DAYS": 200,
+    "MA_SCHOOLS": [
+      "vo"
+    ]
+  },
+  "dataRetention": {
+    "AI_SECT_DEATH_DORMANCY_DAYS": 1000,
+    "BLOODLINE_DORMANCY_DAYS": 720,
+    "CLASSIC_SOFT_CAP": 1500,
+    "DATA_RETENTION_INTERVAL_DAYS": 1000,
+    "DISCIPLE_DEATH_DORMANCY_DAYS": 360,
+    "LEGACY_ARCHIVE_SOFT_CAP": 1500,
+    "LEGACY_DORMANCY_DAYS": 3600,
+    "LEGENDARY_STORY_SOFT_CAP": 1500,
+    "LEGEND_DEATH_DORMANCY_DAYS": 360,
+    "MAX_BIOGRAPHY_ENTRIES": 30
+  },
+  "destinyQuests": {
+    "DESTINY_QUESTS": {
+      "kiem_dao_thanh_tong": {
+        "steps": [
+          {
+            "id": "titles",
+            "label": "Sở hữu 3 Kiếm Tôn/Kiếm Thánh trở lên",
+            "target": 3,
+            "school": "kiem"
+          },
+          {
+            "id": "territory",
+            "label": "Chiếm được ít nhất 1 lãnh thổ",
+            "target": 1
+          },
+          {
+            "id": "dungeons",
+            "label": "Vượt ải Bí Cảnh 10 lần",
+            "target": 10
+          }
+        ],
+        "awakenedBonus": 0.3,
+        "awakenedDesc": "Kiếm Tu +50% chỉ số tổng cộng, mọi Kiếm Tu có xác suất ngộ kiếm ý khi đột phá (+1 sao)."
+      },
+      "van_co_dan_tong": {
+        "steps": [
+          {
+            "id": "titles",
+            "label": "Sở hữu 3 Đan Tôn/Đan Thánh trở lên",
+            "target": 3,
+            "school": "dao"
+          },
+          {
+            "id": "territory",
+            "label": "Chiếm được ít nhất 1 lãnh thổ",
+            "target": 1
+          },
+          {
+            "id": "dungeons",
+            "label": "Vượt ải Bí Cảnh 10 lần",
+            "target": 10
+          }
+        ],
+        "awakenedBonus": 0.3,
+        "awakenedDesc": "Đạo Giáo +50% chỉ số tổng cộng, mọi Đạo Giáo có xác suất ngộ đạo khi đột phá (+1 sao)."
+      },
+      "nho_gia_chinh_thong": {
+        "steps": [
+          {
+            "id": "titles",
+            "label": "Sở hữu 3 Nho Tôn/Văn Thánh trở lên",
+            "target": 3,
+            "school": "nho"
+          },
+          {
+            "id": "territory",
+            "label": "Chiếm được ít nhất 1 lãnh thổ",
+            "target": 1
+          },
+          {
+            "id": "dungeons",
+            "label": "Vượt ải Bí Cảnh 10 lần",
+            "target": 10
+          }
+        ],
+        "awakenedBonus": 0.3,
+        "awakenedDesc": "Nho Gia +50% chỉ số tổng cộng, mọi Nho Gia có xác suất đại ngộ khi đột phá (+1 sao)."
+      },
+      "phat_mon_thanh_dia": {
+        "steps": [
+          {
+            "id": "titles",
+            "label": "Sở hữu 3 Phật Tôn/Phật Thánh trở lên",
+            "target": 3,
+            "school": "phat"
+          },
+          {
+            "id": "territory",
+            "label": "Chiếm được ít nhất 1 lãnh thổ",
+            "target": 1
+          },
+          {
+            "id": "dungeons",
+            "label": "Vượt ải Bí Cảnh 10 lần",
+            "target": 10
+          }
+        ],
+        "awakenedBonus": 0.3,
+        "awakenedDesc": "Phật Giáo +50% chỉ số tổng cộng, mọi Phật Giáo có xác suất đốn ngộ khi đột phá (+1 sao)."
+      },
+      "ma_dao_ta_tong": {
+        "steps": [
+          {
+            "id": "titles",
+            "label": "Sở hữu 3 Chiến Tôn/Chiến Thánh trở lên",
+            "target": 3,
+            "school": "vo"
+          },
+          {
+            "id": "territory",
+            "label": "Chiếm được ít nhất 1 lãnh thổ",
+            "target": 1
+          },
+          {
+            "id": "dungeons",
+            "label": "Vượt ải Bí Cảnh 10 lần",
+            "target": 10
+          }
+        ],
+        "awakenedBonus": 0.35,
+        "awakenedDesc": "Võ Gia +60% chỉ số tổng cộng, mọi Võ Gia có xác suất bạo hóa sát khí khi đột phá (+1 sao)."
+      }
+    }
+  },
+  "diplomacyData": {
+    "AI_PERSONALITIES": {
+      "benevolent": {
+        "id": "benevolent",
+        "name": "Chính Đạo Hiền Hòa",
+        "desc": "Thường xuất hiện ở Đông Thắng Thần Châu. Thích xây dựng liên minh, chuộng hòa bình, chỉ chủ động tuyên chiến khi đồng minh bị tấn công.",
+        "aggression": 0.1,
+        "giftResponsive": true,
+        "weights": {
+          "war": 5,
+          "expansion": 15,
+          "alliance": 45,
+          "economy": 25,
+          "raid": 2,
+          "betray": 1
+        }
+      },
+      "tyrant": {
+        "id": "tyrant",
+        "name": "Ma Đạo Sát Lục",
+        "desc": "Thường xuất hiện ở Bắc Câu Lư Châu. Cực kỳ hiếu chiến, liên tục nuốt chửng tông môn yếu hơn, không thể thương lượng bằng quà tặng, chỉ khuất phục trước lực chiến áp đảo.",
+        "aggression": 0.8,
+        "giftResponsive": false,
+        "weights": {
+          "war": 50,
+          "expansion": 30,
+          "alliance": 5,
+          "economy": 10,
+          "raid": 20,
+          "betray": 5
+        }
+      },
+      "opportunist": {
+        "id": "opportunist",
+        "name": "Thương Hội Trọng Lợi",
+        "desc": "Thường xuất hiện ở Trung Hải. Giữ trung lập trong mọi cuộc chiến, bán vũ khí/đan dược cho cả hai bên để trục lợi. Chỉ đánh nếu bạn chiếm mỏ tài nguyên của họ.",
+        "aggression": 0.2,
+        "giftResponsive": true,
+        "weights": {
+          "war": 5,
+          "expansion": 10,
+          "alliance": 10,
+          "economy": 50,
+          "raid": 5,
+          "betray": 5
+        }
+      },
+      "paranoid": {
+        "id": "paranoid",
+        "name": "Cổ Lão Ẩn Thế",
+        "desc": "Các môn phái ẩn cư. Không tham gia sự kiện thế giới, nhưng nếu Danh vọng của bạn tăng quá nhanh, sẽ ngầm cử sát thủ ám sát đệ tử thiên tài (SSR) của bạn.",
+        "aggression": 0.15,
+        "giftResponsive": false,
+        "assassinatesOnFastReputation": true,
+        "weights": {
+          "war": 10,
+          "expansion": 5,
+          "alliance": 5,
+          "economy": 20,
+          "raid": 40,
+          "betray": 20
+        }
+      }
+    },
+    "AMITY_TIERS": [
+      {
+        "id": "alliance",
+        "min": 71,
+        "max": 100,
+        "name": "Liên Minh Kháng Địch",
+        "desc": "Mở cửa giao thương (tăng mạnh lượng Linh thạch thụ động), có thể gửi đệ tử sang tu luyện ké, hỗ trợ gửi viện binh khi bị tấn công."
+      },
+      {
+        "id": "friendly",
+        "min": 21,
+        "max": 70,
+        "name": "Hòa Bình Hữu Hảo",
+        "desc": "Trạng thái hữu hảo, có thể mua bán công pháp và nguyên liệu chế tác cao cấp qua hệ thống giao thương."
+      },
+      {
+        "id": "neutral",
+        "min": -20,
+        "max": 20,
+        "name": "Trung Lập",
+        "desc": "Trạng thái mặc định khi mới tiếp xúc. Đôi bên cạnh tranh tài nguyên nhẹ, không xung đột quân sự lớn."
+      },
+      {
+        "id": "cold",
+        "min": -70,
+        "max": -21,
+        "name": "Lạnh Nhạt / Đối Đầu",
+        "desc": "AI ngầm cử gián điệp, chèn ép đệ tử ngoại môn khi làm nhiệm vụ, tăng giá cắt cổ khi mua tài nguyên."
+      },
+      {
+        "id": "nemesis",
+        "min": -100,
+        "max": -71,
+        "name": "Tử Địch",
+        "desc": "Trạng thái chiến tranh tổng lực. AI chủ động mở chiến dịch tiến đánh, gặp nhau lập tức sinh tử chiến."
+      }
+    ],
+    "WAR_OUTCOMES": [
+      {
+        "id": "annex",
+        "name": "Sáp nhập / Thu phục",
+        "desc": "Biến tông môn đó thành Chi Nhánh (Sub-Sect), thu phục đệ tử còn sống, ngọn núi của họ cống nạp tài nguyên thụ động cho bạn theo thời gian."
+      },
+      {
+        "id": "loot",
+        "name": "Vơ vét & Giải tán",
+        "desc": "Cướp sạch Tàng Kinh Các (công pháp) và Linh thạch mang về tổng đàn, phá hủy linh mạch, giải tán tông môn. Nhận tài nguyên khổng lồ ngay lập tức nhưng giảm điểm ngoại giao với các tông môn lân cận."
+      },
+      {
+        "id": "annihilate",
+        "name": "Sát lục tuyệt diệt",
+        "desc": "Giết sạch toàn bộ tông môn để triệt hạ mầm mống báo thù, tránh tàn dư quay lại hủy diệt bạn sau này."
+      }
+    ],
+    "WAR_STAGES": [
+      {
+        "id": 1,
+        "name": "Cướp Đoạt Linh Mạch",
+        "key": "border_skirmish",
+        "desc": "Hệ thống kích hoạt điểm nóng chiến sự tại các mỏ Linh thạch/Linh điền ngoại vi. Phái đội hình đệ tử đi đánh chiếm node tài nguyên để triệt tiêu kinh tế và cắt giảm Linh Khí Mạch đối phương."
+      },
+      {
+        "id": 2,
+        "name": "Hộ Tông Đại Trận & Vây Thành",
+        "key": "sect_siege",
+        "desc": "Tiến đánh thẳng vào tổng đàn AI, đối mặt Hộ Tông Đại Trận. Lựa chọn: Vây thành cắt lương (an toàn, chậm) hoặc Cưỡng ép phá trận (nhanh, rủi ro tử trận vĩnh viễn)."
+      },
+      {
+        "id": 3,
+        "name": "Sinh Tử Quyết Chiến & Kết Cục Chiếm Đóng",
+        "key": "final_battle",
+        "desc": "Trận chiến cuối tại Chánh Điện đối phương. Thắng Chưởng môn AI sẽ mở 3 lựa chọn hậu chiến."
+      }
+    ]
+  },
+  "discipleCatalog": {
+    "DISCIPLE_CATALOG": [
+      {
+        "id": "kiem_r1",
+        "rarity": "R",
+        "school": "kiem",
+        "name": "Ký Danh Kiếm Đồng",
+        "flavor": "Đệ tử tạp dịch mới nhập môn, tay còn cầm kiếm gỗ."
+      },
+      {
+        "id": "kiem_r2",
+        "rarity": "R",
+        "school": "kiem",
+        "name": "Ngoại Môn Kiếm Tốt",
+        "flavor": "Luyện kiếm cơ bản, chưa thành khí hậu."
+      },
+      {
+        "id": "kiem_sr1",
+        "rarity": "SR",
+        "school": "kiem",
+        "name": "Nội Môn Kiếm Sĩ",
+        "flavor": "Đã ngưng được kiếm khí sơ cấp, tư chất ổn định."
+      },
+      {
+        "id": "kiem_sr2",
+        "rarity": "SR",
+        "school": "kiem",
+        "name": "Thanh Phong Kiếm Khách",
+        "flavor": "Kiếm pháp nhanh nhẹn, thiên về tốc độ."
+      },
+      {
+        "id": "kiem_ssr1",
+        "rarity": "SSR",
+        "school": "kiem",
+        "name": "Kiếm Tủy Trời Sinh",
+        "flavor": "Trong xương tủy vốn đã có kiếm ý, trăm năm khó gặp một người."
+      },
+      {
+        "id": "kiem_ssr2",
+        "rarity": "SSR",
+        "school": "kiem",
+        "name": "Vạn Kiếm Chi Tâm",
+        "flavor": "Tâm cảnh hòa cùng vạn kiếm, cảm ứng được kiếm linh khắp thiên hạ."
+      },
+      {
+        "id": "kiem_ur1",
+        "rarity": "UR",
+        "school": "kiem",
+        "name": "Hỗn Độn Kiếm Thể",
+        "flavor": "Dị tượng thần thoại: thân thể sinh ra đã mang Hỗn Độn Kiếm Ý, có thể cắt đứt cả quy tắc."
+      },
+      {
+        "id": "dao_r1",
+        "rarity": "R",
+        "school": "dao",
+        "name": "Đạo Đồng Quét Lá",
+        "flavor": "Tạp dịch trong Đạo quán, ngày ngày quét sân hái thuốc."
+      },
+      {
+        "id": "dao_r2",
+        "rarity": "R",
+        "school": "dao",
+        "name": "Sơ Cấp Đạo Sĩ",
+        "flavor": "Mới thuộc lòng vài đạo quyết cơ bản."
+      },
+      {
+        "id": "dao_sr1",
+        "rarity": "SR",
+        "school": "dao",
+        "name": "Ngũ Hành Đạo Sĩ",
+        "flavor": "Ngộ được một phần Ngũ Hành chi đạo."
+      },
+      {
+        "id": "dao_sr2",
+        "rarity": "SR",
+        "school": "dao",
+        "name": "Thái Cực Tu Sĩ",
+        "flavor": "Tâm tính điềm đạm, linh lực thâm hậu hơn người."
+      },
+      {
+        "id": "dao_ssr1",
+        "rarity": "SSR",
+        "school": "dao",
+        "name": "Ngũ Hành Chi Thể",
+        "flavor": "Ngũ hành viên mãn ngay từ căn cốt, thiên phú hiếm có."
+      },
+      {
+        "id": "dao_ssr2",
+        "rarity": "SSR",
+        "school": "dao",
+        "name": "Tiên Thiên Đạo Cốt",
+        "flavor": "Cốt cách sinh ra đã hợp đại đạo, tu luyện thuận theo tự nhiên."
+      },
+      {
+        "id": "dao_ur1",
+        "rarity": "UR",
+        "school": "dao",
+        "name": "Thái Cực Tiên Thể",
+        "flavor": "Dị tượng thần thoại: thân mang Thái Cực đồ, âm dương tự vận, gần như bất tử."
+      },
+      {
+        "id": "phat_r1",
+        "rarity": "R",
+        "school": "phat",
+        "name": "Tiểu Sa Di",
+        "flavor": "Mới xuống tóc, ngày ngày tụng kinh quét chùa."
+      },
+      {
+        "id": "phat_r2",
+        "rarity": "R",
+        "school": "phat",
+        "name": "Hành Giả Sơ Tu",
+        "flavor": "Nhục thân còn yếu, tâm Phật chưa vững."
+      },
+      {
+        "id": "phat_sr1",
+        "rarity": "SR",
+        "school": "phat",
+        "name": "Tỷ Kheo Tu Sĩ",
+        "flavor": "Đã thọ giới đầy đủ, công đức tích lũy ổn định."
+      },
+      {
+        "id": "phat_sr2",
+        "rarity": "SR",
+        "school": "phat",
+        "name": "Hộ Pháp Kim Cương",
+        "flavor": "Nhục thân cường tráng, chuyên hộ pháp trấn sơn."
+      },
+      {
+        "id": "phat_ssr1",
+        "rarity": "SSR",
+        "school": "phat",
+        "name": "Kim Cang Bất Hoại Thân",
+        "flavor": "Nhục thân luyện đến mức đao thương bất nhập."
+      },
+      {
+        "id": "phat_ssr2",
+        "rarity": "SSR",
+        "school": "phat",
+        "name": "Bồ Đề Căn Cơ",
+        "flavor": "Căn cơ Phật tính viên mãn, dễ dàng độ hóa nghiệp chướng."
+      },
+      {
+        "id": "phat_ur1",
+        "rarity": "UR",
+        "school": "phat",
+        "name": "Vạn Phật Thánh Thể",
+        "flavor": "Dị tượng thần thoại: thân mang tướng của vạn Phật, một niệm có thể trấn áp Ma Yêu."
+      },
+      {
+        "id": "nho_r1",
+        "rarity": "R",
+        "school": "nho",
+        "name": "Tân Học Tú Tài",
+        "flavor": "Vừa đỗ Tú Tài, còn nhiều bỡ ngỡ với chính đạo Thánh Hiền."
+      },
+      {
+        "id": "nho_r2",
+        "rarity": "R",
+        "school": "nho",
+        "name": "Thư Sinh Nghèo",
+        "flavor": "Chăm chỉ đọc sách nhưng khí vận chưa tụ."
+      },
+      {
+        "id": "nho_sr1",
+        "rarity": "SR",
+        "school": "nho",
+        "name": "Cử Nhân Tiến Sĩ",
+        "flavor": "Văn chương xuất chúng, Hạo Nhiên Khí bắt đầu ngưng tụ."
+      },
+      {
+        "id": "nho_sr2",
+        "rarity": "SR",
+        "school": "nho",
+        "name": "Đại Nho Môn Sinh",
+        "flavor": "Được chân truyền từ một vị Đại Nho, căn cơ vững chắc."
+      },
+      {
+        "id": "nho_ssr1",
+        "rarity": "SSR",
+        "school": "nho",
+        "name": "Hạo Nhiên Thần Thể",
+        "flavor": "Chính khí sung mãn từ trong xương cốt, lời nói tự mang uy quyền."
+      },
+      {
+        "id": "nho_ssr2",
+        "rarity": "SSR",
+        "school": "nho",
+        "name": "Văn Tâm Điêu Long",
+        "flavor": "Bút lực thấu triệt thiên địa, mỗi câu chữ đều ẩn chứa pháp tắc."
+      },
+      {
+        "id": "nho_ur1",
+        "rarity": "UR",
+        "school": "nho",
+        "name": "Văn Khúc Tinh Quân Thể",
+        "flavor": "Dị tượng thần thoại: mang mệnh cách Văn Khúc Tinh Quân giáng thế, ngôn xuất pháp tùy tuyệt đối."
+      },
+      {
+        "id": "vo_r1",
+        "rarity": "R",
+        "school": "vo",
+        "name": "Tân Binh Luyện Nhục",
+        "flavor": "Mới nhập ngũ, đang trong giai đoạn luyện thể cơ bản."
+      },
+      {
+        "id": "vo_r2",
+        "rarity": "R",
+        "school": "vo",
+        "name": "Hộ Vệ Sơ Cấp",
+        "flavor": "Sức lực hơn người thường nhưng chưa thành khí hậu."
+      },
+      {
+        "id": "vo_sr1",
+        "rarity": "SR",
+        "school": "vo",
+        "name": "Thay Máu Chiến Sĩ",
+        "flavor": "Đã trải qua giai đoạn Thay Máu, thể chất vượt trội."
+      },
+      {
+        "id": "vo_sr2",
+        "rarity": "SR",
+        "school": "vo",
+        "name": "Thông Khiếu Võ Sư",
+        "flavor": "Khai mở một phần huyệt khiếu, sát khí bắt đầu hiển lộ."
+      },
+      {
+        "id": "vo_ssr1",
+        "rarity": "SSR",
+        "school": "vo",
+        "name": "Thiên Sinh Thần Lực",
+        "flavor": "Sinh ra đã mang thần lực phi phàm, xương cốt cứng như thiết."
+      },
+      {
+        "id": "vo_ssr2",
+        "rarity": "SSR",
+        "school": "vo",
+        "name": "Bất Diệt Chiến Hồn",
+        "flavor": "Chiến hồn kiên cường, càng đánh càng dũng mãnh."
+      },
+      {
+        "id": "vo_ur1",
+        "rarity": "UR",
+        "school": "vo",
+        "name": "Bất Hoại Chiến Thần Thể",
+        "flavor": "Dị tượng thần thoại: nhục thân đã đạt cảnh giới Chiến Thần, một quyền có thể phá vỡ hư không."
+      }
+    ]
+  },
+  "elderAgenda": {
+    "AGENDA_IGNORED_LOYALTY_HIT": 4,
+    "AGENDA_PRESSURE_INTERVAL_DAYS": 300,
+    "AGENDA_TYPES": {
+      "chien_tranh": {
+        "id": "chien_tranh",
+        "label": "Chủ Chiến",
+        "icon": "⚔️",
+        "warStance": "agree"
+      },
+      "kinh_te": {
+        "id": "kinh_te",
+        "label": "Chủ Kinh Tế",
+        "icon": "💰",
+        "warStance": "oppose"
+      },
+      "phong_thu": {
+        "id": "phong_thu",
+        "label": "Chủ Phòng Thủ",
+        "icon": "🛡️",
+        "warStance": "oppose"
+      },
+      "hoc_thuat": {
+        "id": "hoc_thuat",
+        "label": "Chủ Học Thuật",
+        "icon": "📜",
+        "warStance": "oppose"
+      }
+    },
+    "BASE_AGENDA_BY_SCHOOL": {
+      "kiem": "chien_tranh",
+      "vo": "chien_tranh",
+      "dao": "kinh_te",
+      "phat": "phong_thu",
+      "nho": "hoc_thuat"
+    },
+    "OVERRIDE_AMBITION_THRESHOLD": 78,
+    "OVERRIDE_DEFENSIVE_COURAGE_CEILING": 35,
+    "OVERRIDE_DEFENSIVE_DISCIPLINE": 75,
+    "OVERRIDE_GREED_THRESHOLD": 75
+  },
+  "elderPolitics": {
+    "DISPUTE_INTERVAL_DAYS": 240,
+    "DISPUTE_ROLL_CHANCE": 0.15,
+    "NEUTRAL_LOYALTY_LOSS": 6,
+    "OPPOSE_LOYALTY_LOSS": 15,
+    "SECESSION_CHANCE_ON_LOW_LOYALTY": 0.4,
+    "SUPPORT_LOYALTY_GAIN": 20
+  },
+  "eraEndings": {
+    "ERA_END_CAUSE_LABELS": {
+      "protagonist_death": "Nhân Vật Chính (Khí Vận Chi Tử/Thiên Mệnh Chi Nữ) Qua Đời",
+      "world_protagonist_death": "Nhân Vật Chính Thiên Hạ Qua Đời",
+      "apocalypse": "Đại Kiếp & Tái Sinh Thế Giới",
+      "sacred_land_fall": "Đại Thánh Địa Sụp Đổ"
+    },
+    "MAX_PAST_ERAS": 20
+  },
+  "eras": {
+    "ERAS": [
+      {
+        "id": "khai_hoang",
+        "name": "Khai Hoang Kỷ",
+        "order": 0,
+        "desc": "Thế giới còn hoang sơ, bí cảnh và thiên tài xuất hiện dày đặc, các tông môn còn nhỏ và mải mê phát triển hơn là tranh đoạt.",
+        "modifiers": {
+          "omenSpawnMult": 1.5,
+          "bicanhSpawnMult": 1.6,
+          "geniusSpawnMult": 1.5,
+          "aiWarWeightMult": 0.5,
+          "aiEconomyWeightMult": 1.4
+        }
+      },
+      {
+        "id": "chu_tong_tranh_ba",
+        "name": "Chư Tông Tranh Bá",
+        "order": 1,
+        "desc": "Lãnh thổ trở nên quý giá, các tông môn AI bắt đầu mở rộng, chiến tranh và liên minh nổ ra khắp bốn châu.",
+        "condition": {
+          "type": "totalWars",
+          "value": 3
+        },
+        "modifiers": {
+          "omenSpawnMult": 1,
+          "bicanhSpawnMult": 1,
+          "geniusSpawnMult": 1,
+          "aiWarWeightMult": 1.6,
+          "aiExpansionWeightMult": 1.4
+        }
+      },
+      {
+        "id": "thanh_dia",
+        "name": "Thánh Địa Kỷ",
+        "order": 2,
+        "desc": "Chỉ còn lại vài siêu thế lực khống chế thiên hạ, chiến tranh giữa các Thánh Địa hiếm nhưng khi nổ ra thì chấn động cả bốn châu.",
+        "condition": {
+          "type": "sacredLandCount",
+          "value": 2
+        },
+        "modifiers": {
+          "omenSpawnMult": 0.8,
+          "bicanhSpawnMult": 0.8,
+          "geniusSpawnMult": 0.8,
+          "aiWarWeightMult": 0.8,
+          "legendFameGrowthMult": 1.4
+        }
+      },
+      {
+        "id": "tien_dinh",
+        "name": "Tiên Đình Kỷ",
+        "order": 3,
+        "desc": "Phi thăng trở thành trung tâm của thiên hạ, Tiên Giới bắt đầu để mắt tới phàm trần, dị tượng epic xuất hiện thường xuyên hơn.",
+        "condition": {
+          "type": "totalAscensions",
+          "value": 3
+        },
+        "modifiers": {
+          "omenSpawnMult": 1.2,
+          "bicanhSpawnMult": 1,
+          "geniusSpawnMult": 1,
+          "aiWarWeightMult": 1,
+          "epicOmenWeightMult": 2.5
+        }
+      }
+    ]
+  },
+  "fameTitles": {
+    "FAME_SOURCES": {
+      "warWin": 500,
+      "dungeonLead": 300,
+      "breakthroughNguyenAnh": 100,
+      "breakthroughHoaThan": 500,
+      "breakthroughDoKiep": 2000,
+      "elderAppointed": 200
+    },
+    "FAME_TITLE_LADDER": {
+      "kiem": [
+        {
+          "min": 1000,
+          "title": "Thiên Tài Kiếm Tu"
+        },
+        {
+          "min": 5000,
+          "title": "Kiếm Tôn"
+        },
+        {
+          "min": 10000,
+          "title": "Kiếm Thánh"
+        },
+        {
+          "min": 30000,
+          "title": "Thiên Hạ Đệ Nhất Kiếm"
+        }
+      ],
+      "dao": [
+        {
+          "min": 1000,
+          "title": "Thiên Tài Đan Đạo"
+        },
+        {
+          "min": 5000,
+          "title": "Đan Tôn"
+        },
+        {
+          "min": 10000,
+          "title": "Đan Thánh"
+        },
+        {
+          "min": 30000,
+          "title": "Thiên Hạ Đệ Nhất Đan"
+        }
+      ],
+      "phat": [
+        {
+          "min": 1000,
+          "title": "Thiên Tài Phật Pháp"
+        },
+        {
+          "min": 5000,
+          "title": "Phật Tôn"
+        },
+        {
+          "min": 10000,
+          "title": "Phật Thánh"
+        },
+        {
+          "min": 30000,
+          "title": "Thiên Hạ Đệ Nhất Phật"
+        }
+      ],
+      "nho": [
+        {
+          "min": 1000,
+          "title": "Thiên Tài Nho Học"
+        },
+        {
+          "min": 5000,
+          "title": "Nho Tôn"
+        },
+        {
+          "min": 10000,
+          "title": "Văn Thánh"
+        },
+        {
+          "min": 30000,
+          "title": "Thiên Hạ Văn Tông"
+        }
+      ],
+      "vo": [
+        {
+          "min": 1000,
+          "title": "Thiên Tài Võ Đạo"
+        },
+        {
+          "min": 5000,
+          "title": "Chiến Tôn"
+        },
+        {
+          "min": 10000,
+          "title": "Chiến Thánh"
+        },
+        {
+          "min": 30000,
+          "title": "Thiên Hạ Đệ Nhất Võ"
+        }
+      ]
+    }
+  },
+  "families": {
+    "BRANCH_INFLUENCE_SHARE": 0.5,
+    "BRANCH_SPLIT_CHANCE": 0.01,
+    "BRANCH_SPLIT_FAME_SHARE_THRESHOLD": 0.4,
+    "BRANCH_SPLIT_MIN_FAME": 6000,
+    "BRANCH_SUFFIXES": [
+      "Phòng",
+      "Chi"
+    ],
+    "FAMILY_FAME_THRESHOLD": 3000,
+    "FAMILY_PRESTIGE_RECRUIT_THRESHOLD": 5000,
+    "FAMILY_SUFFIXES": [
+      "Gia",
+      "Thị",
+      "Môn"
+    ],
+    "INHERIT_FAMILY_ANCESTOR_SKIP_GENERATIONS": 1,
+    "INHERIT_FAMILY_BASE_CHANCE": 0.2,
+    "SOVEREIGN_FAMILY_MIN_AGE_DAYS": 3600,
+    "SOVEREIGN_FAMILY_MIN_GENERATION_DEPTH": 2
+  },
+  "folklore": {
+    "FOLKLORE_CHECK_INTERVAL_DAYS": 3600,
+    "FOLKLORE_TEMPLATES": {
+      "kiem": [
+        [
+          "Nghe đồn {title} {name} năm xưa từng một kiếm chém vỡ trời, kiếm khí còn vương lại không tan.",
+          "Tương truyền thanh kiếm của {title} {name} năm xưa có thể xẻ đôi cả một dãy núi."
+        ],
+        [
+          "Tương truyền {title} {name} chính là hóa thân của một vị Kiếm Thần giáng thế, phàm nhân không ai địch nổi.",
+          "Có lời đồn {title} {name} năm xưa từng một kiếm phân tách âm dương, chấn động cả tam giới."
+        ],
+        [
+          "Người đời tin rằng {title} {name} chưa từng thật sự rời đi — vẫn ẩn thân nơi tiên giới nào đó, chờ ngày tái xuất cứu thế.",
+          "Tương truyền {title} {name} chính là một hóa thân của Thiên Đạo, thị hiện nơi trần gian để răn dạy chúng sinh."
+        ]
+      ],
+      "dao": [
+        [
+          "Nghe đồn {title} {name} năm xưa có thể hô phong hoán vũ chỉ bằng một câu chú.",
+          "Tương truyền {title} {name} từng đạp mây cưỡi gió, đi khắp bốn châu trong một đêm."
+        ],
+        [
+          "Tương truyền {title} {name} đã đạt tới cảnh giới thiên nhân hợp nhất, thân thể hòa cùng đại đạo.",
+          "Có lời đồn {title} {name} có thể nhìn thấu quá khứ vị lai, biết trước mọi kiếp nạn của thiên hạ."
+        ],
+        [
+          "Người đời tin rằng {title} {name} chính là hóa thân của Thiên Đạo, vẫn lặng lẽ quan sát thế gian.",
+          "Tương truyền {title} {name} chưa từng đắc đạo phi thăng, mà đã hóa thành quy luật vận hành của trời đất."
+        ]
+      ],
+      "phat": [
+        [
+          "Nghe đồn khi {title} {name} thuyết pháp, hoa trời rơi như mưa, muôn thú quỳ phục lắng nghe.",
+          "Tương truyền ánh mắt của {title} {name} có thể cảm hóa cả ma đầu hung ác nhất."
+        ],
+        [
+          "Tương truyền {title} {name} đã chứng đắc Phật quả, nhục thân bất hoại ngàn năm không mục.",
+          "Có lời đồn {title} {name} một niệm có thể độ hóa cả vạn sinh linh."
+        ],
+        [
+          "Người đời tin rằng {title} {name} chính là một vị Phật giáng thế, cứu độ chúng sinh nơi hạ giới.",
+          "Tương truyền {title} {name} chưa từng viên tịch, chỉ là ẩn mình nơi cõi Tây Thiên chờ duyên tái ngộ."
+        ]
+      ],
+      "nho": [
+        [
+          "Nghe đồn văn chương của {title} {name} có thể khiến quỷ thần phải rơi lệ.",
+          "Tương truyền một lời phán của {title} {name} năm xưa đã khiến cả một nước phải đổi vận."
+        ],
+        [
+          "Tương truyền {title} {name} một lời có thể định thiên hạ, bút mực hóa thành binh khí vô hình.",
+          "Có lời đồn {title} {name} thông thuộc cả thiên cơ, nhìn chữ đoán được số mệnh con người."
+        ],
+        [
+          "Người đời tin rằng {title} {name} chính là hóa thân của Văn Khúc Tinh Quân giáng trần.",
+          "Tương truyền {title} {name} vẫn còn dõi theo hậu thế, mỗi khi văn phong thiên hạ suy đồi lại xuất hiện răn đời."
+        ]
+      ],
+      "vo": [
+        [
+          "Nghe đồn nắm đấm của {title} {name} năm xưa có thể đánh vỡ cả một ngọn núi.",
+          "Tương truyền {title} {name} từng một cước đá bay cả tòa thành."
+        ],
+        [
+          "Tương truyền {title} {name} đã luyện được thân thể bất hoại, đao thương không thể làm tổn hại.",
+          "Có lời đồn khí thế của {title} {name} năm xưa có thể khiến vạn quân không dám tiến bước."
+        ],
+        [
+          "Người đời tin rằng {title} {name} chính là hóa thân của một vị Chiến Thần thượng cổ tái sinh.",
+          "Tương truyền {title} {name} chưa từng thật sự ngã xuống — chỉ là ẩn thân chờ thiên hạ đại loạn để tái xuất."
+        ]
+      ]
+    },
+    "FOLKLORE_TIER_AGE_DAYS": [
+      36000,
+      108000,
+      360000
+    ]
+  },
+  "forbiddenGrounds": {
+    "FORBIDDEN_GROUNDS": {
+      "kiem": {
+        "id": "kiem_thanh_nhai",
+        "name": "Kiếm Thánh Nhai",
+        "school": "kiem",
+        "minRealm": 4,
+        "maxRealm": 6
+      },
+      "dao": {
+        "id": "thai_at_huyen_dong",
+        "name": "Thái Ất Huyền Động",
+        "school": "dao",
+        "minRealm": 4,
+        "maxRealm": 6
+      },
+      "phat": {
+        "id": "vo_tuong_co_tu",
+        "name": "Vô Tướng Cổ Tự",
+        "school": "phat",
+        "minRealm": 4,
+        "maxRealm": 6
+      },
+      "nho": {
+        "id": "van_khuc_bi_cac",
+        "name": "Văn Khúc Bí Các",
+        "school": "nho",
+        "minRealm": 4,
+        "maxRealm": 6
+      },
+      "vo": {
+        "id": "chien_hon_co_truong",
+        "name": "Chiến Hồn Cổ Trường",
+        "school": "vo",
+        "minRealm": 4,
+        "maxRealm": 6
+      }
+    },
+    "SOLO_DEATH_CHANCE": 0.35,
+    "SOLO_DENY_LOYALTY_PENALTY": 10,
+    "SOLO_ESCORT_DEATH_CHANCE_MULT": 0.5,
+    "SOLO_FAME_GAIN": 1500,
+    "SOLO_PETITION_MIN_AMBITION": 60,
+    "SOLO_PETITION_ROLL_CHANCE": 0.002,
+    "TRIAL_DEATH_CHANCE": 0.15,
+    "TRIAL_GROUP_SIZE": 5,
+    "TRIAL_OPEN_INTERVAL_DAYS": 1800,
+    "TRIAL_RESOLVE_DELAY_DAYS": 20,
+    "WINNER_FAME_GAIN": 3000
+  },
+  "grandStrategies": {
+    "CHAN_TRUYEN_FAVORED_SCHOOL_BONUS": 20,
+    "GRAND_STRATEGIES": {
+      "chan_hung_kiem_dao": {
+        "id": "chan_hung_kiem_dao",
+        "name": "Chấn Hưng Kiếm Đạo",
+        "icon": "⚔️",
+        "tagline": "Lấy Kiếm làm trục, phục hưng tông môn.",
+        "desc": "Kiếm Phong được dồn ưu tiên nhiệm vụ, chân truyền, và truyền thừa công pháp trong suốt Đại Kế.",
+        "favoredSchool": "kiem",
+        "favoredMissionTypes": [
+          "san_yeu_thu",
+          "tran_ap",
+          "chien_tranh",
+          "bi_canh"
+        ],
+        "momentTag": "cultivation",
+        "warPosture": 0.3,
+        "economyPosture": -0.1,
+        "defaultDurationYears": 20
+      },
+      "tinh_duong_tong_mon": {
+        "id": "tinh_duong_tong_mon",
+        "name": "Tĩnh Dưỡng Tông Môn",
+        "icon": "🕊️",
+        "tagline": "Gác lại đao binh, an dưỡng sinh cơ.",
+        "desc": "Ưu tiên sản xuất, hồi phục nội bộ, hòa giải các Phong — nhưng láng giềng không vì thế mà đứng yên.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "thu_thap",
+          "tuan_tra",
+          "ho_tong"
+        ],
+        "momentTag": "diplomacy",
+        "warPosture": -0.6,
+        "economyPosture": 0.3,
+        "defaultDurationYears": 10
+      },
+      "khai_cuong_mo_dat": {
+        "id": "khai_cuong_mo_dat",
+        "name": "Khai Cương Mở Đất",
+        "icon": "🗺️",
+        "tagline": "Mở rộng lãnh thổ, xưng hùng một phương.",
+        "desc": "Ưu tiên khai hoang/hộ tống, tăng cơ hội chiếm lãnh thổ mới — nhưng cũng tăng va chạm với tông môn AI lân cận.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "khai_hoang",
+          "ho_tong",
+          "tuan_tra"
+        ],
+        "momentTag": "expansion",
+        "warPosture": 0.4,
+        "economyPosture": 0.1,
+        "defaultDurationYears": 10
+      },
+      "boi_duong_chan_truyen": {
+        "id": "boi_duong_chan_truyen",
+        "name": "Bồi Dưỡng Chân Truyền",
+        "icon": "📿",
+        "tagline": "Dồn sức nuôi dưỡng thế hệ kế thừa.",
+        "desc": "Ưu tiên Chân Truyền/Tàng Kinh Các/khiêu chiến — Ngoại Môn có thể bị xao lãng đầu tư.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "dieu_tra",
+          "bi_canh"
+        ],
+        "momentTag": "cultivation",
+        "warPosture": -0.1,
+        "economyPosture": -0.2,
+        "defaultDurationYears": 20,
+        "trueDisciplePoolBonus": 2,
+        "trueDiscipleIntervalMult": 0.7,
+        "eliteFocus": true
+      },
+      "phat_trien_ngoai_mon": {
+        "id": "phat_trien_ngoai_mon",
+        "name": "Phát Triển Ngoại Môn",
+        "icon": "🌾",
+        "tagline": "Rộng mở cửa tông, chiêu hiền đãi sĩ.",
+        "desc": "Chấp Sự Đường ưu tiên tuyển mộ/thí luyện đệ tử Ngoại Môn — nguồn lực đầu tư cho Chân Truyền giảm bớt.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "thu_thap",
+          "dieu_tra"
+        ],
+        "momentTag": "economy",
+        "warPosture": -0.1,
+        "economyPosture": 0.2,
+        "defaultDurationYears": 10,
+        "ngoaiMonWeightBias": {
+          "trainingW": 0.08,
+          "laborW": 0.08,
+          "idleW": -0.16
+        },
+        "recruitTierBonus": 1,
+        "recruitCountBonus": 2
+      },
+      "khoi_phuc_co_di_tich": {
+        "id": "khoi_phuc_co_di_tich",
+        "name": "Khôi Phục Cổ Di Tích",
+        "icon": "🏺",
+        "tagline": "Tìm về di sản một thời huy hoàng đã mất.",
+        "desc": "Ưu tiên thám hiểm/khảo cổ tàn tích tông môn cổ xưa — không đảm bảo thu hoạch, có thể đánh thức hiểm họa.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "kham_pha_di_tich",
+          "dieu_tra"
+        ],
+        "momentTag": "archaeology",
+        "warPosture": 0,
+        "economyPosture": 0,
+        "defaultDurationYears": 20,
+        "ruinMissionTopUp": 1,
+        "awakenRiskChance": 0.08
+      },
+      "cung_co_gia_toc_phu_thuoc": {
+        "id": "cung_co_gia_toc_phu_thuoc",
+        "name": "Củng Cố Gia Tộc Phụ Thuộc",
+        "icon": "🏘️",
+        "tagline": "Ràng buộc chặt các gia tộc dưới trướng tông môn.",
+        "desc": "Ưu tiên hộ tống/điều tra liên quan các gia tộc — tăng gắn kết nhưng cũng tăng trách nhiệm bảo hộ.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "ho_tong",
+          "dieu_tra",
+          "tran_ap"
+        ],
+        "momentTag": "family",
+        "warPosture": 0.1,
+        "economyPosture": 0,
+        "defaultDurationYears": 20,
+        "familyRollMult": 1.6
+      },
+      "ba_dao_tranh_hung": {
+        "id": "ba_dao_tranh_hung",
+        "name": "Bá Đạo Tranh Hùng",
+        "icon": "🔥",
+        "tagline": "Lấy chiến tranh mở đường xưng bá.",
+        "desc": "Huyết Phong được trọng dụng, ưu tiên toàn diện cho chiến sự — các Phong ôn hòa dễ bất mãn.",
+        "favoredSchool": "vo",
+        "favoredMissionTypes": [
+          "chien_tranh",
+          "tran_ap",
+          "san_yeu_thu"
+        ],
+        "momentTag": "expansion",
+        "warPosture": 0.8,
+        "economyPosture": -0.3,
+        "defaultDurationYears": 10
+      },
+      "ket_minh_thien_ha": {
+        "id": "ket_minh_thien_ha",
+        "name": "Kết Minh Thiên Hạ",
+        "icon": "🤝",
+        "tagline": "Lấy hòa hiếu kết giao khắp thiên hạ.",
+        "desc": "Ưu tiên ngoại giao/hộ tống liên minh — đồng minh bị đánh sẽ tạo áp lực buộc tông môn phải ứng cứu.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "ngoai_giao",
+          "ho_tong",
+          "dieu_tra"
+        ],
+        "momentTag": "diplomacy",
+        "warPosture": -0.2,
+        "economyPosture": 0.1,
+        "defaultDurationYears": 20,
+        "allyAmityThreshold": 40
+      },
+      "tich_luy_cho_thoi": {
+        "id": "tich_luy_cho_thoi",
+        "name": "Tích Lũy Chờ Thời",
+        "icon": "⏳",
+        "tagline": "Ẩn nhẫn tích súc, chờ đại thế đổi thay.",
+        "desc": "Ưu tiên thu thập/khai hoang an toàn, tránh chiến sự, dồn Khí Vận/Linh Thạch cho tương lai.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "thu_thap",
+          "khai_hoang",
+          "tuan_tra"
+        ],
+        "momentTag": "economy",
+        "warPosture": -0.4,
+        "economyPosture": 0.4,
+        "defaultDurationYears": 50
+      }
+    },
+    "GRAND_STRATEGY_FAVORED_LOYALTY_GAIN": 3,
+    "GRAND_STRATEGY_INTERRUPT_MOMENTUM_LOYALTY_HIT": 6,
+    "GRAND_STRATEGY_INTERRUPT_STABILITY_PENALTY": 15,
+    "GRAND_STRATEGY_LIST": [
+      {
+        "id": "chan_hung_kiem_dao",
+        "name": "Chấn Hưng Kiếm Đạo",
+        "icon": "⚔️",
+        "tagline": "Lấy Kiếm làm trục, phục hưng tông môn.",
+        "desc": "Kiếm Phong được dồn ưu tiên nhiệm vụ, chân truyền, và truyền thừa công pháp trong suốt Đại Kế.",
+        "favoredSchool": "kiem",
+        "favoredMissionTypes": [
+          "san_yeu_thu",
+          "tran_ap",
+          "chien_tranh",
+          "bi_canh"
+        ],
+        "momentTag": "cultivation",
+        "warPosture": 0.3,
+        "economyPosture": -0.1,
+        "defaultDurationYears": 20
+      },
+      {
+        "id": "tinh_duong_tong_mon",
+        "name": "Tĩnh Dưỡng Tông Môn",
+        "icon": "🕊️",
+        "tagline": "Gác lại đao binh, an dưỡng sinh cơ.",
+        "desc": "Ưu tiên sản xuất, hồi phục nội bộ, hòa giải các Phong — nhưng láng giềng không vì thế mà đứng yên.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "thu_thap",
+          "tuan_tra",
+          "ho_tong"
+        ],
+        "momentTag": "diplomacy",
+        "warPosture": -0.6,
+        "economyPosture": 0.3,
+        "defaultDurationYears": 10
+      },
+      {
+        "id": "khai_cuong_mo_dat",
+        "name": "Khai Cương Mở Đất",
+        "icon": "🗺️",
+        "tagline": "Mở rộng lãnh thổ, xưng hùng một phương.",
+        "desc": "Ưu tiên khai hoang/hộ tống, tăng cơ hội chiếm lãnh thổ mới — nhưng cũng tăng va chạm với tông môn AI lân cận.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "khai_hoang",
+          "ho_tong",
+          "tuan_tra"
+        ],
+        "momentTag": "expansion",
+        "warPosture": 0.4,
+        "economyPosture": 0.1,
+        "defaultDurationYears": 10
+      },
+      {
+        "id": "boi_duong_chan_truyen",
+        "name": "Bồi Dưỡng Chân Truyền",
+        "icon": "📿",
+        "tagline": "Dồn sức nuôi dưỡng thế hệ kế thừa.",
+        "desc": "Ưu tiên Chân Truyền/Tàng Kinh Các/khiêu chiến — Ngoại Môn có thể bị xao lãng đầu tư.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "dieu_tra",
+          "bi_canh"
+        ],
+        "momentTag": "cultivation",
+        "warPosture": -0.1,
+        "economyPosture": -0.2,
+        "defaultDurationYears": 20,
+        "trueDisciplePoolBonus": 2,
+        "trueDiscipleIntervalMult": 0.7,
+        "eliteFocus": true
+      },
+      {
+        "id": "phat_trien_ngoai_mon",
+        "name": "Phát Triển Ngoại Môn",
+        "icon": "🌾",
+        "tagline": "Rộng mở cửa tông, chiêu hiền đãi sĩ.",
+        "desc": "Chấp Sự Đường ưu tiên tuyển mộ/thí luyện đệ tử Ngoại Môn — nguồn lực đầu tư cho Chân Truyền giảm bớt.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "thu_thap",
+          "dieu_tra"
+        ],
+        "momentTag": "economy",
+        "warPosture": -0.1,
+        "economyPosture": 0.2,
+        "defaultDurationYears": 10,
+        "ngoaiMonWeightBias": {
+          "trainingW": 0.08,
+          "laborW": 0.08,
+          "idleW": -0.16
+        },
+        "recruitTierBonus": 1,
+        "recruitCountBonus": 2
+      },
+      {
+        "id": "khoi_phuc_co_di_tich",
+        "name": "Khôi Phục Cổ Di Tích",
+        "icon": "🏺",
+        "tagline": "Tìm về di sản một thời huy hoàng đã mất.",
+        "desc": "Ưu tiên thám hiểm/khảo cổ tàn tích tông môn cổ xưa — không đảm bảo thu hoạch, có thể đánh thức hiểm họa.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "kham_pha_di_tich",
+          "dieu_tra"
+        ],
+        "momentTag": "archaeology",
+        "warPosture": 0,
+        "economyPosture": 0,
+        "defaultDurationYears": 20,
+        "ruinMissionTopUp": 1,
+        "awakenRiskChance": 0.08
+      },
+      {
+        "id": "cung_co_gia_toc_phu_thuoc",
+        "name": "Củng Cố Gia Tộc Phụ Thuộc",
+        "icon": "🏘️",
+        "tagline": "Ràng buộc chặt các gia tộc dưới trướng tông môn.",
+        "desc": "Ưu tiên hộ tống/điều tra liên quan các gia tộc — tăng gắn kết nhưng cũng tăng trách nhiệm bảo hộ.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "ho_tong",
+          "dieu_tra",
+          "tran_ap"
+        ],
+        "momentTag": "family",
+        "warPosture": 0.1,
+        "economyPosture": 0,
+        "defaultDurationYears": 20,
+        "familyRollMult": 1.6
+      },
+      {
+        "id": "ba_dao_tranh_hung",
+        "name": "Bá Đạo Tranh Hùng",
+        "icon": "🔥",
+        "tagline": "Lấy chiến tranh mở đường xưng bá.",
+        "desc": "Huyết Phong được trọng dụng, ưu tiên toàn diện cho chiến sự — các Phong ôn hòa dễ bất mãn.",
+        "favoredSchool": "vo",
+        "favoredMissionTypes": [
+          "chien_tranh",
+          "tran_ap",
+          "san_yeu_thu"
+        ],
+        "momentTag": "expansion",
+        "warPosture": 0.8,
+        "economyPosture": -0.3,
+        "defaultDurationYears": 10
+      },
+      {
+        "id": "ket_minh_thien_ha",
+        "name": "Kết Minh Thiên Hạ",
+        "icon": "🤝",
+        "tagline": "Lấy hòa hiếu kết giao khắp thiên hạ.",
+        "desc": "Ưu tiên ngoại giao/hộ tống liên minh — đồng minh bị đánh sẽ tạo áp lực buộc tông môn phải ứng cứu.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "ngoai_giao",
+          "ho_tong",
+          "dieu_tra"
+        ],
+        "momentTag": "diplomacy",
+        "warPosture": -0.2,
+        "economyPosture": 0.1,
+        "defaultDurationYears": 20,
+        "allyAmityThreshold": 40
+      },
+      {
+        "id": "tich_luy_cho_thoi",
+        "name": "Tích Lũy Chờ Thời",
+        "icon": "⏳",
+        "tagline": "Ẩn nhẫn tích súc, chờ đại thế đổi thay.",
+        "desc": "Ưu tiên thu thập/khai hoang an toàn, tránh chiến sự, dồn Khí Vận/Linh Thạch cho tương lai.",
+        "favoredSchool": null,
+        "favoredMissionTypes": [
+          "thu_thap",
+          "khai_hoang",
+          "tuan_tra"
+        ],
+        "momentTag": "economy",
+        "warPosture": -0.4,
+        "economyPosture": 0.4,
+        "defaultDurationYears": 50
+      }
+    ],
+    "GRAND_STRATEGY_NEGLECT_LOYALTY_HIT": 4,
+    "GRAND_STRATEGY_PRESSURE_INTERVAL_DAYS": 360,
+    "GRAND_STRATEGY_YEAR_DAYS": 360
+  },
+  "heartDemon": {
+    "BETRAYAL_CORRUPTION": 25,
+    "HEART_DEMON_TIERS": [
+      {
+        "id": "kien_dinh",
+        "max": 24,
+        "label": "Đạo Tâm Kiên Định",
+        "breakthroughPct": 0,
+        "loyaltyDrain": 0
+      },
+      {
+        "id": "dao_dong",
+        "max": 49,
+        "label": "Đạo Tâm Dao Động",
+        "breakthroughPct": -0.05,
+        "loyaltyDrain": 0
+      },
+      {
+        "id": "ran_nut",
+        "max": 74,
+        "label": "Đạo Tâm Rạn Nứt",
+        "breakthroughPct": -0.12,
+        "loyaltyDrain": 1
+      },
+      {
+        "id": "nhap_ma",
+        "max": 100,
+        "label": "Đã Nhập Ma",
+        "breakthroughPct": -0.2,
+        "loyaltyDrain": 3
+      }
+    ],
+    "LOSS_STREAK_CORRUPTION": 15,
+    "LOSS_STREAK_THRESHOLD": 5,
+    "MASTER_DEATH_CORRUPTION": 18,
+    "NHAP_MA_DEFECT_CHANCE": 0.2
+  },
+  "heavenlyWillPersonality": {
+    "HEAVENLY_WILL_PERSONALITIES": {
+      "thuong_thien": {
+        "id": "thuong_thien",
+        "name": "Thiên Đạo Thượng Thiện",
+        "desc": "Ưu ái chính đạo, cứu người — sát phạt áp đảo sẽ bị chế tài, chiến hỏa liên miên sẽ bị cản, phi thăng dễ dàng sẽ bị siết lại."
+      },
+      "sat_phat": {
+        "id": "sat_phat",
+        "name": "Thiên Đạo Sát Phạt",
+        "desc": "Ưu ái chiến tranh, cường giả — sát phạt áp đảo được ban ân, chiến hỏa liên miên khiến Thiên Kiếp nương tay cho kẻ mạnh."
+      },
+      "trung_dung": {
+        "id": "trung_dung",
+        "name": "Thiên Đạo Trung Dung",
+        "desc": "Không thiên vị bên nào — chỉ can thiệp nhẹ khi một phía áp đảo quá mức, phần lớn để thế giới tự vận hành."
+      }
+    },
+    "PERSONALITY_LIST": [
+      {
+        "id": "thuong_thien",
+        "name": "Thiên Đạo Thượng Thiện",
+        "desc": "Ưu ái chính đạo, cứu người — sát phạt áp đảo sẽ bị chế tài, chiến hỏa liên miên sẽ bị cản, phi thăng dễ dàng sẽ bị siết lại."
+      },
+      {
+        "id": "sat_phat",
+        "name": "Thiên Đạo Sát Phạt",
+        "desc": "Ưu ái chiến tranh, cường giả — sát phạt áp đảo được ban ân, chiến hỏa liên miên khiến Thiên Kiếp nương tay cho kẻ mạnh."
+      },
+      {
+        "id": "trung_dung",
+        "name": "Thiên Đạo Trung Dung",
+        "desc": "Không thiên vị bên nào — chỉ can thiệp nhẹ khi một phía áp đảo quá mức, phần lớn để thế giới tự vận hành."
+      }
+    ]
+  },
+  "inheritanceTracks": {
+    "INHERITANCE_TRACKS": {
+      "kiem": {
+        "id": "kiem_tien_truyen_thua",
+        "name": "Kiếm Tiên Truyền Thừa",
+        "school": "kiem",
+        "minRealm": 4,
+        "stages": [
+          {
+            "atDay": 0,
+            "name": "Kiếm Ý",
+            "statPct": 0.15,
+            "text": "lĩnh ngộ Kiếm Ý từ Kiếm Tiên Truyền Thừa."
+          },
+          {
+            "atDay": 50,
+            "name": "Kiếm Thánh Chi Ý",
+            "statPct": 0.3,
+            "text": "sau 50 năm tu luyện, Kiếm Ý viên mãn, tiệm cận cảnh giới Kiếm Thánh."
+          },
+          {
+            "atDay": 200,
+            "name": "Kiếm Tiên Chi Thể",
+            "statPct": 0.6,
+            "text": "sau 200 năm, Kiếm Tiên Truyền Thừa viên mãn, đắc Kiếm Tiên chi thể."
+          }
+        ]
+      },
+      "dao": {
+        "id": "dao_tien_truyen_thua",
+        "name": "Đạo Tổ Truyền Thừa",
+        "school": "dao",
+        "minRealm": 4,
+        "stages": [
+          {
+            "atDay": 0,
+            "name": "Đạo Ấn",
+            "statPct": 0.15,
+            "text": "lĩnh ngộ Đạo Ấn từ Đạo Tổ Truyền Thừa."
+          },
+          {
+            "atDay": 50,
+            "name": "Thái Ất Đạo Ý",
+            "statPct": 0.3,
+            "text": "sau 50 năm, ngộ ra Thái Ất Đạo Ý."
+          },
+          {
+            "atDay": 200,
+            "name": "Đạo Tổ Chi Thể",
+            "statPct": 0.6,
+            "text": "sau 200 năm, Đạo Tổ Truyền Thừa viên mãn, đắc Đạo Tổ chi thể."
+          }
+        ]
+      },
+      "phat": {
+        "id": "phat_to_truyen_thua",
+        "name": "Phật Tổ Truyền Thừa",
+        "school": "phat",
+        "minRealm": 4,
+        "stages": [
+          {
+            "atDay": 0,
+            "name": "Phật Ấn",
+            "statPct": 0.15,
+            "text": "lĩnh ngộ Phật Ấn từ Phật Tổ Truyền Thừa."
+          },
+          {
+            "atDay": 50,
+            "name": "Kim Thân Bồ Tát",
+            "statPct": 0.3,
+            "text": "sau 50 năm tu hành, đắc Kim Thân Bồ Tát."
+          },
+          {
+            "atDay": 200,
+            "name": "Phật Tổ Chi Thể",
+            "statPct": 0.6,
+            "text": "sau 200 năm, Phật Tổ Truyền Thừa viên mãn, đắc Phật Tổ chi thể."
+          }
+        ]
+      },
+      "nho": {
+        "id": "van_khuc_truyen_thua",
+        "name": "Văn Khúc Truyền Thừa",
+        "school": "nho",
+        "minRealm": 4,
+        "stages": [
+          {
+            "atDay": 0,
+            "name": "Văn Khúc Ấn",
+            "statPct": 0.15,
+            "text": "lĩnh ngộ Văn Khúc Ấn từ Văn Khúc Truyền Thừa."
+          },
+          {
+            "atDay": 50,
+            "name": "Á Thánh Chi Tư",
+            "statPct": 0.3,
+            "text": "sau 50 năm, văn tài tiệm cận Á Thánh."
+          },
+          {
+            "atDay": 200,
+            "name": "Văn Khúc Tinh Quân Chi Thể",
+            "statPct": 0.6,
+            "text": "sau 200 năm, Văn Khúc Truyền Thừa viên mãn, đắc Văn Khúc Tinh Quân chi thể."
+          }
+        ]
+      },
+      "vo": {
+        "id": "chien_than_truyen_thua",
+        "name": "Chiến Thần Truyền Thừa",
+        "school": "vo",
+        "minRealm": 4,
+        "stages": [
+          {
+            "atDay": 0,
+            "name": "Chiến Ý",
+            "statPct": 0.15,
+            "text": "lĩnh ngộ Chiến Ý từ Chiến Thần Truyền Thừa."
+          },
+          {
+            "atDay": 50,
+            "name": "Bất Diệt Chiến Hồn",
+            "statPct": 0.3,
+            "text": "sau 50 năm, luyện thành Bất Diệt Chiến Hồn."
+          },
+          {
+            "atDay": 200,
+            "name": "Chiến Thần Chi Thể",
+            "statPct": 0.6,
+            "text": "sau 200 năm, Chiến Thần Truyền Thừa viên mãn, đắc Chiến Thần chi thể."
+          }
+        ]
+      }
+    }
+  },
+  "innerCouncil": {
+    "AGREE_LOYALTY_GAIN": 10,
+    "COALITION_PULL_FACTOR": 0.4,
+    "MANUAL_GRIEVANCE_INTERVAL_DAYS": 360,
+    "MANUAL_GRIEVANCE_TIER_MIN_ORDER": 2,
+    "MANUAL_GRIEVANCE_UNDER_ALLOCATION_GAP": 10,
+    "MEMBER_LOYALTY_NUDGE_AGREE": 5,
+    "MEMBER_LOYALTY_NUDGE_OPPOSE": 6,
+    "OPPOSE_LOYALTY_HIT": 12,
+    "PROCEED_AGAINST_MAJORITY_STABILITY_HIT": 20,
+    "PROCEED_WITH_SUPPORT_STABILITY_GAIN": 8,
+    "PROPOSAL_LABELS": {
+      "war": "Phát Động Chiến Tranh",
+      "forbidden_ground": "Mở Cấm Địa Sớm",
+      "teach_thanh_manual": "Truyền Thánh Giai Công Pháp",
+      "appoint_heir": "Lập Đích Tử",
+      "grand_strategy_complaint": "Xét Lại Ưu Tiên Đại Kế",
+      "council_grievance": "Tấu Trình Bất Bình"
+    },
+    "SECESSION_CHANCE_IF_OVERRULED": 0.35,
+    "SECESSION_LOYALTY_CEILING": 40,
+    "VOTE_STANCE_LABEL": {
+      "agree": "Đồng Ý",
+      "oppose": "Phản Đối",
+      "neutral": "Trung Lập"
+    },
+    "WITHDRAW_DISAPPOINT_LOYALTY_HIT": 5
+  },
+  "items": {
+    "ITEMS": {
+      "tu_khi_dan": {
+        "id": "tu_khi_dan",
+        "name": "Tụ Khí Đan",
+        "category": "pill",
+        "desc": "Đan dược cơ bản do Đan Đường luyện vào Bảo Khố."
+      },
+      "truc_co_dan": {
+        "id": "truc_co_dan",
+        "name": "Trúc Cơ Đan",
+        "category": "pill",
+        "desc": "Đan hỗ trợ đột phá đại cảnh giới — mỗi viên +15% tỷ lệ, tối đa 3 viên mỗi lần."
+      },
+      "hoi_linh_dan": {
+        "id": "hoi_linh_dan",
+        "name": "Hồi Linh Đan",
+        "category": "pill",
+        "desc": "Đan dược do Đan Đường luyện vào Bảo Khố."
+      },
+      "ngo_dao_dan": {
+        "id": "ngo_dao_dan",
+        "name": "Ngộ Đạo Đan",
+        "category": "pill",
+        "desc": "Đan dược hiếm do Đan Đường luyện vào Bảo Khố."
+      },
+      "dia_giai_dan": {
+        "id": "dia_giai_dan",
+        "name": "Địa Giai Đan",
+        "category": "pill",
+        "desc": "Đan phương Địa Giai — chỉ luyện được sau khi nghiên cứu thành công."
+      },
+      "thanh_van_kiem": {
+        "id": "thanh_van_kiem",
+        "name": "Thanh Vân Kiếm",
+        "category": "artifact",
+        "desc": "Pháp bảo rèn tại Luyện Khí Điện, lưu trong Bảo Khố tông."
+      },
+      "ho_than_giap": {
+        "id": "ho_than_giap",
+        "name": "Hộ Thân Giáp",
+        "category": "artifact",
+        "desc": "Pháp bảo rèn tại Luyện Khí Điện, lưu trong Bảo Khố tông."
+      },
+      "huyen_linh_thao": {
+        "id": "huyen_linh_thao",
+        "name": "Huyền Linh Thảo",
+        "category": "material",
+        "desc": "Nguyên liệu luyện đan (Tụ Khí, Trúc Cơ, Hồi Linh, Ngộ Đạo, Địa Giai)."
+      },
+      "khoang_thach": {
+        "id": "khoang_thach",
+        "name": "Khoáng Thạch",
+        "category": "material",
+        "desc": "Nguyên liệu luyện đan (Trúc Cơ, Địa Giai) và rèn pháp bảo."
+      },
+      "yeu_dan": {
+        "id": "yeu_dan",
+        "name": "Yêu Đan",
+        "category": "material",
+        "desc": "Nguyên liệu luyện đan cao cấp (Hồi Linh, Ngộ Đạo, Địa Giai)."
+      },
+      "huyen_thiet": {
+        "id": "huyen_thiet",
+        "name": "Huyền Thiết",
+        "category": "material",
+        "desc": "Nguyên liệu rèn Thanh Vân Kiếm và Hộ Thân Giáp."
+      }
+    },
+    "ITEM_CATEGORIES": {
+      "pill": {
+        "id": "pill",
+        "label": "Đan Dược",
+        "icon": "💊"
+      },
+      "artifact": {
+        "id": "artifact",
+        "label": "Pháp Bảo",
+        "icon": "⚔️"
+      },
+      "manual": {
+        "id": "manual",
+        "label": "Công Pháp",
+        "icon": "📜"
+      },
+      "material": {
+        "id": "material",
+        "label": "Nguyên Liệu",
+        "icon": "🌿"
+      }
+    }
+  },
+  "khaoHachRewards": {
+    "KHAO_HACH_REWARD_KITS": {
+      "1": [
+        {
+          "itemId": "truc_co_dan",
+          "qty": 3
+        },
+        {
+          "itemId": "thanh_van_kiem",
+          "qty": 1
+        }
+      ],
+      "2": [
+        {
+          "itemId": "truc_co_dan",
+          "qty": 2
+        },
+        {
+          "itemId": "hoi_linh_dan",
+          "qty": 2
+        }
+      ],
+      "3": [
+        {
+          "itemId": "tu_khi_dan",
+          "qty": 3
+        },
+        {
+          "itemId": "hoi_linh_dan",
+          "qty": 1
+        }
+      ]
+    }
+  },
+  "legendaryDescendants": {
+    "ADMIRER_CHANCE": 0.4,
+    "CHALLENGE_LOSS_CORRUPTION": 15,
+    "CHALLENGE_WIN_FAME_BONUS": 400,
+    "LEGENDARY_DESCENDANT_CHECK_INTERVAL_DAYS": 900,
+    "LEGENDARY_DESCENDANT_MIN_FOUNDER_FAME": 10000,
+    "LEGENDARY_DESCENDANT_MIN_GENERATION": 3,
+    "RIVAL_CHALLENGE_CHANCE": 0.4
+  },
+  "legendaryStories": {
+    "DEFAULT_TITLE_BY_TRIGGER": {
+      "fame": "Nhân Vật Truyền Kỳ",
+      "family": "Người Sáng Lập",
+      "ascension": "Vị Phi Thăng",
+      "dai_hoi": "Quán Quân Đại Hội"
+    },
+    "LEGENDARY_STORY_CHECK_INTERVAL_DAYS": 900,
+    "LEGENDARY_STORY_MIN_FAME": 10000,
+    "STORY_TRIGGER_LABELS": {
+      "fame": "Đạt Đại Danh Vọng",
+      "family": "Sáng Lập Gia Tộc",
+      "ascension": "Phi Thăng",
+      "dai_hoi": "Đăng Quang Đại Hội Thiên Hạ"
+    }
+  },
+  "manuals": {
+    "MANUAL_TEMPLATES": {
+      "kiem": {
+        "hoang": "Cơ Bản Kiếm Quyết",
+        "thien": "Kiếm Ý Chân Điển",
+        "thanh": "Vô Thượng Kiếm Kinh"
+      },
+      "dao": {
+        "hoang": "Thái Cực Đạo Quyết",
+        "thien": "Ngũ Hành Chân Điển",
+        "thanh": "Vô Cực Đạo Kinh"
+      },
+      "phat": {
+        "hoang": "Kim Cang Tâm Quyết",
+        "thien": "Bồ Đề Chân Điển",
+        "thanh": "Như Lai Phật Kinh"
+      },
+      "nho": {
+        "hoang": "Hạo Nhiên Tâm Quyết",
+        "thien": "Kinh Bang Chân Điển",
+        "thanh": "Á Thánh Văn Kinh"
+      },
+      "vo": {
+        "hoang": "Luyện Thể Quyết",
+        "thien": "Huyết Chiến Chân Điển",
+        "thanh": "Chiến Thần Vô Kinh"
+      }
+    },
+    "MANUAL_TIERS": {
+      "hoang": {
+        "id": "hoang",
+        "name": "Hoàng Giai",
+        "order": 1,
+        "minRealm": 1,
+        "comprehendDays": 10,
+        "statPct": 0.03,
+        "breakthroughPct": 0.02
+      },
+      "thien": {
+        "id": "thien",
+        "name": "Thiên Giai",
+        "order": 2,
+        "minRealm": 2,
+        "comprehendDays": 40,
+        "statPct": 0.08,
+        "breakthroughPct": 0.05
+      },
+      "thanh": {
+        "id": "thanh",
+        "name": "Thánh Giai",
+        "order": 3,
+        "minRealm": 4,
+        "comprehendDays": 120,
+        "statPct": 0.18,
+        "breakthroughPct": 0.12
+      }
+    },
+    "MANUAL_TIER_LIST": [
+      {
+        "id": "hoang",
+        "name": "Hoàng Giai",
+        "order": 1,
+        "minRealm": 1,
+        "comprehendDays": 10,
+        "statPct": 0.03,
+        "breakthroughPct": 0.02
+      },
+      {
+        "id": "thien",
+        "name": "Thiên Giai",
+        "order": 2,
+        "minRealm": 2,
+        "comprehendDays": 40,
+        "statPct": 0.08,
+        "breakthroughPct": 0.05
+      },
+      {
+        "id": "thanh",
+        "name": "Thánh Giai",
+        "order": 3,
+        "minRealm": 4,
+        "comprehendDays": 120,
+        "statPct": 0.18,
+        "breakthroughPct": 0.12
+      }
+    ]
+  },
+  "manualWar": {
+    "BUYBACK_AMITY_GAIN": 5,
+    "BUYBACK_COST_BY_TIER": {
+      "thien": 3000,
+      "thanh": 12000
+    },
+    "CASUS_BELLI_MANUAL_LABEL": "Tranh đoạt công pháp quý",
+    "DEMAND_REFUSED_AMITY_PENALTY": 10,
+    "DEMAND_REFUSED_REPUTATION_PENALTY": 200,
+    "DEMAND_RETURN_BASE_CHANCE": 0.15,
+    "RAID_REPUTATION_GAIN": 300,
+    "RIVAL_MANUAL_CAP": 12,
+    "RIVAL_MANUAL_GEN_CHANCE": 0.003,
+    "RIVAL_MANUAL_MIN_RENOWN": 300,
+    "TRADE_AMITY_GAIN": 10
+  },
+  "missionTypes": {
+    "MISSION_DIFFICULTIES": [
+      {
+        "id": "F",
+        "order": 0,
+        "rewardMult": 0.5,
+        "riskMult": 0.4,
+        "durationDays": 0,
+        "minRealm": 1
+      },
+      {
+        "id": "E",
+        "order": 1,
+        "rewardMult": 0.8,
+        "riskMult": 0.6,
+        "durationDays": 0,
+        "minRealm": 1
+      },
+      {
+        "id": "D",
+        "order": 2,
+        "rewardMult": 1,
+        "riskMult": 0.8,
+        "durationDays": 1,
+        "minRealm": 1
+      },
+      {
+        "id": "C",
+        "order": 3,
+        "rewardMult": 1.4,
+        "riskMult": 1,
+        "durationDays": 1,
+        "minRealm": 2
+      },
+      {
+        "id": "B",
+        "order": 4,
+        "rewardMult": 2,
+        "riskMult": 1.3,
+        "durationDays": 2,
+        "minRealm": 2
+      },
+      {
+        "id": "A",
+        "order": 5,
+        "rewardMult": 3,
+        "riskMult": 1.7,
+        "durationDays": 2,
+        "minRealm": 3
+      },
+      {
+        "id": "S",
+        "order": 6,
+        "rewardMult": 5,
+        "riskMult": 2.2,
+        "durationDays": 3,
+        "minRealm": 4
+      },
+      {
+        "id": "SS",
+        "order": 7,
+        "rewardMult": 8,
+        "riskMult": 2.8,
+        "durationDays": 4,
+        "minRealm": 5
+      },
+      {
+        "id": "SSS",
+        "order": 8,
+        "rewardMult": 13,
+        "riskMult": 3.5,
+        "durationDays": 6,
+        "minRealm": 6
+      }
+    ],
+    "MISSION_PRIORITIES": {
+      "combat": {
+        "name": "Ưu Tiên Chiến Đấu",
+        "boostTypes": [
+          "san_yeu_thu",
+          "tran_ap",
+          "chien_tranh",
+          "bi_canh"
+        ]
+      },
+      "economy": {
+        "name": "Ưu Tiên Tài Nguyên",
+        "boostTypes": [
+          "thu_thap",
+          "thu_thap_nguyen_lieu",
+          "khai_hoang",
+          "tuan_tra"
+        ]
+      },
+      "cultivation": {
+        "name": "Ưu Tiên Tu Luyện",
+        "boostTypes": [
+          "bi_canh",
+          "san_yeu_thu",
+          "dieu_tra"
+        ]
+      },
+      "diplomacy": {
+        "name": "Ưu Tiên Ngoại Giao",
+        "boostTypes": [
+          "ngoai_giao",
+          "ho_tong",
+          "dieu_tra"
+        ]
+      },
+      "free": {
+        "name": "Tự Do Phát Triển",
+        "boostTypes": []
+      }
+    },
+    "MISSION_TYPES": [
+      {
+        "id": "thu_thap",
+        "name": "Thu Thập",
+        "icon": "🌿",
+        "desc": "Thu gom tài nguyên quanh lãnh thổ — thưởng Linh Thạch. Nguyên liệu xưởng đi qua nhiệm vụ Thu Thập Nguyên Liệu khi Đan/Rèn thiếu liệu.",
+        "traitWeights": {
+          "courage": -0.3,
+          "discipline": 0.4
+        },
+        "baseRisk": 0.02,
+        "rewardBias": "linhThach"
+      },
+      {
+        "id": "san_yeu_thu",
+        "name": "Săn Yêu Thú",
+        "icon": "🐺",
+        "desc": "Săn hung thú/yêu thú quấy nhiễu vùng biên.",
+        "traitWeights": {
+          "courage": 0.6,
+          "ambition": 0.3
+        },
+        "baseRisk": 0.12,
+        "rewardBias": "exp"
+      },
+      {
+        "id": "ho_tong",
+        "name": "Hộ Tống",
+        "icon": "🛡️",
+        "desc": "Hộ tống thương đoàn/sứ giả qua vùng nguy hiểm.",
+        "traitWeights": {
+          "loyalty": 0.5,
+          "discipline": 0.3
+        },
+        "baseRisk": 0.06,
+        "rewardBias": "danhVong"
+      },
+      {
+        "id": "tuan_tra",
+        "name": "Tuần Tra",
+        "icon": "🚶",
+        "desc": "Tuần tra biên giới lãnh thổ tông môn.",
+        "traitWeights": {
+          "courage": -0.4,
+          "discipline": 0.5
+        },
+        "baseRisk": 0.01,
+        "rewardBias": "linhThach"
+      },
+      {
+        "id": "dieu_tra",
+        "name": "Điều Tra",
+        "icon": "🔍",
+        "desc": "Điều tra tung tích một thế lực/manh mối khả nghi.",
+        "traitWeights": {
+          "ambition": 0.3,
+          "discipline": 0.4
+        },
+        "baseRisk": 0.04,
+        "rewardBias": "danhVong"
+      },
+      {
+        "id": "khai_hoang",
+        "name": "Khai Hoang",
+        "icon": "⛏️",
+        "desc": "Khai phá vùng đất hoang để mở rộng lãnh thổ.",
+        "traitWeights": {
+          "ambition": 0.5,
+          "courage": 0.2
+        },
+        "baseRisk": 0.08,
+        "rewardBias": "linhThach"
+      },
+      {
+        "id": "tran_ap",
+        "name": "Trấn Áp",
+        "icon": "⚔️",
+        "desc": "Trấn áp tà tu/ma đạo gây loạn trong lãnh thổ.",
+        "traitWeights": {
+          "courage": 0.5,
+          "loyalty": 0.4
+        },
+        "baseRisk": 0.15,
+        "rewardBias": "fame"
+      },
+      {
+        "id": "bi_canh",
+        "name": "Bí Cảnh",
+        "icon": "🗝️",
+        "desc": "Thám hiểm một bí cảnh nhỏ vừa lộ diện.",
+        "traitWeights": {
+          "courage": 0.6,
+          "greed": 0.4
+        },
+        "baseRisk": 0.18,
+        "rewardBias": "exp"
+      },
+      {
+        "id": "ngoai_giao",
+        "name": "Ngoại Giao",
+        "icon": "🤝",
+        "desc": "Thay tông môn giao thiệp với một thế lực khác.",
+        "traitWeights": {
+          "loyalty": 0.4,
+          "discipline": 0.3,
+          "courage": -0.2
+        },
+        "baseRisk": 0.02,
+        "rewardBias": "danhVong"
+      },
+      {
+        "id": "chien_tranh",
+        "name": "Chiến Tranh",
+        "icon": "🔥",
+        "desc": "Tham gia mặt trận chiến sự đang diễn ra.",
+        "traitWeights": {
+          "courage": 0.7,
+          "ambition": 0.3
+        },
+        "baseRisk": 0.22,
+        "rewardBias": "fame"
+      },
+      {
+        "id": "kham_pha_di_tich",
+        "name": "Khám Phá Di Tích",
+        "icon": "🏺",
+        "desc": "Thám hiểm tàn tích một tông môn đã diệt vong từ lâu.",
+        "traitWeights": {
+          "courage": 0.4,
+          "ambition": 0.4,
+          "greed": 0.2
+        },
+        "baseRisk": 0.1,
+        "rewardBias": "ruin"
+      },
+      {
+        "id": "thu_thap_nguyen_lieu",
+        "name": "Thu Thập Nguyên Liệu",
+        "icon": "📜",
+        "desc": "Chấp Sự Đường treo yêu cầu thu thập nguyên liệu đang thiếu cho Đan Đường/Luyện Khí Điện.",
+        "traitWeights": {
+          "discipline": 0.5,
+          "courage": -0.2
+        },
+        "baseRisk": 0.03,
+        "rewardBias": "material"
+      }
+    ]
+  },
+  "mountainLayout": {
+    "MOUNTAIN_HOTSPOTS": [
+      {
+        "id": "thien_van_dien",
+        "name": "Thiên Vân Điện",
+        "top": 9,
+        "left": 50,
+        "tier": "peak",
+        "panel": "thienvandien",
+        "hint": "Đỉnh tối cao — nơi vọng về Thiên Giới"
+      },
+      {
+        "id": "dai_dien",
+        "name": "Đại Điện",
+        "top": 29,
+        "left": 50,
+        "tier": "grand",
+        "panel": "daidien",
+        "hint": "Chưởng môn nghị sự, danh vọng & khí vận tông môn"
+      },
+      {
+        "id": "tang_kinh_cac",
+        "name": "Tàng Kinh Các",
+        "top": 27,
+        "left": 29,
+        "tier": "major",
+        "panel": "tangkinhcac",
+        "hint": "Công pháp & kỹ năng 5 trường phái"
+      },
+      {
+        "id": "thien_co_cac",
+        "name": "Thiên Cơ Các",
+        "top": 27,
+        "left": 69,
+        "tier": "major",
+        "panel": "thiencocac",
+        "hint": "Bốc quẻ chiêu mộ kỳ duyên — Gacha"
+      },
+      {
+        "id": "luyen_dan",
+        "name": "Luyện Đan Đường",
+        "top": 37,
+        "left": 11,
+        "tier": "major",
+        "panel": "luyendan",
+        "hint": "Xưởng đan dùng chung — tự luyện theo tồn kho hoặc ưu tiên mẻ; đan dùng tay khi đột phá"
+      },
+      {
+        "id": "luyen_khi",
+        "name": "Luyện Khí Điện",
+        "top": 45,
+        "left": 87,
+        "tier": "major",
+        "panel": "luyenkhi",
+        "hint": "Xưởng khí dùng chung — tự luyện theo tồn kho; pháp bảo là bonus vĩnh viễn, không đeo"
+      },
+      {
+        "id": "noi_mon",
+        "name": "Nội Môn",
+        "top": 49,
+        "left": 13,
+        "tier": "major",
+        "panel": "noimon",
+        "hint": "Đệ tử nội môn — tu luyện & đấu trường"
+      },
+      {
+        "id": "linh_thu_vien",
+        "name": "Linh Thú Viện",
+        "top": 64,
+        "left": 92,
+        "tier": "major",
+        "panel": "linhthuvien",
+        "hint": "Nuôi dưỡng linh thú (sắp ra mắt)"
+      },
+      {
+        "id": "quang_truong",
+        "name": "Quảng Trường",
+        "top": 57,
+        "left": 50,
+        "tier": "plaza",
+        "panel": "quangtruong",
+        "hint": "Sân tụ họp trung tâm tông môn"
+      },
+      {
+        "id": "ngoai_mon",
+        "name": "Ngoại Môn",
+        "top": 73,
+        "left": 20,
+        "tier": "minor",
+        "panel": "ngoaimon",
+        "hint": "Đệ tử ngoại môn — phân công tạp dịch"
+      },
+      {
+        "id": "nhiem_vu_duong",
+        "name": "Nhiệm Vụ Đường",
+        "top": 76,
+        "left": 88,
+        "tier": "minor",
+        "panel": "nhiemvuduong",
+        "hint": "Mở Chấp Sự Đường — đặt ưu tiên; đệ tử tự nhận nhiệm vụ; thám hiểm & ngoại giao theo tab"
+      },
+      {
+        "id": "linh_dien",
+        "name": "Linh Điền",
+        "top": 70,
+        "left": 50,
+        "tier": "base",
+        "panel": "linhdien",
+        "hint": "Phân công tạp dịch — Linh Thạch từ lao động theo ngày"
+      }
+    ]
+  },
+  "names": {
+    "GIVEN_NAMES_FEMALE": [
+      "Tuyết Nhi",
+      "Nguyệt Nhi",
+      "Linh Nhi",
+      "Uyển Thanh",
+      "Mộng Dao",
+      "Tử Yên",
+      "Vân Thường",
+      "Nhược Hi",
+      "Bích Dao",
+      "Cẩm Tú",
+      "Thanh Vũ",
+      "Hồng Tụ",
+      "Diệu Nhi",
+      "Sương Hàn",
+      "Ngọc Như",
+      "U Lan",
+      "Vũ Yên",
+      "Linh Tố",
+      "Nguyệt Hạ",
+      "Tường Vi",
+      "Thanh Đình",
+      "Nhược Y",
+      "Băng Tâm",
+      "Mộ Tuyết"
+    ],
+    "GIVEN_NAMES_MALE": [
+      "Vô Kỵ",
+      "Thanh Vân",
+      "Trọng Lâu",
+      "Bạt Phong",
+      "Tử Kiếm",
+      "Huyền Vũ",
+      "Chấn Thiên",
+      "Dịch Hàn",
+      "Vân Phi",
+      "Tiêu Dao",
+      "Bất Quần",
+      "Tuyệt Trần",
+      "Hạo Nhiên",
+      "Cửu Thiên",
+      "Phá Quân",
+      "Lăng Vân",
+      "Thiên Hành",
+      "Vô Tâm",
+      "Kiếm Phong",
+      "Chính Đạo",
+      "Huyền Cơ",
+      "Tàng Long",
+      "Bích Hải",
+      "Long Ngâm"
+    ],
+    "SECT_NAME_PREFIXES": [
+      "Thanh Vân",
+      "Huyền Thiên",
+      "Cửu U",
+      "Lạc Nhật",
+      "Vô Cực",
+      "Tàng Long",
+      "Bích Huyết",
+      "Diệt Thần",
+      "Tiêu Dao",
+      "Bất Diệt",
+      "Huyết Nguyệt",
+      "Thiên Cơ",
+      "Ngự Kiếm",
+      "Hắc Ám",
+      "Kim Quang",
+      "Vạn Tượng"
+    ],
+    "SECT_NAME_SUFFIXES": [
+      "Tông",
+      "Môn",
+      "Phái",
+      "Cung",
+      "Điện",
+      "Các",
+      "Trai",
+      "Lĩnh"
+    ],
+    "SURNAMES": [
+      "Lý",
+      "Trần",
+      "Vương",
+      "Trương",
+      "Triệu",
+      "Tống",
+      "Chu",
+      "Ngô",
+      "Từ",
+      "Diệp",
+      "Lâm",
+      "Hàn",
+      "Dương",
+      "Tô",
+      "Bạch",
+      "Mộ Dung",
+      "Âu Dương",
+      "Tư Mã",
+      "Nam Cung",
+      "Độc Cô",
+      "Hạ Hầu",
+      "Thượng Quan",
+      "Cơ",
+      "Khương",
+      "Công Tôn",
+      "Đoàn",
+      "Cố",
+      "Diêu",
+      "Hoàng Phủ",
+      "Vũ Văn"
+    ]
+  },
+  "nations": {
+    "NATION_TRAITS": {
+      "dong_thang": {
+        "shortName": "Đại Đường Tiên Triều",
+        "defaultStateReligion": "dao",
+        "hasCentralGovernment": true
+      },
+      "nam_thiem": {
+        "shortName": "Chư Thần Vương Quốc",
+        "defaultStateReligion": null,
+        "hasCentralGovernment": false
+      },
+      "tay_nguu": {
+        "shortName": "Tây Thiên Tịnh Thổ",
+        "defaultStateReligion": "phat",
+        "hasCentralGovernment": true
+      },
+      "bac_cau": {
+        "shortName": "Bộ Lạc Bắc Hoang",
+        "defaultStateReligion": null,
+        "hasCentralGovernment": false
+      },
+      "trung_hai": {
+        "shortName": "Loạn Hải Chư Đảo",
+        "defaultStateReligion": null,
+        "hasCentralGovernment": false
+      }
+    }
+  },
+  "ngoaiMonFactions": {
+    "CLIQUE_NAME_SUFFIXES": [
+      "Hội",
+      "Minh",
+      "Xã",
+      "Đảng"
+    ],
+    "CLIQUE_POOL_MAX_RANK": 3,
+    "CONTROL_MISBEHAVIOR_THRESHOLD": 0.25,
+    "DAO_TRANG_MIN_RANK": 2,
+    "DAO_TRANG_NAME_SUFFIXES": [
+      "Nhai",
+      "Động",
+      "Cốc",
+      "Phủ"
+    ],
+    "FORM_CHECK_INTERVAL_DAYS": 60,
+    "HIGH_AMBITION_TRAIT": 65,
+    "MIN_CLIQUE_SIZE": 3,
+    "MISBEHAVIOR_CHANCE": 0.12,
+    "MISBEHAVIOR_LOYALTY_HIT": 4
+  },
+  "ngoaiMonPolicy": {
+    "NGOAI_MON_POLICIES": {
+      "tu_luyen": {
+        "id": "tu_luyen",
+        "name": "Tập Trung Tu Luyện",
+        "icon": "🧘",
+        "desc": "Ưu tiên đưa đệ tử Ngoại Môn vào Diễn Võ Trường tu luyện thụ động.",
+        "trainingW": 0.65,
+        "laborW": 0.2,
+        "idleW": 0.15
+      },
+      "san_xuat": {
+        "id": "san_xuat",
+        "name": "Tăng Sản Xuất",
+        "icon": "⚒️",
+        "desc": "Ưu tiên đưa đệ tử Ngoại Môn vào Linh Điền/Linh Mỏ sản sinh Linh Thạch.",
+        "trainingW": 0.2,
+        "laborW": 0.65,
+        "idleW": 0.15
+      },
+      "thi_luyen": {
+        "id": "thi_luyen",
+        "name": "Thí Luyện Nhiều Hơn",
+        "icon": "⚔️",
+        "desc": "Để nhiều đệ tử nhàn rỗi hơn, tăng cơ hội vào Thí Luyện Các thử sức.",
+        "trainingW": 0.3,
+        "laborW": 0.3,
+        "idleW": 0.4,
+        "trialTowerMult": 2.5
+      },
+      "tim_thien_tai": {
+        "id": "tim_thien_tai",
+        "name": "Tìm Kiếm Thiên Tài",
+        "icon": "🔍",
+        "desc": "Dồn nguồn lực tuyển mộ, tăng nhẹ phẩm chất đệ tử chiêu mộ được.",
+        "trainingW": 0.4,
+        "laborW": 0.4,
+        "idleW": 0.2,
+        "recruitTierBonus": 1
+      },
+      "cong_hien": {
+        "id": "cong_hien",
+        "name": "Tích Lũy Cống Hiến",
+        "icon": "🏵️",
+        "desc": "Để nhiều đệ tử nhàn rỗi hơn nhận nhiệm vụ từ Chấp Sự Đường, tích lũy danh vọng cá nhân.",
+        "trainingW": 0.2,
+        "laborW": 0.2,
+        "idleW": 0.6
+      }
+    },
+    "NGOAI_MON_POLICY_LIST": [
+      {
+        "id": "tu_luyen",
+        "name": "Tập Trung Tu Luyện",
+        "icon": "🧘",
+        "desc": "Ưu tiên đưa đệ tử Ngoại Môn vào Diễn Võ Trường tu luyện thụ động.",
+        "trainingW": 0.65,
+        "laborW": 0.2,
+        "idleW": 0.15
+      },
+      {
+        "id": "san_xuat",
+        "name": "Tăng Sản Xuất",
+        "icon": "⚒️",
+        "desc": "Ưu tiên đưa đệ tử Ngoại Môn vào Linh Điền/Linh Mỏ sản sinh Linh Thạch.",
+        "trainingW": 0.2,
+        "laborW": 0.65,
+        "idleW": 0.15
+      },
+      {
+        "id": "thi_luyen",
+        "name": "Thí Luyện Nhiều Hơn",
+        "icon": "⚔️",
+        "desc": "Để nhiều đệ tử nhàn rỗi hơn, tăng cơ hội vào Thí Luyện Các thử sức.",
+        "trainingW": 0.3,
+        "laborW": 0.3,
+        "idleW": 0.4,
+        "trialTowerMult": 2.5
+      },
+      {
+        "id": "tim_thien_tai",
+        "name": "Tìm Kiếm Thiên Tài",
+        "icon": "🔍",
+        "desc": "Dồn nguồn lực tuyển mộ, tăng nhẹ phẩm chất đệ tử chiêu mộ được.",
+        "trainingW": 0.4,
+        "laborW": 0.4,
+        "idleW": 0.2,
+        "recruitTierBonus": 1
+      },
+      {
+        "id": "cong_hien",
+        "name": "Tích Lũy Cống Hiến",
+        "icon": "🏵️",
+        "desc": "Để nhiều đệ tử nhàn rỗi hơn nhận nhiệm vụ từ Chấp Sự Đường, tích lũy danh vọng cá nhân.",
+        "trainingW": 0.2,
+        "laborW": 0.2,
+        "idleW": 0.6
+      }
+    ]
+  },
+  "ngoaiVuc": {
+    "NGOAI_VUC_REALMS": [
+      {
+        "id": "huyet_nguyet_gioi",
+        "name": "Huyết Nguyệt Giới",
+        "desc": "Một Tiểu Thiên Giới sát phạt, nơi cường giả là chân lý duy nhất.",
+        "personality": "tyrant"
+      },
+      {
+        "id": "thanh_lien_gioi",
+        "name": "Thanh Liên Giới",
+        "desc": "Một Tiểu Thiên Giới thanh tu, xem đạo pháp trọng hơn tranh đoạt.",
+        "personality": "benevolent"
+      },
+      {
+        "id": "hoang_kim_gioi",
+        "name": "Hoàng Kim Giới",
+        "desc": "Một Tiểu Thiên Giới phồn hoa, thương nhân qua lại buôn bán khắp Tam Thiên.",
+        "personality": "opportunist"
+      }
+    ],
+    "NGOAI_VUC_UNLOCK_TIER": 5,
+    "PROSELYTIZE_AMITY_DELTA": 5,
+    "PROSELYTIZE_CONVERT_CHANCE": 0.3,
+    "PROSELYTIZE_COST": 300,
+    "SECTS_PER_REALM": 2
+  },
+  "omenTemplates": {
+    "OMEN_TEMPLATES": [
+      {
+        "id": "linh_vu_giang_the",
+        "tier": "low",
+        "weight": 10,
+        "durationDaysRange": [
+          3,
+          3
+        ],
+        "name": "Linh Vũ Giáng Thế",
+        "desc": "Mưa linh khí kéo dài, vạn vật đều được tắm gội trong linh lực."
+      },
+      {
+        "id": "nhat_thuc",
+        "tier": "low",
+        "weight": 8,
+        "durationDaysRange": [
+          2,
+          2
+        ],
+        "name": "Nhật Thực",
+        "desc": "Thái dương bị che khuất, âm khí dâng trào khắp thiên hạ."
+      },
+      {
+        "id": "sao_bang_thien_ngoai",
+        "tier": "low",
+        "weight": 7,
+        "durationDaysRange": [
+          1,
+          1
+        ],
+        "name": "Sao Băng Thiên Ngoại",
+        "desc": "Thiên thạch rơi xuống Bắc Câu Lư Châu, để lại Thiên Ngoại Vẫn Thiết — vật liệu luyện khí cực hiếm."
+      },
+      {
+        "id": "huyet_nguyet",
+        "tier": "medium",
+        "weight": 4,
+        "durationDaysRange": [
+          7,
+          7
+        ],
+        "name": "Huyết Nguyệt",
+        "desc": "Trăng đỏ như máu treo giữa trời, hung thú khắp nơi trở nên cuồng bạo."
+      },
+      {
+        "id": "van_kiem_te_minh",
+        "tier": "medium",
+        "weight": 4,
+        "durationDaysRange": [
+          5,
+          5
+        ],
+        "name": "Vạn Kiếm Tề Minh",
+        "desc": "Khắp thiên hạ, mọi kiếm tu đồng loạt nghe thấy kiếm ngân vang vọng từ hư không."
+      },
+      {
+        "id": "kim_lien_khai_the",
+        "tier": "medium",
+        "weight": 3,
+        "durationDaysRange": [
+          4,
+          4
+        ],
+        "name": "Kim Liên Khai Thế",
+        "desc": "Một đóa kim liên hiện lên giữa thiên địa, báo hiệu điềm lành cho kẻ tu Phật."
+      },
+      {
+        "id": "thien_dao_khoc_mau",
+        "tier": "epic",
+        "weight": 1,
+        "durationDaysRange": [
+          10,
+          10
+        ],
+        "name": "Thiên Đạo Khóc Máu",
+        "desc": "Mây đỏ như máu phủ kín bầu trời cả bốn châu — điềm báo một Đại Kiếp sắp giáng xuống.",
+        "triggersFollowup": "dai_kiep"
+      },
+      {
+        "id": "cuu_tinh_lien_chau",
+        "tier": "epic",
+        "weight": 1,
+        "durationDaysRange": [
+          3,
+          3
+        ],
+        "name": "Cửu Tinh Liên Châu",
+        "desc": "Chín vì sao nối thành một đường thẳng giữa trời đêm — dị tượng ngàn năm có một.",
+        "triggersFollowup": "bi_canh_spawn"
+      }
+    ]
+  },
+  "personalDestiny": {
+    "CHAN_LONG_FAMILY_THRESHOLD_MULT": 0.5,
+    "CHAN_LONG_STAT_BONUS_PCT": 0.05,
+    "PERSONAL_DESTINIES": {
+      "thien_sat_co_tinh": {
+        "id": "thien_sat_co_tinh",
+        "name": "Thiên Sát Cô Tinh",
+        "icon": "💀",
+        "desc": "Mệnh cách sát phạt, tu vi tinh tấn hơn người thường, nhưng những ai thân cận đều khó tránh tai ương bất ngờ."
+      },
+      "chan_long_menh": {
+        "id": "chan_long_menh",
+        "name": "Chân Long Mệnh",
+        "icon": "🐲",
+        "desc": "Chân mệnh thiên tử, khí độ hơn người, dễ dàng quy tụ lòng người và dựng nên nghiệp lớn."
+      },
+      "thien_ma_chuyen_the": {
+        "id": "thien_ma_chuyen_the",
+        "name": "Thiên Ma Chuyển Thế",
+        "icon": "😈",
+        "desc": "Ma tính ẩn sâu trong linh hồn từ kiếp trước, đạo tâm dễ lung lay hơn người, nhưng một khi buông thả ma tính lại ít bị trói buộc bởi giới luật chính đạo."
+      }
+    },
+    "PERSONAL_DESTINY_LIST": [
+      {
+        "id": "thien_sat_co_tinh",
+        "name": "Thiên Sát Cô Tinh",
+        "icon": "💀",
+        "desc": "Mệnh cách sát phạt, tu vi tinh tấn hơn người thường, nhưng những ai thân cận đều khó tránh tai ương bất ngờ."
+      },
+      {
+        "id": "chan_long_menh",
+        "name": "Chân Long Mệnh",
+        "icon": "🐲",
+        "desc": "Chân mệnh thiên tử, khí độ hơn người, dễ dàng quy tụ lòng người và dựng nên nghiệp lớn."
+      },
+      {
+        "id": "thien_ma_chuyen_the",
+        "name": "Thiên Ma Chuyển Thế",
+        "icon": "😈",
+        "desc": "Ma tính ẩn sâu trong linh hồn từ kiếp trước, đạo tâm dễ lung lay hơn người, nhưng một khi buông thả ma tính lại ít bị trói buộc bởi giới luật chính đạo."
+      }
+    ],
+    "PERSONAL_DESTINY_MIN_FAME": 500,
+    "PERSONAL_DESTINY_ROLL_CHANCE": 0.00003,
+    "THIEN_MA_CORRUPTION_GAIN": 8,
+    "THIEN_MA_CORRUPTION_TICK_INTERVAL_DAYS": 1800,
+    "THIEN_MA_HEART_DEMON_RESIST_PCT": 0.5,
+    "THIEN_SAT_BREAKTHROUGH_BONUS_PCT": 0.08,
+    "THIEN_SAT_KILL_CHANCE": 0.1,
+    "THIEN_SAT_KILL_CHECK_INTERVAL_DAYS": 900
+  },
+  "personalOmens": {
+    "BREAKTHROUGH_OMEN_CHANCE": 0.2,
+    "NHAP_MA_OMEN": {
+      "name": "Huyết Nguyệt Treo Cao",
+      "desc": "một vầng trăng đỏ như máu treo lơ lửng giữa trời, hung thú khắp nơi trở nên cuồng bạo, lòng người bất an."
+    },
+    "NHAP_MA_OMEN_CHANCE": 0.5,
+    "NHAP_MA_OMEN_DEATH_CHANCE_PCT": 0.3,
+    "PERSONAL_OMEN_DURATION_DAYS": 7,
+    "PERSONAL_OMEN_MIN_FAME": 10000,
+    "PERSONAL_OMEN_STAT_PCT": 0.15,
+    "SCHOOL_BREAKTHROUGH_OMENS": {
+      "kiem": {
+        "name": "Vạn Kiếm Triều Tông",
+        "desc": "vạn kiếm trong thiên hạ đồng loạt rung lên bái phục, kiếm khí ngợp trời suốt nhiều ngày."
+      },
+      "dao": {
+        "name": "Đan Hương Vạn Dặm",
+        "desc": "linh đan hương thơm lan xa vạn dặm, khiến vạn vật sinh sôi."
+      },
+      "phat": {
+        "name": "Phạm Âm Chấn Cửu Thiên",
+        "desc": "tiếng chuông chùa vang vọng khắp cửu thiên, ma khí tan biến trong phút chốc."
+      },
+      "nho": {
+        "name": "Văn Khí Xung Thiên",
+        "desc": "văn khí ngút trời, sách vở khắp thiên hạ tự nhiên phát sáng."
+      },
+      "vo": {
+        "name": "Chiến Cổ Vang Trời",
+        "desc": "tiếng trống trận vang vọng không trung, khí thế hừng hực khắp bốn châu."
+      }
+    }
+  },
+  "phiThangGioi": {
+    "ASCENDED_INFLUENCE_CHANCE": 0.05,
+    "ASCENDED_INFLUENCE_CHECK_INTERVAL_DAYS": 3600,
+    "COLLECTIVE_ASCENSION_CHANCE": 0.02,
+    "COLLECTIVE_ASCENSION_CHECK_INTERVAL_DAYS": 3600,
+    "THIEN_TRIEU_ASCENSION_MIN_ELITE_LEGENDS": 5,
+    "THIEN_TRIEU_ASCENSION_MIN_REIGN_DAYS": 3600
+  },
+  "phongCatalog": {
+    "EXTRA_PHONG": [
+      {
+        "id": "luyen_khi",
+        "name": "Luyện Khí Phong",
+        "logo": "assets/factions/luyen-khi-phong.png",
+        "duty": "Trông coi nơi đệ tử nhập môn luyện khí."
+      },
+      {
+        "id": "linh_thu",
+        "name": "Linh Thú Phong",
+        "logo": "assets/factions/linh-thu-phong.png",
+        "duty": "Nuôi và khế ước linh thú của tông môn."
+      },
+      {
+        "id": "ngoai_cong",
+        "name": "Ngoại Công Phong",
+        "logo": "assets/factions/ngoai-cong-phong.png",
+        "duty": "Rèn thân pháp và chiến đấu bên ngoài."
+      },
+      {
+        "id": "noi_vu",
+        "name": "Nội Vụ Phong",
+        "logo": "assets/factions/noi-vu-phong.png",
+        "duty": "Coi nhân sự và việc vặt trong sơn môn."
+      },
+      {
+        "id": "duoc",
+        "name": "Dược Phong",
+        "logo": "assets/factions/duoc-phong.png",
+        "duty": "Trồng và bào chế dược liệu."
+      },
+      {
+        "id": "tai_vat",
+        "name": "Tài Vật Phong",
+        "logo": "assets/factions/tai-vat-phong.png",
+        "duty": "Giữ kho linh thạch và tài vật."
+      },
+      {
+        "id": "thien_co",
+        "name": "Thiên Cơ Phong",
+        "logo": "assets/factions/thien-co-phong.png",
+        "duty": "Xem thiên tượng và tính toán đại cục."
+      },
+      {
+        "id": "am",
+        "name": "Ám Phong",
+        "logo": "assets/factions/am-phong.png",
+        "duty": "Dò tin và hành động trong bóng tối."
+      },
+      {
+        "id": "khong_che",
+        "name": "Khống Chế Phong",
+        "logo": "assets/factions/khong-che-phong.png",
+        "duty": "Trấn áp và khống chế kẻ địch."
+      },
+      {
+        "id": "khong_gian",
+        "name": "Không Gian Phong",
+        "logo": "assets/factions/khong-gian-phong.png",
+        "duty": "Nghiên cứu không gian và bí cảnh."
+      }
+    ]
+  },
+  "pilgrimage": {
+    "PILGRIMAGE_BASE_SUCCESS_CHANCE": 0.65,
+    "PILGRIMAGE_CORRUPTION_HIT": 35,
+    "PILGRIMAGE_ELIGIBLE_RANKS": [
+      2,
+      3,
+      5
+    ],
+    "PILGRIMAGE_EXP_REWARD_PCT": 0.6,
+    "PILGRIMAGE_FAILURE_WEIGHTS": [
+      {
+        "id": "death",
+        "weight": 0.3
+      },
+      {
+        "id": "corruption",
+        "weight": 0.3
+      },
+      {
+        "id": "rebel",
+        "weight": 0.2
+      },
+      {
+        "id": "join_rival",
+        "weight": 0.2
+      }
+    ],
+    "PILGRIMAGE_FAME_REWARD": 1200,
+    "PILGRIMAGE_MAX_DAYS": 90,
+    "PILGRIMAGE_MIN_DAYS": 30,
+    "PILGRIMAGE_TYPES": {
+      "tham_bai": {
+        "id": "tham_bai",
+        "label": "Tham Bái Thánh Địa",
+        "verb": "tham bái một Thánh Địa cổ xưa",
+        "successBias": {
+          "inheritance": 0.5,
+          "fame": 0.3,
+          "exp": 0.2
+        }
+      },
+      "luan_dao": {
+        "id": "luan_dao",
+        "label": "Luận Đạo Cùng Cao Nhân",
+        "verb": "luận đạo cùng một vị cao nhân ẩn cư",
+        "successBias": {
+          "exp": 0.55,
+          "manual": 0.25,
+          "fame": 0.2
+        }
+      },
+      "hanh_hiep": {
+        "id": "hanh_hiep",
+        "label": "Hành Hiệp Trừ Ma",
+        "verb": "hành hiệp trừ ma cứu người",
+        "successBias": {
+          "fame": 0.6,
+          "exp": 0.25,
+          "manual": 0.15
+        },
+        "failureRiskMult": 1.3
+      },
+      "tim_co_duyen": {
+        "id": "tim_co_duyen",
+        "label": "Tìm Kiếm Cơ Duyên",
+        "verb": "dấn thân tìm kiếm một cơ duyên chưa từng biết",
+        "successBias": {
+          "manual": 0.4,
+          "inheritance": 0.35,
+          "fame": 0.25
+        },
+        "failureRiskMult": 1.15
+      }
+    }
+  },
+  "pocketWorldTypes": {
+    "POCKET_WORLD_TYPES": [
+      {
+        "id": "sword",
+        "name": "Kiếm Giới",
+        "weight": 4,
+        "desc": "Một thế giới nơi vạn vật đều mang kiếm ý, di tích của vô số Kiếm Tiên thượng cổ.",
+        "lifespanRange": [
+          800,
+          2000
+        ],
+        "laws": [
+          {
+            "type": "schoolStatPct",
+            "school": "kiem",
+            "pct": 0.4
+          },
+          {
+            "type": "schoolStatPct",
+            "school": "dao",
+            "pct": -0.2
+          }
+        ]
+      },
+      {
+        "id": "fire",
+        "name": "Hỏa Linh Giới",
+        "weight": 4,
+        "desc": "Hỏa linh khí cực thịnh, dung nham chảy thành sông, tài nguyên luyện khí vô tận.",
+        "lifespanRange": [
+          600,
+          1500
+        ],
+        "laws": [
+          {
+            "type": "laborProductionPct",
+            "pct": 0.5
+          },
+          {
+            "type": "expeditionDeathChancePct",
+            "pct": 0.2
+          }
+        ]
+      },
+      {
+        "id": "ice",
+        "name": "Tuyệt Băng Giới",
+        "weight": 3,
+        "desc": "Băng phong ngàn năm không tan, linh khí tinh khiết nhưng khắc nghiệt tột cùng.",
+        "lifespanRange": [
+          1000,
+          2500
+        ],
+        "laws": [
+          {
+            "type": "khiVanPct",
+            "pct": 0.3
+          },
+          {
+            "type": "trainingExpPct",
+            "pct": -0.1
+          }
+        ]
+      },
+      {
+        "id": "demon",
+        "name": "Huyết Ma Giới",
+        "weight": 3,
+        "desc": "Ma khí cuồn cuộn, đột phá cảnh giới nhanh hơn hẳn nhưng phải trả giá bằng mạng sống.",
+        "lifespanRange": [
+          400,
+          1200
+        ],
+        "laws": [
+          {
+            "type": "breakthroughPct",
+            "pct": 0.25
+          },
+          {
+            "type": "expeditionDeathChancePct",
+            "pct": 0.5
+          }
+        ]
+      },
+      {
+        "id": "buddha",
+        "name": "Phật Quốc",
+        "weight": 3,
+        "desc": "Phạn âm vang vọng khắp không gian, tâm ma của người tu luyện tại đây giảm hẳn.",
+        "lifespanRange": [
+          1000,
+          3000
+        ],
+        "laws": [
+          {
+            "type": "schoolStatPct",
+            "school": "phat",
+            "pct": 0.35
+          },
+          {
+            "type": "trainingExpPct",
+            "pct": 0.15
+          }
+        ]
+      },
+      {
+        "id": "immortal",
+        "name": "Tiểu Tiên Giới",
+        "weight": 1,
+        "rare": true,
+        "desc": "Tiên khí lưu động thành sông, mảnh vỡ hiếm hoi của Tiên Giới rơi lạc vào phàm trần.",
+        "lifespanRange": [
+          1000,
+          1800
+        ],
+        "laws": [
+          {
+            "type": "khiVanPct",
+            "pct": 0.4
+          },
+          {
+            "type": "breakthroughPct",
+            "pct": 0.15
+          }
+        ]
+      }
+    ]
+  },
+  "portraits": {},
+  "protagonist": {
+    "PROTAGONIST_AI_FAME_GROWTH": 800,
+    "PROTAGONIST_AI_GROWTH_INTERVAL_DAYS": 90,
+    "PROTAGONIST_AI_MAX_REALM": 9,
+    "PROTAGONIST_AI_REALM_GROWTH_CHANCE": 0.15,
+    "PROTAGONIST_ASCENSION_WORLD_INFLUENCE_BONUS": 2000,
+    "PROTAGONIST_BOSS_MIN_DAYS": 108000,
+    "PROTAGONIST_BOSS_MIN_REALM": 9,
+    "PROTAGONIST_EXP_BONUS_PCT": 0.5,
+    "PROTAGONIST_FAME_BONUS_PCT": 0.3,
+    "PROTAGONIST_MIN_DAY": 1800,
+    "PROTAGONIST_ROLL_CHANCE": 0.00005,
+    "PROTAGONIST_TITLE": {
+      "male": "Khí Vận Chi Tử",
+      "female": "Thiên Mệnh Chi Nữ"
+    }
+  },
+  "rarities": {
+    "MAX_STAR": 6,
+    "PITY_RULES": {
+      "SR": 10,
+      "SSR": 50,
+      "UR": 80
+    },
+    "RARITIES": {
+      "R": {
+        "id": "R",
+        "order": 0,
+        "name": "R",
+        "altName": "Phàm Căn",
+        "color": "#9ca3af",
+        "colorBg": "#1f2937",
+        "baseStat": {
+          "hp": 100,
+          "atk": 10,
+          "def": 8,
+          "spd": 100
+        },
+        "baseRate": 0.7,
+        "shardOnDup": 10,
+        "pityShardStar": 10,
+        "desc": "Đệ tử có tư chất bình thường, thích hợp làm hộ pháp ngoại môn hoặc tạp dịch sản xuất."
+      },
+      "SR": {
+        "id": "SR",
+        "order": 1,
+        "name": "SR",
+        "altName": "Linh Căn",
+        "color": "#a78bfa",
+        "colorBg": "#2e1065",
+        "baseStat": {
+          "hp": 130,
+          "atk": 13,
+          "def": 10,
+          "spd": 102
+        },
+        "baseRate": 0.25,
+        "shardOnDup": 20,
+        "desc": "Đệ tử nội môn có tiềm năng, sở hữu bộ kỹ năng cơ bản ổn định."
+      },
+      "SSR": {
+        "id": "SSR",
+        "order": 2,
+        "name": "SSR",
+        "altName": "Thiên Căn",
+        "color": "#fb923c",
+        "colorBg": "#431407",
+        "baseStat": {
+          "hp": 170,
+          "atk": 18,
+          "def": 13,
+          "spd": 105
+        },
+        "baseRate": 0.043,
+        "shardOnDup": 30,
+        "desc": "Thiên tài trăm năm có một, sở hữu nội tại (Passive) độc quyền của 1 trong 5 trường phái."
+      },
+      "UR": {
+        "id": "UR",
+        "order": 3,
+        "name": "UR",
+        "altName": "Thần Căn / Thánh Thể",
+        "color": "#f87171",
+        "colorBg": "#450a0a",
+        "baseStat": {
+          "hp": 230,
+          "atk": 25,
+          "def": 17,
+          "spd": 110
+        },
+        "baseRate": 0.007,
+        "shardOnDup": 50,
+        "desc": "Chí tôn thiên địa (tướng giới hạn/banner). Mang dị tượng thần thoại, kỹ năng thay đổi quy tắc thiên địa."
+      }
+    },
+    "RARITY_ORDER": [
+      "R",
+      "SR",
+      "SSR",
+      "UR"
+    ],
+    "STAR3_UNLOCK": "Mở thêm 1 ô thuộc tính ẩn ngẫu nhiên",
+    "STAR6_UNLOCK": "Mở khóa nâng cấp cấp tối đa cho kỹ năng Buff/Debuff",
+    "STAR_PER_STAT_BONUS": 0.08
+  },
+  "realms": {
+    "MAX_REALM": 12,
+    "REALMS": [
+      {
+        "id": 1,
+        "name": "Luyện Khí Kỳ",
+        "layer": "Phàm Giới",
+        "subLevels": 9,
+        "desc": "Dẫn khí vào người, bước đầu thanh tẩy cơ thể."
+      },
+      {
+        "id": 2,
+        "name": "Trúc Cơ Kỳ",
+        "layer": "Phàm Giới",
+        "subLevels": 4,
+        "desc": "Nén linh khí thành chất lỏng (Linh Hải), bắt đầu ngự kiếm phi hành."
+      },
+      {
+        "id": 3,
+        "name": "Kết Đan Kỳ",
+        "layer": "Phàm Giới",
+        "subLevels": 4,
+        "desc": "Ngưng tụ nội đan vàng óng bất diệt, thọ 500 tuổi."
+      },
+      {
+        "id": 4,
+        "name": "Nguyên Anh Kỳ",
+        "layer": "Phàm Giới",
+        "subLevels": 4,
+        "desc": "Phá đan hóa anh nhi năng lượng, có thể đoạt xá tái sinh nếu mất nhục thân."
+      },
+      {
+        "id": 5,
+        "name": "Hóa Thần Kỳ",
+        "layer": "Phàm Giới",
+        "subLevels": 4,
+        "desc": "Nguyên Anh trưởng thành thành Thần Niệm, hòa nhập quy tắc tự nhiên nhỏ."
+      },
+      {
+        "id": 6,
+        "name": "Độ Kiếp Kỳ",
+        "layer": "Phàm Giới",
+        "subLevels": 4,
+        "desc": "Đỉnh phong phàm giới, chống chọi Lôi Kiếp để dẫn động tiên quang phi thăng."
+      },
+      {
+        "id": 7,
+        "name": "Luyện Hư Kỳ",
+        "layer": "Linh Giới",
+        "subLevels": 4,
+        "desc": "Ngũ hành viên mãn, thân thể đồng hóa với quy tắc thượng tầng."
+      },
+      {
+        "id": 8,
+        "name": "Hợp Thể Kỳ",
+        "layer": "Linh Giới",
+        "subLevels": 4,
+        "desc": "Thần hồn và nhục thân hòa làm một, tự tạo không gian Lĩnh Vực riêng."
+      },
+      {
+        "id": 9,
+        "name": "Đại Thừa Kỳ",
+        "layer": "Linh Giới",
+        "subLevels": 4,
+        "desc": "Chuẩn bị tiếp nhận Tiên Đạo Pháp Tắc, vượt Đại Thừa Kiếp để lên Thiên giới."
+      },
+      {
+        "id": 10,
+        "name": "Chân Tiên",
+        "layer": "Thiên Giới",
+        "subLevels": 4,
+        "desc": "Đúc thành Tiên Thể, thọ mệnh trường sinh cùng trời đất."
+      },
+      {
+        "id": 11,
+        "name": "Kim Tiên / Thái Ất Kim Tiên",
+        "layer": "Thiên Giới",
+        "subLevels": 4,
+        "desc": "Ngộ ra các Đại Đạo Pháp Tắc hoàn chỉnh (Thời gian, Không gian...)."
+      },
+      {
+        "id": 12,
+        "name": "Đại La Kim Tiên / Thánh Nhân",
+        "layer": "Thiên Giới",
+        "subLevels": 4,
+        "desc": "Đỉnh phong vũ trụ, nhảy ra ngoài ngũ hành, ý niệm có thể hủy diệt hoặc kiến tạo thế giới."
+      }
+    ],
+    "SUB_LEVEL_NAMES_4": [
+      "Sơ Kỳ",
+      "Trung Kỳ",
+      "Hậu Kỳ",
+      "Đỉnh Phong"
+    ]
+  },
+  "recipes": {
+    "ALCHEMY_RECIPES": [
+      {
+        "id": "tu_khi_dan",
+        "itemId": "tu_khi_dan",
+        "materials": {
+          "huyen_linh_thao": 2
+        },
+        "outputQty": 2,
+        "targetStock": 15
+      },
+      {
+        "id": "truc_co_dan",
+        "itemId": "truc_co_dan",
+        "materials": {
+          "huyen_linh_thao": 3,
+          "khoang_thach": 1
+        },
+        "outputQty": 1,
+        "targetStock": 8
+      },
+      {
+        "id": "hoi_linh_dan",
+        "itemId": "hoi_linh_dan",
+        "materials": {
+          "huyen_linh_thao": 2,
+          "yeu_dan": 1
+        },
+        "outputQty": 1,
+        "targetStock": 6
+      },
+      {
+        "id": "ngo_dao_dan",
+        "itemId": "ngo_dao_dan",
+        "materials": {
+          "yeu_dan": 3,
+          "huyen_linh_thao": 5
+        },
+        "outputQty": 1,
+        "targetStock": 2
+      },
+      {
+        "id": "dia_giai_dan",
+        "itemId": "dia_giai_dan",
+        "materials": {
+          "yeu_dan": 5,
+          "huyen_linh_thao": 8,
+          "khoang_thach": 3
+        },
+        "outputQty": 1,
+        "targetStock": 2,
+        "locked": true
+      }
+    ],
+    "FORGE_RECIPES": [
+      {
+        "id": "thanh_van_kiem",
+        "itemId": "thanh_van_kiem",
+        "materials": {
+          "khoang_thach": 20,
+          "huyen_thiet": 5
+        },
+        "outputQty": 1,
+        "targetStock": 3
+      },
+      {
+        "id": "ho_than_giap",
+        "itemId": "ho_than_giap",
+        "materials": {
+          "khoang_thach": 15,
+          "huyen_thiet": 3
+        },
+        "outputQty": 1,
+        "targetStock": 3
+      }
+    ]
+  },
+  "relationships": {
+    "DAO_LU_FOLLOW_DEFECT_CHANCE": 0.5,
+    "DAO_LU_HEARTBREAK_CORRUPTION": 40,
+    "DAO_LU_INSPIRATION_EXP_PCT": 0.5,
+    "DAO_LU_ROLL_CHANCE": 0.15,
+    "DAO_LU_SCAN_INTERVAL_DAYS": 60,
+    "GRIEF_LOYALTY_HIT": 8,
+    "INSPIRATION_EXP_PCT": 0.25,
+    "MAX_RELATIONSHIPS_PER_PERSON": 5,
+    "MAX_RESOLVED_RELATIONSHIPS": 800,
+    "RELATIONSHIP_TYPES": {
+      "tri_ky": {
+        "id": "tri_ky",
+        "label": "Tri Kỷ",
+        "icon": "💜"
+      },
+      "ke_thu": {
+        "id": "ke_thu",
+        "label": "Kẻ Thù",
+        "icon": "⚔️"
+      },
+      "an_nhan": {
+        "id": "an_nhan",
+        "label": "Ân Nhân",
+        "icon": "🙏"
+      },
+      "dao_lu": {
+        "id": "dao_lu",
+        "label": "Đạo Lữ",
+        "icon": "💞"
+      }
+    },
+    "RIVAL_DEATH_FAME_GAIN": 300
+  },
+  "rumors": {
+    "AMBITION_LOYALTY_CEILING": 40,
+    "AMBITION_THRESHOLD": 85,
+    "ELDER_CHALLENGE_FAME_MULT": 2,
+    "EVOLUTION_MAP": {
+      "ambition": "clique",
+      "faction_rise": "corruption",
+      "elder_challenge": "rebellion",
+      "mission_incompetence": "bribery",
+      "chan_truyen_envy": "clique"
+    },
+    "FACTION_RISE_THRESHOLD": 0.3,
+    "INVESTIGATION_DURATION_DAYS": 5,
+    "MISSION_FAIL_STREAK_THRESHOLD": 3,
+    "OPINION_DELTA": {
+      "positive": 5,
+      "negative": -6
+    },
+    "RUMOR_MATURE_MAX_DAYS": 18000,
+    "RUMOR_MATURE_MIN_DAYS": 5400,
+    "RUMOR_TYPES": {
+      "ambition": {
+        "id": "ambition",
+        "label": "Tụ Tập Bè Phái",
+        "hideSubject": true,
+        "sentiment": "negative"
+      },
+      "faction_rise": {
+        "id": "faction_rise",
+        "label": "Thế Lực Trỗi Dậy",
+        "hideSubject": false,
+        "sentiment": "negative"
+      },
+      "elder_challenge": {
+        "id": "elder_challenge",
+        "label": "Thách Thức Lãnh Đạo",
+        "hideSubject": false,
+        "sentiment": "negative"
+      },
+      "genius_noticed": {
+        "id": "genius_noticed",
+        "label": "Thiên Tài Mới",
+        "hideSubject": false,
+        "sentiment": "positive"
+      },
+      "mission_incompetence": {
+        "id": "mission_incompetence",
+        "label": "Quản Lý Yếu Kém",
+        "hideSubject": false,
+        "sentiment": "negative"
+      },
+      "chan_truyen_envy": {
+        "id": "chan_truyen_envy",
+        "label": "Đố Kỵ Chân Truyền",
+        "hideSubject": false,
+        "sentiment": "negative"
+      }
+    },
+    "SUPPRESS_COST": 400
+  },
+  "schools": {
+    "SCHOOLS": {
+      "kiem": {
+        "id": "kiem",
+        "name": "Kiếm Tu",
+        "tagline": "Nhất Kiếm Phá Vạn Pháp",
+        "color": "#7dd3fc",
+        "desc": "Tập trung rèn luyện Kiếm Khí → Kiếm Ý → Kiếm Tâm → Kiếm Vực. Lực sát thương vật lý và bạo kích đứng đầu tam giới, dễ vượt cấp chiến đấu nhưng nhục thân mỏng manh.",
+        "energyCore": {
+          "name": "Canh Kim Chi Khí",
+          "desc": "Sát khí hệ Kim cô đặc, dạng hình thoi, tự quay quanh trục xé rách không gian."
+        },
+        "mult": {
+          "atk": 1.25,
+          "def": 0.8,
+          "hp": 0.9,
+          "spd": 1.1
+        },
+        "trait": "+10% Crit Rate",
+        "traitEffect": {
+          "critRate": 0.1
+        },
+        "hiddenMechanic": {
+          "name": "Kiếm Chủng Nhân Bản",
+          "desc": "Tu sĩ phải nuôi một thanh kiếm sống trong tim từ nhỏ. Kiếm mạnh lên thì người mạnh lên."
+        },
+        "weakness": {
+          "name": "Dịch Kiếm Phản Phệ",
+          "desc": "Nếu tâm cảnh bị lung lay hoặc kiếm bị gãy, bản mệnh kiếm chủng sẽ nổ tung trong tim, tu vi lập tức về 0.",
+          "eventChance": 0.02,
+          "eventEffect": "resetCultivation"
+        }
+      },
+      "dao": {
+        "id": "dao",
+        "name": "Đạo Giáo",
+        "tagline": "Thuận Theo Tự Nhiên",
+        "color": "#86efac",
+        "desc": "Tu luyện chính tông dựa trên Ngũ Hành và Thái Cực. Linh lực dồi dào, thâm hậu lâu bền nhất, tâm cảnh bình hòa nên tỷ lệ vượt thiên kiếp an toàn nhất.",
+        "energyCore": {
+          "name": "Huyền Môn Tiên Khí",
+          "desc": "Năng lượng Thái Cực Ngũ Hành, hạt hình tròn ổn định, tự phân rã và tái tạo."
+        },
+        "mult": {
+          "atk": 1,
+          "def": 1,
+          "hp": 1.05,
+          "spd": 1
+        },
+        "trait": "+15% tốc hồi linh lực",
+        "traitEffect": {
+          "manaRegen": 0.15
+        },
+        "hiddenMechanic": {
+          "name": "Thiên Nhân Cảm Ứng",
+          "desc": "Tốc độ tu luyện tỷ lệ thuận với độ tinh khiết của linh mạch nơi ẩn cư."
+        },
+        "weakness": {
+          "name": "Thiên Đạo Đồng Hóa",
+          "desc": "Tu vi càng cao, cảm xúc con người càng nhạt đi (vô tình). Nếu không giữ được nhân tính, sẽ biến thành một khối đá linh khí không có ý thức.",
+          "eventChance": 0.015,
+          "eventEffect": "emotionNumb"
+        }
+      },
+      "phat": {
+        "id": "phat",
+        "name": "Phật Giáo",
+        "tagline": "Tu Tâm Đúc Thể",
+        "color": "#fde68a",
+        "desc": "Tiến giai qua Sa Di → Tỷ Kheo → La Hán → Bồ Tát → Phật Đà. Sở hữu nhục thân siêu cường (Kim Cang Bất Hoại), tích lũy công đức và khắc chế tuyệt đối Ma đạo, tà tu, tâm ma.",
+        "energyCore": {
+          "name": "Ý Chí Công Đức",
+          "desc": "Hạt năng lượng Dương tính cực hạn, nặng như núi, phát sáng, phá vỡ cấu trúc Âm tính."
+        },
+        "mult": {
+          "atk": 0.85,
+          "def": 1.3,
+          "hp": 1.25,
+          "spd": 0.85
+        },
+        "trait": "+50% sát thương lên Ma/Yêu tộc",
+        "traitEffect": {
+          "vsDemonBeast": 0.5
+        },
+        "hiddenMechanic": {
+          "name": "Tích Lũy Nghiệp Lực",
+          "desc": "Mỗi khi giết một sinh linh, phải tụng kinh siêu độ. Nếu độ hóa thành công, nhận Thần thông lực, nhục thân càng vàng ròng."
+        },
+        "weakness": {
+          "name": "Ma Niệm Nội Sinh",
+          "desc": "Phật càng cao, Ma càng lớn. Nếu sát sinh quá nhiều mà không độ hóa kịp, Xá lợi sẽ đen hóa, đọa lạc thành Đại Ma Đầu cực đoan.",
+          "eventChance": 0.02,
+          "eventEffect": "corruption"
+        }
+      },
+      "nho": {
+        "id": "nho",
+        "name": "Nho Gia",
+        "tagline": "Chính Khí Trường Tồn",
+        "color": "#fca5a5",
+        "desc": "Độc quyền tại Nam Thiệm Bộ Châu. Không dùng linh khí mà tích lũy Hạo Nhiên Chính Khí qua sách vở, kinh bang tế thế. Tiến giai Tú Tài → Tiến Sĩ → Đại Nho → Thánh Hiền.",
+        "energyCore": {
+          "name": "Hạo Nhiên Văn Khí",
+          "desc": "Năng lượng liên kết Ý chí và Quy tắc, không hình dạng cố định, biến đổi theo ngữ nghĩa lời nói."
+        },
+        "mult": {
+          "atk": 0.8,
+          "def": 0.9,
+          "hp": 0.95,
+          "spd": 1
+        },
+        "trait": "+20% hiệu quả Buff gây ra",
+        "traitEffect": {
+          "buffPower": 0.2
+        },
+        "hiddenMechanic": {
+          "name": "Khí Vận Giang Sơn",
+          "desc": "Sức mạnh phụ thuộc vào sự hưng thịnh của vương triều phàm nhân. Dân an bình, Hạo Nhiên Khí càng thịnh."
+        },
+        "weakness": {
+          "name": "Ngôn Linh Phản Phệ",
+          "desc": "Nếu nói dối, làm việc trái đạo đức hoặc thốt ra lời đại ngôn vượt quá tu vi, sẽ bị quy tắc vắt kiệt máu nhiễu tâm mà chết.",
+          "eventChance": 0.015,
+          "eventEffect": "bloodDrain"
+        }
+      },
+      "vo": {
+        "id": "vo",
+        "name": "Võ Gia",
+        "tagline": "Sát Lục Chiến Trường",
+        "color": "#fdba74",
+        "desc": "Thịnh hành tại quân đội vương triều hoặc bộ lạc hoang dã. Tiến giai Luyện Nhục → Thay Máu → Thông Khiếu → Võ Thánh → Phá Toái Hư Không. Tu luyện bằng huyết khí và sát khí, áp đảo cận chiến.",
+        "energyCore": {
+          "name": "Huyết Thần Sát Kình",
+          "desc": "Năng lượng Sinh học kết hợp Sát ý, nóng bỏng, tăng tốc tế bào bản thân và đốt cháy tế bào kẻ địch."
+        },
+        "mult": {
+          "atk": 1.3,
+          "def": 0.95,
+          "hp": 0.85,
+          "spd": 1.05
+        },
+        "trait": "+5% hút máu (lifesteal)",
+        "traitEffect": {
+          "lifesteal": 0.05
+        },
+        "hiddenMechanic": {
+          "name": "Mở Khóa Huyệt Khiếu",
+          "desc": "Nhục thân con người có 108 tử huyệt ẩn. Mỗi lần đột phá là một lần dùng khí huyết cưỡng ép đập nát và tái cấu trúc một tử huyệt."
+        },
+        "weakness": {
+          "name": "Thọ Nguyên Đoản Mệnh",
+          "desc": "Do liên tục đốt cháy tiềm năng tế bào và huyết dịch, Võ Gia có thọ mệnh ngắn nhất (chỉ bằng 1/3 các tu sĩ khác ở cùng cảnh giới).",
+          "eventChance": 0.03,
+          "eventEffect": "lifespanDrain"
+        }
+      }
+    },
+    "SCHOOL_LIST": [
+      {
+        "id": "kiem",
+        "name": "Kiếm Tu",
+        "tagline": "Nhất Kiếm Phá Vạn Pháp",
+        "color": "#7dd3fc",
+        "desc": "Tập trung rèn luyện Kiếm Khí → Kiếm Ý → Kiếm Tâm → Kiếm Vực. Lực sát thương vật lý và bạo kích đứng đầu tam giới, dễ vượt cấp chiến đấu nhưng nhục thân mỏng manh.",
+        "energyCore": {
+          "name": "Canh Kim Chi Khí",
+          "desc": "Sát khí hệ Kim cô đặc, dạng hình thoi, tự quay quanh trục xé rách không gian."
+        },
+        "mult": {
+          "atk": 1.25,
+          "def": 0.8,
+          "hp": 0.9,
+          "spd": 1.1
+        },
+        "trait": "+10% Crit Rate",
+        "traitEffect": {
+          "critRate": 0.1
+        },
+        "hiddenMechanic": {
+          "name": "Kiếm Chủng Nhân Bản",
+          "desc": "Tu sĩ phải nuôi một thanh kiếm sống trong tim từ nhỏ. Kiếm mạnh lên thì người mạnh lên."
+        },
+        "weakness": {
+          "name": "Dịch Kiếm Phản Phệ",
+          "desc": "Nếu tâm cảnh bị lung lay hoặc kiếm bị gãy, bản mệnh kiếm chủng sẽ nổ tung trong tim, tu vi lập tức về 0.",
+          "eventChance": 0.02,
+          "eventEffect": "resetCultivation"
+        }
+      },
+      {
+        "id": "dao",
+        "name": "Đạo Giáo",
+        "tagline": "Thuận Theo Tự Nhiên",
+        "color": "#86efac",
+        "desc": "Tu luyện chính tông dựa trên Ngũ Hành và Thái Cực. Linh lực dồi dào, thâm hậu lâu bền nhất, tâm cảnh bình hòa nên tỷ lệ vượt thiên kiếp an toàn nhất.",
+        "energyCore": {
+          "name": "Huyền Môn Tiên Khí",
+          "desc": "Năng lượng Thái Cực Ngũ Hành, hạt hình tròn ổn định, tự phân rã và tái tạo."
+        },
+        "mult": {
+          "atk": 1,
+          "def": 1,
+          "hp": 1.05,
+          "spd": 1
+        },
+        "trait": "+15% tốc hồi linh lực",
+        "traitEffect": {
+          "manaRegen": 0.15
+        },
+        "hiddenMechanic": {
+          "name": "Thiên Nhân Cảm Ứng",
+          "desc": "Tốc độ tu luyện tỷ lệ thuận với độ tinh khiết của linh mạch nơi ẩn cư."
+        },
+        "weakness": {
+          "name": "Thiên Đạo Đồng Hóa",
+          "desc": "Tu vi càng cao, cảm xúc con người càng nhạt đi (vô tình). Nếu không giữ được nhân tính, sẽ biến thành một khối đá linh khí không có ý thức.",
+          "eventChance": 0.015,
+          "eventEffect": "emotionNumb"
+        }
+      },
+      {
+        "id": "phat",
+        "name": "Phật Giáo",
+        "tagline": "Tu Tâm Đúc Thể",
+        "color": "#fde68a",
+        "desc": "Tiến giai qua Sa Di → Tỷ Kheo → La Hán → Bồ Tát → Phật Đà. Sở hữu nhục thân siêu cường (Kim Cang Bất Hoại), tích lũy công đức và khắc chế tuyệt đối Ma đạo, tà tu, tâm ma.",
+        "energyCore": {
+          "name": "Ý Chí Công Đức",
+          "desc": "Hạt năng lượng Dương tính cực hạn, nặng như núi, phát sáng, phá vỡ cấu trúc Âm tính."
+        },
+        "mult": {
+          "atk": 0.85,
+          "def": 1.3,
+          "hp": 1.25,
+          "spd": 0.85
+        },
+        "trait": "+50% sát thương lên Ma/Yêu tộc",
+        "traitEffect": {
+          "vsDemonBeast": 0.5
+        },
+        "hiddenMechanic": {
+          "name": "Tích Lũy Nghiệp Lực",
+          "desc": "Mỗi khi giết một sinh linh, phải tụng kinh siêu độ. Nếu độ hóa thành công, nhận Thần thông lực, nhục thân càng vàng ròng."
+        },
+        "weakness": {
+          "name": "Ma Niệm Nội Sinh",
+          "desc": "Phật càng cao, Ma càng lớn. Nếu sát sinh quá nhiều mà không độ hóa kịp, Xá lợi sẽ đen hóa, đọa lạc thành Đại Ma Đầu cực đoan.",
+          "eventChance": 0.02,
+          "eventEffect": "corruption"
+        }
+      },
+      {
+        "id": "nho",
+        "name": "Nho Gia",
+        "tagline": "Chính Khí Trường Tồn",
+        "color": "#fca5a5",
+        "desc": "Độc quyền tại Nam Thiệm Bộ Châu. Không dùng linh khí mà tích lũy Hạo Nhiên Chính Khí qua sách vở, kinh bang tế thế. Tiến giai Tú Tài → Tiến Sĩ → Đại Nho → Thánh Hiền.",
+        "energyCore": {
+          "name": "Hạo Nhiên Văn Khí",
+          "desc": "Năng lượng liên kết Ý chí và Quy tắc, không hình dạng cố định, biến đổi theo ngữ nghĩa lời nói."
+        },
+        "mult": {
+          "atk": 0.8,
+          "def": 0.9,
+          "hp": 0.95,
+          "spd": 1
+        },
+        "trait": "+20% hiệu quả Buff gây ra",
+        "traitEffect": {
+          "buffPower": 0.2
+        },
+        "hiddenMechanic": {
+          "name": "Khí Vận Giang Sơn",
+          "desc": "Sức mạnh phụ thuộc vào sự hưng thịnh của vương triều phàm nhân. Dân an bình, Hạo Nhiên Khí càng thịnh."
+        },
+        "weakness": {
+          "name": "Ngôn Linh Phản Phệ",
+          "desc": "Nếu nói dối, làm việc trái đạo đức hoặc thốt ra lời đại ngôn vượt quá tu vi, sẽ bị quy tắc vắt kiệt máu nhiễu tâm mà chết.",
+          "eventChance": 0.015,
+          "eventEffect": "bloodDrain"
+        }
+      },
+      {
+        "id": "vo",
+        "name": "Võ Gia",
+        "tagline": "Sát Lục Chiến Trường",
+        "color": "#fdba74",
+        "desc": "Thịnh hành tại quân đội vương triều hoặc bộ lạc hoang dã. Tiến giai Luyện Nhục → Thay Máu → Thông Khiếu → Võ Thánh → Phá Toái Hư Không. Tu luyện bằng huyết khí và sát khí, áp đảo cận chiến.",
+        "energyCore": {
+          "name": "Huyết Thần Sát Kình",
+          "desc": "Năng lượng Sinh học kết hợp Sát ý, nóng bỏng, tăng tốc tế bào bản thân và đốt cháy tế bào kẻ địch."
+        },
+        "mult": {
+          "atk": 1.3,
+          "def": 0.95,
+          "hp": 0.85,
+          "spd": 1.05
+        },
+        "trait": "+5% hút máu (lifesteal)",
+        "traitEffect": {
+          "lifesteal": 0.05
+        },
+        "hiddenMechanic": {
+          "name": "Mở Khóa Huyệt Khiếu",
+          "desc": "Nhục thân con người có 108 tử huyệt ẩn. Mỗi lần đột phá là một lần dùng khí huyết cưỡng ép đập nát và tái cấu trúc một tử huyệt."
+        },
+        "weakness": {
+          "name": "Thọ Nguyên Đoản Mệnh",
+          "desc": "Do liên tục đốt cháy tiềm năng tế bào và huyết dịch, Võ Gia có thọ mệnh ngắn nhất (chỉ bằng 1/3 các tu sĩ khác ở cùng cảnh giới).",
+          "eventChance": 0.03,
+          "eventEffect": "lifespanDrain"
+        }
+      }
+    ]
+  },
+  "sectBuildings": {
+    "BUILDINGS": {
+      "chanh_dien": {
+        "id": "chanh_dien",
+        "name": "Chánh Điện",
+        "zone": "Quản Trị & Đào Tạo",
+        "desc": "Nơi Chưởng môn đưa ra quyết định ngoại giao, ban bố thanh quy giới luật, nâng cấp tổng thể tông môn.",
+        "baseCost": 200,
+        "baseTimeMin": 10,
+        "effectPerLevel": "Giảm chi phí chiêu mộ đệ tử; mở khóa hành động ngoại giao/chiến tranh cấp cao hơn."
+      },
+      "tang_kinh_cac": {
+        "id": "tang_kinh_cac",
+        "name": "Tàng Kinh Các",
+        "zone": "Quản Trị & Đào Tạo",
+        "desc": "Nơi 'trang bị' (equip) công pháp cho đệ tử. Nâng cấp để mở khóa các ô kỹ năng cao cấp của 5 trường phái.",
+        "baseCost": 150,
+        "baseTimeMin": 8,
+        "effectPerLevel": "+1 ô kỹ năng khả dụng mỗi 2 cấp (tối đa 4 ô ở cấp 8+)."
+      },
+      "dien_vo_truong": {
+        "id": "dien_vo_truong",
+        "name": "Diễn Võ Trường",
+        "zone": "Quản Trị & Đào Tạo",
+        "desc": "Nơi treo máy (AFK) tăng kinh nghiệm (EXP) tu vi cho đệ tử.",
+        "baseCost": 120,
+        "baseTimeMin": 6,
+        "effectPerLevel": "+15% EXP thụ động cho đệ tử đang AFK tại đây."
+      },
+      "luyen_dan_duong": {
+        "id": "luyen_dan_duong",
+        "name": "Luyện Đan Đường",
+        "zone": "Hậu Cần & Sản Xuất",
+        "desc": "Xưởng đan dùng chung của Đan Phong và Trận Phong. Đan sư luyện theo tồn kho hoặc ưu tiên Chưởng Môn đã chọn. Trúc Cơ Đan dùng khi đột phá.",
+        "baseCost": 180,
+        "baseTimeMin": 9,
+        "effectPerLevel": "Nâng cấp công trình; công thức khóa mở qua nghiên cứu, không qua cấp nhà."
+      },
+      "luyen_khi_dien": {
+        "id": "luyen_khi_dien",
+        "name": "Luyện Khí Điện",
+        "zone": "Hậu Cần & Sản Xuất",
+        "desc": "Xưởng rèn dùng chung của Kiếm Phong và Huyết Phong. Thợ rèn chế tạo pháp bảo theo tồn kho hoặc ưu tiên đã chọn.",
+        "baseCost": 180,
+        "baseTimeMin": 9,
+        "effectPerLevel": "Nâng cấp công trình; chưa có bước cường hóa trang bị riêng."
+      },
+      "linh_dien_linh_mo": {
+        "id": "linh_dien_linh_mo",
+        "name": "Linh Điền & Linh Mỏ",
+        "zone": "Hậu Cần & Sản Xuất",
+        "desc": "Nơi xếp đệ tử tạp dịch (hoặc căn cốt thấp) vào làm việc để sản sinh Linh thạch và Tiên thảo theo thời gian.",
+        "baseCost": 100,
+        "baseTimeMin": 5,
+        "baseProductionPerWorkerPerHour": 20,
+        "productionGrowthPerLevel": 0.2
+      }
+    },
+    "BUILDING_LIST": [
+      {
+        "id": "chanh_dien",
+        "name": "Chánh Điện",
+        "zone": "Quản Trị & Đào Tạo",
+        "desc": "Nơi Chưởng môn đưa ra quyết định ngoại giao, ban bố thanh quy giới luật, nâng cấp tổng thể tông môn.",
+        "baseCost": 200,
+        "baseTimeMin": 10,
+        "effectPerLevel": "Giảm chi phí chiêu mộ đệ tử; mở khóa hành động ngoại giao/chiến tranh cấp cao hơn."
+      },
+      {
+        "id": "tang_kinh_cac",
+        "name": "Tàng Kinh Các",
+        "zone": "Quản Trị & Đào Tạo",
+        "desc": "Nơi 'trang bị' (equip) công pháp cho đệ tử. Nâng cấp để mở khóa các ô kỹ năng cao cấp của 5 trường phái.",
+        "baseCost": 150,
+        "baseTimeMin": 8,
+        "effectPerLevel": "+1 ô kỹ năng khả dụng mỗi 2 cấp (tối đa 4 ô ở cấp 8+)."
+      },
+      {
+        "id": "dien_vo_truong",
+        "name": "Diễn Võ Trường",
+        "zone": "Quản Trị & Đào Tạo",
+        "desc": "Nơi treo máy (AFK) tăng kinh nghiệm (EXP) tu vi cho đệ tử.",
+        "baseCost": 120,
+        "baseTimeMin": 6,
+        "effectPerLevel": "+15% EXP thụ động cho đệ tử đang AFK tại đây."
+      },
+      {
+        "id": "luyen_dan_duong",
+        "name": "Luyện Đan Đường",
+        "zone": "Hậu Cần & Sản Xuất",
+        "desc": "Xưởng đan dùng chung của Đan Phong và Trận Phong. Đan sư luyện theo tồn kho hoặc ưu tiên Chưởng Môn đã chọn. Trúc Cơ Đan dùng khi đột phá.",
+        "baseCost": 180,
+        "baseTimeMin": 9,
+        "effectPerLevel": "Nâng cấp công trình; công thức khóa mở qua nghiên cứu, không qua cấp nhà."
+      },
+      {
+        "id": "luyen_khi_dien",
+        "name": "Luyện Khí Điện",
+        "zone": "Hậu Cần & Sản Xuất",
+        "desc": "Xưởng rèn dùng chung của Kiếm Phong và Huyết Phong. Thợ rèn chế tạo pháp bảo theo tồn kho hoặc ưu tiên đã chọn.",
+        "baseCost": 180,
+        "baseTimeMin": 9,
+        "effectPerLevel": "Nâng cấp công trình; chưa có bước cường hóa trang bị riêng."
+      },
+      {
+        "id": "linh_dien_linh_mo",
+        "name": "Linh Điền & Linh Mỏ",
+        "zone": "Hậu Cần & Sản Xuất",
+        "desc": "Nơi xếp đệ tử tạp dịch (hoặc căn cốt thấp) vào làm việc để sản sinh Linh thạch và Tiên thảo theo thời gian.",
+        "baseCost": 100,
+        "baseTimeMin": 5,
+        "baseProductionPerWorkerPerHour": 20,
+        "productionGrowthPerLevel": 0.2
+      }
+    ]
+  },
+  "sectDestiny": {
+    "DESTINIES": [
+      {
+        "id": "kiem_dao_thanh_tong",
+        "name": "Kiếm Đạo Thánh Tông",
+        "desc": "Tông môn lấy Kiếm Đạo làm căn cơ, kiếm khí thấu trời.",
+        "buff": {
+          "type": "schoolStat",
+          "school": "kiem",
+          "pct": 0.2,
+          "label": "Kiếm Tu +20% chỉ số"
+        },
+        "debuff": {
+          "type": "breakthrough",
+          "pct": -0.08,
+          "label": "Tỷ lệ đột phá toàn môn -8%"
+        }
+      },
+      {
+        "id": "van_co_dan_tong",
+        "name": "Vạn Cổ Đan Tông",
+        "desc": "Ngàn năm luyện đan, đan lô không dứt khói, đột phá dễ dàng hơn người.",
+        "buff": {
+          "type": "breakthrough",
+          "pct": 0.1,
+          "label": "Tỷ lệ đột phá toàn môn +10%"
+        },
+        "debuff": {
+          "type": "schoolStat",
+          "school": "kiem",
+          "pct": -0.1,
+          "label": "Kiếm Tu -10% chỉ số"
+        }
+      },
+      {
+        "id": "nho_gia_chinh_thong",
+        "name": "Nho Gia Chính Thống",
+        "desc": "Thánh hiền chi đạo, lấy văn trị quốc, lấy lễ đãi người.",
+        "buff": {
+          "type": "schoolStat",
+          "school": "nho",
+          "pct": 0.2,
+          "label": "Nho Gia +20% chỉ số"
+        },
+        "debuff": {
+          "type": "diplomacy",
+          "pct": -0.2,
+          "label": "Hiệu quả ngoại giao -20%"
+        }
+      },
+      {
+        "id": "phat_mon_thanh_dia",
+        "name": "Phật Môn Thánh Địa",
+        "desc": "Từ bi vi bản, tu tâm dưỡng tính, không màng thế sự sản xuất.",
+        "buff": {
+          "type": "schoolStat",
+          "school": "phat",
+          "pct": 0.2,
+          "label": "Phật Giáo +20% chỉ số"
+        },
+        "debuff": {
+          "type": "production",
+          "pct": -0.1,
+          "label": "Linh Thạch sản xuất -10%"
+        }
+      },
+      {
+        "id": "ma_dao_ta_tong",
+        "name": "Ma Đạo Tà Tông",
+        "desc": "Sát phạt quyết đoán, huyết tế luyện thân, nhưng bị chính đạo thiên hạ khinh miệt.",
+        "buff": {
+          "type": "schoolStat",
+          "school": "vo",
+          "pct": 0.25,
+          "label": "Võ Gia +25% chỉ số"
+        },
+        "debuff": {
+          "type": "reputation",
+          "pct": -0.2,
+          "label": "Danh Vọng thu được -20%"
+        }
+      }
+    ]
+  },
+  "sectFactions": {
+    "FACTIONS": {
+      "kiem": {
+        "school": "kiem",
+        "name": "Kiếm Phong",
+        "icon": "⚔️",
+        "logo": "assets/factions/kiem-phong.png",
+        "ideology": "Chủ Chiến",
+        "ideologyDesc": "Muốn đánh tông môn khác, chiếm mỏ tài nguyên, mở rộng lãnh thổ."
+      },
+      "dao": {
+        "school": "dao",
+        "name": "Đan Phong",
+        "icon": "⚗️",
+        "logo": "assets/factions/dan-phong.png",
+        "ideology": "Phát Triển Kinh Tế",
+        "ideologyDesc": "Muốn tập trung luyện đan, buôn bán, hạn chế chiến tranh."
+      },
+      "phat": {
+        "school": "phat",
+        "name": "Trận Phong",
+        "icon": "🛡️",
+        "logo": "assets/factions/tran-phong.png",
+        "ideology": "Hộ Tông Phòng Thủ",
+        "ideologyDesc": "Muốn củng cố phòng thủ tông môn, tránh hao tổn vô ích."
+      },
+      "nho": {
+        "school": "nho",
+        "name": "Phù Phong",
+        "icon": "📜",
+        "logo": "assets/factions/phu-phong.png",
+        "ideology": "Nghiên Cứu Học Thuật",
+        "ideologyDesc": "Muốn đầu tư Tàng Kinh Các, nghiên cứu công pháp mới."
+      },
+      "vo": {
+        "school": "vo",
+        "name": "Huyết Phong",
+        "icon": "🩸",
+        "logo": "assets/factions/huyet-phong.png",
+        "ideology": "Sát Phạt Cực Đoan",
+        "ideologyDesc": "Muốn chiến đấu liên miên để rèn giũa sát khí, khinh thường hòa bình."
+      }
+    },
+    "FACTION_LIST": [
+      {
+        "school": "kiem",
+        "name": "Kiếm Phong",
+        "icon": "⚔️",
+        "logo": "assets/factions/kiem-phong.png",
+        "ideology": "Chủ Chiến",
+        "ideologyDesc": "Muốn đánh tông môn khác, chiếm mỏ tài nguyên, mở rộng lãnh thổ."
+      },
+      {
+        "school": "dao",
+        "name": "Đan Phong",
+        "icon": "⚗️",
+        "logo": "assets/factions/dan-phong.png",
+        "ideology": "Phát Triển Kinh Tế",
+        "ideologyDesc": "Muốn tập trung luyện đan, buôn bán, hạn chế chiến tranh."
+      },
+      {
+        "school": "phat",
+        "name": "Trận Phong",
+        "icon": "🛡️",
+        "logo": "assets/factions/tran-phong.png",
+        "ideology": "Hộ Tông Phòng Thủ",
+        "ideologyDesc": "Muốn củng cố phòng thủ tông môn, tránh hao tổn vô ích."
+      },
+      {
+        "school": "nho",
+        "name": "Phù Phong",
+        "icon": "📜",
+        "logo": "assets/factions/phu-phong.png",
+        "ideology": "Nghiên Cứu Học Thuật",
+        "ideologyDesc": "Muốn đầu tư Tàng Kinh Các, nghiên cứu công pháp mới."
+      },
+      {
+        "school": "vo",
+        "name": "Huyết Phong",
+        "icon": "🩸",
+        "logo": "assets/factions/huyet-phong.png",
+        "ideology": "Sát Phạt Cực Đoan",
+        "ideologyDesc": "Muốn chiến đấu liên miên để rèn giũa sát khí, khinh thường hòa bình."
+      }
+    ],
+    "LOYALTY_TIERS": [
+      {
+        "min": 80,
+        "max": 100,
+        "id": "loyal",
+        "label": "Trung Thành Tuyệt Đối",
+        "statPct": 0.08,
+        "color": "var(--success)"
+      },
+      {
+        "min": 50,
+        "max": 79,
+        "id": "stable",
+        "label": "Ổn Định",
+        "statPct": 0,
+        "color": "var(--accent-2)"
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "id": "unhappy",
+        "label": "Bất Mãn",
+        "statPct": -0.08,
+        "color": "var(--ssr-color)"
+      },
+      {
+        "min": 0,
+        "max": 24,
+        "id": "rebellious",
+        "label": "Sắp Phản",
+        "statPct": -0.18,
+        "color": "var(--danger)"
+      }
+    ]
+  },
+  "sectPolicies": {
+    "POLICY_LIST": [
+      {
+        "id": "quang_thu_mon_do",
+        "name": "Quảng Thu Môn Đồ",
+        "desc": "Tăng số lượng tuyển đệ tử, nhưng giảm nhẹ chất lượng.",
+        "icon": "👥",
+        "effects": {
+          "laborProductionPct": 0.3,
+          "trainingExpPct": -0.1
+        },
+        "plusLabel": "+30% Linh Thạch từ lao động",
+        "minusLabel": "-10% EXP thụ động Diễn Võ Trường"
+      },
+      {
+        "id": "trong_dung_thien_tai",
+        "name": "Trọng Dụng Thiên Tài",
+        "desc": "Ưu tiên bồi dưỡng đệ tử có tiềm năng, tăng tốc tu luyện.",
+        "icon": "📖",
+        "effects": {
+          "laborProductionPct": -0.1,
+          "trainingExpPct": 0.2
+        },
+        "plusLabel": "+20% tốc độ tu luyện thiên tài",
+        "minusLabel": "-10% Linh Thạch từ lao động"
+      },
+      {
+        "id": "be_quan_toa_tong",
+        "name": "Bế Quan Tỏa Tông",
+        "desc": "Tạm thời đóng cửa, tập trung tu luyện nội bộ.",
+        "icon": "🔒",
+        "effects": {
+          "trainingExpPct": 0.15,
+          "diplomacyPct": -0.3
+        },
+        "plusLabel": "+15% hiệu quả tu luyện",
+        "minusLabel": "-30% hiệu quả ngoại giao"
+      }
+    ],
+    "SECT_POLICIES": {
+      "quang_thu_mon_do": {
+        "id": "quang_thu_mon_do",
+        "name": "Quảng Thu Môn Đồ",
+        "desc": "Tăng số lượng tuyển đệ tử, nhưng giảm nhẹ chất lượng.",
+        "icon": "👥",
+        "effects": {
+          "laborProductionPct": 0.3,
+          "trainingExpPct": -0.1
+        },
+        "plusLabel": "+30% Linh Thạch từ lao động",
+        "minusLabel": "-10% EXP thụ động Diễn Võ Trường"
+      },
+      "trong_dung_thien_tai": {
+        "id": "trong_dung_thien_tai",
+        "name": "Trọng Dụng Thiên Tài",
+        "desc": "Ưu tiên bồi dưỡng đệ tử có tiềm năng, tăng tốc tu luyện.",
+        "icon": "📖",
+        "effects": {
+          "laborProductionPct": -0.1,
+          "trainingExpPct": 0.2
+        },
+        "plusLabel": "+20% tốc độ tu luyện thiên tài",
+        "minusLabel": "-10% Linh Thạch từ lao động"
+      },
+      "be_quan_toa_tong": {
+        "id": "be_quan_toa_tong",
+        "name": "Bế Quan Tỏa Tông",
+        "desc": "Tạm thời đóng cửa, tập trung tu luyện nội bộ.",
+        "icon": "🔒",
+        "effects": {
+          "trainingExpPct": 0.15,
+          "diplomacyPct": -0.3
+        },
+        "plusLabel": "+15% hiệu quả tu luyện",
+        "minusLabel": "-30% hiệu quả ngoại giao"
+      }
+    }
+  },
+  "sectRanks": {
+    "SECT_RANKS": [
+      {
+        "rank": 1,
+        "id": "ngoai_mon",
+        "name": "Ngoại Môn Đệ Tử",
+        "minRealm": 1,
+        "minFame": 0,
+        "minLoyalty": 0,
+        "auto": true
+      },
+      {
+        "rank": 2,
+        "id": "noi_mon",
+        "name": "Nội Môn Đệ Tử",
+        "minRealm": 2,
+        "minFame": 100,
+        "minLoyalty": 0,
+        "auto": true
+      },
+      {
+        "rank": 3,
+        "id": "chan_truyen",
+        "name": "Chân Truyền Đệ Tử",
+        "minRealm": 3,
+        "minFame": 400,
+        "minLoyalty": 40,
+        "auto": true
+      },
+      {
+        "rank": 4,
+        "id": "chap_su",
+        "name": "Chấp Sự",
+        "minRealm": 3,
+        "minFame": 1000,
+        "minLoyalty": 55,
+        "auto": true
+      },
+      {
+        "rank": 5,
+        "id": "truong_lao",
+        "name": "Trưởng Lão",
+        "minRealm": 3,
+        "minFame": 2000,
+        "minLoyalty": 65,
+        "auto": true
+      },
+      {
+        "rank": 6,
+        "id": "dai_truong_lao",
+        "name": "Đại Trưởng Lão",
+        "minRealm": 3,
+        "minFame": 0,
+        "minLoyalty": 0,
+        "auto": false
+      },
+      {
+        "rank": 7,
+        "id": "thanh_tu_nu",
+        "name": "Thánh Tử / Thánh Nữ",
+        "minRealm": 6,
+        "minFame": 6000,
+        "minLoyalty": 70,
+        "auto": true
+      },
+      {
+        "rank": 8,
+        "id": "thieu_tong_chu",
+        "name": "Thiếu Tông Chủ",
+        "minRealm": 7,
+        "minFame": 15000,
+        "minLoyalty": 80,
+        "auto": false
+      },
+      {
+        "rank": 9,
+        "id": "tong_chu",
+        "name": "Tông Chủ",
+        "minRealm": 12,
+        "minFame": 999999,
+        "minLoyalty": 100,
+        "auto": false
+      }
+    ]
+  },
+  "sectRuins": {
+    "REWARD_REVEAL_DELAY_DAYS": 15,
+    "RUIN_DISCOVERY_MIN_REALM": 3,
+    "RUIN_FALLBACK_FAME": 400,
+    "RUIN_FALLBACK_LINH_THACH": 2000,
+    "SECRET_REVEAL_DELAY_DAYS": 15
+  },
+  "sectTiers": {
+    "ELDER_REALM_THRESHOLD": 3,
+    "SECT_TIERS": [
+      {
+        "level": 0,
+        "name": "Bất Nhập Lưu",
+        "shortName": "Bất Nhập Lưu",
+        "requirements": null,
+        "chanTruyenSeats": 2,
+        "phongSlots": 5
+      },
+      {
+        "level": 1,
+        "name": "Tam Lưu Tông Môn",
+        "shortName": "Tam Lưu",
+        "requirements": {
+          "disciples": 50,
+          "elders": 2,
+          "reputation": 3000,
+          "linhMach": 1
+        },
+        "reward": {
+          "linhThach": 500
+        },
+        "chanTruyenSeats": 3,
+        "phongSlots": 7
+      },
+      {
+        "level": 2,
+        "name": "Nhị Lưu Tông Môn",
+        "shortName": "Nhị Lưu",
+        "requirements": {
+          "disciples": 200,
+          "elders": 5,
+          "reputation": 15000,
+          "linhMach": 2
+        },
+        "reward": {
+          "linhThach": 2000
+        },
+        "chanTruyenSeats": 5,
+        "phongSlots": 9
+      },
+      {
+        "level": 3,
+        "name": "Nhất Lưu Tông Môn",
+        "shortName": "Nhất Lưu",
+        "requirements": {
+          "disciples": 500,
+          "elders": 8,
+          "reputation": 40000,
+          "linhMach": 3
+        },
+        "reward": {
+          "linhThach": 5000
+        },
+        "chanTruyenSeats": 7,
+        "phongSlots": 11
+      },
+      {
+        "level": 4,
+        "name": "Thánh Địa",
+        "shortName": "Thánh Địa",
+        "requirements": {
+          "disciples": 1200,
+          "elders": 15,
+          "reputation": 100000,
+          "linhMach": 4,
+          "territory": 2,
+          "dungeons": 5
+        },
+        "reward": {
+          "linhThach": 15000
+        },
+        "chanTruyenSeats": 12,
+        "phongSlots": 13
+      },
+      {
+        "level": 5,
+        "name": "Tiên Đình",
+        "shortName": "Tiên Đình",
+        "requirements": {
+          "disciples": 3000,
+          "elders": 25,
+          "reputation": 300000,
+          "linhMach": 4,
+          "territory": 5,
+          "worldInfluence": 3000
+        },
+        "reward": {
+          "linhThach": 50000
+        },
+        "chanTruyenSeats": 16,
+        "phongSlots": 15
+      }
+    ]
+  },
+  "skills": {
+    "CANH_GIO_VALUE": 120,
+    "SKILLS": {
+      "kiem": [
+        {
+          "id": "kiem_buff1",
+          "school": "kiem",
+          "type": "buff",
+          "name": "Nhất Niệm Tâm Kiếm",
+          "desc": "Người và kiếm hợp nhất. Tăng 50% tỷ lệ chí mạng và tốc độ xuất kiếm.",
+          "cd": 30,
+          "duration": 10,
+          "effect": {
+            "critRate": 0.5
+          }
+        },
+        {
+          "id": "kiem_buff2",
+          "school": "kiem",
+          "type": "buff",
+          "name": "Kiếm Ý Hộ Thể",
+          "desc": "Hàng vạn luồng kiếm khí xoay tròn quanh cơ thể, tự động đánh bật đòn tấn công tầm xa nhẹ và tăng 30% phòng thủ.",
+          "cd": 45,
+          "duration": 15,
+          "effect": {
+            "defPct": 0.3
+          }
+        },
+        {
+          "id": "kiem_debuff1",
+          "school": "kiem",
+          "type": "debuff",
+          "name": "Kiếm Khí Thấu Xương",
+          "desc": "Bắn luồng kiếm khí lạnh lẽo vào kinh mạch mục tiêu, giảm 40% tốc độ di chuyển và khiến chịu thêm 20% sát thương vật lý.",
+          "cd": 20,
+          "aoe": false,
+          "effect": {
+            "speedPct": -0.4,
+            "dmgTakenPct": 0.2
+          }
+        },
+        {
+          "id": "kiem_debuff2",
+          "school": "kiem",
+          "type": "debuff",
+          "name": "Kiếm Uy Áp Chế",
+          "desc": "Giải phóng ý chí kiếm đạo tối cao, khiến vũ khí toàn bộ kẻ địch trong phạm vi run rẩy, giảm 25% lực tấn công của chúng.",
+          "cd": 60,
+          "aoe": true,
+          "effect": {
+            "atkPct": -0.25
+          }
+        },
+        {
+          "id": "kiem_single1",
+          "school": "kiem",
+          "type": "single",
+          "name": "Nhất Kiếm Xuyên Tâm",
+          "desc": "Tấn công chớp nhoáng, dồn toàn lực đâm thẳng vào tử huyệt, bỏ qua 30% giáp của mục tiêu.",
+          "cd": 12,
+          "coefOverride": 1.8,
+          "effect": {
+            "armorPen": 0.3
+          }
+        },
+        {
+          "id": "kiem_single2",
+          "school": "kiem",
+          "type": "single",
+          "name": "Kiếm Khí Hóa Tiêu",
+          "desc": "Ngưng tụ một sợi kiếm khí mỏng như sợi tóc, tầm bắn cực xa, có khả năng xuyên thấu mục tiêu.",
+          "cd": 18
+        },
+        {
+          "id": "kiem_single3",
+          "school": "kiem",
+          "type": "single",
+          "name": "Nhất Kiếm Sát Thần",
+          "desc": "Chiêu thức kết liễu. Tích tụ toàn bộ thọ nguyên và sát ý vào mũi kiếm, gây sát thương khổng lồ dựa trên lượng máu đã mất của mục tiêu.",
+          "cd": 120,
+          "effect": {
+            "execute": true
+          }
+        },
+        {
+          "id": "kiem_aoe1",
+          "school": "kiem",
+          "type": "aoe",
+          "name": "Vạn Kiếm Tề Phát",
+          "desc": "Triệu hoán hàng ngàn thanh kiếm khí từ trên trời giáng xuống như mưa trong phạm vi trăm trượng.",
+          "cd": 40
+        },
+        {
+          "id": "kiem_aoe2",
+          "school": "kiem",
+          "type": "aoe",
+          "name": "Tuyệt Diệt Kiếm Vực",
+          "desc": "Khai mở trận pháp kiếm ý bao vây toàn bộ chiến trường, liên tục chém vỡ quần thể kẻ địch mỗi hơi thở.",
+          "cd": 90
+        },
+        {
+          "id": "kiem_aoe3",
+          "school": "kiem",
+          "type": "aoe",
+          "name": "Hoành Tảo Thiên Quân",
+          "desc": "Vung một đường kiếm khí hình bán nguyệt khổng lồ về phía trước, đẩy lùi và chém đôi tất cả mục tiêu trên đường đi.",
+          "cd": 25
+        }
+      ],
+      "dao": [
+        {
+          "id": "dao_buff1",
+          "school": "dao",
+          "type": "buff",
+          "name": "Thần Hành Phù Pháp",
+          "desc": "Dán bùa chú mượn lực phong nguyên tố, tăng 70% tốc độ di chuyển cho bản thân hoặc một đồng minh.",
+          "cd": 25,
+          "effect": {
+            "speedPct": 0.7
+          }
+        },
+        {
+          "id": "dao_buff2",
+          "school": "dao",
+          "type": "buff",
+          "name": "Lưỡng Nghi Hộ Thể Trận",
+          "desc": "Tạo vòng tròn Thái Cực dưới chân, hấp thụ sát thương và chuyển hóa 20% lượng sát thương đó thành linh lực bản thân.",
+          "cd": 50,
+          "effect": {
+            "shieldConvert": 0.2
+          }
+        },
+        {
+          "id": "dao_debuff1",
+          "school": "dao",
+          "type": "debuff",
+          "name": "Ngũ Hành Giam Cầm",
+          "desc": "Dùng dây xích năm màu khóa chặt một mục tiêu, khiến họ không thể sử dụng kỹ năng hệ ngũ hành trong 5 hơi thở.",
+          "cd": 35,
+          "aoe": false,
+          "effect": {
+            "lockSkill": 5
+          }
+        },
+        {
+          "id": "dao_debuff2",
+          "school": "dao",
+          "type": "debuff",
+          "name": "Hóa Đạo Trầm Luân",
+          "desc": "Biến vùng đất dưới chân kẻ địch thành đầm lầy linh lực, khiến toàn bộ phe địch bị tiêu hao linh lực gấp đôi khi xuất chiêu.",
+          "cd": 55,
+          "aoe": true,
+          "effect": {
+            "manaCostPct": 1
+          }
+        },
+        {
+          "id": "dao_single1",
+          "school": "dao",
+          "type": "single",
+          "name": "Thái Thanh Chưởng",
+          "desc": "Một lòng bàn tay linh lực ập xuống, đánh tan hộ thể linh quang của đối thủ.",
+          "cd": 10
+        },
+        {
+          "id": "dao_single2",
+          "school": "dao",
+          "type": "single",
+          "name": "Càn Khôn Mượn Pháp",
+          "desc": "Triệu hoán một đạo thiên lôi chính tông đánh thẳng vào đỉnh đầu mục tiêu, có tỷ lệ gây tê liệt.",
+          "cd": 22,
+          "effect": {
+            "stunChance": 0.25
+          }
+        },
+        {
+          "id": "dao_single3",
+          "school": "dao",
+          "type": "single",
+          "name": "Tam Muội Chân Hỏa",
+          "desc": "Phóng ra ngọn lửa đạo gia không thể dập tắt bằng nước thường, thiêu đốt liên tục vào sinh mệnh mục tiêu.",
+          "cd": 45,
+          "effect": {
+            "dot": true
+          }
+        },
+        {
+          "id": "dao_aoe1",
+          "school": "dao",
+          "type": "aoe",
+          "name": "Ngũ Hành Oanh Kích",
+          "desc": "Gọi ra đá bay, lửa cháy, gai gỗ, dòng nước và sấm sét cùng lúc càn quét chiến trường.",
+          "cd": 45
+        },
+        {
+          "id": "dao_aoe2",
+          "school": "dao",
+          "type": "aoe",
+          "name": "Cửu Cung Trận Đồ",
+          "desc": "Bố trí trận pháp khổng lồ nổ tung từ dưới đất lên, gây sát thương diện rộng và hất tung toàn bộ kẻ địch.",
+          "cd": 75
+        },
+        {
+          "id": "dao_aoe3",
+          "school": "dao",
+          "type": "aoe",
+          "name": "Trảm Yêu Trừ Ma Ấn",
+          "desc": "Một đại ấn bằng linh lực vàng rực từ trên trời ép xuống, gây sát thương cực đại lên các mục tiêu thuộc Ma tộc/Yêu tộc.",
+          "cd": 120,
+          "effect": {
+            "vsDemonBeastBonus": 1
+          }
+        }
+      ],
+      "phat": [
+        {
+          "id": "phat_buff1",
+          "school": "phat",
+          "type": "buff",
+          "name": "Bồ Đề Tự Tại",
+          "desc": "Trục xuất hoàn toàn mọi trạng thái bất lợi (độc, nguyền rủa, choáng) trên bản thân và hồi phục một lượng máu nhỏ.",
+          "cd": 20,
+          "effect": {
+            "cleanse": true,
+            "healPct": 0.1
+          }
+        },
+        {
+          "id": "phat_buff2",
+          "school": "phat",
+          "type": "buff",
+          "name": "Bất Động Minh Vương Ấn",
+          "desc": "Thần ảnh Minh Vương bao bọc nhục thân, miễn nhiễm toàn bộ sát thương trong 3 hơi thở nhưng bản thân không thể di chuyển.",
+          "cd": 80,
+          "duration": 3,
+          "effect": {
+            "invincible": true
+          }
+        },
+        {
+          "id": "phat_debuff1",
+          "school": "phat",
+          "type": "debuff",
+          "name": "Kim Cang Trấn Áp",
+          "desc": "Phóng ra một chữ 'Vạn' (卍) đè nặng lên một mục tiêu, giảm 50% tốc độ đánh và tăng thời gian hồi chiêu kỹ năng mục tiêu thêm 5 hơi thở.",
+          "cd": 40,
+          "aoe": false,
+          "effect": {
+            "atkSpeedPct": -0.5,
+            "cdIncrease": 5
+          }
+        },
+        {
+          "id": "phat_debuff2",
+          "school": "phat",
+          "type": "debuff",
+          "name": "Phạn Âm Trấn Tâm",
+          "desc": "Tụng kinh vang vọng khắp chiến trường, khiến toàn bộ kẻ địch rơi vào trạng thái 'Câm lặng' trong 3 hơi thở.",
+          "cd": 60,
+          "aoe": true,
+          "effect": {
+            "silence": 3
+          }
+        },
+        {
+          "id": "phat_single1",
+          "school": "phat",
+          "type": "single",
+          "name": "Kim Cang Quyền",
+          "desc": "Cú đấm mang sức nặng của núi đá, gây sát thương vật lý mạnh và làm choáng mục tiêu trong 2 hơi thở.",
+          "cd": 15,
+          "effect": {
+            "stunDuration": 2
+          }
+        },
+        {
+          "id": "phat_single2",
+          "school": "phat",
+          "type": "single",
+          "name": "Hàng Ma Trượng",
+          "desc": "Vung thiền trượng đập mạnh, gây sát thương và phá vỡ thế thủ, khiến mục tiêu bị ngã gục.",
+          "cd": 18
+        },
+        {
+          "id": "phat_single3",
+          "school": "phat",
+          "type": "single",
+          "name": "Xá Lợi Thần Quang",
+          "desc": "Gom phật lực phóng ra một tia sáng thuần dương từ trán, xuyên thủng mọi ma công phòng ngự.",
+          "cd": 50,
+          "effect": {
+            "armorPen": 0.5
+          }
+        },
+        {
+          "id": "phat_aoe1",
+          "school": "phat",
+          "type": "aoe",
+          "name": "Đại Bi Thiên Thủ",
+          "desc": "Biến ra hàng ngàn cánh tay năng lượng vỗ liên tục xuống mặt đất, tấn công dồn dập toàn bộ kẻ địch trước mặt.",
+          "cd": 50
+        },
+        {
+          "id": "phat_aoe2",
+          "school": "phat",
+          "type": "aoe",
+          "name": "Sư Tử Hống",
+          "desc": "Hét lớn tạo ra sóng xung kích hình nón cực mạnh, gây sát thương diện rộng và đẩy lùi tất cả kẻ địch trước mặt.",
+          "cd": 35
+        },
+        {
+          "id": "phat_aoe3",
+          "school": "phat",
+          "type": "aoe",
+          "name": "Như Lai Thần Chưởng",
+          "desc": "Đại thần thông chí cao. Một bàn tay phật khổng lồ từ chín tầng mây ấn xuống, nghiền nát toàn bộ sinh linh trong phạm vi ngàn trượng.",
+          "cd": 120,
+          "coefOverride": 4.8
+        }
+      ],
+      "nho": [
+        {
+          "id": "nho_buff1",
+          "school": "nho",
+          "type": "buff",
+          "name": "Hiền Triết Chúc Phúc",
+          "desc": "Ngâm thơ ban phước, tăng 30% tốc độ hồi linh lực và 20% sát thương kỹ năng cho toàn bộ đồng đội xung quanh.",
+          "cd": 40,
+          "duration": 20,
+          "effect": {
+            "manaRegen": 0.3,
+            "skillDmgPct": 0.2
+          },
+          "ally": true
+        },
+        {
+          "id": "nho_buff2",
+          "school": "nho",
+          "type": "buff",
+          "name": "Chính Khí Hộ Thể",
+          "desc": "Bao bọc cơ thể bằng Hạo Nhiên Chính Khí, mỗi khi chịu sát thương sẽ phản lại 15% sát thương chữ viết đạo đức vào kẻ địch.",
+          "cd": 30,
+          "effect": {
+            "reflectPct": 0.15
+          }
+        },
+        {
+          "id": "nho_debuff1",
+          "school": "nho",
+          "type": "debuff",
+          "name": "Ngôn Xuất Pháp Tùy - \"ĐỊNH\"",
+          "desc": "Thốt ra một chữ, cưỡng ép đóng băng toàn bộ hành động của một mục tiêu trong 4 hơi thở. Không thể thanh lọc.",
+          "cd": 45,
+          "aoe": false,
+          "effect": {
+            "freeze": 4,
+            "unremovable": true
+          }
+        },
+        {
+          "id": "nho_debuff2",
+          "school": "nho",
+          "type": "debuff",
+          "name": "Họa Hổ Họa Bì",
+          "desc": "Vẽ ra bức tranh ảo ảnh, khiến toàn bộ kẻ địch bị giảm 30% tầm nhìn và tỷ lệ đánh trúng giảm đi một nửa.",
+          "cd": 50,
+          "aoe": true,
+          "effect": {
+            "accuracyPct": -0.5
+          }
+        },
+        {
+          "id": "nho_single1",
+          "school": "nho",
+          "type": "single",
+          "name": "Bút Kính Hồng Trần",
+          "desc": "Dùng thánh bút vạch một đường mực vàng cắt đôi không khí, gây sát thương đường thẳng lên một mục tiêu.",
+          "cd": 8
+        },
+        {
+          "id": "nho_single2",
+          "school": "nho",
+          "type": "single",
+          "name": "Ngôn Xuất Pháp Tùy - \"LÔI\"",
+          "desc": "Chỉ tay gọi sét, một đạo lôi đình từ chính khí giáng xuống mục tiêu tội lỗi.",
+          "cd": 20
+        },
+        {
+          "id": "nho_single3",
+          "school": "nho",
+          "type": "single",
+          "name": "Thánh Hiền Phán Quyết",
+          "desc": "Liệt kê tội trạng của đối thủ, gây sát thương tinh thần cực lớn. Nếu mục tiêu có nghiệp lực (sát nhân nhiều), sát thương nhân đôi.",
+          "cd": 90,
+          "effect": {
+            "vsSinnerDouble": true
+          }
+        },
+        {
+          "id": "nho_aoe1",
+          "school": "nho",
+          "type": "aoe",
+          "name": "Cổ Nhân Thi Tập",
+          "desc": "Triệu hoán một vùng mưa bão văn chương, các bài thơ cổ biến thành đao kiếm rơi xuống càn quét quân địch.",
+          "cd": 45
+        },
+        {
+          "id": "nho_aoe2",
+          "school": "nho",
+          "type": "aoe",
+          "name": "Kinh Bang Tế Thế Trận",
+          "desc": "Vẽ ra bàn cờ giang sơn dưới đất, các quân cờ nổ tung gây sát thương liên tục và cô lập kẻ địch trong các ô cờ.",
+          "cd": 70
+        },
+        {
+          "id": "nho_aoe3",
+          "school": "nho",
+          "type": "aoe",
+          "name": "Hạo Nhiên Chính Khí Hải",
+          "desc": "Mở ra một biển ánh sáng trắng tinh khiết quét qua toàn chiến trường, thiêu rụi vạn vật tà ác và tước đoạt tu vi kẻ có ý đồ xấu.",
+          "cd": 120
+        }
+      ],
+      "vo": [
+        {
+          "id": "vo_buff1",
+          "school": "vo",
+          "type": "buff",
+          "name": "Huyết Khí Trùng Thiên",
+          "desc": "Đốt cháy máu, tăng 40% lực tấn công vật lý và 30% tốc độ đánh nhưng bản thân bị mất 1% máu mỗi hơi thở.",
+          "cd": 30,
+          "effect": {
+            "atkPct": 0.4,
+            "atkSpeedPct": 0.3,
+            "selfDrainPct": 0.01
+          }
+        },
+        {
+          "id": "vo_buff2",
+          "school": "vo",
+          "type": "buff",
+          "name": "Võ Thánh Chiến Ý",
+          "desc": "Tương thích trạng thái chiến đấu, mỗi khi lượng máu giảm xuống 10%, lực phòng ngự và hút máu tăng thêm 8%.",
+          "cd": 0,
+          "passive": true,
+          "effect": {
+            "lowHpDefPct": 0.08,
+            "lowHpLifestealPct": 0.08
+          }
+        },
+        {
+          "id": "vo_debuff1",
+          "school": "vo",
+          "type": "debuff",
+          "name": "Bá Vương Trấn Áp",
+          "desc": "Dẫm mạnh chân xuống đất tạo chấn động, làm giảm 40% lực phòng ngự của một mục tiêu đứng gần trong 6 hơi thở.",
+          "cd": 15,
+          "aoe": false,
+          "effect": {
+            "defPct": -0.4
+          }
+        },
+        {
+          "id": "vo_debuff2",
+          "school": "vo",
+          "type": "debuff",
+          "name": "Sát Khí Nhiễm Hồng",
+          "desc": "Giải phóng luồng sát khí đỏ ngầu tích tụ từ chiến trường, khiến toàn bộ kẻ địch xung quanh hoảng sợ, tự bỏ chạy hoặc đánh loạn xạ trong 3 hơi thở.",
+          "cd": 55,
+          "aoe": true,
+          "effect": {
+            "fear": 3
+          }
+        },
+        {
+          "id": "vo_single1",
+          "school": "vo",
+          "type": "single",
+          "name": "Thống Khiếu Phá Kích",
+          "desc": "Cú đấm tập trung toàn bộ kình lực vào một điểm, đánh xuyên qua mọi lớp khiên năng lượng để gây sát thương thuần túy vào da thịt.",
+          "cd": 10,
+          "effect": {
+            "trueDamage": true
+          }
+        },
+        {
+          "id": "vo_single2",
+          "school": "vo",
+          "type": "single",
+          "name": "Bá Vương Thượng Đao",
+          "desc": "Bổ mạnh đao từ trên xuống, đập tan vũ khí đỡ đòn và gây sát thương vật lý chí mạng cho mục tiêu.",
+          "cd": 14
+        },
+        {
+          "id": "vo_single3",
+          "school": "vo",
+          "type": "single",
+          "name": "Nhục Thân Phá Trận",
+          "desc": "Lao lên phía trước với tốc độ cực đại như một mũi tên sống, đâm sầm vào mục tiêu, gây sát thương dựa trên chỉ số phòng thủ của bản thân.",
+          "cd": 25,
+          "effect": {
+            "scaleOnDef": true
+          }
+        },
+        {
+          "id": "vo_aoe1",
+          "school": "vo",
+          "type": "aoe",
+          "name": "Phá Toái Quyền Kình",
+          "desc": "Đấm liên tiếp hàng trăm phát vào không khí trước mặt, tạo ra chuỗi sóng chấn động hình nón càn quét toàn bộ mục tiêu phía trước.",
+          "cd": 30
+        },
+        {
+          "id": "vo_aoe2",
+          "school": "vo",
+          "type": "aoe",
+          "name": "Vạn Quân Tề Quy",
+          "desc": "Triệu hoán chiến ý bóng ma của hàng vạn binh sĩ lao lên phía trước tạo thành một làn sóng càn quét dày đặc.",
+          "cd": 65
+        },
+        {
+          "id": "vo_aoe3",
+          "school": "vo",
+          "type": "aoe",
+          "name": "Phá Toái Hư Không",
+          "desc": "Chiêu thức tối thượng. Dồn toàn lực đấm vỡ nát không gian trước mặt, tạo ra một vết nứt hút và nghiền nát tất cả kẻ địch trong phạm vi xung quanh.",
+          "cd": 120
+        }
+      ]
+    }
+  },
+  "studioAssetRegistry": {
+    "STUDIO_ASSET_REGISTRY": {
+      "bicanh:co_nhan_mo": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-co-nhan-mo-v2_s58814_20261018-174759/background_bicanh-co-nhan-mo-v2_s58814_20261018-174759_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Cổ Nhân Chi Mộ"
+        }
+      },
+      "bicanh:co_phat": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-co-phat_s58104_20261018-170136/background_bicanh-co-phat_s58104_20261018-170136_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Cổ Phật Bí Cảnh"
+        }
+      },
+      "bicanh:di_hoa_xuat_hien": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-di-hoa-xuat-hien_s58603_20261018-171834/background_bicanh-di-hoa-xuat-hien_s58603_20261018-171834_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Dị Hỏa Xuất Hiện"
+        }
+      },
+      "bicanh:hong_hoang_di_tich": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-hong-hoang-di-tich_s58402_20261018-171050/background_bicanh-hong-hoang-di-tich_s58402_20261018-171050_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Hồng Hoang Di Tích"
+        }
+      },
+      "bicanh:long_mach_thuc_tinh": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-long-mach-thuc-tinh_s58502_20261018-171418/background_bicanh-long-mach-thuc-tinh_s58502_20261018-171418_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Long Mạch Thức Tỉnh"
+        }
+      },
+      "bicanh:ma_ton_chuyen_sinh": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-ma-ton-chuyen-sinh_s58702_20261018-172120/background_bicanh-ma-ton-chuyen-sinh_s58702_20261018-172120_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Ma Tôn Chuyển Sinh"
+        }
+      },
+      "bicanh:ma_ton_mo": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-ma-ton-mo_s58203_20261018-170430/background_bicanh-ma-ton-mo_s58203_20261018-170430_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Ma Tôn Mộ"
+        }
+      },
+      "bicanh:thien_long": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-thien-long_s58003_20261018-165719/background_bicanh-thien-long_s58003_20261018-165719_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Thiên Long Bí Cảnh"
+        }
+      },
+      "bicanh:thien_ngoai_tien_phu": {
+        "illustration": {
+          "src": "assets/studio/backgrounds/background_bicanh-thien-ngoai-tien-phu_s58305_20261018-170928/background_bicanh-thien-ngoai-tien-phu_s58305_20261018-170928_orig.webp",
+          "width": 768,
+          "height": 512,
+          "alt": "Thiên Ngoại Tiên Phủ"
+        }
+      },
+      "faction:dao": {
+        "illustration": {
+          "src": "assets/studio/sect_buildings/fantasy_building_dan-phong-alchemy-hall_s55102_20261017-154213/fantasy_building_dan-phong-alchemy-hall_s55102_20261017-154213_512.webp",
+          "width": 512,
+          "height": 512,
+          "alt": "Đan Phong — đan các với lò luyện đan"
+        },
+        "portrait": {
+          "src": "assets/studio/characters/ha-viem_portrait_portrait_s57104_20261017-210742/ha-viem_portrait_portrait_s57104_20261017-210742_256.webp",
+          "width": 205,
+          "height": 256,
+          "alt": "Hạ Viêm · Đan Phong"
+        }
+      },
+      "faction:kiem": {
+        "illustration": {
+          "src": "assets/studio/sect_buildings/fantasy_building_kiem-phong-sword-pavilion_s55002_20261017-154007/fantasy_building_kiem-phong-sword-pavilion_s55002_20261017-154007_512.webp",
+          "width": 512,
+          "height": 512,
+          "alt": "Kiếm Phong — kiếm các trên vách núi"
+        },
+        "portrait": {
+          "src": "assets/studio/characters/lu-han_portrait_portrait_s57001_20261017-210457/lu-han_portrait_portrait_s57001_20261017-210457_256.webp",
+          "width": 205,
+          "height": 256,
+          "alt": "Lục Hàn · Kiếm Phong"
+        }
+      },
+      "faction:nho": {
+        "illustration": {
+          "src": "assets/studio/sect_buildings/fantasy_building_phu-phong-talisman-archive_s53001_20261016-214135/fantasy_building_phu-phong-talisman-archive_s53001_20261016-214135_512.webp",
+          "width": 512,
+          "height": 512,
+          "alt": "Phù Phong — lầu lưu trữ phù lục"
+        },
+        "portrait": {
+          "src": "assets/studio/characters/tieu-van_portrait_portrait_s51002_20261016-213808/tieu-van_portrait_portrait_s51002_20261016-213808_256.webp",
+          "width": 205,
+          "height": 256,
+          "alt": "Tiêu Vân · Phù Phong"
+        }
+      },
+      "faction:phat": {
+        "illustration": {
+          "src": "assets/studio/sect_buildings/fantasy_building_tran-phong-formation-hall_s55204_20261017-154516/fantasy_building_tran-phong-formation-hall_s55204_20261017-154516_512.webp",
+          "width": 512,
+          "height": 512,
+          "alt": "Trận Phong — điện trận với vòng trận pháp"
+        },
+        "portrait": {
+          "src": "assets/studio/characters/thach-quan_portrait_portrait_s57202_20261017-210858/thach-quan_portrait_portrait_s57202_20261017-210858_256.webp",
+          "width": 205,
+          "height": 256,
+          "alt": "Thạch Quân · Trận Phong"
+        }
+      },
+      "faction:vo": {
+        "illustration": {
+          "src": "assets/studio/sect_buildings/fantasy_building_huyet-phong-blood-hall_s55305_20261017-154752/fantasy_building_huyet-phong-blood-hall_s55305_20261017-154752_512.webp",
+          "width": 512,
+          "height": 512,
+          "alt": "Huyết Phong — huyết điện trên đá đen"
+        },
+        "portrait": {
+          "src": "assets/studio/characters/mac-huyet_portrait_portrait_s57305_20261017-211241/mac-huyet_portrait_portrait_s57305_20261017-211241_256.webp",
+          "width": 205,
+          "height": 256,
+          "alt": "Mặc Huyết · Huyết Phong"
+        }
+      },
+      "item:hoi_linh_dan": {
+        "icon": {
+          "src": "assets/studio/items/item_hoi-linh-dan-v2_s56114_20261017-160915/item_hoi-linh-dan-v2_s56114_20261017-160915_128.webp",
+          "width": 128,
+          "height": 128,
+          "alt": "Hồi Linh Đan"
+        }
+      },
+      "item:huyen_linh_thao": {
+        "icon": {
+          "src": "assets/studio/items/item_huyen-linh-thao-v3_s56224_20261017-163333/item_huyen-linh-thao-v3_s56224_20261017-163333_128.webp",
+          "width": 128,
+          "height": 128,
+          "alt": "Huyền Linh Thảo"
+        }
+      },
+      "item:khoang_thach": {
+        "icon": {
+          "src": "assets/studio/items/item_khoang-thach_s56305_20261017-155637/item_khoang-thach_s56305_20261017-155637_128.webp",
+          "width": 128,
+          "height": 128,
+          "alt": "Khoáng Thạch"
+        }
+      },
+      "item:truc_co_dan": {
+        "icon": {
+          "src": "assets/studio/items/item_truc-co-dan_s54004_20261017-152200/item_truc-co-dan_s54004_20261017-152200_128.webp",
+          "width": 128,
+          "height": 128,
+          "alt": "Trúc Cơ Đan"
+        }
+      },
+      "item:tu_khi_dan": {
+        "icon": {
+          "src": "assets/studio/items/item_tu-khi-dan_s56003_20261017-154911/item_tu-khi-dan_s56003_20261017-154911_128.webp",
+          "width": 128,
+          "height": 128,
+          "alt": "Tụ Khí Đan"
+        }
+      }
+    }
+  },
+  "succession": {
+    "LIFESPAN_BY_REALM": {
+      "1": 100,
+      "2": 200,
+      "3": 500,
+      "4": 800,
+      "5": 1500,
+      "6": 3000,
+      "7": 5000,
+      "8": 8000,
+      "9": 12000,
+      "10": 20000,
+      "11": 30000,
+      "12": 50000
+    },
+    "OLD_AGE_DEATH_CHANCE_PER_DAY": 0.01,
+    "SECLUSION_CHANCE_PER_DAY": 0.002,
+    "SECLUSION_ELIGIBLE_AGE_PCT": 0.75
+  },
+  "successionCrisis": {
+    "CRISIS_MAX_CANDIDATES": 5,
+    "CRISIS_MIN_CANDIDATES": 2,
+    "CRISIS_RESOLVE_DELAY_DAYS": 60,
+    "LOBBY_COST_LINH_THACH": 300,
+    "LOBBY_MAX_PER_CRISIS": 3,
+    "LOBBY_SWING_CHANCE": 0.55,
+    "LOSER_DEFECT_AMBITION_THRESHOLD": 65,
+    "LOSER_DEFECT_CHANCE": 0.4,
+    "MENTOR_BACKING_LEAN": 1.2,
+    "SAME_SCHOOL_VOTER_LEAN": 0.8,
+    "TRAINED_BY_OLD_LEADER_LEAN": 0.6,
+    "TRUE_DISCIPLE_BACKING_LEAN": 1.5
+  },
+  "territories": {
+    "LEYLINE_BREAKTHROUGH_BONUS_PCT": 0.2,
+    "LEYLINE_GENIUS_BONUS_PCT": 0.1,
+    "LEYLINE_KINDS": {
+      "long_mach": {
+        "id": "long_mach",
+        "label": "Long Mạch"
+      },
+      "linh_tuyen": {
+        "id": "linh_tuyen",
+        "label": "Linh Tuyền"
+      },
+      "to_mach": {
+        "id": "to_mach",
+        "label": "Thượng Cổ Tổ Mạch"
+      }
+    },
+    "LEYLINE_LOSS_AI_RENOWN_PENALTY": 60,
+    "LEYLINE_LOSS_KHI_VAN_PENALTY": 300,
+    "TERRITORY_TEMPLATES": [
+      {
+        "id": "mo_thanh_ngoc",
+        "name": "Mỏ Thanh Ngọc",
+        "continentId": "dong_thang",
+        "type": "mine",
+        "income": 400
+      },
+      {
+        "id": "ngo_dao_tra_vien",
+        "name": "Ngộ Đạo Trà Viên",
+        "continentId": "dong_thang",
+        "type": "herb",
+        "income": 220
+      },
+      {
+        "id": "kiem_than_son",
+        "name": "Kiếm Thần Sơn",
+        "continentId": "dong_thang",
+        "type": "secretRealm",
+        "income": 260,
+        "thanhDiaSchool": "kiem"
+      },
+      {
+        "id": "long_mach_khoang_sang",
+        "name": "Long Mạch Khoáng Sàng",
+        "continentId": "nam_thiem",
+        "type": "mine",
+        "income": 350,
+        "leylineKind": "long_mach"
+      },
+      {
+        "id": "nhan_gian_co_tran",
+        "name": "Nhân Gian Cổ Trấn",
+        "continentId": "nam_thiem",
+        "type": "city",
+        "income": 300
+      },
+      {
+        "id": "thien_co_cung",
+        "name": "Thiên Cơ Cung",
+        "continentId": "nam_thiem",
+        "type": "secretRealm",
+        "income": 260,
+        "thanhDiaSchool": "dao"
+      },
+      {
+        "id": "bo_de_lam",
+        "name": "Bồ Đề Lâm",
+        "continentId": "tay_nguu",
+        "type": "herb",
+        "income": 250
+      },
+      {
+        "id": "kim_cuong_khoang",
+        "name": "Kim Cương Khoáng",
+        "continentId": "tay_nguu",
+        "type": "mine",
+        "income": 380
+      },
+      {
+        "id": "dai_loi_am_tu",
+        "name": "Đại Lôi Âm Tự",
+        "continentId": "tay_nguu",
+        "type": "secretRealm",
+        "income": 260,
+        "thanhDiaSchool": "phat"
+      },
+      {
+        "id": "ma_tinh_khoang_mach",
+        "name": "Ma Tinh Khoáng Mạch",
+        "continentId": "bac_cau",
+        "type": "mine",
+        "income": 500
+      },
+      {
+        "id": "huyen_bang_coc",
+        "name": "Huyền Băng Cốc",
+        "continentId": "bac_cau",
+        "type": "secretRealm",
+        "income": 200
+      },
+      {
+        "id": "thuong_co_to_mach",
+        "name": "Thượng Cổ Tổ Mạch",
+        "continentId": "bac_cau",
+        "type": "secretRealm",
+        "income": 320,
+        "leylineKind": "to_mach"
+      },
+      {
+        "id": "thuy_linh_chau_uyen",
+        "name": "Thủy Linh Châu Uyên",
+        "continentId": "trung_hai",
+        "type": "herb",
+        "income": 260
+      },
+      {
+        "id": "hai_dao_thuong_cang",
+        "name": "Hải Đạo Thương Cảng",
+        "continentId": "trung_hai",
+        "type": "city",
+        "income": 340
+      },
+      {
+        "id": "linh_tuyen_bao_dia",
+        "name": "Linh Tuyền Bảo Địa",
+        "continentId": "trung_hai",
+        "type": "secretRealm",
+        "income": 280,
+        "leylineKind": "linh_tuyen"
+      }
+    ],
+    "TERRITORY_TYPE_LABEL": {
+      "mine": "Mỏ Khoáng",
+      "herb": "Linh Dược Cốc",
+      "city": "Thành Trấn",
+      "secretRealm": "Tiểu Bí Cảnh"
+    },
+    "THANH_DIA_LOSS_AI_RENOWN_PENALTY": 80,
+    "THANH_DIA_LOSS_FAME_PENALTY": 400,
+    "THANH_DIA_MANUAL_CHECK_INTERVAL_DAYS": 1800,
+    "THANH_DIA_MANUAL_ROLL_CHANCE": 0.08,
+    "THANH_DIA_MIN_HOLD_DAYS_FOR_MANUAL": 18000
+  },
+  "thanhTuNu": {
+    "ASSASSINATION_ATTEMPT_CHANCE": 0.05,
+    "DEFECTION_LURE_CHANCE": 0.05,
+    "DEFECTION_LURE_LOYALTY_CEILING": 45,
+    "THANH_TU_NU_DIPLOMACY_BONUS_EACH": 0.15,
+    "THANH_TU_NU_INTRIGUE_INTERVAL_DAYS": 90,
+    "THANH_TU_NU_MIN_TIER": 4
+  },
+  "thienMenhChiTu": {
+    "THIEN_MENH_AI_ASCENSION_BONUS_MULT": 2,
+    "THIEN_MENH_ASCENSION_BONUS_PCT": 0.15,
+    "THIEN_MENH_BICANH_BONUS_PCT": 0.1,
+    "THIEN_MENH_CHECK_INTERVAL_DAYS": 900,
+    "THIEN_MENH_REBEL_CHANCE": 0.03,
+    "THIEN_MENH_REBEL_CHECK_INTERVAL_DAYS": 1800,
+    "THIEN_MENH_SCORE_THRESHOLD": 40,
+    "THIEN_MENH_SELECT_CHANCE": 0.15,
+    "THIEN_MENH_TITLE": {
+      "male": "Thiên Mệnh Chi Tử",
+      "female": "Thiên Mệnh Chi Nữ"
+    }
+  },
+  "thienTrieu": {
+    "MIN_VASSAL_NATIONS": 1,
+    "MIN_VASSAL_SECTS": 1,
+    "THIEN_TRIEU_ASCENSION_THRESHOLD_MULT": 0.5,
+    "THIEN_TRIEU_CHECK_INTERVAL_DAYS": 900,
+    "THIEN_TRIEU_DWELL_DAYS_MULT": 0.5
+  },
+  "tienKieuBang": {
+    "BOARD_SIZE": 15,
+    "DETHRONE_AMITY_HIT": 15,
+    "RANKING_INTERVAL_DAYS": 180
+  },
+  "tournament": {
+    "CHAMPION_FAME_REWARD": 3000,
+    "RUNNER_UP_FAME_REWARD": 1200,
+    "SEMIFINALIST_FAME_REWARD": 400,
+    "TOURNAMENT_HISTORY_SIZE": 20,
+    "TOURNAMENT_INTERVAL_DAYS": 1800,
+    "TOURNAMENT_MAX_ENTRANTS": 32
+  },
+  "trialTower": {
+    "TOWER_CHALLENGE_TYPES": [
+      "yeu_thu",
+      "co_quan",
+      "tran_phap"
+    ],
+    "TOWER_CHRONICLE_FLOOR": 50,
+    "TOWER_LEADERBOARD_SIZE": 20,
+    "TOWER_MAX_FLOOR": 100
+  },
+  "trueDisciples": {
+    "REJECTED_AMBITION_THRESHOLD": 70,
+    "REJECTED_LOYALTY_CEILING": 60,
+    "REJECTED_LOYALTY_PENALTY": 10,
+    "TRUE_DISCIPLE_CANDIDATE_POOL": 6,
+    "TRUE_DISCIPLE_FAME_BONUS": 1000,
+    "TRUE_DISCIPLE_INTERVAL_DAYS": 3600,
+    "TRUE_DISCIPLE_MAX_SLOTS": 3,
+    "TRUE_DISCIPLE_MIN_RANK": 3
+  },
+  "worldMap": {
+    "ANCIENT_CLANS": [
+      {
+        "name": "Khương Gia",
+        "continent": "dong_thang",
+        "desc": "Gia tộc trường sinh, nắm giữ Thần Nông Đỉnh, chuyên về đan đạo."
+      },
+      {
+        "name": "Cơ Gia",
+        "continent": "nam_thiem",
+        "desc": "Gia tộc hoàng đế, nắm giữ Hư Không Pháp Tắc, ảnh hưởng sâu rộng đến các triều đại phàm nhân."
+      },
+      {
+        "name": "Công Tôn Gia",
+        "continent": "trung_hai",
+        "desc": "Gia tộc luyện khí khổng lồ, kiểm soát chiến thuyền vượt biển xuyên đại lục."
+      }
+    ],
+    "CONTINENTS": [
+      {
+        "id": "dong_thang",
+        "name": "Đông Thắng Thần Châu",
+        "subtitle": "Thánh Địa Đạo Giáo",
+        "nation": "Đại Đường Tiên Triều (lấy Đạo giáo làm quốc giáo, hoàng tộc nắm giữ Thái Thượng Hóa Long Quyết).",
+        "sects": [
+          "Thái Thanh Đạo Tông",
+          "Nguyên Thủy Thánh Địa",
+          "Kiếm Khí Linh Tiêu Phái",
+          "Đan Đỉnh Thần Điện",
+          "Huyền Thiên Phù Tông"
+        ],
+        "resources": [
+          "Tiên Linh Thạch",
+          "Ngộ Đạo Trà",
+          "Cửu Chuyển Kim Đan",
+          "Vạn Năm Hóa Thần Thảo"
+        ],
+        "beasts": [
+          "Linh Hạc",
+          "Tường Long",
+          "Thần Kỳ Lân",
+          "Ngọc Thỏ"
+        ],
+        "dungeons": [
+          "Thần Tiên Cổ Nhạc",
+          "Bát Quái Luyện Đan Lô Tích"
+        ],
+        "aiPersonalityBias": "benevolent",
+        "expeditionTier": "medium"
+      },
+      {
+        "id": "nam_thiem",
+        "name": "Nam Thiệm Bộ Châu",
+        "subtitle": "Hồng Trần Luyện Tâm",
+        "nation": "Chư Thần Vương Quốc (hàng trăm quốc gia phàm nhân liên tục chiến tranh, tích lũy Long mạch khí vận).",
+        "sects": [
+          "Hồng Trần Kiếm Tông",
+          "Khí Vận Gia Tộc Liên Minh",
+          "Tán Tu Thánh Điện",
+          "Vạn Pháp Trận Minh",
+          "Thiết Huyết Chiến Điện"
+        ],
+        "resources": [
+          "Long Mạch Tử Khí",
+          "Nhân Tộc Tín Ngưỡng Lực",
+          "Binh Hồn Sắt",
+          "Địa Nguyên Tinh"
+        ],
+        "beasts": [
+          "Thao Thiết (Dục vọng thú)",
+          "Cửu Vĩ Yêu Hồ",
+          "Ám Dạ Minh Nha"
+        ],
+        "dungeons": [
+          "Hồng Trần Thiên Lộ",
+          "Đại Hoàng Lăng Cổ Tích"
+        ],
+        "aiPersonalityBias": "mixed",
+        "expeditionTier": "low"
+      },
+      {
+        "id": "tay_nguu",
+        "name": "Tây Ngưu Hạ Châu",
+        "subtitle": "Phật Pháp & Đại Yêu",
+        "nation": "Tây Thiên Tịnh Thổ (các vương quốc sùng bái Phật pháp, vương quyền nằm trong tay tăng lữ).",
+        "sects": [
+          "Đại Lôi Âm Tự",
+          "Kim Cương Thiền Viện",
+          "Vạn Yêu Lĩnh",
+          "Bách Thú Ma Môn",
+          "Bồ Đề Trai"
+        ],
+        "resources": [
+          "Bồ Đề Tử",
+          "Kim Cương Linh Tủy",
+          "Phạn Âm Xá Lợi",
+          "Thiên Ma Thảo"
+        ],
+        "beasts": [
+          "Kim Sỉ Đại Bằng Điểu",
+          "Ngưu Ma Tộc",
+          "Hầu Tộc",
+          "Kim Cương Viên"
+        ],
+        "dungeons": [
+          "Vạn Phật Linh Sơn",
+          "Hoàng Sa Cổ Trận"
+        ],
+        "aiPersonalityBias": "mixed",
+        "expeditionTier": "medium"
+      },
+      {
+        "id": "bac_cau",
+        "name": "Bắc Câu Lư Châu",
+        "subtitle": "Tử Vong Tuyệt Địa",
+        "nation": "Không có vương quốc ổn định, chỉ có các bộ lạc Ma Đạo hoặc bộ tộc Man Hoang.",
+        "sects": [
+          "Vạn Ma Huyết Điện",
+          "Cực Băng Ma Tông",
+          "Thiên Sát Quỷ Phái",
+          "Hoang Cổ Thần Thú Giáo",
+          "Thi Vương Tông"
+        ],
+        "resources": [
+          "Vạn Năm Huyền Băng",
+          "Ma Tinh Khoáng Mạch",
+          "Địa Sát Ma Khí",
+          "Hung Thú Huyết Tinh"
+        ],
+        "beasts": [
+          "Băng Nguyên Cự Manh",
+          "Cửu Đầu Xà (Tương Liễu tộc)",
+          "Thôn Thiên Ma Lang"
+        ],
+        "dungeons": [
+          "Cực Bắc Băng Nguyên",
+          "Vạn Ma Huyết Uyên"
+        ],
+        "aiPersonalityBias": "tyrant",
+        "expeditionTier": "high"
+      },
+      {
+        "id": "trung_hai",
+        "name": "Trung Hải",
+        "subtitle": "Bình Minh Hải / Tứ Hải Trực Giao",
+        "nation": "Vùng biển hỗn loạn nằm giữa 4 châu. Linh lực cuồng bạo, sóng gió ngập trời, cô lập các đại lục.",
+        "sects": [
+          "Long Vương Cung",
+          "Bồng Lai Tiên Đảo",
+          "Tà Long Đảo",
+          "Quy Khư Linh Điện",
+          "Hải Đạo Hải Minh"
+        ],
+        "resources": [
+          "Thủy Linh Châu",
+          "Thâm Hải Trầm Thiết",
+          "Long Huyết Thảo",
+          "Hư Không Kình Lạc"
+        ],
+        "beasts": [
+          "Thủy Tộc Yêu Thú",
+          "Thái Cổ Cự Kình",
+          "Huyết Sát Sa Ngư"
+        ],
+        "dungeons": [
+          "Quy Khư Đại Vực"
+        ],
+        "aiPersonalityBias": "opportunist",
+        "expeditionTier": "high"
+      }
+    ],
+    "DUNGEON_REWARD_MULT": 8,
+    "EXPEDITION_TABLE": {
+      "nam_thiem": {
+        "minMinutes": 30,
+        "maxMinutes": 120,
+        "risk": "Thấp",
+        "rewardMult": 1,
+        "deathChance": 0
+      },
+      "dong_thang": {
+        "minMinutes": 120,
+        "maxMinutes": 360,
+        "risk": "Trung bình",
+        "rewardMult": 2,
+        "deathChance": 0.02
+      },
+      "tay_nguu": {
+        "minMinutes": 120,
+        "maxMinutes": 360,
+        "risk": "Trung bình",
+        "rewardMult": 2,
+        "deathChance": 0.02
+      },
+      "bac_cau": {
+        "minMinutes": 360,
+        "maxMinutes": 1440,
+        "risk": "Cao, có rủi ro mất đệ tử",
+        "rewardMult": 4,
+        "deathChance": 0.08
+      },
+      "trung_hai": {
+        "minMinutes": 360,
+        "maxMinutes": 1440,
+        "risk": "Cao, có rủi ro mất đệ tử",
+        "rewardMult": 4,
+        "deathChance": 0.08
+      }
+    },
+    "SPATIAL_LAYERS": [
+      {
+        "id": "u_minh",
+        "name": "U Minh Giới / Ma Giới",
+        "subtitle": "Hạ Tầng Tuyệt Địa",
+        "desc": "Nằm ở phần đáy sâu nhất của thế giới. Nơi đây ma khí cuồn cuộn, là nơi trú ngụ của các Ma tộc cổ xưa, tà tu và linh hồn."
+      },
+      {
+        "id": "pham",
+        "name": "Phàm Giới",
+        "subtitle": "Tứ Bộ Châu & Trung Hải",
+        "desc": "Bề mặt thế giới chính, nơi diễn ra phần lớn các cuộc tranh giành đại đạo."
+      },
+      {
+        "id": "linh",
+        "name": "Linh Giới",
+        "subtitle": "Thượng Tầng Tu Chân",
+        "desc": "Nằm phía trên Phàm Giới. Khi tu sĩ đạt đến cảnh giới Hóa Thần hoặc Độ Kiếp sẽ phi thăng lên đây. Linh khí đặc như chất lỏng."
+      },
+      {
+        "id": "thien",
+        "name": "Thiên Giới",
+        "subtitle": "Thần Thoại Tiên Đô",
+        "desc": "Tầng không gian tối cao, nơi ngự trị của Tiên Nhân, Thánh Nhân thực thụ."
+      }
+    ]
+  },
+  "worldProtagonist": {
+    "WORLD_PROTAGONIST_CHECK_INTERVAL_DAYS": 900,
+    "WORLD_PROTAGONIST_CROWN_AI_RENOWN_BONUS": 200,
+    "WORLD_PROTAGONIST_CROWN_REPUTATION_BONUS": 1000,
+    "WORLD_PROTAGONIST_DETHRONE_MARGIN_MULT": 1.5,
+    "WORLD_PROTAGONIST_MIN_FAME": 10000
+  },
+  "worldThreats": {
+    "THREAT_TEMPLATES": [
+      {
+        "id": "dai_kiep",
+        "name": "Đại Kiếp Giáng Thế",
+        "severity": "epic",
+        "warnDays": 10,
+        "desc": "Thiên Đạo Khóc Máu báo hiệu một Đại Kiếp toàn diện sắp giáng xuống thế giới tu tiên.",
+        "preparedThreshold": 65,
+        "unpreparedLoss": 0.25,
+        "deathChance": 0.35,
+        "successReward": {
+          "danhVong": 1000,
+          "fame": 1500
+        }
+      },
+      {
+        "id": "hung_thu_thuc_tinh",
+        "name": "Hung Thú Thức Tỉnh",
+        "severity": "medium",
+        "warnDays": 5,
+        "desc": "Một hung thú thượng cổ vừa thức tỉnh sâu trong Bắc Câu Lư Châu, khí tức hung tàn lan tỏa khắp nơi.",
+        "preparedThreshold": 50,
+        "unpreparedLoss": 0.12,
+        "deathChance": 0.2,
+        "successReward": {
+          "danhVong": 400,
+          "fame": 600,
+          "linhThach": 2000
+        }
+      },
+      {
+        "id": "bao_thu_gia_toc",
+        "name": "Báo Thù Gia Tộc",
+        "severity": "medium",
+        "warnDays": 7,
+        "desc": "Hậu nhân của một cao thủ đã khuất tìm đến báo thù.",
+        "preparedThreshold": 55,
+        "unpreparedLoss": 0.15,
+        "deathChance": 0.25,
+        "successReward": {
+          "danhVong": 500,
+          "fame": 800
+        }
+      },
+      {
+        "id": "nghich_do_giang_the",
+        "name": "Nghịch Đồ Giáng Thế",
+        "severity": "epic",
+        "warnDays": 15,
+        "desc": "Một thế lực Thiên Đạo từng ưu ái nay đã trở mặt, đe dọa nuốt chửng toàn bộ thế giới tu tiên.",
+        "preparedThreshold": 75,
+        "unpreparedLoss": 0.35,
+        "deathChance": 0.45,
+        "successReward": {
+          "danhVong": 3000,
+          "fame": 5000,
+          "linhThach": 5000
+        }
+      }
+    ]
+  }
+}

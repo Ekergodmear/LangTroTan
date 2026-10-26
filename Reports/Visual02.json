@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "package": "com.langtrotan.prototype",
+  "abi": "arm64-v8a",
+  "minimumAndroid": "10",
+  "sha256": "5a4f2ceef652e78fbf63e44c22d28cd0595867c2f58d1231db6c7aa3c4596a39",
+  "bytes": 28927222,
+  "logicChecksPassed": 35,
+  "windowsRuntimeSmokePassed": true,
+  "signatureMatchesPreviousApk": true,
+  "physicalAndroidTested": false,
+  "status": "Visual development build, not completed MVP"
+}

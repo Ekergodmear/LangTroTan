@@ -1,0 +1,20 @@
+{
+  "gameId": "unity-spatial-1792988802046",
+  "checks": [
+    "isolated new game starts with 120 wood and 8 free workers",
+    "real API places house, charges 40 wood and reserves one builder",
+    "same request id cannot create or charge a second house",
+    "overlapping placement fails without losing wood",
+    "real API dispatches a worker along a resource path",
+    "real wall-clock construction completes and finite wood reaches storage once",
+    "upgrade charges materials and remains pending",
+    "cancel upgrade refunds exactly eighty percent",
+    "Mongo reload preserves house position, level, resources and depleted node"
+  ],
+  "status": "passed",
+  "startedAt": 1792988802046,
+  "elapsedSeconds": 250,
+  "houseComplete": true,
+  "jobPhase": "returned",
+  "finishedAt": 1792989052810
+}

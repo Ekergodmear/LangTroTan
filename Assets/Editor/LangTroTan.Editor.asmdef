@@ -1,0 +1,12 @@
+{
+  "name": "LangTroTan.Editor",
+  "references": [
+    "LangTroTan.Domain",
+    "LangTroTan.Infrastructure",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Core.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

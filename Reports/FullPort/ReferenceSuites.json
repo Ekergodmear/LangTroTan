@@ -1,0 +1,299 @@
+[
+  {
+    "suite": "server/__tests__/hydratePersist.test.mjs",
+    "exitCode": 0,
+    "seconds": 8.02
+  },
+  {
+    "suite": "server/__tests__/reloadAndActions.test.mjs",
+    "exitCode": 0,
+    "seconds": 7.3
+  },
+  {
+    "suite": "server/__tests__/dirtyRecovery.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.82
+  },
+  {
+    "suite": "server/__tests__/mergeLegendFix.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.06
+  },
+  {
+    "suite": "server/__tests__/grandStrategy.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.75
+  },
+  {
+    "suite": "server/__tests__/grandStrategyDepth.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.72
+  },
+  {
+    "suite": "server/__tests__/innerPolitics.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.67
+  },
+  {
+    "suite": "server/__tests__/mythologyPerf.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.39
+  },
+  {
+    "suite": "server/__tests__/familyBranchOrderPreservation.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.44
+  },
+  {
+    "suite": "server/__tests__/familyRngDeterminism.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.45
+  },
+  {
+    "suite": "server/__tests__/familyBranchOptimization.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.49
+  },
+  {
+    "suite": "server/__tests__/familyBranchApocalypse.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.45
+  },
+  {
+    "suite": "server/__tests__/diedDayDeterminism.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.43
+  },
+  {
+    "suite": "server/__tests__/successionCouncil.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.45
+  },
+  {
+    "suite": "server/__tests__/successionScenarios.test.mjs",
+    "exitCode": 0,
+    "seconds": 4.46
+  },
+  {
+    "suite": "server/__tests__/successionDivergence.test.mjs",
+    "exitCode": 0,
+    "seconds": 6.79
+  },
+  {
+    "suite": "server/__tests__/apocalypseRelationshipIntegrity.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.36
+  },
+  {
+    "suite": "server/__tests__/leaderLegacy.test.mjs",
+    "exitCode": 0,
+    "seconds": 5.01
+  },
+  {
+    "suite": "server/__tests__/successorDirection.test.mjs",
+    "exitCode": 0,
+    "seconds": 3.93
+  },
+  {
+    "suite": "server/__tests__/careerProfile.test.mjs",
+    "exitCode": 0,
+    "seconds": 3.88
+  },
+  {
+    "suite": "server/__tests__/aspiration.test.mjs",
+    "exitCode": 0,
+    "seconds": 9.24
+  },
+  {
+    "suite": "server/__tests__/relationshipPath.test.mjs",
+    "exitCode": 0,
+    "seconds": 2.11
+  },
+  {
+    "suite": "server/__tests__/personalCausality.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.54
+  },
+  {
+    "suite": "server/__tests__/rcIntegrityRepair.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.8
+  },
+  {
+    "suite": "server/__tests__/rcActionAtomicity.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.8
+  },
+  {
+    "suite": "server/__tests__/rcPersistenceSafety.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.67
+  },
+  {
+    "suite": "server/__tests__/fivePeaksSlice1.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.66
+  },
+  {
+    "suite": "server/__tests__/fivePeaksSlice2.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.71
+  },
+  {
+    "suite": "server/__tests__/fivePeaksSlice3.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.71
+  },
+  {
+    "suite": "server/__tests__/fivePeaksSlice4.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.69
+  },
+  {
+    "suite": "server/__tests__/itemLifecycleSliceC.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.47
+  },
+  {
+    "suite": "server/__tests__/itemLifecycleSliceB2.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.73
+  },
+  {
+    "suite": "server/__tests__/itemLifecycleSliceA2.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.77
+  },
+  {
+    "suite": "server/__tests__/itemLifecycleSliceA3.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.74
+  },
+  {
+    "suite": "server/__tests__/itemLifecycleSliceA4.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.75
+  },
+  {
+    "suite": "server/__tests__/itemLifecycleSliceA5.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.73
+  },
+  {
+    "suite": "server/__tests__/itemLifecycleIntegration.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.7
+  },
+  {
+    "suite": "server/__tests__/gameplayLoopReview.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.4
+  },
+  {
+    "suite": "server/__tests__/gameplayDepthPhase1.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.57
+  },
+  {
+    "suite": "server/__tests__/economyPhase2.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.82
+  },
+  {
+    "suite": "server/__tests__/sectOperationsPhase3.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.89
+  },
+  {
+    "suite": "server/__tests__/missionPhase4.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.74
+  },
+  {
+    "suite": "server/__tests__/missionPhase5.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.7
+  },
+  {
+    "suite": "server/__tests__/statePhase6.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.69
+  },
+  {
+    "suite": "server/__tests__/playerPhase7.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.72
+  },
+  {
+    "suite": "server/__tests__/playerPhase8.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.83
+  },
+  {
+    "suite": "server/__tests__/playerPhase9.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.79
+  },
+  {
+    "suite": "server/__tests__/playtestPhase10.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.4
+  },
+  {
+    "suite": "server/__tests__/strategyPhase11.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.39
+  },
+  {
+    "suite": "server/__tests__/strategyPhase12.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.4
+  },
+  {
+    "suite": "server/__tests__/calendarPhase13.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.42
+  },
+  {
+    "suite": "server/__tests__/pacingPhase14.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.46
+  },
+  {
+    "suite": "server/__tests__/midgamePhase15.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.4
+  },
+  {
+    "suite": "server/__tests__/fivePeaksPhase18.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.14
+  },
+  {
+    "suite": "server/__tests__/studioAssetBridge.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.57,
+    "initialExitCode": 1,
+    "retryNote": "Passed with dedicated workspace TEMP directory; 18 groups."
+  },
+  {
+    "suite": "server/__tests__/uiRefinementPhaseA.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.51
+  },
+  {
+    "suite": "server/__tests__/shuiMoJade.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.15
+  },
+  {
+    "suite": "server/__tests__/thienCoBaoV2.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.49
+  },
+  {
+    "suite": "server/__tests__/daiDienPhase1.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.52
+  }
+]

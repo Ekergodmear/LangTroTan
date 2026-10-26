@@ -1,0 +1,30 @@
+{
+  "passed": 25,
+  "checks": [
+    "new settlement worker ledger",
+    "place debit and builder reservation",
+    "overlap rejected without resource debit",
+    "outside building zone rejected",
+    "construction cannot complete one millisecond early",
+    "timed completion frees builder and adds housing",
+    "upgrade remains timed and reserves builder",
+    "house upgrade increases housing",
+    "cancel returns eighty percent upgrade wood",
+    "season from authoritative hour calendar day 0",
+    "season from authoritative hour calendar day 4",
+    "season from authoritative hour calendar day 8",
+    "season from authoritative hour calendar day 12",
+    "season from authoritative hour calendar day 400",
+    "settlement validates after construction and upgrades",
+    "harvest reserves exactly one worker",
+    "worker follows path and returns to settlement",
+    "finite node never supplies more than remaining wood",
+    "depleted tree starts regrowth timer",
+    "replant charges five wood",
+    "replanted tree regrows after timer",
+    "ripe crop yields food and pays automatic seed cost",
+    "unassigned farm cannot produce",
+    "failed sowing preserves food",
+    "unknown and unfinished building types are rejected"
+  ]
+}

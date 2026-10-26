@@ -1,0 +1,36 @@
+PASS sect foundation does not duplicate population
+PASS sect buildings and recruitment lock before hall two
+PASS ordinary building cannot exceed hall tier
+PASS hall upgrade reserves builder and takes time
+PASS repeated upgrade does not double charge
+PASS cancel upgrade returns eighty percent and builder
+PASS hall upgrade restarts after cancellation
+PASS hall completes timed upgrade and gains max hp
+PASS house starts upgrade after hall unlock
+PASS upgraded house increases housing and hp
+PASS store upgrade expands resource capacity
+PASS disciple converts one available person without population inflation
+PASS disciple has school and deterministic aptitude
+PASS disciple accumulates cultivation over simulation ticks
+PASS source realm table uses nine qi layers
+PASS later realms use four named sublevels
+PASS minor realm advances without manual action
+PASS early breakthrough rejects without debit
+PASS source breakthrough base eighty five percent and one pill adds fifteen points
+PASS guaranteed qi breakthrough consumes one pill and stones
+PASS higher realm blocked until next sect tier
+PASS failed breakthrough applies injury and heart demon
+PASS healing consumes actual herbs and stones
+PASS artifact cannot be equipped twice or duplicate inventory
+PASS assigned spirit mine generates stones
+PASS alchemy produces an actual pill from ingredients
+PASS workshop cannot craft for free when materials absent
+PASS forge produces inventory artifact
+PASS missions require mission hall
+PASS mission pays supplies and reserves disciple
+PASS duplicate mission cannot double debit
+PASS mission resolves automatically into success or retreat
+PASS policy validates allowed rules
+PASS chronicle retention bounded to latest one hundred twenty events
+PASS old save sect initialization is idempotent
+PASS save roundtrip preserves disciple upgrade timer and sect resources

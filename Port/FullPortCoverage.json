@@ -1,0 +1,3850 @@
+{
+  "referenceRoot": "C:\\Users\\Admin\\Desktop\\tu-tien-game",
+  "files": [
+    {
+      "path": "js/apiClient.js",
+      "sha256": "06792e2a70790ff154cfe39284d629ab94f2f69e0a6a25c11cc479b76de87dca",
+      "bytes": 4200
+    },
+    {
+      "path": "js/data/aiGoals.js",
+      "sha256": "d5a02c24d88c61027288696cc0c73d3184b324bff9be3ec43331ef78e788e162",
+      "bytes": 2039
+    },
+    {
+      "path": "js/data/ancestorWorship.js",
+      "sha256": "4ff856d147d0702e213af113ecad0ce2af1d5fa4a40648e72e7049e4cefb1150",
+      "bytes": 927
+    },
+    {
+      "path": "js/data/bicanhTypes.js",
+      "sha256": "401db0b904bd6c351f268bb90fc9794019721e76ae0aa10d9afb10e7040de152",
+      "bytes": 4243
+    },
+    {
+      "path": "js/data/bloodlines.js",
+      "sha256": "7c261103f73cfe5132b4312e5b831b87195963ed83a4eaa59473ddd44bb9ebe6",
+      "bytes": 2246
+    },
+    {
+      "path": "js/data/chanTruyen.js",
+      "sha256": "f3e4ad1f2f28e2270b998bf98b82a2a5df6a5fd8979901b35bde47b18fb07865",
+      "bytes": 3313
+    },
+    {
+      "path": "js/data/classics.js",
+      "sha256": "0cf8f71d670d3c2680e532138a5b351bfec1e680d3f862aab40dc8bb68c5d5cc",
+      "bytes": 2414
+    },
+    {
+      "path": "js/data/combos.js",
+      "sha256": "cbe73fe4ee6986507bcd053739f29c34c0e06431a90bbce20f78e92fced9d7ce",
+      "bytes": 2627
+    },
+    {
+      "path": "js/data/daiHoiThienHa.js",
+      "sha256": "ad0fe8c23b889fe9e4caff8bd4ac42f46cbff72cdd66d00e44ad79707bb457b6",
+      "bytes": 2951
+    },
+    {
+      "path": "js/data/daiKiep.js",
+      "sha256": "43cbf15b08474663a4eebb17ec1e2fe0cc40c7dfbf6d696ddbd362100c71b45d",
+      "bytes": 856
+    },
+    {
+      "path": "js/data/dataRetention.js",
+      "sha256": "55f30cbdc95f653446e72a7680bd1b5785ea1302ad61c802e5a2fe3a88ecf4cb",
+      "bytes": 5114
+    },
+    {
+      "path": "js/data/destinyQuests.js",
+      "sha256": "5abee8dc1198f11445145573faa12efa9c4342bd226b68eb92e5394ac406b48a",
+      "bytes": 2349
+    },
+    {
+      "path": "js/data/diplomacyData.js",
+      "sha256": "970b8e120decdcac04b1cbc9b78f79269f61504dad447f9045c344c1a89c3f9c",
+      "bytes": 5314
+    },
+    {
+      "path": "js/data/discipleCatalog.js",
+      "sha256": "d65100fcf58618cfe283c8b03f3fd11b4951405ae099a9778e46b7f2bfdc2c23",
+      "bytes": 5701
+    },
+    {
+      "path": "js/data/elderAgenda.js",
+      "sha256": "a66af6a9a20fd7be004b8bb2ecd0086c03c5b15058fbd1bf13d6312b06ed75e0",
+      "bytes": 2027
+    },
+    {
+      "path": "js/data/elderPolitics.js",
+      "sha256": "57e1b78de8837c5e0c941fb06bd468fe22c39dd0859a8c83f34c5f80521e24bb",
+      "bytes": 702
+    },
+    {
+      "path": "js/data/eraEndings.js",
+      "sha256": "f19cb8d5bd1ce824afb198601aa70d30c29017d209beba03eb94bea6f03ee8b4",
+      "bytes": 843
+    },
+    {
+      "path": "js/data/eras.js",
+      "sha256": "831c01a7cbed0c18e07bcdde10b4d4a1ae71ec454b68616fc2d5d0d3701455cb",
+      "bytes": 2719
+    },
+    {
+      "path": "js/data/fameTitles.js",
+      "sha256": "c4e6867d7c454bfad9ce0df30ec36a7a76f795c3c4fdfc08f7d63ae4256e24f9",
+      "bytes": 1779
+    },
+    {
+      "path": "js/data/families.js",
+      "sha256": "6eb3acb2b2633d6005ecd8ef61727c46068a9e2a79f04b61aa2919f33a23d27f",
+      "bytes": 3655
+    },
+    {
+      "path": "js/data/folklore.js",
+      "sha256": "840bd8faf33addec45190ea8a9ead90851329b83ea98571f7cc2af706df39141",
+      "bytes": 5087
+    },
+    {
+      "path": "js/data/forbiddenGrounds.js",
+      "sha256": "bcb9747ed2824d1669b524ffcdf9e40c1012915c640f4104422d5edfd8090c74",
+      "bytes": 2538
+    },
+    {
+      "path": "js/data/grandStrategies.js",
+      "sha256": "02931c593f14ef56c45f7e3b12208bcca855357f6b5efe590367c994f25d7fcb",
+      "bytes": 11359
+    },
+    {
+      "path": "js/data/heartDemon.js",
+      "sha256": "eede3fb78b225fee5437c7b74c46b624d4b20df63e2f76d24204aa9937e65919",
+      "bytes": 2103
+    },
+    {
+      "path": "js/data/heavenlyWillPersonality.js",
+      "sha256": "8fb496e463434f026ccbddca03f1b6213c71adcc099c2cebd8aa9b1c0c43d8e3",
+      "bytes": 1636
+    },
+    {
+      "path": "js/data/inheritanceTracks.js",
+      "sha256": "457f0e722f77d228f41d277344fe60d555c5f4541818442068c522815c7b0562",
+      "bytes": 3718
+    },
+    {
+      "path": "js/data/innerCouncil.js",
+      "sha256": "870a188b607bbab24e42c067b17fcb21e2253fb028ca0a9132f41b56d8de0b72",
+      "bytes": 3233
+    },
+    {
+      "path": "js/data/items.js",
+      "sha256": "c9773deab62ad2899d666b77f467d9038fc8aae4dc827b4d777af0069b2f62f0",
+      "bytes": 3131
+    },
+    {
+      "path": "js/data/khaoHachRewards.js",
+      "sha256": "6d02cf64ac95bbca7786536cc7109dfa8450decb11a5d1e2f6261caadd4b2686",
+      "bytes": 645
+    },
+    {
+      "path": "js/data/legendaryDescendants.js",
+      "sha256": "21e8eaef993e1e0e6ef9841a6d817130a6aecbb25472f630f0edc99864eb7091",
+      "bytes": 1202
+    },
+    {
+      "path": "js/data/legendaryStories.js",
+      "sha256": "16fb5f17f453a61aa8245fc7c5eeb1cbc588aaf8f0d621f4948af2fa4264a6be",
+      "bytes": 1133
+    },
+    {
+      "path": "js/data/manuals.js",
+      "sha256": "cd8b15c39a10ea596921fcd31bec217f60d43daaf6132db4d6511ed122655fe6",
+      "bytes": 2202
+    },
+    {
+      "path": "js/data/manualWar.js",
+      "sha256": "605a5856c6c77ffcf3479be6f1f6a4b06088f72d6b6a34378a032f4d683afe00",
+      "bytes": 1141
+    },
+    {
+      "path": "js/data/missionTypes.js",
+      "sha256": "cfeb1b0e14d7736e141d385d0afbe47b039725ad35543698b95edf3c4b834f3d",
+      "bytes": 5693
+    },
+    {
+      "path": "js/data/mountainLayout.js",
+      "sha256": "68bcdd65d583367e98bc687f8bb35eb2656737fc41078ea4a98d16660bbe9e32",
+      "bytes": 2883
+    },
+    {
+      "path": "js/data/names.js",
+      "sha256": "0113dce4f60d4f4e73b6596811c528651f335d16a7b3c395da23a8612f3a97dc",
+      "bytes": 2166
+    },
+    {
+      "path": "js/data/nations.js",
+      "sha256": "6912029036306967727582411d436ad3393a96c82a4ec9fccaf371b2f1d15db6",
+      "bytes": 1590
+    },
+    {
+      "path": "js/data/ngoaiMonFactions.js",
+      "sha256": "9e094c76ad81e28aaf0adbc91500f2e8ea2fb28f8a9ef6d1657da5d11fccc3ca",
+      "bytes": 1603
+    },
+    {
+      "path": "js/data/ngoaiMonPolicy.js",
+      "sha256": "1efd79a74a7728a351b70b09868f2ef20b081fc0d94694fb734acf80d8da6a05",
+      "bytes": 1967
+    },
+    {
+      "path": "js/data/ngoaiVuc.js",
+      "sha256": "adfd4f3a14a6fb57facd91c510752e6f6be40dc98d7099d0daeeb8718ccb3f73",
+      "bytes": 1607
+    },
+    {
+      "path": "js/data/omenTemplates.js",
+      "sha256": "33686990701498c885ce6d408cd94004cfe0506f4104a0be13f1058c9cb7e8af",
+      "bytes": 4035
+    },
+    {
+      "path": "js/data/personalDestiny.js",
+      "sha256": "5791a08d6d41a4fb360a62423e2d368d8f9cf6f888c1c010cfaf62fbd1aa3b09",
+      "bytes": 3788
+    },
+    {
+      "path": "js/data/personalOmens.js",
+      "sha256": "5d2ae4150fc124d1e532c9c6143547912b915420dbcd6a30dd44c39cf76ef1ab",
+      "bytes": 2271
+    },
+    {
+      "path": "js/data/phiThangGioi.js",
+      "sha256": "9739275e4beed7e7c0c790ba4656bdba27c63413dc7f3eeaefb793a33c66bcf0",
+      "bytes": 1495
+    },
+    {
+      "path": "js/data/phongCatalog.js",
+      "sha256": "cf612b9f8bb43f5e73adf9ac4d83472c38d13d8ec1c6bf6945a98fca82258d95",
+      "bytes": 1776
+    },
+    {
+      "path": "js/data/pilgrimage.js",
+      "sha256": "72dee0f97665a0a4cb9c6a43e4feabdddc2317d4f5d6795400e8259c65771591",
+      "bytes": 2237
+    },
+    {
+      "path": "js/data/pocketWorldTypes.js",
+      "sha256": "cfa7f2356ec9346c9fe4495061722931ed79c2c99d006e094900238663c96963",
+      "bytes": 2407
+    },
+    {
+      "path": "js/data/portraits.js",
+      "sha256": "950e5d5c699e2fa7e077e5dcd5fc57975a7648c186e3892ca297ea1b5f7e2c5e",
+      "bytes": 1307
+    },
+    {
+      "path": "js/data/protagonist.js",
+      "sha256": "bb05413842430b64199af168b261cc33eebc77d55a0fad9c1f3e7310f8082d39",
+      "bytes": 2268
+    },
+    {
+      "path": "js/data/rarities.js",
+      "sha256": "9da724f80c7d6ad64642e4154f7f45afd2a5b78368d73cdef83235b927f32574",
+      "bytes": 2357
+    },
+    {
+      "path": "js/data/realms.js",
+      "sha256": "94aa022ee26ee48fc453e9677259a1f30eb35057d30a8411b81edf66a0745451",
+      "bytes": 3274
+    },
+    {
+      "path": "js/data/recipes.js",
+      "sha256": "93f96b2fd3dfcf8da4ba5ffe7ab961b16d6037a3e742ec35c23464868c6701df",
+      "bytes": 2020
+    },
+    {
+      "path": "js/data/relationships.js",
+      "sha256": "4133168d53497ab4fe57547c993ba1b12b4ab2c7de178aacec6f9f12a36cb022",
+      "bytes": 4062
+    },
+    {
+      "path": "js/data/rumors.js",
+      "sha256": "c435f5e21fceb986957ebd787345e5f28b5f0defaad7718b5de6c812fd0ad134",
+      "bytes": 3387
+    },
+    {
+      "path": "js/data/schools.js",
+      "sha256": "2782b2cc2d9bee8fa5bedc8d4fb5147a4acc74bfb5b75f4ce0d46c0374fdd7db",
+      "bytes": 6160
+    },
+    {
+      "path": "js/data/sectBuildings.js",
+      "sha256": "c2fda57425d39c0fb6d18730a898cedda03e322fc10a1ddb2c9559680e460db1",
+      "bytes": 3258
+    },
+    {
+      "path": "js/data/sectDestiny.js",
+      "sha256": "29c3b71b8ba5347025bfd5caa5a3c3a75c80c58c38caba425d3190cdda913473",
+      "bytes": 2500
+    },
+    {
+      "path": "js/data/sectFactions.js",
+      "sha256": "a092415815feff9650e4d53b4ce5fabaef88d0624ddb62c040bf94256fd2f5f9",
+      "bytes": 2251
+    },
+    {
+      "path": "js/data/sectPolicies.js",
+      "sha256": "3cfc9a47d9662af649061f91a2c5620ba19545986d8b6afd609ba137420dc426",
+      "bytes": 1770
+    },
+    {
+      "path": "js/data/sectRanks.js",
+      "sha256": "f29dbeee33d33df0671120b15815e34a3018959f0e0228b1bffdf6c0beab5272",
+      "bytes": 2044
+    },
+    {
+      "path": "js/data/sectRuins.js",
+      "sha256": "56f568a06d89ba22aebc5c93b0729c6f4ce3e6a513179031da55b043ead3cdd5",
+      "bytes": 1316
+    },
+    {
+      "path": "js/data/sectTiers.js",
+      "sha256": "09ee4c4a22a5699d4e986525f30426f5a992da89f05b9b5f03c54dc8a9cf107b",
+      "bytes": 4680
+    },
+    {
+      "path": "js/data/skills.js",
+      "sha256": "147878ddc24abb02a1a663de002cf943d49931241c4532266b70335e3ff07a17",
+      "bytes": 15389
+    },
+    {
+      "path": "js/data/studioAssetRegistry.js",
+      "sha256": "d86a16b95e891c2cc297566d5ed995f9d227fcaff8724583dd78c8196e435228",
+      "bytes": 7289
+    },
+    {
+      "path": "js/data/succession.js",
+      "sha256": "04f55e73b03ae5dc9aff9d00495d542ab9a945b752671d8b327e51547393dfc9",
+      "bytes": 1365
+    },
+    {
+      "path": "js/data/successionCrisis.js",
+      "sha256": "1bd33b3e1c3d025943f1b48ed785041d3314dc7719fc156acfbb3ac31baee90f",
+      "bytes": 2021
+    },
+    {
+      "path": "js/data/territories.js",
+      "sha256": "a678310ebec5eb879273adce3393f356bffd2e2914f93697be2bca98ca4c9f01",
+      "bytes": 5534
+    },
+    {
+      "path": "js/data/thanhTuNu.js",
+      "sha256": "aa1cd9511969779dd5878b1d73c2faa3e271c6e2b19dfc4426fb9c44f45e9955",
+      "bytes": 949
+    },
+    {
+      "path": "js/data/thienMenhChiTu.js",
+      "sha256": "97eb11dfe0c57500e6c98394a26d1443d2b0f39adb48cfdc312f3575298ff789",
+      "bytes": 2292
+    },
+    {
+      "path": "js/data/thienTrieu.js",
+      "sha256": "c8e1345a0b517ebfa67c6f34b395f7742a465ac84780233ea56219388e88da39",
+      "bytes": 1581
+    },
+    {
+      "path": "js/data/tienKieuBang.js",
+      "sha256": "fb46fd0bbdc042ce20660865de4ddd1e6e96e071f6c44a52d94839b4ab5ed473",
+      "bytes": 821
+    },
+    {
+      "path": "js/data/tournament.js",
+      "sha256": "2673d20b8749df36de367c33abaf0736536277bb3a04b9922191dbdb20c920c2",
+      "bytes": 990
+    },
+    {
+      "path": "js/data/trialTower.js",
+      "sha256": "c8d2c6e705aba6bf2f741354e3448d0670addb269f0cab97a450bfb8c85528d5",
+      "bytes": 1345
+    },
+    {
+      "path": "js/data/trueDisciples.js",
+      "sha256": "98eb30920d93cdafadc9b7ed580940276be3a32dd93c9af78b92de235358cee3",
+      "bytes": 1107
+    },
+    {
+      "path": "js/data/worldMap.js",
+      "sha256": "82f100dc1a0d5eaea66353f9c2093899a8d50112d73816fe52f90a0558756610",
+      "bytes": 6092
+    },
+    {
+      "path": "js/data/worldProtagonist.js",
+      "sha256": "c1faacbcdaecdcb8985812f450dc57a6469795481b5dff6eb683a7cea349a1b4",
+      "bytes": 1517
+    },
+    {
+      "path": "js/data/worldThreats.js",
+      "sha256": "236d1b8bbf927a81c57733cdab0399e5621f13b2caa03de9cb02379093377646",
+      "bytes": 2976
+    },
+    {
+      "path": "js/main.js",
+      "sha256": "92c72394a49d6e7ae57195b3a210fc4af8463b86e4cf4766bfa351de550a2742",
+      "bytes": 82774
+    },
+    {
+      "path": "js/systems/aiSectAI.js",
+      "sha256": "f0fe649c8b39edf3c09b946999a7c1e0f3fc720a115aa0d80a051d4e04df02f6",
+      "bytes": 46315
+    },
+    {
+      "path": "js/systems/ancestorWorship.js",
+      "sha256": "0f7848a5aea0d64fc19642070037b8e1c5d91d329baa2ef1247de4a469400c97",
+      "bytes": 3592
+    },
+    {
+      "path": "js/systems/apocalypse.js",
+      "sha256": "0a45fd0b42f499371bbc0cac0aeb8c42c93a568c7b258f73eee3eed468199d17",
+      "bytes": 17808
+    },
+    {
+      "path": "js/systems/artifactGrant.js",
+      "sha256": "a4357cbf8d25f099d93a3a51b3fe5bfad5d6c0848dd0a8f741750aa311da963a",
+      "bytes": 4928
+    },
+    {
+      "path": "js/systems/ascension.js",
+      "sha256": "440464eb2664a3ff1d63e4967ada774257c10d0af675bf9001e0f6f04259dee0",
+      "bytes": 6880
+    },
+    {
+      "path": "js/systems/aspiration.js",
+      "sha256": "206379068f576fbbda463953eb0bd48d93f705e367f2dfcdc5b329bb1e62bf3e",
+      "bytes": 15112
+    },
+    {
+      "path": "js/systems/bloodline.js",
+      "sha256": "f768b58e1c90e89d52374ef0bb1aec8abab36a707609a18c3a1d612c2454edd8",
+      "bytes": 5371
+    },
+    {
+      "path": "js/systems/causality.js",
+      "sha256": "0d28d7cd4497b924fb6f4a544a10cbdbd36a8326b27853b887e882fd31b3eec7",
+      "bytes": 4891
+    },
+    {
+      "path": "js/systems/chanTruyenSeats.js",
+      "sha256": "b1563c326d2a050e37a124d3e84e0249cf97df4a6006b7182e26b05ccbc788a9",
+      "bytes": 17960
+    },
+    {
+      "path": "js/systems/characterEra.js",
+      "sha256": "1976cd5a5f42fe523104eba8da095485a544a3ab805cf9466726891492bf7ddb",
+      "bytes": 6010
+    },
+    {
+      "path": "js/systems/chronicle.js",
+      "sha256": "6a6a5ba32e439e2ade826be62a62ae6821993d84cf0448fb3494fd10a13f7710",
+      "bytes": 1672
+    },
+    {
+      "path": "js/systems/civilization.js",
+      "sha256": "a12dc02f66145143183da2beced7d718d6a6016cbd79ceeace0fb4f6e6bc1216",
+      "bytes": 8515
+    },
+    {
+      "path": "js/systems/classics.js",
+      "sha256": "e7e3c4c22c8d39717acf7a283f3e55d6aa0244178e6ddeb69c14ec22bd47585c",
+      "bytes": 4761
+    },
+    {
+      "path": "js/systems/combat.js",
+      "sha256": "d3d7deea4452b5b10b7c0085bb6ff47afa8d0c93a918581155ddeb57a6d34bfe",
+      "bytes": 7684
+    },
+    {
+      "path": "js/systems/consequenceView.js",
+      "sha256": "0cd21d360c191ca5afde26d81d2a8c115ed9e73af937dc4feb1ae0e514db2bd2",
+      "bytes": 6751
+    },
+    {
+      "path": "js/systems/continentalWar.js",
+      "sha256": "18b4a2c4352e80c195ad159644be14ba9a940edcc8c029b145383ed033304df7",
+      "bytes": 5821
+    },
+    {
+      "path": "js/systems/daiHoiThienHa.js",
+      "sha256": "608b96c1cf5140800bd29aab25d7d3b2b2252245af5dfb7185e75813db832dc3",
+      "bytes": 8134
+    },
+    {
+      "path": "js/systems/daiKiep.js",
+      "sha256": "f32588868e962dc01cdef0178531980345054fe3174b2575de56e66bc19fd464",
+      "bytes": 6390
+    },
+    {
+      "path": "js/systems/dataRetention.js",
+      "sha256": "9ad18799f4c645fb013c1a42ac29f505c871cb1ea0d7e1ad05c299378d488535",
+      "bytes": 17363
+    },
+    {
+      "path": "js/systems/destiny.js",
+      "sha256": "5741d25ceaa7e533752fce84c9648647c03b1140fd66b1d1b6d89828459ea4e3",
+      "bytes": 3041
+    },
+    {
+      "path": "js/systems/diplomacy.js",
+      "sha256": "afca5dc80393f93c19e29c9eb3663d88a2080844010a652bbab31508c0f8b09d",
+      "bytes": 14943
+    },
+    {
+      "path": "js/systems/disciple.js",
+      "sha256": "0dcc8930147b7eb714d5d178df01df03ea08e27a31d2d5ef186746d18b255b94",
+      "bytes": 14241
+    },
+    {
+      "path": "js/systems/economyDiagnostics.js",
+      "sha256": "5b31b23bb114f766ca6e225d01ac2484e1023f2aefcbdead3ae1a21c715fb5bb",
+      "bytes": 4455
+    },
+    {
+      "path": "js/systems/elderPolitics.js",
+      "sha256": "9437489df3b41b27bfc4e4a510c0cd1e97831ea3612218052fe8f50c515da740",
+      "bytes": 7314
+    },
+    {
+      "path": "js/systems/elders.js",
+      "sha256": "ec2abda5b8baa06cd3f26a76ac19cd681f90a92ff3337ec85c92c75100dd3e65",
+      "bytes": 5012
+    },
+    {
+      "path": "js/systems/eraEndings.js",
+      "sha256": "fc170ede625680cf451e766791e137394aa1a92aab7f1700b9b8fe3a6efbfcda",
+      "bytes": 968
+    },
+    {
+      "path": "js/systems/eraManager.js",
+      "sha256": "97f80e5cb23700bc6f1c52829de2742fe5a69bd67d52be822d549dd7eb7c158f",
+      "bytes": 3034
+    },
+    {
+      "path": "js/systems/expedition.js",
+      "sha256": "17b94bb56b2f19bf7188d5992539a5472e8810cfb7b4ab653594dd8bbbacfccf",
+      "bytes": 4932
+    },
+    {
+      "path": "js/systems/factions.js",
+      "sha256": "16ebfe9d1e4676292e5e109cec51d66efe20e701e08ce17d5e75b9375f7f095d",
+      "bytes": 10830
+    },
+    {
+      "path": "js/systems/fame.js",
+      "sha256": "ea9c9e246b6b8a0f8d94afc1cd3b79b4d373561bde20fc5029785ab4224cebcd",
+      "bytes": 1776
+    },
+    {
+      "path": "js/systems/family.js",
+      "sha256": "22d06ca941ecc9b825cdc5b65b9bdb672e1ab7515657f9892f8a87519c84d923",
+      "bytes": 21022
+    },
+    {
+      "path": "js/systems/folklore.js",
+      "sha256": "08b9d2c8603bdf06af8c4fa4dee2d6bc14f1470270f8757ec28bdb243e875c38",
+      "bytes": 2795
+    },
+    {
+      "path": "js/systems/forbiddenGround.js",
+      "sha256": "fc0db57eec88bee970c23f402ddf4f2acd164ebd3fe403a5d867b22f7ba3a261",
+      "bytes": 16111
+    },
+    {
+      "path": "js/systems/formulas.js",
+      "sha256": "6bfc9ce65a74528b726f66ccd80c2468c497f7cef4a2ed4d6ac68f44a2db60ae",
+      "bytes": 6527
+    },
+    {
+      "path": "js/systems/foundedPhong.js",
+      "sha256": "51503319f4e2591cc03c3542401399796bb2ec4d5cb294b75d9ba5faf20ade19",
+      "bytes": 1776
+    },
+    {
+      "path": "js/systems/gacha.js",
+      "sha256": "0b25795b1e9a1f6aacf6658200359ca972c697bb1d282a7354ddb70fb8fe99ba",
+      "bytes": 6412
+    },
+    {
+      "path": "js/systems/gameLoop.js",
+      "sha256": "c98634a80d925fff06475fbdc588ad86c5cd4a082e7dad8761c06bfc5143ccc3",
+      "bytes": 6154
+    },
+    {
+      "path": "js/systems/grandStrategy.js",
+      "sha256": "0c8e8e2c3d3ed4659fb4863ae5f6a07a3a99704811abcb1b902c12ab43dd43ec",
+      "bytes": 55250
+    },
+    {
+      "path": "js/systems/heartDemon.js",
+      "sha256": "9693da89d6bab7c95754a58ac089eb95606353564c780cdd373e38e3547922a1",
+      "bytes": 4504
+    },
+    {
+      "path": "js/systems/heavenlyFortune.js",
+      "sha256": "37535da1fb20ff58aa71de55f3f298c824707ec8dd8ce7784edccb04f2a5822f",
+      "bytes": 3348
+    },
+    {
+      "path": "js/systems/heavenlyWill.js",
+      "sha256": "2d573747fd38a8969641204042b9086cc0bd5da0a9683a6b217f76535b14e670",
+      "bytes": 9414
+    },
+    {
+      "path": "js/systems/historyBook.js",
+      "sha256": "e723d75427114e8a33ad2b04d350f6aca256ff69f20134ec6d977d7bf4804026",
+      "bytes": 9196
+    },
+    {
+      "path": "js/systems/inheritance.js",
+      "sha256": "189a3f4a0a6fc0aa3312029f82207975da98284812f0e3bca797e818e8b2ecdd",
+      "bytes": 4501
+    },
+    {
+      "path": "js/systems/innerCouncil.js",
+      "sha256": "c7d10637a6a1ca8b710151c2a93e7bbb0bc487fdc94e4dab5cfaab4745aec0ed",
+      "bytes": 34901
+    },
+    {
+      "path": "js/systems/inventory.js",
+      "sha256": "68ba0f5cadb1286fe47f245804877106e71267187b8b9f56d674b769c4bad861",
+      "bytes": 1928
+    },
+    {
+      "path": "js/systems/khaoHachRewards.js",
+      "sha256": "01aa56a04de00e0acb750425a9f0b9f76ac6c941fadc28708d04c8e2b5d76020",
+      "bytes": 2974
+    },
+    {
+      "path": "js/systems/legendaryDescendants.js",
+      "sha256": "e01f045cef3cf1b102bde2b728aabe2e6e1f4a67bb17aeced64f33ee812da0f7",
+      "bytes": 4675
+    },
+    {
+      "path": "js/systems/legendaryStories.js",
+      "sha256": "bbd7cec2ca91d7a5994d4de43b0cd7f6078157902decddd86cbc20a5c8a5da58",
+      "bytes": 5901
+    },
+    {
+      "path": "js/systems/lineage.js",
+      "sha256": "5d2b82c93da74c4c2f43a0949084fa56659f6c727e90f66736596fe6c66ce8a3",
+      "bytes": 5238
+    },
+    {
+      "path": "js/systems/manuals.js",
+      "sha256": "a5316e5140ebac6750cbbadb6543a49b7f409b562259a113592e50e723eb2edd",
+      "bytes": 10834
+    },
+    {
+      "path": "js/systems/manualWar.js",
+      "sha256": "2879f9bc41c0292e626932bab6aec166c5833a0fc153f0eb344658b13b739ad1",
+      "bytes": 8910
+    },
+    {
+      "path": "js/systems/missionBoardView.js",
+      "sha256": "e4c7fd18a67fa514250be921c95a778e81ad1a464b8b6f4deb448da482cef70a",
+      "bytes": 15059
+    },
+    {
+      "path": "js/systems/missionHall.js",
+      "sha256": "ed6b647bae3286695c3db762a149f7b5c84678957e04ee51961589466e8e3406",
+      "bytes": 25792
+    },
+    {
+      "path": "js/systems/mythology.js",
+      "sha256": "56cf5fdb114f2363ee299208075bb6dcb457fe28005830989749f161342cd3c7",
+      "bytes": 10167
+    },
+    {
+      "path": "js/systems/nations.js",
+      "sha256": "858b6db6005f27982a419c53ef401740cf593471b25d033e474afc0b3057033b",
+      "bytes": 7814
+    },
+    {
+      "path": "js/systems/ngoaiMon.js",
+      "sha256": "ffeccdfd4b84b52f14c692fa25132ae41cbc47c3004f05a209f47101806a2160",
+      "bytes": 8228
+    },
+    {
+      "path": "js/systems/ngoaiMonFactions.js",
+      "sha256": "e82989e5bdc0426730cddd19a7fc13f7eff5344919a8e4ba04e15ff76e70890c",
+      "bytes": 18984
+    },
+    {
+      "path": "js/systems/ngoaiVuc.js",
+      "sha256": "65cdaeb527714f41f3487cb16cfbb65d2b8d9e098f625544898628af3c2b4723",
+      "bytes": 4677
+    },
+    {
+      "path": "js/systems/pacingExperiment.js",
+      "sha256": "c0baf5393a9a5c0d81000d474f366600681c8a2dbadcd602670825b25326cc95",
+      "bytes": 7327
+    },
+    {
+      "path": "js/systems/peakDemand.js",
+      "sha256": "7ac36533021e3d4f2aec5af32ef049df317103057ba57ee7e24ce93454c9a110",
+      "bytes": 7200
+    },
+    {
+      "path": "js/systems/perf.js",
+      "sha256": "b2bbf6795b116de3d2ab979673abdbcb0762c16827fa74e1c2827137f04d9a35",
+      "bytes": 1328
+    },
+    {
+      "path": "js/systems/personalDestiny.js",
+      "sha256": "59c4d0e86f8ee7ab39a57a2317cbcbbe99925a9ec20b4a2e7341add187886c2c",
+      "bytes": 5218
+    },
+    {
+      "path": "js/systems/personalOmens.js",
+      "sha256": "16b0213a3d04b14906401fee67a28a1e90b3cbd4e871737aff905ba79d8ab19e",
+      "bytes": 2621
+    },
+    {
+      "path": "js/systems/phiThangGioi.js",
+      "sha256": "f353baabc873a8b4a0b1e3cf26264ded87cad6233e612c61dbd8d38868580d91",
+      "bytes": 7807
+    },
+    {
+      "path": "js/systems/pilgrimage.js",
+      "sha256": "7af1eac42cd15a8757304d9845e2219f22e864f978d1327ce5e69ea82905b776",
+      "bytes": 10275
+    },
+    {
+      "path": "js/systems/pillUse.js",
+      "sha256": "464c53d0c8c83299275fe02059355cb874d3a32766c8802ae5de6ba9a0b12507",
+      "bytes": 18358
+    },
+    {
+      "path": "js/systems/planningHorizon.js",
+      "sha256": "f8093da968083e431a4dbaf777d737d3ef171658f4d5c7086f37de9e84926474",
+      "bytes": 14054
+    },
+    {
+      "path": "js/systems/pocketWorlds.js",
+      "sha256": "3c8357bb563d9df51bc4af6ed03c39ee3c60f1b744c23b8968fedfbe4949803b",
+      "bytes": 8489
+    },
+    {
+      "path": "js/systems/production.js",
+      "sha256": "91a182c23b7268dfaf540237f87415591c3a379055dc562d44313968631839c0",
+      "bytes": 14664
+    },
+    {
+      "path": "js/systems/progressionHints.js",
+      "sha256": "6910235ee5f4af9e573d220432e7cd58d285c09007e56bf5d856ca6b710aed05",
+      "bytes": 9449
+    },
+    {
+      "path": "js/systems/protagonist.js",
+      "sha256": "089fb269326fc9435d402057f5dd80b4a8db8a7f007c4d11ac0a3c3caeb8af4e",
+      "bytes": 5551
+    },
+    {
+      "path": "js/systems/rebellion.js",
+      "sha256": "45f95a175652321d13d344a243662af1ba611b23973dd3d9e161621c64e38a04",
+      "bytes": 6334
+    },
+    {
+      "path": "js/systems/rebelSects.js",
+      "sha256": "0542e22f9a9d3dbf0dd692a940a6af0993f483046dc6f2a8c7038863fb2efe58",
+      "bytes": 6239
+    },
+    {
+      "path": "js/systems/recruitment.js",
+      "sha256": "548396aae4929abf25ec0cb26463559af23dd65665277bd4591cc307ad300b0d",
+      "bytes": 18205
+    },
+    {
+      "path": "js/systems/relationships.js",
+      "sha256": "f1f6f81fe7af9f29e7a23d5783ac1f71418f33edd21b248250864b24a1db8a9b",
+      "bytes": 13859
+    },
+    {
+      "path": "js/systems/rumors.js",
+      "sha256": "58aa86aa96cccdcc990f47da6cf788fe62fb9e01b49d504beab177bf501de632",
+      "bytes": 13112
+    },
+    {
+      "path": "js/systems/save.js",
+      "sha256": "c6a132740f4b705767ebc12fc533566eeecb0cd3bb209f91a39e25bd19ff7b6a",
+      "bytes": 42581
+    },
+    {
+      "path": "js/systems/sect.js",
+      "sha256": "e54ffcd2c12ad9f83e626b4924c5a7d48c7dcfd7d774260fdd38bad67f4015ab",
+      "bytes": 9915
+    },
+    {
+      "path": "js/systems/sectOperationsStatus.js",
+      "sha256": "4025d8044a74dfaf0e4cfcd9ed268e0ca411d6621e8eebdb64ff6377e2704a1b",
+      "bytes": 12278
+    },
+    {
+      "path": "js/systems/sectRanks.js",
+      "sha256": "12ed5b4fd844c31420d64383712fbe68db20f1739f21dfedd80ce104720103d3",
+      "bytes": 6025
+    },
+    {
+      "path": "js/systems/sectRuins.js",
+      "sha256": "8bcbc98baac59e7905ce5be9a2b02944061a85073718299f5e8044803028cd29",
+      "bytes": 8326
+    },
+    {
+      "path": "js/systems/stateHygiene.js",
+      "sha256": "af11f7634affd3cf03030ca922341ca9d338854165619cb9cb19c974c9de1a67",
+      "bytes": 8716
+    },
+    {
+      "path": "js/systems/stateRestore.js",
+      "sha256": "7e426a3c4cd79de7b619a29a8536a1b183cd8e9ebd7b64d2e1401ff299ea8e4b",
+      "bytes": 595
+    },
+    {
+      "path": "js/systems/strategyFeedback.js",
+      "sha256": "af69d47ac82d2a6b93fefd6fe23f501e5881339e413941db72d4b2206335739c",
+      "bytes": 7575
+    },
+    {
+      "path": "js/systems/strategyReview.js",
+      "sha256": "c6e2ecfef7acdb60bffb697ba9017134a79a616d771a9398b4b24bb1900f47e2",
+      "bytes": 14072
+    },
+    {
+      "path": "js/systems/succession.js",
+      "sha256": "1fcadb57748868227a4ef907cb715234387b1d0516c730c3a318545d537747ed",
+      "bytes": 18031
+    },
+    {
+      "path": "js/systems/successionCrisis.js",
+      "sha256": "975cb84d604c633e12858f1b279c10a896874ade6bc643f4ee6a211291834659",
+      "bytes": 14968
+    },
+    {
+      "path": "js/systems/territories.js",
+      "sha256": "9e9a6ab13f0717ac36d9834ef17de6938a04c402fa5b55c772d70055234ee34d",
+      "bytes": 6807
+    },
+    {
+      "path": "js/systems/thanhDiaCo.js",
+      "sha256": "41cc7b61f1d7ebf0f7a1adfe15c1383c91bb70dfb5ea78b89868ea0d7028c86c",
+      "bytes": 1968
+    },
+    {
+      "path": "js/systems/thanhTuNu.js",
+      "sha256": "c29012dd4d8a05297abe0501a0ccc1574389b6eec1f1fa944997488208849385",
+      "bytes": 7295
+    },
+    {
+      "path": "js/systems/thienMenhChiTu.js",
+      "sha256": "3108fdd26f59ad710fa0a96c61a8de522994221dc27c7adb06475320ad0aa6b0",
+      "bytes": 6216
+    },
+    {
+      "path": "js/systems/thienTrieu.js",
+      "sha256": "f08bb15f22d256964ed46dfb306548db6eb50074a438dcf6f8873ff08227e15c",
+      "bytes": 4640
+    },
+    {
+      "path": "js/systems/tienKieuBang.js",
+      "sha256": "5d731378b7a5e0ca6edf29f1cb7255be42e47f38b93f79d65d582a8b6502c6f0",
+      "bytes": 4657
+    },
+    {
+      "path": "js/systems/tournament.js",
+      "sha256": "5881dc0423caa316760f391589254e4d3d36836f7e4c611af938edc2e0abaf84",
+      "bytes": 7247
+    },
+    {
+      "path": "js/systems/trialTower.js",
+      "sha256": "ae4df86b921aead50b6849429817b6319c24f4181ac0116e9e717230a1c9d496",
+      "bytes": 6069
+    },
+    {
+      "path": "js/systems/trueDisciples.js",
+      "sha256": "1c7dbc68c493d5e129594e54acf3670f21fa9ab4b1679afc407f2c5585b4aa3f",
+      "bytes": 8381
+    },
+    {
+      "path": "js/systems/workerAssignment.js",
+      "sha256": "122f290248e8f43e25c01c41f82d3aa667bda25cb905c56a78ce922652b7ad5e",
+      "bytes": 3282
+    },
+    {
+      "path": "js/systems/worldEngine.js",
+      "sha256": "af5bd0ab98dfaa354d366f5c5357ae3b68c64d4cc6a6cc429519287191c24948",
+      "bytes": 42011
+    },
+    {
+      "path": "js/systems/worldHistory.js",
+      "sha256": "41295ca7396339ceb79e2013fa46e7b2dbe3d32f301767ed58973c16e7968167",
+      "bytes": 21091
+    },
+    {
+      "path": "js/systems/worldProtagonist.js",
+      "sha256": "133ba66012465620cd86df3e45ee0ebec8c925319697c5ad2ca179d67348c147",
+      "bytes": 4197
+    },
+    {
+      "path": "js/ui/ascensionPresentation.js",
+      "sha256": "461ec63deca5ecfb24ffd48a24a014617028f173695333748271b56a19ab3862",
+      "bytes": 1811
+    },
+    {
+      "path": "js/ui/chronicleData.js",
+      "sha256": "9fb85a86821e504db206afb4bebe17747953bcd9ad366d9c3cca9fae07532184",
+      "bytes": 11571
+    },
+    {
+      "path": "js/ui/daiDien/baoKho.js",
+      "sha256": "83efd287c7e3dbe5a487eb46df716de597a7e48ede7bff8a109fe97df90d11dd",
+      "bytes": 5364
+    },
+    {
+      "path": "js/ui/daiDien/kit.js",
+      "sha256": "34a32a6e7fdb12253fc72e45d0b4cfbfa371c0c11e099afa6ba97459c4898131",
+      "bytes": 2587
+    },
+    {
+      "path": "js/ui/daiDien/tongPhong.js",
+      "sha256": "c09cdc69297a3126ab0431971b6348622a45bb2f61c6a4ac28e4b3033e2ab3e5",
+      "bytes": 13862
+    },
+    {
+      "path": "js/ui/daiDienSections.js",
+      "sha256": "bf2de49b58cdb5c4d8f6d9b72a24e40ca7540914bbc2b76c359cf1379c95767c",
+      "bytes": 1287
+    },
+    {
+      "path": "js/ui/diplomacyPresentation.js",
+      "sha256": "7916e61cc310e4d147a52e34eebadf156f7632f7779de1904590e965c69bb9c5",
+      "bytes": 491
+    },
+    {
+      "path": "js/ui/helpers.js",
+      "sha256": "6b91b704a7c2e5bd3ac70a4de654450841958d1d9457d301f77b1d0fa45a6a64",
+      "bytes": 2240
+    },
+    {
+      "path": "js/ui/itemUsability.js",
+      "sha256": "f1af20c2b00a0272b433d01346a7b5fc380a194e8078b590b14ba53b2236f558",
+      "bytes": 10801
+    },
+    {
+      "path": "js/ui/modals.js",
+      "sha256": "ae0c560343c5ad5e3016030e694e2525927653f28c2b22528eb417057d8beda5",
+      "bytes": 4373
+    },
+    {
+      "path": "js/ui/peakDemand.js",
+      "sha256": "d1b500123d1c5cf17c570108e04b2c66e28d60a429ddc259f83c51b4c8b7edda",
+      "bytes": 3597
+    },
+    {
+      "path": "js/ui/phongMarks.js",
+      "sha256": "1a87f8bfd8aa7b432593340699267d47126a605d921fe512646371c9b889250b",
+      "bytes": 2499
+    },
+    {
+      "path": "js/ui/powerPresentation.js",
+      "sha256": "66b3059f949ddb4d1272a9e498fac19e559b34c4aae25e69d1264f933ba6b5ec",
+      "bytes": 2003
+    },
+    {
+      "path": "js/ui/renderAttention.js",
+      "sha256": "a9d4dd532ce77e40b2103f194231e7050f19631ddd032d37bf3aaa8a9a5cbae6",
+      "bytes": 16334
+    },
+    {
+      "path": "js/ui/renderChronicle.js",
+      "sha256": "91d38570e05776186046cad47a91fcaaa8a2b4f23c492fbab4d351c36544c2a5",
+      "bytes": 20910
+    },
+    {
+      "path": "js/ui/renderCombat.js",
+      "sha256": "8550b36a55cc778439d62d4c403409803a190add5594d5e74f4d81173b33c863",
+      "bytes": 2613
+    },
+    {
+      "path": "js/ui/renderDaiDien.js",
+      "sha256": "553df5e055f2f33c6eb70d119322ce9ce01c11aa49a2f0819f60ed508bb4472a",
+      "bytes": 121648
+    },
+    {
+      "path": "js/ui/renderDiplomacy.js",
+      "sha256": "8d0d1fb1565c2161e3a4dca8cb0626e48ee4cc82fe0f6a212287d8659728c6f7",
+      "bytes": 9650
+    },
+    {
+      "path": "js/ui/renderDisciples.js",
+      "sha256": "3f3e4d7f37e667df73659083563ceafbf22a7edf57dd017372b219c6bae47b1f",
+      "bytes": 59395
+    },
+    {
+      "path": "js/ui/renderGacha.js",
+      "sha256": "00478b09a41b8e8e2eb9706cac17dc0353735deaa9ec3b28bd2a5b5c39d97e61",
+      "bytes": 3283
+    },
+    {
+      "path": "js/ui/renderGameplayPreview.js",
+      "sha256": "c2f15d3016b86c5a6a852c69dee3e652d58ec7c17536dff5fcaf753bc93bff5e",
+      "bytes": 10068
+    },
+    {
+      "path": "js/ui/renderGovernance.js",
+      "sha256": "3a08df3e82015fb695f9bb0151dfa0bbcd48da1fcd3499df6318901ea9de8316",
+      "bytes": 46908
+    },
+    {
+      "path": "js/ui/renderLog.js",
+      "sha256": "b0e02c907a7cec68147d5b091064434a0f561cec438757d7d937af409cdb2720",
+      "bytes": 482
+    },
+    {
+      "path": "js/ui/renderMountain.js",
+      "sha256": "d2a309abd5db411bb831d3e5436e5858dd918998e93594cef23255d731bf94dc",
+      "bytes": 7447
+    },
+    {
+      "path": "js/ui/renderOperations.js",
+      "sha256": "87101377b5cf442095b892fce6363edc02427983ec0e4d46ba0fbcb852d85f77",
+      "bytes": 46354
+    },
+    {
+      "path": "js/ui/renderPanels.js",
+      "sha256": "e61124110b331b26dbef54378a037e41cf603248c61288c879acb1026bedff29",
+      "bytes": 50456
+    },
+    {
+      "path": "js/ui/renderWorld.js",
+      "sha256": "545bbcf5613ed60ae7ab1f915dbe22b5bf50c41370b042f5a85862ef528169e2",
+      "bytes": 4929
+    },
+    {
+      "path": "js/ui/renderWorldExperience.js",
+      "sha256": "d1244094e1af3a5000ddca4e1a43f2e7ace296c89d6fb2f33201ce0525c846f0",
+      "bytes": 30692
+    },
+    {
+      "path": "js/ui/studioAssets.js",
+      "sha256": "d1ab5af75d2d6d7d574021b48aa28184e3405ee869f5af68d9e4494a0b15197d",
+      "bytes": 1687
+    },
+    {
+      "path": "js/ui/thienCoBao.js",
+      "sha256": "a74c5e800f0e5f382b87dae3fe67c4e90159e5d68c8e47053b3f12ab9d297b7d",
+      "bytes": 23065
+    },
+    {
+      "path": "js/ui/timePresentation.js",
+      "sha256": "f1920b689d3f8729d133ead39e475e1df347a20c75016b94f628568fb983e1f7",
+      "bytes": 521
+    },
+    {
+      "path": "server/__tests__/_missionPhase4PanelSmoke.mjs",
+      "sha256": "b6fc3b6aa7a2be60254837436b7bbb6ab24de769299bb91819989b1a8fca4050",
+      "bytes": 793
+    },
+    {
+      "path": "server/__tests__/apocalypseRelationshipIntegrity.test.mjs",
+      "sha256": "f3cd186fee5362ce665bf28aecfb7150eb5d33392f10bfa3632170355db5bddb",
+      "bytes": 4921
+    },
+    {
+      "path": "server/__tests__/aspiration.test.mjs",
+      "sha256": "00721e0af86381946e4cd1969d5d56cf9fdf9490410bf96cdd99a3f2fb85bf74",
+      "bytes": 19645
+    },
+    {
+      "path": "server/__tests__/assetBridgeApprovedEdits.mjs",
+      "sha256": "9f1b185d50c6ae236c860a50c421a4064274ead37d25b56167868bd8c6c54f76",
+      "bytes": 2141
+    },
+    {
+      "path": "server/__tests__/calendarPhase13.test.mjs",
+      "sha256": "3c7b3fa86349a3109985dcdca60b6a7d130172fe850b41a9fc0488d9601c4ce1",
+      "bytes": 5962
+    },
+    {
+      "path": "server/__tests__/careerProfile.test.mjs",
+      "sha256": "dbb493c27f47751e1e4555ff2e86d7e25b9a85faccf343cdece94cf1070e821c",
+      "bytes": 21349
+    },
+    {
+      "path": "server/__tests__/daiDienPhase1.test.mjs",
+      "sha256": "4c080511a9f065e5fa6d132e4387156d28a1140974a1098a3133221094943a67",
+      "bytes": 11133
+    },
+    {
+      "path": "server/__tests__/diedDayDeterminism.test.mjs",
+      "sha256": "44836240fa594457ec3952e3b3da02a874c4222d23587d6203f90a9682337783",
+      "bytes": 6281
+    },
+    {
+      "path": "server/__tests__/dirtyRecovery.test.mjs",
+      "sha256": "01005bb6d0ae8d8c5b0d43f33404ead7e3878f0482a41e577e86fbf3031ef590",
+      "bytes": 5524
+    },
+    {
+      "path": "server/__tests__/economyPhase16.test.mjs",
+      "sha256": "3d758e7ab146b1277a98c324e16c340663e052f80e73e25fe561e002a28f09de",
+      "bytes": 4739
+    },
+    {
+      "path": "server/__tests__/economyPhase2.test.mjs",
+      "sha256": "bf993f34a1bb7936c850643d1ee12ef3f589ebcf7c2eed16bd52c6da750d918d",
+      "bytes": 10304
+    },
+    {
+      "path": "server/__tests__/fakeMongo.js",
+      "sha256": "38df9588354a101051cf10d903a3082a3db5dc26a83271abc629e350c0a81467",
+      "bytes": 4900
+    },
+    {
+      "path": "server/__tests__/familyBranchApocalypse.test.mjs",
+      "sha256": "3440d0403afcba44a4699b21a112d912910f6e69c5ec592b038af1195ee83f40",
+      "bytes": 4498
+    },
+    {
+      "path": "server/__tests__/familyBranchFixture.mjs",
+      "sha256": "9f29451f157ce6512b369f6ab68ad22a3b6f60d4e2dd251ccf1d8b6d2de59a26",
+      "bytes": 5461
+    },
+    {
+      "path": "server/__tests__/familyBranchOptimization.test.mjs",
+      "sha256": "c6e034085f4fd3cbc078cbd32d0d512333bef37d19501c122d6859ac420e17b3",
+      "bytes": 5023
+    },
+    {
+      "path": "server/__tests__/familyBranchOrderPreservation.test.mjs",
+      "sha256": "f0919d4df67ca78619b3a0fd584356229ca77acb90682aca4a7ca82a7989cb81",
+      "bytes": 3905
+    },
+    {
+      "path": "server/__tests__/familyRngDeterminism.test.mjs",
+      "sha256": "7e6999e08a8296ba37df64741a0be161c837ffa4835065e55fe9ef2430f058b0",
+      "bytes": 4375
+    },
+    {
+      "path": "server/__tests__/fivePeaksPhase17.test.mjs",
+      "sha256": "d622a32ba63f687fcee13fa32e26516dbb79f0c1b098cf70ab6446e6c8368a38",
+      "bytes": 7410
+    },
+    {
+      "path": "server/__tests__/fivePeaksPhase18.test.mjs",
+      "sha256": "5da5896014ea1bfe96e80db706599fa087b1e87d65c639b353ee009521bf0503",
+      "bytes": 14186
+    },
+    {
+      "path": "server/__tests__/fivePeaksSlice1.test.mjs",
+      "sha256": "6614db1df5dc1be37c16196e1705c57562596425d2280c43284f8951ccd0ac29",
+      "bytes": 10682
+    },
+    {
+      "path": "server/__tests__/fivePeaksSlice2.test.mjs",
+      "sha256": "b7d72011f811f884e745a64acfdb0d9fcbeaa9f3a5ffb4ccea1d1188c4d9603a",
+      "bytes": 11514
+    },
+    {
+      "path": "server/__tests__/fivePeaksSlice3.test.mjs",
+      "sha256": "d21ffe9d1d5bf044a84d6c60559c33ee5fad0be1c8ea6e04503039ea7b8a12c2",
+      "bytes": 9130
+    },
+    {
+      "path": "server/__tests__/fivePeaksSlice4.test.mjs",
+      "sha256": "0347797ab877b0646166724542a1fbd24025b82390ee2eccf70e73600df35f90",
+      "bytes": 9515
+    },
+    {
+      "path": "server/__tests__/gameplayDepthPhase1.test.mjs",
+      "sha256": "50ebf062a473172468427fa9b5b58faa5b7c3e4a9e76a12cf6e5777bf042a2f3",
+      "bytes": 2931
+    },
+    {
+      "path": "server/__tests__/gameplayLoopReview.test.mjs",
+      "sha256": "206c2e4c7a87dda566458d54cb1696b517919f895e133ca45f571872203a4e8d",
+      "bytes": 3237
+    },
+    {
+      "path": "server/__tests__/grandStrategy.test.mjs",
+      "sha256": "ea7c171a34eefd9ba3668d740402285a196a449c704778669cae933120c27145",
+      "bytes": 13973
+    },
+    {
+      "path": "server/__tests__/grandStrategyDepth.test.mjs",
+      "sha256": "a13598dea4cc77cb15a0f5b1ed7ffcb53eeb0631dc521a4ed4e4a0fa7e1b3044",
+      "bytes": 17308
+    },
+    {
+      "path": "server/__tests__/hydratePersist.test.mjs",
+      "sha256": "b60c3f3b4e82bc720102db7fc46dfe2d6ced1361fc74d59cee777c08b6a28ddd",
+      "bytes": 7979
+    },
+    {
+      "path": "server/__tests__/innerPolitics.test.mjs",
+      "sha256": "3ca6c209a072dad60e1522109b89a17f48f99dbdeee097ce45d0d6e6282379da",
+      "bytes": 15556
+    },
+    {
+      "path": "server/__tests__/itemLifecycleIntegration.test.mjs",
+      "sha256": "5003b9f0c3f5fdf64e2ff0c67a765b46c394723e3bfae4f4f507b79ccd19be30",
+      "bytes": 7624
+    },
+    {
+      "path": "server/__tests__/itemLifecycleSliceA2.test.mjs",
+      "sha256": "e2007ce4b8af1e410aec1ff36cee0b7c897fffa7849896b70c785a17cc20b68c",
+      "bytes": 14871
+    },
+    {
+      "path": "server/__tests__/itemLifecycleSliceA3.test.mjs",
+      "sha256": "ec91e969928a593f13ad1f85719d1d7e390daa8e9d0eef689dde650e0d1d2dcc",
+      "bytes": 13554
+    },
+    {
+      "path": "server/__tests__/itemLifecycleSliceA4.test.mjs",
+      "sha256": "c4db74df4ffead6691b74eb1856d76dd9d65a54f60d35d1b3e8dd9bc619b13fe",
+      "bytes": 9887
+    },
+    {
+      "path": "server/__tests__/itemLifecycleSliceA5.test.mjs",
+      "sha256": "983da2ad17e5aa055b5ace42146e08244df0e5f5b530b601cf83b177cbdd4a6a",
+      "bytes": 9290
+    },
+    {
+      "path": "server/__tests__/itemLifecycleSliceB2.test.mjs",
+      "sha256": "f3f2708da64253a84964f080b68bfe5fad8213cd9e1e26f9946f1c21c61b239a",
+      "bytes": 11623
+    },
+    {
+      "path": "server/__tests__/itemLifecycleSliceC.test.mjs",
+      "sha256": "0b69c234d6a26b073eec6653653151fe0c9ed08fb57064bf074f412e2d663501",
+      "bytes": 11707
+    },
+    {
+      "path": "server/__tests__/leaderLegacy.test.mjs",
+      "sha256": "c84e93fba29a7b124f2a4462bf68a163e93fc2dc559190cb36a1a6e76ae21bd3",
+      "bytes": 20114
+    },
+    {
+      "path": "server/__tests__/mergeLegendFix.test.mjs",
+      "sha256": "1954fcfd0107a05f670a365c8e65594ca68b03ee49a4da13f89eeb665c994f58",
+      "bytes": 3353
+    },
+    {
+      "path": "server/__tests__/midgamePhase15.test.mjs",
+      "sha256": "3cd38276d85c69f45c94e531c3e000ca42d3ff746eb39a9934281a23dc0b49a2",
+      "bytes": 6617
+    },
+    {
+      "path": "server/__tests__/missionPhase4.test.mjs",
+      "sha256": "26b2bd7ebf5464421f61f29e67de90318a45d17cf274fef8112bb3f48244370b",
+      "bytes": 10218
+    },
+    {
+      "path": "server/__tests__/missionPhase5.test.mjs",
+      "sha256": "6ea6396febd194d86aafd8d98964e5212c09c6ac6a70887ca255d053270e085c",
+      "bytes": 12463
+    },
+    {
+      "path": "server/__tests__/mythologyPerf.test.mjs",
+      "sha256": "1ff27959dd374c30648625d947872c04a822d1e77a4f2247b9eddf0c3b1929ef",
+      "bytes": 4168
+    },
+    {
+      "path": "server/__tests__/pacingPhase14.test.mjs",
+      "sha256": "c31d6bdb7e61a820655fdca7b594d10080b74ef5852a80a2682595ae01272768",
+      "bytes": 4033
+    },
+    {
+      "path": "server/__tests__/personalCausality.test.mjs",
+      "sha256": "ee02a1fd2b95bdd94a2a1aea7e73e710d5eb8df3bb325d4a6c1ddf3b7d55eabe",
+      "bytes": 15581
+    },
+    {
+      "path": "server/__tests__/playerPhase7.test.mjs",
+      "sha256": "dc93cbe44e2a350234078814cd7b29e73b1f96cae97b8181d6c2aac29d861b8c",
+      "bytes": 5546
+    },
+    {
+      "path": "server/__tests__/playerPhase8.test.mjs",
+      "sha256": "e09fa378933384fb613f387400de59e43a8ae075e9efee4452ed9888f75d3449",
+      "bytes": 10802
+    },
+    {
+      "path": "server/__tests__/playerPhase9.test.mjs",
+      "sha256": "173ab9965c05c25747471a0f870cac75e6f79395e73c723ca61720b6da824a68",
+      "bytes": 11248
+    },
+    {
+      "path": "server/__tests__/playtestPhase10.test.mjs",
+      "sha256": "3b3e765724a7a764cee61e774be4aee64f6016ceab60fdd6472965bb4631e089",
+      "bytes": 2525
+    },
+    {
+      "path": "server/__tests__/rcActionAtomicity.test.mjs",
+      "sha256": "35abce8096a54a2bcc8c1dda947bde263be7fca5a2c3a8a0a68d407b4893b0f0",
+      "bytes": 10727
+    },
+    {
+      "path": "server/__tests__/rcIntegrityRepair.test.mjs",
+      "sha256": "c061ac0f5c8119f7ceb6f0a41f231c87856cc2c9fb633832c28e157fb05c483c",
+      "bytes": 21500
+    },
+    {
+      "path": "server/__tests__/rcPersistenceSafety.test.mjs",
+      "sha256": "852b87ccb40ececa95eb622b6fefed5e4c6bbb7af483ff5df7c48c07e99f07e9",
+      "bytes": 13729
+    },
+    {
+      "path": "server/__tests__/relationshipPath.test.mjs",
+      "sha256": "7d1f65ace9b28803ca9a33eb10b76d5e1f4718fcd801213f62f6871722f8c725",
+      "bytes": 13425
+    },
+    {
+      "path": "server/__tests__/reloadAndActions.test.mjs",
+      "sha256": "0c08e67c5977756a03c492dee3a6b4eae96954c374df1b01bbf6c688a082bc06",
+      "bytes": 4958
+    },
+    {
+      "path": "server/__tests__/sectOperationsPhase3.test.mjs",
+      "sha256": "30701014bf252966f3c3ed94ab8c1ac21e44d567f3fadb312b812f747073823a",
+      "bytes": 7944
+    },
+    {
+      "path": "server/__tests__/shuiMoJade.test.mjs",
+      "sha256": "e61082e88255751b193605efdd6f61317b7c10ae648cdb99023d22f2a0d416dd",
+      "bytes": 3671
+    },
+    {
+      "path": "server/__tests__/statePhase6.test.mjs",
+      "sha256": "3caca79a9f07041a5e7f6be45e7033a867c52e2162fd08610138c5afe6fc379b",
+      "bytes": 10800
+    },
+    {
+      "path": "server/__tests__/strategyPhase11.test.mjs",
+      "sha256": "a107794364f25acda11b5d6de68bea51a9dcaab0cab2380d27ad2c9d9f3a963f",
+      "bytes": 7350
+    },
+    {
+      "path": "server/__tests__/strategyPhase12.test.mjs",
+      "sha256": "1c1449bdcd55551bffb102cddbe28f5e48115632adb0a731c3e8099a02f1f8d6",
+      "bytes": 7758
+    },
+    {
+      "path": "server/__tests__/studioAssetBridge.test.mjs",
+      "sha256": "7ab774bec0713379d4df3eff700bcb4f6e43a5a35420da09b5dbaa175181d239",
+      "bytes": 24445
+    },
+    {
+      "path": "server/__tests__/successionCouncil.test.mjs",
+      "sha256": "fd61336033c61c250744d4b582387cd62887f5508859615d36d834c83a18eb36",
+      "bytes": 14315
+    },
+    {
+      "path": "server/__tests__/successionDivergence.test.mjs",
+      "sha256": "826c2e252e4c6331a3ec64d7ad888c4c02c1bae802b2dc5c0f5fca43ef125470",
+      "bytes": 4183
+    },
+    {
+      "path": "server/__tests__/successionScenarios.test.mjs",
+      "sha256": "051c9ca38d22b514371e5586bec0f9a2f0ced4879c983442cd6cad7d5bb2f692",
+      "bytes": 7646
+    },
+    {
+      "path": "server/__tests__/successorDirection.test.mjs",
+      "sha256": "0494e8caa26f872db134a46dac606f0d1b3253ae52e6fed1020ae34f34bbd7d0",
+      "bytes": 20920
+    },
+    {
+      "path": "server/__tests__/thienCoBaoV2.test.mjs",
+      "sha256": "da404decb99f48ae4bbef17f31cf459f75dc228ad05533e1dc6ef217d5802731",
+      "bytes": 8117
+    },
+    {
+      "path": "server/__tests__/uiRefinementApprovedEdits.mjs",
+      "sha256": "7092865e14bd9c52e35aa70883ac7f91dbc10e6ff6fefd5ed6404e5e6a533653",
+      "bytes": 3163
+    },
+    {
+      "path": "server/__tests__/uiRefinementPhaseA.test.mjs",
+      "sha256": "1f01b2f6ab20f436aceb0cc10ab7a3c4f04565c1a4fd797d359af016f3aa7b1d",
+      "bytes": 5015
+    },
+    {
+      "path": "server/api/actions.js",
+      "sha256": "a88f7591a423a04903842fd2163f033dc223ec35b511bf68f8c261f92004a413",
+      "bytes": 42574
+    },
+    {
+      "path": "server/api/routes.js",
+      "sha256": "830fe90d682058b5af20a86f5bdb977d9e74ba6811cb004bfac17ed169ef955b",
+      "bytes": 5135
+    },
+    {
+      "path": "server/db/connection.js",
+      "sha256": "dfd2fb0418a5895a73960bf2ef70299e5006df4a3d91898b43f8db94b39014d3",
+      "bytes": 1397
+    },
+    {
+      "path": "server/db/indexes.js",
+      "sha256": "09e9a9762b59079ccc2ba8af919143f5b32239bfa86132ef52e40d3daf3a48c8",
+      "bytes": 6385
+    },
+    {
+      "path": "server/engine/runner.js",
+      "sha256": "4d01984df8551f3b4be96a4bca2e03d55a85038dafd39299a84b1b7f123a7a9f",
+      "bytes": 9295
+    },
+    {
+      "path": "server/index.js",
+      "sha256": "38900ca82501c178621ed1a71708ebe9727e82de0f7113392334843aa6a72a73",
+      "bytes": 3983
+    },
+    {
+      "path": "server/migration/migrateSaveToMongo.js",
+      "sha256": "db3eaf0f1d8b25e09ebb85b8a56f7c56b8b9b3dde998c38114777449111358e9",
+      "bytes": 5883
+    },
+    {
+      "path": "server/migration/verifyMigration.js",
+      "sha256": "727f896b1dbd476d82cb941f504ce7b91bf55826db0b373440f77a55b984178c",
+      "bytes": 4402
+    },
+    {
+      "path": "server/repositories/AiSectRepository.js",
+      "sha256": "ddf35927ea4c54f98d5b6d39d49346a6df4161799c7380d4b3e75603c946bc21",
+      "bytes": 860
+    },
+    {
+      "path": "server/repositories/BaseRepository.js",
+      "sha256": "9515770a5fbbbb70d5143fae3a84eeab64cf6487b2fcc664bffc2c4999ffb780",
+      "bytes": 3458
+    },
+    {
+      "path": "server/repositories/ChronicleRepository.js",
+      "sha256": "220bd9792602c5c58296c267c0126fe3d54b8e4875b6e2388fe602cde403e33d",
+      "bytes": 2670
+    },
+    {
+      "path": "server/repositories/DiscipleRepository.js",
+      "sha256": "17133c3edf73c228d946fdb99fd91f65cdece6c9f0741046d9c8676c8c8c6b65",
+      "bytes": 1684
+    },
+    {
+      "path": "server/repositories/FamilyRepository.js",
+      "sha256": "82a100fe226515b4b75a4c8085d3c5a2917c3cc8d78748a76c65de22d1ff0f8f",
+      "bytes": 1103
+    },
+    {
+      "path": "server/repositories/GameRepository.js",
+      "sha256": "ff5e8db149b9167479cac51e42f8272e42f41ecdeda1e677e94e519249bcf53c",
+      "bytes": 2561
+    },
+    {
+      "path": "server/repositories/index.js",
+      "sha256": "a8360c92cd911e508c7093b3581efb621745cc01dc9f9a6d6165af05558186f5",
+      "bytes": 1517
+    },
+    {
+      "path": "server/repositories/LegacyRepository.js",
+      "sha256": "9287ade6483751de65e9eeceb57eaee22f58c3354f64087e2ba846e9b14a0c4e",
+      "bytes": 1582
+    },
+    {
+      "path": "server/repositories/ManualRepository.js",
+      "sha256": "e1d06158b6d5280dc81b889561d09ef752cea4967cf4d5ad123e03aa46fd958a",
+      "bytes": 1042
+    },
+    {
+      "path": "server/repositories/NationRepository.js",
+      "sha256": "874fb5bdf40d34740de2992f89ca60613f2fe3e97fbad9a3fe62300ce25e811f",
+      "bytes": 1280
+    },
+    {
+      "path": "server/repositories/RelationshipRepository.js",
+      "sha256": "7175f867175c49fd5e62d45d842317542b73c49df432365bfed635225e542516",
+      "bytes": 1688
+    },
+    {
+      "path": "server/repositories/RuinRepository.js",
+      "sha256": "b235930732c42bb87b93d4e72e105df53669330e523a41623b0100e9bc5b7402",
+      "bytes": 1388
+    },
+    {
+      "path": "server/repositories/SnapshotRepository.js",
+      "sha256": "f593983d5386fd60644c09b6ce6962d35fd2d47bc3632ab3734a6339d4a6e6e6",
+      "bytes": 1152
+    },
+    {
+      "path": "server/repositories/WorldEventRepository.js",
+      "sha256": "69f33762077c4c1c1b156942f670e647a348ce86c30592ca45fe6dd9e32a856b",
+      "bytes": 2708
+    },
+    {
+      "path": "server/scripts/__pycache__/uiAuditCapture.cpython-310.pyc",
+      "sha256": "24a3dc090e227db4baba2d1e7af70cda1a76b5eda538c2735c35bb8d2328e163",
+      "bytes": 22296
+    },
+    {
+      "path": "server/scripts/__pycache__/uiDaiDienCapture.cpython-310.pyc",
+      "sha256": "d3ad54a7218b129c857990dc2195b8b3e6471abb76fc948b2ac80deeb6001cbc",
+      "bytes": 13451
+    },
+    {
+      "path": "server/scripts/__pycache__/uiPhase1Qa.cpython-310.pyc",
+      "sha256": "b2f274a8105e4a11ac9d897716ddaa2ce898f012b3653126188970342d666b03",
+      "bytes": 21197
+    },
+    {
+      "path": "server/scripts/__pycache__/uiPhaseAQa.cpython-310.pyc",
+      "sha256": "fb7b2f0844889873824cf68b42b0e95a0018d96cc42a4ca6ea7817949f147a0b",
+      "bytes": 19976
+    },
+    {
+      "path": "server/scripts/__pycache__/uiShuiMoQa.cpython-310.pyc",
+      "sha256": "c0c82291e02d5651c3c023a5a9eda7655dbc56eabd0b3d9458a802f6e7edd71a",
+      "bytes": 18105
+    },
+    {
+      "path": "server/scripts/__pycache__/uiStickyQa.cpython-310.pyc",
+      "sha256": "36df46ab7511b1791e8ad750a553481137cc427cddebe9ae88f5b49b10ea33cf",
+      "bytes": 12134
+    },
+    {
+      "path": "server/scripts/_calendar_phase13_pacing.json",
+      "sha256": "c543d15bfcd47369d96c160eb74e7896daff95719f0a32236c9096e99e558a2a",
+      "bytes": 20106
+    },
+    {
+      "path": "server/scripts/_depth_ux_gid.txt",
+      "sha256": "d5467b4123de7b5cc79c4ab7cd5bad4cc27722494adbd67454c4f03b371926d1",
+      "bytes": 13
+    },
+    {
+      "path": "server/scripts/_economy_phase16_results.json",
+      "sha256": "3e312313632ded3cbf7fe889c54c00c03062b010b754fc67a5f1652af6e5a410",
+      "bytes": 720513
+    },
+    {
+      "path": "server/scripts/_economy_phase16_sensitivity.json",
+      "sha256": "632c70edf02f6fbc170247f0a911bac8f197c0ec527199430660779b5c3ca91d",
+      "bytes": 49804
+    },
+    {
+      "path": "server/scripts/_economy_phase2_npm_test.txt",
+      "sha256": "de48ef0b4c851c96382c87a85c40bec015b90216b1bb1b3952ee6cce4fef0a01",
+      "bytes": 170266
+    },
+    {
+      "path": "server/scripts/_economy_phase2_qa_seed.json",
+      "sha256": "f2c218070bd00bcb02e135ab9201cdddd08624fac2d2fa0de90ab306ea2f54ce",
+      "bytes": 344
+    },
+    {
+      "path": "server/scripts/_economy_phase2_sim.json",
+      "sha256": "8fc12206cad06aab9ebb2df86969d890e6aa34fab62b4047f82b7bcc3b35b5b7",
+      "bytes": 219497
+    },
+    {
+      "path": "server/scripts/_five_peaks_phase17_comparison.json",
+      "sha256": "a6d3ba153be5930403c5578150ad95715a3484a188594303006beadc72ab9a6f",
+      "bytes": 4044
+    },
+    {
+      "path": "server/scripts/_midgame_phase15_sim.json",
+      "sha256": "b7fb67205a2d4f712b43d234ae527479ca48ccd7e620b2180f3337fc3cc8fdf2",
+      "bytes": 106757
+    },
+    {
+      "path": "server/scripts/_mission_phase4_npm_test.txt",
+      "sha256": "073559b551a376bc05304c20e42f9dd1e85f4fb2095fc9bf1e9c7026155643b0",
+      "bytes": 173152
+    },
+    {
+      "path": "server/scripts/_mission_phase4_qa.json",
+      "sha256": "c04547758a027f9460d75ebdfde295352e2b1474e6a3e3ef2eddd5a927a97807",
+      "bytes": 265
+    },
+    {
+      "path": "server/scripts/_mission_phase4_sim.json",
+      "sha256": "e390ece7241bdbba67d962cfed50050d912810b70fe4d2ffa8b32beb644fcc16",
+      "bytes": 19486
+    },
+    {
+      "path": "server/scripts/_mission_phase5_perf.json",
+      "sha256": "f6c8f5b8cf9ea4b38c88b588f157b933fb9ba7305cff901eac733845e136ad2f",
+      "bytes": 7689
+    },
+    {
+      "path": "server/scripts/_mission_phase5_perf_before.json",
+      "sha256": "150289de0c992718601effa6758e9c41e7b17773d6897c82fdeec127a24b123a",
+      "bytes": 7684
+    },
+    {
+      "path": "server/scripts/_mission_phase5_qa.json",
+      "sha256": "bac03c72eeeb848d11784c00a8963231b0d71595649ab5abab93e2524cf451b0",
+      "bytes": 191
+    },
+    {
+      "path": "server/scripts/_pacing_phase14_experiment.json",
+      "sha256": "462c6e26bc0631fd13d5237bf278a252ebedb836c0dcc3774085a9bf2c152b3b",
+      "bytes": 20257
+    },
+    {
+      "path": "server/scripts/_player_phase7_qa.json",
+      "sha256": "02eb5f57f03953c4c624640e42290a211f37cef37387544e7f92b91455f43c33",
+      "bytes": 426
+    },
+    {
+      "path": "server/scripts/_playtest_out.json",
+      "sha256": "8411d61f52e7c98ccb127417c31c020bfdb15399f3aa07938a0982312bddb4b2",
+      "bytes": 8020
+    },
+    {
+      "path": "server/scripts/_playtest_phase10_longrun.json",
+      "sha256": "d211f4db4045a9bbb1b6fa69fd470986e885ebc8fb83ff828e6394f5b2399e31",
+      "bytes": 4695
+    },
+    {
+      "path": "server/scripts/_progression_sim.json",
+      "sha256": "586fb8259bfa3ec7f6cd3367a5df2abc36260756f93b21be8b043ae759fcc56b",
+      "bytes": 40404
+    },
+    {
+      "path": "server/scripts/_sect_operations_sim.json",
+      "sha256": "4b8630ac5e354f5d9366f482fa09814b4100db36c54f8211d2f3d7baf72acc39",
+      "bytes": 32731
+    },
+    {
+      "path": "server/scripts/_sect_ops_phase3_npm_test.txt",
+      "sha256": "2a0cc4adae62a1060880e80cc982f49474057b846ce7ba5f9d791980c30135e6",
+      "bytes": 171706
+    },
+    {
+      "path": "server/scripts/_sect_ops_phase3_qa.json",
+      "sha256": "1f4bcdb76ba383405fa15476cb9f117392e3e1094f0dae4df151b9f7b12c3078",
+      "bytes": 659
+    },
+    {
+      "path": "server/scripts/_state_phase6_growth.json",
+      "sha256": "459762e802167bb304f998bf8085734d347d943eab553245b3593c9bfe4c065f",
+      "bytes": 7075
+    },
+    {
+      "path": "server/scripts/_state_phase6_qa.json",
+      "sha256": "2765a9a505156519139cb2b22750ec83f5e3e121a6c0d0bb08043247521d5607",
+      "bytes": 246
+    },
+    {
+      "path": "server/scripts/_strategy_phase11_sim.json",
+      "sha256": "bae8fee676d956ee446007bd75e8dae523a6fe575bb0c7a1179c1c756840ce69",
+      "bytes": 55451
+    },
+    {
+      "path": "server/scripts/_strategy_phase12_checkpoints.json",
+      "sha256": "2ee89dcadc317ddc8b851dd050ed18491114abc305910f3c083ca604cf4d7a11",
+      "bytes": 47688
+    },
+    {
+      "path": "server/scripts/_ux_game_id.txt",
+      "sha256": "a9ea2c6e1cf22616e3c01f3811051ccd0e4b00e96ddf896a1f84132da239b056",
+      "bytes": 13
+    },
+    {
+      "path": "server/scripts/abDivergenceTest.js",
+      "sha256": "1623e3af5d73cd507e1a219837d54ee7c5a40bcbe277d19461ecca9311fbbbcc",
+      "bytes": 8757
+    },
+    {
+      "path": "server/scripts/aspirationApiTest.js",
+      "sha256": "d8921642800efb9576cbaa6c703e9e13c1fa0603cb7f500cb65c1a7486b10073",
+      "bytes": 10294
+    },
+    {
+      "path": "server/scripts/auditIndexes.js",
+      "sha256": "823a9be7fbe65875674fc1a4d821f8666bd6c73af64effda52b07088f307f228",
+      "bytes": 1795
+    },
+    {
+      "path": "server/scripts/benchmarkServer.js",
+      "sha256": "ee932ddb690debaad928f940e5ec9bca1c3dcf66de67faeaafba99353c49c51d",
+      "bytes": 4574
+    },
+    {
+      "path": "server/scripts/calendarPhase13PacingSim.js",
+      "sha256": "ed23d9abda3dc8cf86d2441b3ae8861f3e97722e9f7b9ff2e5886042cfa934cf",
+      "bytes": 5941
+    },
+    {
+      "path": "server/scripts/calendarPhase13QaSeed.js",
+      "sha256": "197a234c627a390adc3d4f6e8de357fe412e656cf5c8c5ea605ee0081dab83fa",
+      "bytes": 3880
+    },
+    {
+      "path": "server/scripts/concurrencySuite.js",
+      "sha256": "cdb9bf983af612e16d1e512084e569422086d15c631f6347b10b3207bfdd260d",
+      "bytes": 5199
+    },
+    {
+      "path": "server/scripts/concurrentActionTest.js",
+      "sha256": "364f750c0d96073c678d31edc37547ab28f9f8dd8ee7d5bdd32555236b9677e9",
+      "bytes": 2784
+    },
+    {
+      "path": "server/scripts/crashBoundaryTest.js",
+      "sha256": "3eee1ce512770e9ed5a38dee73da410db866642884b8e5a563c6aef755d47bbc",
+      "bytes": 6132
+    },
+    {
+      "path": "server/scripts/createIndexes.js",
+      "sha256": "72d9347760a0dfdbc4a7668ea26928eedbbb7362e354fd0c26f0b1405af6c99d",
+      "bytes": 350
+    },
+    {
+      "path": "server/scripts/ddContactSheet.py",
+      "sha256": "2c693506da3bce0d2c36c0a91651893a92ede755847287ae52b17abdeeb881f3",
+      "bytes": 9773
+    },
+    {
+      "path": "server/scripts/ddContactSheetRefine.py",
+      "sha256": "4ef5e8ede2552ea4020d5d2c14e2727bcea0c58ee9654d2a2bef5bbd38e14fe5",
+      "bytes": 4866
+    },
+    {
+      "path": "server/scripts/diedDayAudit.js",
+      "sha256": "98f874261a93668db4a3b3cb8799bf29458b2512e2c88f139634f59f405dc46b",
+      "bytes": 4350
+    },
+    {
+      "path": "server/scripts/diedDayRestartFixture.js",
+      "sha256": "3299cc973787d0dc25251f6ab4206faf51640430e51d01c17faac8bd178c24ec",
+      "bytes": 2694
+    },
+    {
+      "path": "server/scripts/economyPhase16Experiment.js",
+      "sha256": "7a9a126ef4bb6d6227d38e51ed42f574038461bef02088ec4b3ffc584192c6e7",
+      "bytes": 10390
+    },
+    {
+      "path": "server/scripts/economyPhase16Report.py",
+      "sha256": "5fc6b32c7468c603f38f6d00491c346f706a35c2eac895b69a6c0e115059d308",
+      "bytes": 41085
+    },
+    {
+      "path": "server/scripts/economyPhase2QaSeed.js",
+      "sha256": "c3c3409332a59c2a6e6717867bdf0a7ac34bcd67c39c4509275e610153249811",
+      "bytes": 3513
+    },
+    {
+      "path": "server/scripts/economyPhase2Sim.js",
+      "sha256": "6234e903976faa6f6e6fe5ce1d30e99087e13bda7d48a73c2603b3ae5d02513b",
+      "bytes": 9114
+    },
+    {
+      "path": "server/scripts/familyBranchAudit.js",
+      "sha256": "c58bb4ae87ba603c35fc2d323bd3f2ccbaf0477ed49568f6a58bc6c74bd51982",
+      "bytes": 6933
+    },
+    {
+      "path": "server/scripts/familyBranchSyntheticBenchmark.js",
+      "sha256": "c152137a3c48e0f6d0452df52a84d6240dab31eec87a94952939ff7351eccdd2",
+      "bytes": 9024
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase17Design.js",
+      "sha256": "dc2aa08f785b8978df934b9aa2c04deaa91c5120e20b2b5371cbe37f327e1530",
+      "bytes": 5956
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase17QaServer.js",
+      "sha256": "3d55b201e1dd44a2057c90ff68ec4f96641cd892923626c6a7445fb48e11c51a",
+      "bytes": 2078
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase17Report.py",
+      "sha256": "15c77bc98d3ef113d99114f21b4317ebdf80fee35ae9098517284806ec3a0606",
+      "bytes": 34819
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase18Comparison.js",
+      "sha256": "3d3636d784236f01a38afcfbda587b7e737e0106e52a71b95355b81a022d28b7",
+      "bytes": 3205
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase18Fixture.js",
+      "sha256": "e01d6e276b012c103fc26dc6cf1d396786df5a5ffda63f917a209fcfbbf4be2f",
+      "bytes": 803
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase18Mongo.js",
+      "sha256": "c6dfc106fe37ea8e71f832345848aeef683f03ec9431a043df1ef0451901e0aa",
+      "bytes": 7710
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase18QaServer.js",
+      "sha256": "4ec3f8b04753eb25602530d730246653cb4517d628ea7682807ef17738a1b69e",
+      "bytes": 3724
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase18Report.py",
+      "sha256": "19033d879b1116dd264b4a3962d710d6d23e0c4292cee1f83e27dbe77a26fb29",
+      "bytes": 23314
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase19Availability.js",
+      "sha256": "228cef9189d9951ddd51610ee177a28fe801843b94d7b5075de239335aa9cae0",
+      "bytes": 5137
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase19Integrity.js",
+      "sha256": "105387fdc3b142a878b30028f5125e8caac3ffd48012e35e5eada8b5596a98be",
+      "bytes": 6224
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase19Lib.js",
+      "sha256": "5bb236fd6ef1b1ab4ab97d96870b280f08a71d67fe2b178875d19cdfd7c072eb",
+      "bytes": 7938
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase19QaServer.js",
+      "sha256": "ee8792f764868f445dff6378a612526595a9eb40a8c68f63cc2c4b0ed75f262b",
+      "bytes": 5674
+    },
+    {
+      "path": "server/scripts/fivePeaksPhase19Strategies.js",
+      "sha256": "3f0d7ee77850305e546a8c1cf9a5ceb7cced07e3c102b162cc70bb66bad9ec98",
+      "bytes": 15320
+    },
+    {
+      "path": "server/scripts/fivePeaksSlice1Integration.js",
+      "sha256": "65c8e798afe0acfa232375abc2dbe22c014641a469659cedf20f9e8a44f81794",
+      "bytes": 9572
+    },
+    {
+      "path": "server/scripts/fivePeaksSlice2QaSeed.js",
+      "sha256": "1d9bf634aeff3f1549303a763d9d622c175a9f27bde05e86757487bd2e4a572a",
+      "bytes": 2079
+    },
+    {
+      "path": "server/scripts/fivePeaksSlice3QaSeed.js",
+      "sha256": "dc07194f23271f592881cdeb625a94359d569bcb83e65d40c2f3e7384aa8471a",
+      "bytes": 2663
+    },
+    {
+      "path": "server/scripts/fivePeaksSlice4QaSeed.js",
+      "sha256": "6df972a3b0d3c2e726cbde18d2a82a0d7833f9579d0886799d03a69828466994",
+      "bytes": 2895
+    },
+    {
+      "path": "server/scripts/gameIsolationTest.js",
+      "sha256": "2006164fccb2195f5d89947c10745bc0195a5d469a5adbff1f613d3f88bbbb95",
+      "bytes": 3926
+    },
+    {
+      "path": "server/scripts/gameplayDiversityCheck.js",
+      "sha256": "c63cce1e3075189e4d139ab4cd69319a9bfb98fdd0119616e5e58e2f709bf89d",
+      "bytes": 2690
+    },
+    {
+      "path": "server/scripts/gameplayLoopPlaytest.js",
+      "sha256": "8c169c0edd39777cff7ea0baeff998ac3441cf8018115f22a83c6b36cb777532",
+      "bytes": 13423
+    },
+    {
+      "path": "server/scripts/integrityAudit.js",
+      "sha256": "e863c2613b92b3fbf7313839e7caf64f6368594b35ae4ccff9f57f0afd2e0cde",
+      "bytes": 12110
+    },
+    {
+      "path": "server/scripts/itemLifecycleA2QaSeed.js",
+      "sha256": "06db169accb52fceb477138c03cbdd29dcce568b3619dc25e9b9b8933fc10dcd",
+      "bytes": 2542
+    },
+    {
+      "path": "server/scripts/itemLifecycleA3QaSeed.js",
+      "sha256": "3c1e2e4272f78a714e190e1769d8bbdc6ec4ffb270ab1e02bf52e61d794c4d33",
+      "bytes": 3597
+    },
+    {
+      "path": "server/scripts/itemLifecycleA4QaSeed.js",
+      "sha256": "a2b3ca9c87fb8587f8fb01957420d9cd9c1a1a7773eebc450e9d89d545ce860b",
+      "bytes": 2780
+    },
+    {
+      "path": "server/scripts/itemLifecycleA5QaSeed.js",
+      "sha256": "a65d8a86d531406977a3eeaaa99ac5b3deac7acf44ab889825b313573c5a93c2",
+      "bytes": 2888
+    },
+    {
+      "path": "server/scripts/makeSyntheticOldSave.js",
+      "sha256": "c174464ae31d0171d6a3a076fa8c52a0d0c365e4b5871b2c6e871484ee3bd432",
+      "bytes": 1582
+    },
+    {
+      "path": "server/scripts/midgamePhase15QaSeed.js",
+      "sha256": "c8a16498a4dd4fcdbe4efd5401b5b66ac387295d14d555fbf4e3cce7a621e4d4",
+      "bytes": 4274
+    },
+    {
+      "path": "server/scripts/midgamePhase15Sim.js",
+      "sha256": "d933f00ef23124f8b8e1951db2b295410a569d3bf40df0c65829e1c2012c6f64",
+      "bytes": 12096
+    },
+    {
+      "path": "server/scripts/missionPhase4QaSeed.js",
+      "sha256": "1ae58f31ef89dbab003cae44e09772a1159c768090d0be5dadec9c959df71dbc",
+      "bytes": 4378
+    },
+    {
+      "path": "server/scripts/missionPhase4Sim.js",
+      "sha256": "19e9928859e2b15e6391de4c28c9e4cfca4a0e9f112fe453a9f50bc8a203d8d7",
+      "bytes": 5877
+    },
+    {
+      "path": "server/scripts/missionPhase5Perf.js",
+      "sha256": "cb0a3ea14fb24f71e10c31145e1cf9cfc95d659053c63d2fd39ac5e83da7c4c4",
+      "bytes": 7804
+    },
+    {
+      "path": "server/scripts/missionPhase5QaSeed.js",
+      "sha256": "a0cc5755ff3d4e6f92d3d19d239aebedd46d24dd7fc4454475e059db911f4365",
+      "bytes": 4761
+    },
+    {
+      "path": "server/scripts/orphanRelationshipAudit.js",
+      "sha256": "54ce05a5a6691b98c4fe32d4e82e09af56e9d4c32e0c4a6b08f94709da193ba9",
+      "bytes": 3607
+    },
+    {
+      "path": "server/scripts/orphanRelationshipHardKillFixture.js",
+      "sha256": "f2a2e54c752166a414bc3e67a572cbfe5ee33801bf6b5dd94c2ca48dfc65bae4",
+      "bytes": 4464
+    },
+    {
+      "path": "server/scripts/orphanRelationshipHardKillRestart.js",
+      "sha256": "d855208f984e3c8fc67d1534399ae0e583c38f56db8b89dda91ec91bcf3fb51f",
+      "bytes": 3078
+    },
+    {
+      "path": "server/scripts/outageChronicleTest.js",
+      "sha256": "617f26e967fcd70de6758fea5952d165e6684365c5110ebf2e305a721dd6e000",
+      "bytes": 5000
+    },
+    {
+      "path": "server/scripts/outageHttpTest.js",
+      "sha256": "ac796384817faf26792f2a304cf5a554c264ea08ce011e6ec45714e2e3fe6021",
+      "bytes": 5754
+    },
+    {
+      "path": "server/scripts/outageIdempotencyTest.js",
+      "sha256": "23ab33cb874469eaabb0892c4714792c5753d713a2bbe230181ac419a83e4e8d",
+      "bytes": 7675
+    },
+    {
+      "path": "server/scripts/outageTest.js",
+      "sha256": "bc68c887c2b2ad6bb137dc7195f9520ef253f481034de8a72d0f23f7d71c60dc",
+      "bytes": 9115
+    },
+    {
+      "path": "server/scripts/pacingPhase14Experiment.js",
+      "sha256": "c810f8636fadf9f291d83f460b9aae1cfbd3d921d3f3e57efcede8c36b39e189",
+      "bytes": 7316
+    },
+    {
+      "path": "server/scripts/perfAudit.js",
+      "sha256": "91e6358d6f752ac5cf1212cbdb827bb777b698f5c18efaf706e434c83caaa202",
+      "bytes": 9667
+    },
+    {
+      "path": "server/scripts/personalCausalityApiTest.js",
+      "sha256": "a9b4bbd3ee9b3fa3f05d0a9ceac6c21587f58bf72fc604b32e0215ebdafb7a38",
+      "bytes": 10462
+    },
+    {
+      "path": "server/scripts/playerPhase7QaSeed.js",
+      "sha256": "96937633fa72d1d359fbaff63147aa6dce2699c3d11ae3989ac7107cd654e397",
+      "bytes": 4954
+    },
+    {
+      "path": "server/scripts/playerPhase8QaSeed.js",
+      "sha256": "f9bfa5720801377aa57b1904e4da872f172241980ac9bca5888c9a63b8690462",
+      "bytes": 5050
+    },
+    {
+      "path": "server/scripts/playerPhase9QaSeed.js",
+      "sha256": "d7e79a74c440e2671b84b71524a86dd9f132aff7c971f41527a2402cff909f68",
+      "bytes": 4041
+    },
+    {
+      "path": "server/scripts/playtestPhase10LongRun.js",
+      "sha256": "8ac63eedcdd21b8827da1e6420af063a1fb502decf6ae15e2d1ddde3164e46af",
+      "bytes": 4895
+    },
+    {
+      "path": "server/scripts/playtestPhase10MidgameSeed.js",
+      "sha256": "b597fc7db29cb0c4104be94374622eede7f8a1e512df2929cc1ec4c3497485f0",
+      "bytes": 4798
+    },
+    {
+      "path": "server/scripts/politicalDivergenceTest.js",
+      "sha256": "939e97230fb0b5333fb8919495e486e2b34512d1a8d3a1037c8be960f6498c55",
+      "bytes": 7580
+    },
+    {
+      "path": "server/scripts/progressionSim.js",
+      "sha256": "5341edb9eb26902a8a6b4d7d5fabf313102a66e0c22c33208f6fb7da5c69b449",
+      "bytes": 10318
+    },
+    {
+      "path": "server/scripts/relationshipApiTest.js",
+      "sha256": "b60af50a0d192b2cb2f62d618336ce414dd6e143c5d1c77b4430014ab7ab4957",
+      "bytes": 11012
+    },
+    {
+      "path": "server/scripts/sectOperationsPhase3QaSeed.js",
+      "sha256": "23493916a252e921e75d4bf075853cc5a303a4533d3a242f60a19a517429c48d",
+      "bytes": 2913
+    },
+    {
+      "path": "server/scripts/sectOperationsSim.js",
+      "sha256": "7b36e030780daec38214e4788b58af6d5881bd51058047d8957f95f61d18a728",
+      "bytes": 7594
+    },
+    {
+      "path": "server/scripts/semanticRestartTest.js",
+      "sha256": "fc2a35c482d0ab952f707df6b1dfcab20da40c676c946f752d824958526d1b38",
+      "bytes": 3055
+    },
+    {
+      "path": "server/scripts/statePhase6Growth.js",
+      "sha256": "2e91e9e8e5b1dbb45277a66477691428fe7a044cd9b43d531140489649ce9158",
+      "bytes": 4644
+    },
+    {
+      "path": "server/scripts/statePhase6QaSeed.js",
+      "sha256": "96aef87bae56dd711b93f9def46f423610f36100d2abc8059dbba54764fdd372",
+      "bytes": 3380
+    },
+    {
+      "path": "server/scripts/strategyPhase11QaSeed.js",
+      "sha256": "b77cfbe4166ff00b2c87f2b12b833564854da9b1079947738c74b5ec129c448a",
+      "bytes": 5394
+    },
+    {
+      "path": "server/scripts/strategyPhase11Sim.js",
+      "sha256": "90fc01536c9883a0685a5419accd50014f7e74abc0a503b45d63fd2bdb35ee09",
+      "bytes": 7811
+    },
+    {
+      "path": "server/scripts/strategyPhase12CheckpointSim.js",
+      "sha256": "0a957d66a49e95e38797cc8d9120f1b19f0937e85975dd16713c9b409d36af3d",
+      "bytes": 6229
+    },
+    {
+      "path": "server/scripts/strategyPhase12QaSeed.js",
+      "sha256": "5ab11d23c1682293ed18b731ae012899428356762535543541376c81832a4714",
+      "bytes": 4404
+    },
+    {
+      "path": "server/scripts/studioAssetBridge.js",
+      "sha256": "bffd90886f48464685f70e134a6c123e1ead578ce6d759bc2ae8bad0847aef63",
+      "bytes": 25341
+    },
+    {
+      "path": "server/scripts/studioBridgeBrowserQa.py",
+      "sha256": "ded8cfaad966b14f1c9272190ac8e35334ae932bc128e182d8b8f9bd745ee711",
+      "bytes": 22895
+    },
+    {
+      "path": "server/scripts/studioBridgeQaServer.js",
+      "sha256": "f7c0ae6e85876ed32430bcf82a7e5239c466608869a34641db8720d8ae0185d2",
+      "bytes": 3838
+    },
+    {
+      "path": "server/scripts/studioBridgeRealmQa.py",
+      "sha256": "caba1a662f1d98d1097e87cad1993585411b371571364f39b5bda122b6ad02f0",
+      "bytes": 20504
+    },
+    {
+      "path": "server/scripts/successionRestartFixture.js",
+      "sha256": "82e5891b878c68e21ea1141e66cd09f811a1e1d7359fadd00135e01288d1018c",
+      "bytes": 2489
+    },
+    {
+      "path": "server/scripts/successorDirectionApiTest.js",
+      "sha256": "99bb359d9a23631f5ed5d4d3ff0653c28ba8af0ad67f3baaa5491394942cef64",
+      "bytes": 3647
+    },
+    {
+      "path": "server/scripts/uiAuditCapture.py",
+      "sha256": "34fc0a5dfb6d99a47b7bfb75e1c6f244f9a99ce9e7e7280142365d696605f82e",
+      "bytes": 26051
+    },
+    {
+      "path": "server/scripts/uiAuditQaServer.js",
+      "sha256": "b98ce98e45b4ffcf8ce2ca6554bb8188e3dc61c982f7ca97d3391f3976d09cea",
+      "bytes": 7594
+    },
+    {
+      "path": "server/scripts/uiDaiDienCapture.py",
+      "sha256": "d835003339624d030f8fddb7f6aea9c7eb89f068faa08ab2773c91593dc2e5f2",
+      "bytes": 15090
+    },
+    {
+      "path": "server/scripts/uiPhase1Qa.py",
+      "sha256": "1be111e5d2213dc58dcc5b0779c252ae15cc4a36a27e731a3144f48019083898",
+      "bytes": 24117
+    },
+    {
+      "path": "server/scripts/uiPhaseAQa.py",
+      "sha256": "e5b599d7d44cfdc6472638ad42944722619f98d1cca9775a1895f51fab2edcee",
+      "bytes": 22412
+    },
+    {
+      "path": "server/scripts/uiShuiMoQa.py",
+      "sha256": "2a6c76809d95867c7dc93d08982ac743246d7aae515b9777ad21680a041484b8",
+      "bytes": 20397
+    },
+    {
+      "path": "server/scripts/uiStickyQa.py",
+      "sha256": "e03b1f2e4aa4a464c4599ffc20b7ec9d24ceebaab39b57008c7a2d14e1d1fc91",
+      "bytes": 13224
+    },
+    {
+      "path": "server/scripts/uiTcbCapture.py",
+      "sha256": "2e23c412a37dfd19f70ce517a77fcbcd22004dbdef51ebbd5d6436d7ca98121c",
+      "bytes": 9817
+    },
+    {
+      "path": "server/scripts/uiTcbCloseups.py",
+      "sha256": "6a3a2210b2522b7c63d4cd904c21fadb54dbd58bd84acc1826448ec327e9ac9b",
+      "bytes": 12390
+    },
+    {
+      "path": "server/state/createGame.js",
+      "sha256": "6dc95a4bb5051b101e5a3146e3ae98306d4c3fc67882b45770ace12bcbea06ba",
+      "bytes": 683
+    },
+    {
+      "path": "server/state/deleteGame.js",
+      "sha256": "113821d0570d84f0ed5b3d7cd68930179d56dbe4fda5655719d1244727d66d61",
+      "bytes": 951
+    },
+    {
+      "path": "server/state/dirtyTracker.js",
+      "sha256": "09eef135bbeaec7d8e0b7cbde8baca9050f2f6f402302ee6abd1c006740516f2",
+      "bytes": 5946
+    },
+    {
+      "path": "server/state/envelope.js",
+      "sha256": "9c23101fe1dfc763d3d726bedcfbb7f45d554aa27eb9c9bfc3be66d4fd344d19",
+      "bytes": 1205
+    },
+    {
+      "path": "server/state/eventMapping.js",
+      "sha256": "315b771467991da7d303c087a780ae75e7b8efb4335aa35e49e2a634a504c7f4",
+      "bytes": 3772
+    },
+    {
+      "path": "server/state/hydrate.js",
+      "sha256": "021a677895ec5a632a5888e1fb332a29da0ec222ae1ae8367257fb7d0368e57e",
+      "bytes": 4984
+    },
+    {
+      "path": "server/state/persist.js",
+      "sha256": "6f4c5d75529f5b49c9371951f90aa4dac7b405e7477557d15c75b0177fadbe94",
+      "bytes": 12632
+    },
+    {
+      "path": "assets/avatars/chuong-mon-01.png",
+      "sha256": "039cc2a9617653e3f524e1de82ebe4d26e066503befcebbb9a5daa963e3aca93",
+      "bytes": 170009
+    },
+    {
+      "path": "assets/avatars/chuong-mon-02.png",
+      "sha256": "81447a39d7ee66eb679cbf7ceb30530d8aef42221e4fe1ea1b0af552a7501de0",
+      "bytes": 158100
+    },
+    {
+      "path": "assets/avatars/chuong-mon-03.png",
+      "sha256": "fd147fc0dfcd07075746be2ca1306f35f2e86b6b4c71827113da43ed3e143303",
+      "bytes": 156513
+    },
+    {
+      "path": "assets/avatars/de-tu-01.png",
+      "sha256": "9a50ca4ce24d4a842ed42c5843837844d2ea7adfcbb3e06cd03e8ffa2320dc5f",
+      "bytes": 75266
+    },
+    {
+      "path": "assets/avatars/de-tu-02.png",
+      "sha256": "c2a3320611a490e7585a899fd705d8d695c03632c4fd5773d3820da869ba8203",
+      "bytes": 71593
+    },
+    {
+      "path": "assets/avatars/de-tu-03.png",
+      "sha256": "98be25cc3bce3d72abe115e2dfb2d5b7fb1a64cb71372ac64a2f61c14d7c8416",
+      "bytes": 70649
+    },
+    {
+      "path": "assets/avatars/de-tu-04.png",
+      "sha256": "0329110b4ddfe93ca5b199118bc9d9656e1d8b4a8660387d8540c4fc76475065",
+      "bytes": 70141
+    },
+    {
+      "path": "assets/avatars/de-tu-05.png",
+      "sha256": "1cfd00f7416629583c7cdd30dbd9e4d2b0f036846ba53ac0e5b12a1d59d2b102",
+      "bytes": 76755
+    },
+    {
+      "path": "assets/avatars/de-tu-06.png",
+      "sha256": "c164ffd4de0fd5f5d1f4956e99a7c90b53185d662530d298849fe107589515e7",
+      "bytes": 70317
+    },
+    {
+      "path": "assets/avatars/truong-lao-01.png",
+      "sha256": "63b484c5521e0b9fe443814203063ce1b01349f1f9338a467ee70a9c51f7e7d4",
+      "bytes": 71631
+    },
+    {
+      "path": "assets/avatars/truong-lao-02.png",
+      "sha256": "58bc591c08041fd72399a428b7015c939ca413d07513eb20abfab8c6618d1f86",
+      "bytes": 64895
+    },
+    {
+      "path": "assets/avatars/truong-lao-03.png",
+      "sha256": "def3a2097a89def15ce19cd2e72f930f8452f3aa9d154a1ce8b5d703e855b713",
+      "bytes": 69792
+    },
+    {
+      "path": "assets/avatars/truong-lao-04.png",
+      "sha256": "29350ed612961371a4189968be7ab365da281f60de0d6e6a41a78cf34cf78b2b",
+      "bytes": 68405
+    },
+    {
+      "path": "assets/avatars/truong-lao-05.png",
+      "sha256": "842d1317c14d03c3edbd156a688e1e31629beb167e2c1b119455367e5900afd4",
+      "bytes": 75112
+    },
+    {
+      "path": "assets/avatars/truong-lao-06.png",
+      "sha256": "bfda3dba3d2082940b706c643f6a82d758b6a30b28f28476dfe5f2bc5ac5bb2a",
+      "bytes": 71218
+    },
+    {
+      "path": "assets/factions/am-phong.png",
+      "sha256": "9c625af3d223a02309cfb9410c9b73fcb8e014032a2c29e625cc096aa1b6ddf1",
+      "bytes": 60902
+    },
+    {
+      "path": "assets/factions/dan-phong.png",
+      "sha256": "4a2007cdc2b13f1a4c39f891df8e4f28dcc1ddafa99432247d5e0791e8e0437e",
+      "bytes": 76228
+    },
+    {
+      "path": "assets/factions/duoc-phong.png",
+      "sha256": "a4b54881164aadade20f4239abf2c517c74c272f06b414d40cc95e45ab776901",
+      "bytes": 62024
+    },
+    {
+      "path": "assets/factions/huyet-phong.png",
+      "sha256": "75cf812ed26914502fc514167667b13b225ff8083f50caae6f50bb53e7dc295a",
+      "bytes": 70329
+    },
+    {
+      "path": "assets/factions/khong-che-phong.png",
+      "sha256": "6af01f32be439130271990c3cd871eb1e9d765f289952f8589db8e21f8c69e27",
+      "bytes": 64005
+    },
+    {
+      "path": "assets/factions/khong-gian-phong.png",
+      "sha256": "9e5dfa5a6c106e9bb296245ff7ab12e8019bc1989bb0a787495ebd802ceed290",
+      "bytes": 62989
+    },
+    {
+      "path": "assets/factions/kiem-phong.png",
+      "sha256": "b926943e7758e0296d609ba58183a92bf39d1eedb17a5d72adcbb8b73df25721",
+      "bytes": 71277
+    },
+    {
+      "path": "assets/factions/linh-thu-phong.png",
+      "sha256": "a370fa9755f8f8dfe664e04f479defd2329d4f9bf565694b2f85551a4861a2e2",
+      "bytes": 66855
+    },
+    {
+      "path": "assets/factions/luyen-khi-phong.png",
+      "sha256": "c7c7138a27a47e76e3d38f70e8732e01fd02bd440b51e6c01ef69b8547653c82",
+      "bytes": 64843
+    },
+    {
+      "path": "assets/factions/ngoai-cong-phong.png",
+      "sha256": "0ca146b842569d3117b3e701e5afeaba4798edf3ee35a2ea2e0d99612d86b8a5",
+      "bytes": 62991
+    },
+    {
+      "path": "assets/factions/noi-vu-phong.png",
+      "sha256": "b5a603ee7c46c8a01670c72dc96cc9b5d5d4308695bcbc47d89834223ac6ee59",
+      "bytes": 66092
+    },
+    {
+      "path": "assets/factions/phu-phong.png",
+      "sha256": "0936466ad38ed446ad09a02ee18915f320ee7406a0277a0f5d8c00d8717896c2",
+      "bytes": 73339
+    },
+    {
+      "path": "assets/factions/tai-vat-phong.png",
+      "sha256": "710f10f2fc7bbc07b200dd331e1d87a5a270380748f70f46c3ddc1e0dce0caaa",
+      "bytes": 66611
+    },
+    {
+      "path": "assets/factions/thien-co-phong.png",
+      "sha256": "c97f328f7f7c40faf3f62e1f60819dfea04d503c2eee720457314170c0032858",
+      "bytes": 69012
+    },
+    {
+      "path": "assets/factions/tran-phong.png",
+      "sha256": "bf432d9349024040491ea2c7748ced5a36a397d572cb0fe308fd958c62cdee25",
+      "bytes": 74461
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-400-italic.woff2",
+      "sha256": "1b7f08408cc0cd57b66d99cacc7a0afe41e14bb4f86cfe3e4eea2a4d42f85140",
+      "bytes": 21432
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-400-normal.woff2",
+      "sha256": "03d1b589cff172e1a670b3573e731d3380bc326f80cf83b0d3504e3188e2e074",
+      "bytes": 21168
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-500-normal.woff2",
+      "sha256": "b621f77d35f777023aa11ca524462d511b4b28a813adbc0e9d15a10fc61dfe4e",
+      "bytes": 21892
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-600-normal.woff2",
+      "sha256": "9503dec2a7c532c8331e9600bcafea287a4fd208573b8668d85ab8d8de1863c7",
+      "bytes": 22032
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-700-normal.woff2",
+      "sha256": "a193dd87699bd2e18ddf72dc271493ea82a23dad9f5c334d9f2a257b1e05fc30",
+      "bytes": 22152
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-ext-400-italic.woff2",
+      "sha256": "ce621999bb59487222438a3f3340d7896a4f23623a0885bfb77001d3fa67c0e0",
+      "bytes": 13120
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-ext-400-normal.woff2",
+      "sha256": "f7a2811e471c2973a1179ce39da3ad6bb8082381aa8d1535ccfcbc3d6d78a052",
+      "bytes": 13056
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-ext-500-normal.woff2",
+      "sha256": "947d592eb7676914507ff68fc11fcf2cfdecd6ebaf0fa2af6047f66a63ea7d0f",
+      "bytes": 13548
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-ext-600-normal.woff2",
+      "sha256": "20cc75daeaaaa0fa8af2b616b2de2b2900f0ce14ae8e9faa47d272cedd93827f",
+      "bytes": 13608
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-latin-ext-700-normal.woff2",
+      "sha256": "33d57e5bd840b03921568e08d2be1082d453e55f1ba55f421e41a1aa54e12601",
+      "bytes": 13852
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-OFL-LICENSE.txt",
+      "sha256": "0bd4db1cda123af9d91794b0f98324b7d7d81aef0fcaf78c433160153f2c6f25",
+      "bytes": 6476
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-vietnamese-400-italic.woff2",
+      "sha256": "069ca983654bfedd4a56ee016de5a8f030bc3f8da07497f6ca3522c8a51a0048",
+      "bytes": 11840
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-vietnamese-400-normal.woff2",
+      "sha256": "dc085e2fba3414e5c5bf1e6172f921a9f81c5859946a4ed3d63c1e470d96a9e2",
+      "bytes": 11532
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-vietnamese-500-normal.woff2",
+      "sha256": "86341610cbe907eecf461c9159c168d5efb52bb1a33963813a08f520555d8e66",
+      "bytes": 12172
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-vietnamese-600-normal.woff2",
+      "sha256": "97658c6f9a384f29a3005c3d96e2a0d1c810192cf68979071c290f5a377a9f99",
+      "bytes": 12176
+    },
+    {
+      "path": "assets/fonts/be-vietnam-pro-vietnamese-700-normal.woff2",
+      "sha256": "4f58af2d1c3e28a9ba14c51c82db2751d78344b75bdcb34de24a1031ebe59da6",
+      "bytes": 12468
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-500-italic.woff2",
+      "sha256": "4fb55a7a6d564d428061fe12c82c896264bcc8b7f0b52840bf88e0db5b91256f",
+      "bytes": 23924
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-500-normal.woff2",
+      "sha256": "8197bf53615ddc8c423f444c7f0eec63b7fa0ba093fcfbec60dfdd28429b0fc8",
+      "bytes": 23312
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-600-italic.woff2",
+      "sha256": "0b6719b25266b8f7f0b48e84eb8094db8d243c5b089a5fa48d350bc93f57127b",
+      "bytes": 23784
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-600-normal.woff2",
+      "sha256": "ae062b6d5ae308e7edf61b28b07b9984bbb6e961b1f34d9b2c2f4389c33f21ea",
+      "bytes": 23396
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-700-normal.woff2",
+      "sha256": "21a0fc1c5c22708cf4aa0c147fd32982e25bf9e21efec0ca31a4495ba41753eb",
+      "bytes": 22340
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-ext-500-italic.woff2",
+      "sha256": "e4078de1cff9d0f515515d83cc4ecb8a1ddbaaa86b580bfbcee403d17980b1ed",
+      "bytes": 20388
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-ext-500-normal.woff2",
+      "sha256": "3de1b0f23516d8ff77cc1a5af88b6c19037a375ec52729a8a5633998f58aa609",
+      "bytes": 20200
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-ext-600-italic.woff2",
+      "sha256": "b367d9fced0c6964c5e7deeeb323e0d12ddc7ddc1b406e3c190724c0c71eacb4",
+      "bytes": 20392
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-ext-600-normal.woff2",
+      "sha256": "4993f7f4feb5e31d94f54e3b11428337a06f0c8c8d9ffef331aabd7e6a81b4c8",
+      "bytes": 20304
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-latin-ext-700-normal.woff2",
+      "sha256": "f6cf9ae2417875c056a91df3669b14099da0a004ed66460324208d3541e7fa86",
+      "bytes": 19328
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-OFL-LICENSE.txt",
+      "sha256": "732f37009943e7f4378cf37113c9bcc4716af002a8583511aa91ed5d37683e73",
+      "bytes": 4504
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-vietnamese-500-italic.woff2",
+      "sha256": "ad2e5588e0fddf08cdf133cc1ee72afb84a9b75a246ef1665797497a5f1b14c7",
+      "bytes": 6896
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-vietnamese-500-normal.woff2",
+      "sha256": "f245c41ee20c58be0acd85ac9e3060f8ff9a2dba455892ff37c1e11b9133eda0",
+      "bytes": 6756
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-vietnamese-600-italic.woff2",
+      "sha256": "f9a18e48b7e18b782057e6e12fb98462a209d4d06b8234c9e8ac7f746dec8979",
+      "bytes": 6888
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-vietnamese-600-normal.woff2",
+      "sha256": "5b1d7b7a52c90f436f97008deaf87aba7924bb3cddf1574f11068ff4119c9115",
+      "bytes": 6796
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-vietnamese-700-normal.woff2",
+      "sha256": "212275cd3ee9d6a80d8715fc1ac12920b3f328bfc7d1a6bb15442826675e6186",
+      "bytes": 6228
+    },
+    {
+      "path": "assets/fonts/fonts.css",
+      "sha256": "99abf09b15c50033bc0673470bc42fe457927d04a17aca769a190bbe0293a9a5",
+      "bytes": 10623
+    },
+    {
+      "path": "assets/fonts/SVN-Hottroof-Semhesta.otf",
+      "sha256": "3caf5596b866c51c2695d9956e36ad2ff445d9897a5e2cca1ee67bf9a6c4c905",
+      "bytes": 158816
+    },
+    {
+      "path": "assets/mountain-bg.png",
+      "sha256": "df623d66ee55981906d4787601293e4b6627913d0a149f58fb8946ffa3472262",
+      "bytes": 2429759
+    },
+    {
+      "path": "assets/scroll-frame.png",
+      "sha256": "1e7172a134ae6a8d361c19eabe384663e1801749906dd77c53caaad0bb4f3579",
+      "bytes": 363052
+    },
+    {
+      "path": "assets/studio/.batches/20261017t080543-3016a8.json",
+      "sha256": "263562b83cd6e2fc7c375720f5d7757dad35f6d93db56f2dc57fb92bad689c18",
+      "bytes": 1330
+    },
+    {
+      "path": "assets/studio/.batches/20261017t082559-315bb8.json",
+      "sha256": "8d8e2cb098de71be7f7af0976e419eac03b8b5ee172b2ce73c6e432faa175acc",
+      "bytes": 3149
+    },
+    {
+      "path": "assets/studio/.batches/20261017t090823-065505.json",
+      "sha256": "97b13e2e506f5a17013714013d4a6af1cda3ef5a48111dcb5b6ed8096d8203cd",
+      "bytes": 6581
+    },
+    {
+      "path": "assets/studio/.batches/20261017t093215-6fd55a.json",
+      "sha256": "159576db5fdea55addb4c8d11a94170ab51c3f8c548d8da9c069924aeaa99ff3",
+      "bytes": 11173
+    },
+    {
+      "path": "assets/studio/.batches/20261017t133410-6c844b.json",
+      "sha256": "fa5dc23131bd450d1296f67bdd20895904bb9654fefec5a6608e89c4a37eeb67",
+      "bytes": 12219
+    },
+    {
+      "path": "assets/studio/.batches/20261017t144715-ca7360.json",
+      "sha256": "30f5f6176c641eaac3b485b2e81ebfb71261d667ec12d6dc16bf143646bb0507",
+      "bytes": 14653
+    },
+    {
+      "path": "assets/studio/.batches/20261018t104549-472be2.json",
+      "sha256": "28d2f1fbb43edeef18675508a3782dbdf6eadc8cb199983baae42bc769da10cb",
+      "bytes": 21013
+    },
+    {
+      "path": "assets/studio/.batches/20261018t110620-764a1f.json",
+      "sha256": "be793f4fe3d94f4395e6c5c73eadf04f5b06c537829366c282e1f02de6acfb2c",
+      "bytes": 26995
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-co-nhan-mo-v2_s58814_20261018-174759/background_bicanh-co-nhan-mo-v2_s58814_20261018-174759_orig.webp",
+      "sha256": "17c4b754c82650101f340d24b95de5c9cc0a5c6cba3432c049088526fdfff119",
+      "bytes": 63038
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-co-nhan-mo-v2_s58814_20261018-174759/provenance.json",
+      "sha256": "bc52a819e9f2c6d1aef6527de9e359f689d9cb8934b011ec9cb57082683a2a98",
+      "bytes": 4327
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-co-phat_s58104_20261018-170136/background_bicanh-co-phat_s58104_20261018-170136_orig.webp",
+      "sha256": "9fd3b23cfeffaf9ac6270a054de69f1590892e146ec64d55d9927fca807503e0",
+      "bytes": 46562
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-co-phat_s58104_20261018-170136/provenance.json",
+      "sha256": "ba7ae8ada6c83483a0cb60a41091e0483065321fd849ed58c7c198555f2ef5c7",
+      "bytes": 3941
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-di-hoa-xuat-hien_s58603_20261018-171834/background_bicanh-di-hoa-xuat-hien_s58603_20261018-171834_orig.webp",
+      "sha256": "7e66d75cdb6bca495d7a51976087a07bc5d4c4eb1841d223c58b02de5d7968c1",
+      "bytes": 31402
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-di-hoa-xuat-hien_s58603_20261018-171834/provenance.json",
+      "sha256": "25945a9b66e7eda3132c4e4b380dc7e3b30425ef798e054bdaf0fa369042c215",
+      "bytes": 3999
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-hong-hoang-di-tich_s58402_20261018-171050/background_bicanh-hong-hoang-di-tich_s58402_20261018-171050_orig.webp",
+      "sha256": "42765189a27c6374e3c8fb87dce33b6dde8dd671af547d861946e231636b1b27",
+      "bytes": 18946
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-hong-hoang-di-tich_s58402_20261018-171050/provenance.json",
+      "sha256": "5eaee0d5ad2713e80aaea64a54e7f04ee6c96df778c106bd2ea6b80edabd7f9e",
+      "bytes": 4026
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-long-mach-thuc-tinh_s58502_20261018-171418/background_bicanh-long-mach-thuc-tinh_s58502_20261018-171418_orig.webp",
+      "sha256": "f0d4ddb33bbdf9e8d51b9bc4e2d92eae65e2615d5b895b96aca7574ad6316a1a",
+      "bytes": 33822
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-long-mach-thuc-tinh_s58502_20261018-171418/provenance.json",
+      "sha256": "65fed959978be7d3544d356de6ae10dac7a9c158c96f5c40b18a6e3d6c2c19c5",
+      "bytes": 4028
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-ma-ton-chuyen-sinh_s58702_20261018-172120/background_bicanh-ma-ton-chuyen-sinh_s58702_20261018-172120_orig.webp",
+      "sha256": "9ed9469b84a6573c56fc904a726b70931a5ba3137edcf815891735af38521793",
+      "bytes": 42780
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-ma-ton-chuyen-sinh_s58702_20261018-172120/provenance.json",
+      "sha256": "f5391433639a4cb7df1c2ae19bdcca24692c048fa0572298817db9d0378df1eb",
+      "bytes": 4010
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-ma-ton-mo_s58203_20261018-170430/background_bicanh-ma-ton-mo_s58203_20261018-170430_orig.webp",
+      "sha256": "f4e30123c67b1f19aa4e0fa57d52efe31ac98706a83309bc6c3b5ef607fe1a35",
+      "bytes": 37508
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-ma-ton-mo_s58203_20261018-170430/provenance.json",
+      "sha256": "96a8f5eb1ab1a895126bb3c32e6270fe5b389748c4667f457711873b8eb876b5",
+      "bytes": 3951
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-thien-long_s58003_20261018-165719/background_bicanh-thien-long_s58003_20261018-165719_orig.webp",
+      "sha256": "a936c8b9410b9a5b6a998fb2210464e1e70867d6269e374f26605aab23b50d13",
+      "bytes": 41164
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-thien-long_s58003_20261018-165719/provenance.json",
+      "sha256": "5688cb609c98fa2e0e0d917bd4501f41dbb1c49c0b1a1e78c856d4c4a9421b24",
+      "bytes": 4026
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-thien-ngoai-tien-phu_s58305_20261018-170928/background_bicanh-thien-ngoai-tien-phu_s58305_20261018-170928_orig.webp",
+      "sha256": "796393eb07514fb60dbf010824c7bf5f227b33c69c01fcc8542685539fc41e9c",
+      "bytes": 38872
+    },
+    {
+      "path": "assets/studio/backgrounds/background_bicanh-thien-ngoai-tien-phu_s58305_20261018-170928/provenance.json",
+      "sha256": "b1f87c4616bf0cc2b894ab5d292b5ca85037a7c3fc2420cb260284d6f0952c24",
+      "bytes": 4019
+    },
+    {
+      "path": "assets/studio/characters/ha-viem_portrait_portrait_s57104_20261017-210742/ha-viem_portrait_portrait_s57104_20261017-210742_256.webp",
+      "sha256": "aca90d7ecad85d6f0e259e05cf83935eab38c7f16a8bc3594c791e768fb9dbd5",
+      "bytes": 17486
+    },
+    {
+      "path": "assets/studio/characters/ha-viem_portrait_portrait_s57104_20261017-210742/provenance.json",
+      "sha256": "74749298961982acd659579467287b5f1b16dac26c40193f13a2d016796d6747",
+      "bytes": 4458
+    },
+    {
+      "path": "assets/studio/characters/lu-han_portrait_portrait_s57001_20261017-210457/lu-han_portrait_portrait_s57001_20261017-210457_256.webp",
+      "sha256": "6f53c6049df0964c1996895a5957ccf34498e9b8d348cbfcb33f1371c61a2a5d",
+      "bytes": 14702
+    },
+    {
+      "path": "assets/studio/characters/lu-han_portrait_portrait_s57001_20261017-210457/provenance.json",
+      "sha256": "cf5a298f20c5ee715b4daeddbc0081ac4d199cfe22d89e0f67e51d2962e098be",
+      "bytes": 4299
+    },
+    {
+      "path": "assets/studio/characters/mac-huyet_portrait_portrait_s57305_20261017-211241/mac-huyet_portrait_portrait_s57305_20261017-211241_256.webp",
+      "sha256": "e76d798d78a546bd1ed66300aa4f67f349d31a48ea2e5e36c55ec00157367e10",
+      "bytes": 14590
+    },
+    {
+      "path": "assets/studio/characters/mac-huyet_portrait_portrait_s57305_20261017-211241/provenance.json",
+      "sha256": "c1f1e94e742d8ef59a437c2559de79ab952af89ef3d317f9044fe775e02f4f59",
+      "bytes": 4472
+    },
+    {
+      "path": "assets/studio/characters/thach-quan_portrait_portrait_s57202_20261017-210858/provenance.json",
+      "sha256": "68a39d384da00b9cb809591032f3aed563c9da009517f981008fc0afc35ece73",
+      "bytes": 4491
+    },
+    {
+      "path": "assets/studio/characters/thach-quan_portrait_portrait_s57202_20261017-210858/thach-quan_portrait_portrait_s57202_20261017-210858_256.webp",
+      "sha256": "8a1176de8ee4d33a5d309a271659000d8b53ab0c6c71e5f1c0cf2120d82c45f3",
+      "bytes": 15040
+    },
+    {
+      "path": "assets/studio/characters/tieu-van_portrait_portrait_s51002_20261016-213808/provenance.json",
+      "sha256": "770f9dd4d5808bac30f1d35677b884067934ff6e94ca85e1ba6bbb310cc6afb5",
+      "bytes": 3952
+    },
+    {
+      "path": "assets/studio/characters/tieu-van_portrait_portrait_s51002_20261016-213808/tieu-van_portrait_portrait_s51002_20261016-213808_256.webp",
+      "sha256": "11157b9657b1b743f4804bc0a6beb3e7df6761db5d582de2defe6a28ab4a67dc",
+      "bytes": 16000
+    },
+    {
+      "path": "assets/studio/items/item_hoi-linh-dan-v2_s56114_20261017-160915/item_hoi-linh-dan-v2_s56114_20261017-160915_128.webp",
+      "sha256": "9de94c57bb482c16273b41c5f3ddf886bc61614a57a46a565c9c9fad9265b2c4",
+      "bytes": 2728
+    },
+    {
+      "path": "assets/studio/items/item_hoi-linh-dan-v2_s56114_20261017-160915/provenance.json",
+      "sha256": "ad0a76593ef910cccd5ce0d720759dcbaf974f58373dbfe99738e21b27250525",
+      "bytes": 4008
+    },
+    {
+      "path": "assets/studio/items/item_huyen-linh-thao-v3_s56224_20261017-163333/item_huyen-linh-thao-v3_s56224_20261017-163333_128.webp",
+      "sha256": "d59c14323a1692da6bcb43a54d89091920c096269735ed7221fbceea902e6ce6",
+      "bytes": 3822
+    },
+    {
+      "path": "assets/studio/items/item_huyen-linh-thao-v3_s56224_20261017-163333/provenance.json",
+      "sha256": "b830db1fb81591d5a75277e45ba75e44377ac8d00d584d5d541a608ea7964cf8",
+      "bytes": 4375
+    },
+    {
+      "path": "assets/studio/items/item_khoang-thach_s56305_20261017-155637/item_khoang-thach_s56305_20261017-155637_128.webp",
+      "sha256": "36e55a0f06fe172086c1e6d10efd41bc330fa261c58bbf12eb8d3fa23f402e43",
+      "bytes": 4946
+    },
+    {
+      "path": "assets/studio/items/item_khoang-thach_s56305_20261017-155637/provenance.json",
+      "sha256": "2b0e4ea21ee3111995e78d912155ea5f7acdcddc713b9dcd885c2f2741e6bc5f",
+      "bytes": 3788
+    },
+    {
+      "path": "assets/studio/items/item_truc-co-dan_s54004_20261017-152200/item_truc-co-dan_s54004_20261017-152200_128.webp",
+      "sha256": "ca3d4be42c214ba4e8fe0e558c032b7fc44b402a210288ffd00fd2a384cc0863",
+      "bytes": 3780
+    },
+    {
+      "path": "assets/studio/items/item_truc-co-dan_s54004_20261017-152200/provenance.json",
+      "sha256": "d859fda90adb93c70653f3206f1fcacae7c5a370eecd820af21e5d495b1421b7",
+      "bytes": 3956
+    },
+    {
+      "path": "assets/studio/items/item_tu-khi-dan_s56003_20261017-154911/item_tu-khi-dan_s56003_20261017-154911_128.webp",
+      "sha256": "095d091f7a3cccb00d5993ddec15a8f00bd7b39fe2243974822b0e5d07590daa",
+      "bytes": 3908
+    },
+    {
+      "path": "assets/studio/items/item_tu-khi-dan_s56003_20261017-154911/provenance.json",
+      "sha256": "d3c022c51bbabdc5d08016294475bc48771c97f992b0d14d5435835ccdb76d21",
+      "bytes": 3836
+    },
+    {
+      "path": "assets/studio/mappings.json",
+      "sha256": "627b612e6834be913e06be4059d110978239239735db0a1db3ac210b70ac87bf",
+      "bytes": 5237
+    },
+    {
+      "path": "assets/studio/registry.json",
+      "sha256": "5d90a733258dc54000a48e22d5e39be245ac82a3d6ed03a90384642035c28126",
+      "bytes": 25236
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_dan-phong-alchemy-hall_s55102_20261017-154213/fantasy_building_dan-phong-alchemy-hall_s55102_20261017-154213_512.webp",
+      "sha256": "ae630adda729a69119a8385e6cf99da30389a3bea64c2f095c724e626ae00378",
+      "bytes": 32128
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_dan-phong-alchemy-hall_s55102_20261017-154213/provenance.json",
+      "sha256": "0990582abb8a911a6b21726617c71ccd40e0e1d3e41109f8d80236917118f5e7",
+      "bytes": 4006
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_huyet-phong-blood-hall_s55305_20261017-154752/fantasy_building_huyet-phong-blood-hall_s55305_20261017-154752_512.webp",
+      "sha256": "9bde3bf9b67668790056af4840e3b7475bb7594bdd68e269f02f7a2367d3c950",
+      "bytes": 25450
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_huyet-phong-blood-hall_s55305_20261017-154752/provenance.json",
+      "sha256": "db5fa5740de3ac5a1ff9167a729222eb8fff898448b0ff8a5a39cb169b68f4c2",
+      "bytes": 3947
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_kiem-phong-sword-pavilion_s55002_20261017-154007/fantasy_building_kiem-phong-sword-pavilion_s55002_20261017-154007_512.webp",
+      "sha256": "e05cf5d81dba837c6ade0e90750efcd24060904d2114566561ad0cbe83202e28",
+      "bytes": 27750
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_kiem-phong-sword-pavilion_s55002_20261017-154007/provenance.json",
+      "sha256": "ec53d4787e877c43a38de0d937e1222e2b759e27b2d7e87ae813210ff3ee0bec",
+      "bytes": 4008
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_phu-phong-talisman-archive_s53001_20261016-214135/fantasy_building_phu-phong-talisman-archive_s53001_20261016-214135_512.webp",
+      "sha256": "f5154eb06add88c6e03903eb17696656a41fe7f1266eb971ffa9a3216e4c867a",
+      "bytes": 42308
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_phu-phong-talisman-archive_s53001_20261016-214135/provenance.json",
+      "sha256": "e7713e62cdadc9d850c0e7f473eddf0a87e2372536df470af56be29ba170a2f1",
+      "bytes": 3680
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_tran-phong-formation-hall_s55204_20261017-154516/fantasy_building_tran-phong-formation-hall_s55204_20261017-154516_512.webp",
+      "sha256": "2579955c039c9798ab98c7cb9039578406ad32acdc4c7d2eaafc1202cefc26c5",
+      "bytes": 30582
+    },
+    {
+      "path": "assets/studio/sect_buildings/fantasy_building_tran-phong-formation-hall_s55204_20261017-154516/provenance.json",
+      "sha256": "77e1a9b0b7a8495f4975878fc2af0eba91cd44f06af6ab5434f31cfe72fd0c38",
+      "bytes": 4086
+    }
+  ],
+  "counts": {
+    "systems": 100,
+    "data": 76,
+    "ui": 28
+  },
+  "modules": {
+    "systems": [
+      "aiSectAI",
+      "ancestorWorship",
+      "apocalypse",
+      "artifactGrant",
+      "ascension",
+      "aspiration",
+      "bloodline",
+      "causality",
+      "chanTruyenSeats",
+      "characterEra",
+      "chronicle",
+      "civilization",
+      "classics",
+      "combat",
+      "consequenceView",
+      "continentalWar",
+      "daiHoiThienHa",
+      "daiKiep",
+      "dataRetention",
+      "destiny",
+      "diplomacy",
+      "disciple",
+      "economyDiagnostics",
+      "elderPolitics",
+      "elders",
+      "eraEndings",
+      "eraManager",
+      "expedition",
+      "factions",
+      "fame",
+      "family",
+      "folklore",
+      "forbiddenGround",
+      "formulas",
+      "foundedPhong",
+      "gacha",
+      "gameLoop",
+      "grandStrategy",
+      "heartDemon",
+      "heavenlyFortune",
+      "heavenlyWill",
+      "historyBook",
+      "inheritance",
+      "innerCouncil",
+      "inventory",
+      "khaoHachRewards",
+      "legendaryDescendants",
+      "legendaryStories",
+      "lineage",
+      "manuals",
+      "manualWar",
+      "missionBoardView",
+      "missionHall",
+      "mythology",
+      "nations",
+      "ngoaiMon",
+      "ngoaiMonFactions",
+      "ngoaiVuc",
+      "pacingExperiment",
+      "peakDemand",
+      "perf",
+      "personalDestiny",
+      "personalOmens",
+      "phiThangGioi",
+      "pilgrimage",
+      "pillUse",
+      "planningHorizon",
+      "pocketWorlds",
+      "production",
+      "progressionHints",
+      "protagonist",
+      "rebellion",
+      "rebelSects",
+      "recruitment",
+      "relationships",
+      "rumors",
+      "save",
+      "sect",
+      "sectOperationsStatus",
+      "sectRanks",
+      "sectRuins",
+      "stateHygiene",
+      "stateRestore",
+      "strategyFeedback",
+      "strategyReview",
+      "succession",
+      "successionCrisis",
+      "territories",
+      "thanhDiaCo",
+      "thanhTuNu",
+      "thienMenhChiTu",
+      "thienTrieu",
+      "tienKieuBang",
+      "tournament",
+      "trialTower",
+      "trueDisciples",
+      "workerAssignment",
+      "worldEngine",
+      "worldHistory",
+      "worldProtagonist"
+    ],
+    "data": [
+      "aiGoals",
+      "ancestorWorship",
+      "bicanhTypes",
+      "bloodlines",
+      "chanTruyen",
+      "classics",
+      "combos",
+      "daiHoiThienHa",
+      "daiKiep",
+      "dataRetention",
+      "destinyQuests",
+      "diplomacyData",
+      "discipleCatalog",
+      "elderAgenda",
+      "elderPolitics",
+      "eraEndings",
+      "eras",
+      "fameTitles",
+      "families",
+      "folklore",
+      "forbiddenGrounds",
+      "grandStrategies",
+      "heartDemon",
+      "heavenlyWillPersonality",
+      "inheritanceTracks",
+      "innerCouncil",
+      "items",
+      "khaoHachRewards",
+      "legendaryDescendants",
+      "legendaryStories",
+      "manuals",
+      "manualWar",
+      "missionTypes",
+      "mountainLayout",
+      "names",
+      "nations",
+      "ngoaiMonFactions",
+      "ngoaiMonPolicy",
+      "ngoaiVuc",
+      "omenTemplates",
+      "personalDestiny",
+      "personalOmens",
+      "phiThangGioi",
+      "phongCatalog",
+      "pilgrimage",
+      "pocketWorldTypes",
+      "portraits",
+      "protagonist",
+      "rarities",
+      "realms",
+      "recipes",
+      "relationships",
+      "rumors",
+      "schools",
+      "sectBuildings",
+      "sectDestiny",
+      "sectFactions",
+      "sectPolicies",
+      "sectRanks",
+      "sectRuins",
+      "sectTiers",
+      "skills",
+      "studioAssetRegistry",
+      "succession",
+      "successionCrisis",
+      "territories",
+      "thanhTuNu",
+      "thienMenhChiTu",
+      "thienTrieu",
+      "tienKieuBang",
+      "tournament",
+      "trialTower",
+      "trueDisciples",
+      "worldMap",
+      "worldProtagonist",
+      "worldThreats"
+    ],
+    "ui": [
+      "ascensionPresentation",
+      "chronicleData",
+      "daiDienSections",
+      "diplomacyPresentation",
+      "helpers",
+      "itemUsability",
+      "modals",
+      "peakDemand",
+      "phongMarks",
+      "powerPresentation",
+      "renderAttention",
+      "renderChronicle",
+      "renderCombat",
+      "renderDaiDien",
+      "renderDiplomacy",
+      "renderDisciples",
+      "renderGacha",
+      "renderGameplayPreview",
+      "renderGovernance",
+      "renderLog",
+      "renderMountain",
+      "renderOperations",
+      "renderPanels",
+      "renderWorld",
+      "renderWorldExperience",
+      "studioAssets",
+      "thienCoBao",
+      "timePresentation"
+    ]
+  },
+  "actions": [
+    {
+      "id": "fulfill_peak_demand",
+      "payloadFields": [
+        "demandId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Hỗ trợ Đan Phong",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "start_upgrade",
+      "payloadFields": [
+        "buildingId"
+      ],
+      "unityUIImplemented": true,
+      "integrationVerified": true,
+      "title": "Nâng cấp kiến trúc",
+      "group": "Sơn môn",
+      "nativeFormRendered": true,
+      "evidence": "Reports/FullPort/MongoRestart.json + NativeRuntime.txt"
+    },
+    {
+      "id": "attempt_breakthrough",
+      "payloadFields": [
+        "discipleId",
+        "pillsUsed"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Đột phá cảnh giới",
+      "group": "Đệ tử",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "attempt_ascension",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phi thăng",
+      "group": "Đệ tử",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "approve_petition",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phê tấu chương Cấm địa",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "gacha_pull",
+      "payloadFields": [
+        "count"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thu đồ tại Thiên Cơ Các",
+      "group": "Đệ tử",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "set_mission_priority",
+      "payloadFields": [
+        "priorityId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ưu tiên nhiệm vụ",
+      "group": "Nhiệm vụ",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "honor_ancestor",
+      "payloadFields": [
+        "discipleId",
+        "type"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thờ phụng Tổ sư",
+      "group": "Truyền thừa",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "set_policy",
+      "payloadFields": [
+        "policyId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban hành thanh quy",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "promote_tier",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thăng hạng tông môn",
+      "group": "Sơn môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "allocate_resources",
+      "payloadFields": [
+        "amounts"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phân bổ Ngũ Phong",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "found_phong",
+      "payloadFields": [
+        "phongId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thành lập Phong",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "set_production_focus",
+      "payloadFields": [
+        "recipeId",
+        "workshop"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ưu tiên chế tác",
+      "group": "Bảo khố",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_recipe_research",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Nghiên cứu đan phương",
+      "group": "Bảo khố",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_allocation_dispute",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xử lý tranh chấp ngân sách",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "appoint_grand_elder",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Bổ nhiệm Đại Trưởng Lão",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "reject_grand_elder",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Từ chối Đại Trưởng Lão",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "appoint_heir",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Lập Thiếu Tông Chủ",
+      "group": "Kế vị",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "reject_heir",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Từ chối người kế vị",
+      "group": "Kế vị",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_war_captive",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xử lý tù binh",
+      "group": "Chiến tranh",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_elder_dispute",
+      "payloadFields": [
+        "side"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phán quyết tranh luận trưởng lão",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "rebellion_accept",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chấp nhận Phong ly khai",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "rebellion_suppress",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Trấn áp phản tông",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "rebellion_compromise",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thỏa hiệp phản tông",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "seek_heavenly_fortune",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Cầu Thiên Cơ",
+      "group": "Thiên hạ",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "start_pilgrimage",
+      "payloadFields": [
+        "discipleId",
+        "typeId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Cử đệ tử hành hương",
+      "group": "Đệ tử",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "activate_linhmach",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Kích hoạt linh mạch",
+      "group": "Sơn môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "assign_job",
+      "payloadFields": [
+        "discipleId",
+        "status"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phân công đệ tử",
+      "group": "Đệ tử",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "force_dai_khao_hach",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Mở Đại Khảo Hạch",
+      "group": "Ngoại môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "cancel_dai_khao_hach",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Hoãn Đại Khảo Hạch",
+      "group": "Ngoại môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "apply_khaohach_kit",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban thưởng khảo hạch tiêu chuẩn",
+      "group": "Ngoại môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "grant_khaohach_item",
+      "payloadFields": [
+        "discipleId",
+        "itemId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban vật phẩm khảo hạch",
+      "group": "Ngoại môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "grant_sect_artifact",
+      "payloadFields": [
+        "discipleId",
+        "itemId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban pháp bảo",
+      "group": "Bảo khố",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "use_sect_pill",
+      "payloadFields": [
+        "discipleId",
+        "itemId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Dùng đan dược",
+      "group": "Bảo khố",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "finish_khaohach_reward",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Kết thúc ban thưởng khảo hạch",
+      "group": "Ngoại môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "teach_manual",
+      "payloadFields": [
+        "discipleId",
+        "manualId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Truyền dạy công pháp",
+      "group": "Truyền thừa",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "set_ngoaimon_policy",
+      "payloadFields": [
+        "policyId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thanh quy ngoại môn",
+      "group": "Ngoại môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "investigate_rumor",
+      "payloadFields": [
+        "rumorId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Điều tra tin đồn",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_rumor",
+      "payloadFields": [
+        "decision",
+        "rumorId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xử lý tin đồn",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_clique_event",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xử lý bè phái ngoại môn",
+      "group": "Ngoại môn",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "equip_skill",
+      "payloadFields": [
+        "discipleId",
+        "skillId",
+        "slot"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Truyền kỹ năng",
+      "group": "Truyền thừa",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "start_sparring",
+      "payloadFields": [
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Tổ chức đấu tập",
+      "group": "Đệ tử",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "confirm_bicanh_squad",
+      "payloadFields": [
+        "bicanhId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chuẩn bị đội hình bí cảnh",
+      "group": "Bí cảnh",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "court_genius",
+      "payloadFields": [
+        "actionId",
+        "geniusId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chiêu dụ thiên tài",
+      "group": "Thiên hạ",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "grant_inheritance",
+      "payloadFields": [
+        "discipleId",
+        "trackId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban truyền thừa",
+      "group": "Truyền thừa",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "start_expedition",
+      "payloadFields": [
+        "continentId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Cử đoàn viễn chinh",
+      "group": "Nhiệm vụ",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "start_dungeon",
+      "payloadFields": [
+        "continentId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chinh phục bí cảnh",
+      "group": "Bí cảnh",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "claim_expedition",
+      "payloadFields": [
+        "expeditionId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Đón đoàn thám hiểm",
+      "group": "Nhiệm vụ",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "diplomacy_action",
+      "payloadFields": [
+        "actionId",
+        "aiSectId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Bang giao tông môn",
+      "group": "Ngoại giao",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "proselytize",
+      "payloadFields": [
+        "targetId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Truyền đạo Ngoại Vực",
+      "group": "Thiên hạ",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "reinforce_chinh_dao",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chi viện chính đạo",
+      "group": "Thiên hạ",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "select_true_disciple",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chọn thân truyền đệ tử",
+      "group": "Truyền thừa",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "finish_true_disciple_selection",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Hoàn tất chọn thân truyền",
+      "group": "Truyền thừa",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_chan_truyen_challenge",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Giải quyết thách đấu chân truyền",
+      "group": "Truyền thừa",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "manual_demand",
+      "payloadFields": [
+        "aiSectId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Đòi lại công pháp",
+      "group": "Ngoại giao",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "manual_buy",
+      "payloadFields": [
+        "aiSectId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Mua công pháp",
+      "group": "Ngoại giao",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "manual_trade",
+      "payloadFields": [
+        "aiSectId",
+        "manualId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Trao đổi công pháp",
+      "group": "Ngoại giao",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "propose_forbidden_ground",
+      "payloadFields": [
+        "groundId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xin mở Cấm địa",
+      "group": "Bí cảnh",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_council_vote",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phê quyết Hội đồng",
+      "group": "Nội chính",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "lobby_succession",
+      "payloadFields": [
+        "candidateId",
+        "voterId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Vận động kế vị",
+      "group": "Kế vị",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "war_skirmish",
+      "payloadFields": [
+        "aiSectId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Tranh đoạt lãnh thổ",
+      "group": "Chiến tranh",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "war_siege",
+      "payloadFields": [
+        "aiSectId",
+        "discipleIds",
+        "method"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Vây thành và phá trận",
+      "group": "Chiến tranh",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "war_final",
+      "payloadFields": [
+        "aiSectId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Quyết chiến tông môn",
+      "group": "Chiến tranh",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "war_outcome",
+      "payloadFields": [
+        "aiSectId",
+        "outcomeId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Đàm phán hậu chiến",
+      "group": "Chiến tranh",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "colonize_pocket_world",
+      "payloadFields": [
+        "discipleIds",
+        "pocketWorldId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Khai phá Tiểu Thế Giới",
+      "group": "Thiên hạ",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "activate_grand_strategy",
+      "payloadFields": [
+        "durationYears",
+        "strategyId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Khởi động Đại Kế",
+      "group": "Đại kế",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "abandon_grand_strategy",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Bãi bỏ Đại Kế",
+      "group": "Đại kế",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_grand_strategy_moment",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Quyết định cơ hội Đại Kế",
+      "group": "Đại kế",
+      "nativeFormRendered": true
+    },
+    {
+      "id": "resolve_successor_direction",
+      "payloadFields": [
+        "choice"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Định hướng người kế vị",
+      "group": "Kế vị",
+      "nativeFormRendered": true
+    }
+  ],
+  "actionCount": 69,
+  "releaseAllowed": false,
+  "status": "native 3D port in progress; APK export blocked",
+  "apkPolicy": "Do not export until full system, action, UI, persistence, 3D mapping and Android device acceptance evidence passes.",
+  "acceptance": {
+    "native3DVerified": false,
+    "allSystemsMapped": false,
+    "allViewsVerified": false,
+    "serverPersistenceVerified": true,
+    "retryAndRestartVerified": true,
+    "realTimeCalendarVerified": false,
+    "androidSourceBuildVerified": false
+  },
+  "requirements": [
+    {
+      "id": "full_reference_mechanics",
+      "description": "Giữ đầy đủ 100 hệ thống luật chơi gốc",
+      "verified": false
+    },
+    {
+      "id": "all_reference_native_interactions",
+      "description": "Kiểm chứng tất cả thao tác và lựa chọn ngữ cảnh trong Unity",
+      "verified": false
+    },
+    {
+      "id": "native_3d_free_building",
+      "description": "Xây tự do nhiều nhà trên bản đồ 3D",
+      "verified": false
+    },
+    {
+      "id": "individual_building_upgrades",
+      "description": "Nâng từng công trình, có tiến độ và hiệu quả",
+      "verified": false
+    },
+    {
+      "id": "endless_day_night_seasons_weather",
+      "description": "Ngày không giới hạn, ngày đêm, bốn mùa và thời tiết",
+      "verified": false
+    },
+    {
+      "id": "hunting_logging_farming",
+      "description": "Săn bắn, chặt cây, trồng trọt và nguồn hữu hạn",
+      "verified": false
+    },
+    {
+      "id": "neighbor_ai_and_armies",
+      "description": "Gắn AI làng và quân đội với thế giới tông môn",
+      "verified": false
+    },
+    {
+      "id": "old_unity_save_preserved_and_migration",
+      "description": "Giữ an toàn và chuyển tiến trình Unity đã có",
+      "verified": false
+    },
+    {
+      "id": "full_mobile_ui_acceptance",
+      "description": "Kiểm tra bố cục và tương tác đầy đủ trên mobile",
+      "verified": false
+    }
+  ],
+  "evidence": {
+    "referenceSuites": 59,
+    "referenceSuitesPassed": 59,
+    "projectionContractsPassed": 58,
+    "nativeFormsRendered": 69,
+    "nativeHallSectionsRendered": 14,
+    "mongoColdRestartPassed": true,
+    "physicalAndroidTested": false
+  },
+  "developmentProgress": {
+    "spatialDomainChecksPassed": 25,
+    "spatialMongoIntegrationChecksPassed": 9,
+    "spatialRealElapsedSeconds": 250,
+    "nativeSpatialUI": "desktop smoke passed; overview, catalog, placement, resource details, building details and authoritative animated worker",
+    "buildableEconomicAndDefenceTypes": 11,
+    "spatialServerActions": 11,
+    "remaining": "Full advanced interactions, native army/neighbor integration, previous save migration, mobile performance and device validation",
+    "spatialServerRestartPreserved": true,
+    "unityChecksPassed": 194,
+    "mobileAcceptanceComplete": false
+  }
+}

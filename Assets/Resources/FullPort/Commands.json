@@ -1,0 +1,699 @@
+{
+  "commands": [
+    {
+      "id": "fulfill_peak_demand",
+      "payloadFields": [
+        "demandId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Hỗ trợ Đan Phong",
+      "group": "Nội chính"
+    },
+    {
+      "id": "start_upgrade",
+      "payloadFields": [
+        "buildingId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Nâng cấp kiến trúc",
+      "group": "Sơn môn"
+    },
+    {
+      "id": "attempt_breakthrough",
+      "payloadFields": [
+        "discipleId",
+        "pillsUsed"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Đột phá cảnh giới",
+      "group": "Đệ tử"
+    },
+    {
+      "id": "attempt_ascension",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phi thăng",
+      "group": "Đệ tử"
+    },
+    {
+      "id": "approve_petition",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phê tấu chương Cấm địa",
+      "group": "Nội chính"
+    },
+    {
+      "id": "gacha_pull",
+      "payloadFields": [
+        "count"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thu đồ tại Thiên Cơ Các",
+      "group": "Đệ tử"
+    },
+    {
+      "id": "set_mission_priority",
+      "payloadFields": [
+        "priorityId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ưu tiên nhiệm vụ",
+      "group": "Nhiệm vụ"
+    },
+    {
+      "id": "honor_ancestor",
+      "payloadFields": [
+        "discipleId",
+        "type"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thờ phụng Tổ sư",
+      "group": "Truyền thừa"
+    },
+    {
+      "id": "set_policy",
+      "payloadFields": [
+        "policyId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban hành thanh quy",
+      "group": "Nội chính"
+    },
+    {
+      "id": "promote_tier",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thăng hạng tông môn",
+      "group": "Sơn môn"
+    },
+    {
+      "id": "allocate_resources",
+      "payloadFields": [
+        "amounts"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phân bổ Ngũ Phong",
+      "group": "Nội chính"
+    },
+    {
+      "id": "found_phong",
+      "payloadFields": [
+        "phongId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thành lập Phong",
+      "group": "Nội chính"
+    },
+    {
+      "id": "set_production_focus",
+      "payloadFields": [
+        "recipeId",
+        "workshop"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ưu tiên chế tác",
+      "group": "Bảo khố"
+    },
+    {
+      "id": "resolve_recipe_research",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Nghiên cứu đan phương",
+      "group": "Bảo khố"
+    },
+    {
+      "id": "resolve_allocation_dispute",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xử lý tranh chấp ngân sách",
+      "group": "Nội chính"
+    },
+    {
+      "id": "appoint_grand_elder",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Bổ nhiệm Đại Trưởng Lão",
+      "group": "Nội chính"
+    },
+    {
+      "id": "reject_grand_elder",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Từ chối Đại Trưởng Lão",
+      "group": "Nội chính"
+    },
+    {
+      "id": "appoint_heir",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Lập Thiếu Tông Chủ",
+      "group": "Kế vị"
+    },
+    {
+      "id": "reject_heir",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Từ chối người kế vị",
+      "group": "Kế vị"
+    },
+    {
+      "id": "resolve_war_captive",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xử lý tù binh",
+      "group": "Chiến tranh"
+    },
+    {
+      "id": "resolve_elder_dispute",
+      "payloadFields": [
+        "side"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phán quyết tranh luận trưởng lão",
+      "group": "Nội chính"
+    },
+    {
+      "id": "rebellion_accept",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chấp nhận Phong ly khai",
+      "group": "Nội chính"
+    },
+    {
+      "id": "rebellion_suppress",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Trấn áp phản tông",
+      "group": "Nội chính"
+    },
+    {
+      "id": "rebellion_compromise",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thỏa hiệp phản tông",
+      "group": "Nội chính"
+    },
+    {
+      "id": "seek_heavenly_fortune",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Cầu Thiên Cơ",
+      "group": "Thiên hạ"
+    },
+    {
+      "id": "start_pilgrimage",
+      "payloadFields": [
+        "discipleId",
+        "typeId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Cử đệ tử hành hương",
+      "group": "Đệ tử"
+    },
+    {
+      "id": "activate_linhmach",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Kích hoạt linh mạch",
+      "group": "Sơn môn"
+    },
+    {
+      "id": "assign_job",
+      "payloadFields": [
+        "discipleId",
+        "status"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phân công đệ tử",
+      "group": "Đệ tử"
+    },
+    {
+      "id": "force_dai_khao_hach",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Mở Đại Khảo Hạch",
+      "group": "Ngoại môn"
+    },
+    {
+      "id": "cancel_dai_khao_hach",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Hoãn Đại Khảo Hạch",
+      "group": "Ngoại môn"
+    },
+    {
+      "id": "apply_khaohach_kit",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban thưởng khảo hạch tiêu chuẩn",
+      "group": "Ngoại môn"
+    },
+    {
+      "id": "grant_khaohach_item",
+      "payloadFields": [
+        "discipleId",
+        "itemId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban vật phẩm khảo hạch",
+      "group": "Ngoại môn"
+    },
+    {
+      "id": "grant_sect_artifact",
+      "payloadFields": [
+        "discipleId",
+        "itemId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban pháp bảo",
+      "group": "Bảo khố"
+    },
+    {
+      "id": "use_sect_pill",
+      "payloadFields": [
+        "discipleId",
+        "itemId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Dùng đan dược",
+      "group": "Bảo khố"
+    },
+    {
+      "id": "finish_khaohach_reward",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Kết thúc ban thưởng khảo hạch",
+      "group": "Ngoại môn"
+    },
+    {
+      "id": "teach_manual",
+      "payloadFields": [
+        "discipleId",
+        "manualId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Truyền dạy công pháp",
+      "group": "Truyền thừa"
+    },
+    {
+      "id": "set_ngoaimon_policy",
+      "payloadFields": [
+        "policyId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Thanh quy ngoại môn",
+      "group": "Ngoại môn"
+    },
+    {
+      "id": "investigate_rumor",
+      "payloadFields": [
+        "rumorId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Điều tra tin đồn",
+      "group": "Nội chính"
+    },
+    {
+      "id": "resolve_rumor",
+      "payloadFields": [
+        "decision",
+        "rumorId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xử lý tin đồn",
+      "group": "Nội chính"
+    },
+    {
+      "id": "resolve_clique_event",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xử lý bè phái ngoại môn",
+      "group": "Ngoại môn"
+    },
+    {
+      "id": "equip_skill",
+      "payloadFields": [
+        "discipleId",
+        "skillId",
+        "slot"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Truyền kỹ năng",
+      "group": "Truyền thừa"
+    },
+    {
+      "id": "start_sparring",
+      "payloadFields": [
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Tổ chức đấu tập",
+      "group": "Đệ tử"
+    },
+    {
+      "id": "confirm_bicanh_squad",
+      "payloadFields": [
+        "bicanhId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chuẩn bị đội hình bí cảnh",
+      "group": "Bí cảnh"
+    },
+    {
+      "id": "court_genius",
+      "payloadFields": [
+        "actionId",
+        "geniusId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chiêu dụ thiên tài",
+      "group": "Thiên hạ"
+    },
+    {
+      "id": "grant_inheritance",
+      "payloadFields": [
+        "discipleId",
+        "trackId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Ban truyền thừa",
+      "group": "Truyền thừa"
+    },
+    {
+      "id": "start_expedition",
+      "payloadFields": [
+        "continentId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Cử đoàn viễn chinh",
+      "group": "Nhiệm vụ"
+    },
+    {
+      "id": "start_dungeon",
+      "payloadFields": [
+        "continentId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chinh phục bí cảnh",
+      "group": "Bí cảnh"
+    },
+    {
+      "id": "claim_expedition",
+      "payloadFields": [
+        "expeditionId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Đón đoàn thám hiểm",
+      "group": "Nhiệm vụ"
+    },
+    {
+      "id": "diplomacy_action",
+      "payloadFields": [
+        "actionId",
+        "aiSectId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Bang giao tông môn",
+      "group": "Ngoại giao"
+    },
+    {
+      "id": "proselytize",
+      "payloadFields": [
+        "targetId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Truyền đạo Ngoại Vực",
+      "group": "Thiên hạ"
+    },
+    {
+      "id": "reinforce_chinh_dao",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chi viện chính đạo",
+      "group": "Thiên hạ"
+    },
+    {
+      "id": "select_true_disciple",
+      "payloadFields": [
+        "discipleId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Chọn thân truyền đệ tử",
+      "group": "Truyền thừa"
+    },
+    {
+      "id": "finish_true_disciple_selection",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Hoàn tất chọn thân truyền",
+      "group": "Truyền thừa"
+    },
+    {
+      "id": "resolve_chan_truyen_challenge",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Giải quyết thách đấu chân truyền",
+      "group": "Truyền thừa"
+    },
+    {
+      "id": "manual_demand",
+      "payloadFields": [
+        "aiSectId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Đòi lại công pháp",
+      "group": "Ngoại giao"
+    },
+    {
+      "id": "manual_buy",
+      "payloadFields": [
+        "aiSectId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Mua công pháp",
+      "group": "Ngoại giao"
+    },
+    {
+      "id": "manual_trade",
+      "payloadFields": [
+        "aiSectId",
+        "manualId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Trao đổi công pháp",
+      "group": "Ngoại giao"
+    },
+    {
+      "id": "propose_forbidden_ground",
+      "payloadFields": [
+        "groundId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Xin mở Cấm địa",
+      "group": "Bí cảnh"
+    },
+    {
+      "id": "resolve_council_vote",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Phê quyết Hội đồng",
+      "group": "Nội chính"
+    },
+    {
+      "id": "lobby_succession",
+      "payloadFields": [
+        "candidateId",
+        "voterId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Vận động kế vị",
+      "group": "Kế vị"
+    },
+    {
+      "id": "war_skirmish",
+      "payloadFields": [
+        "aiSectId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Tranh đoạt lãnh thổ",
+      "group": "Chiến tranh"
+    },
+    {
+      "id": "war_siege",
+      "payloadFields": [
+        "aiSectId",
+        "discipleIds",
+        "method"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Vây thành và phá trận",
+      "group": "Chiến tranh"
+    },
+    {
+      "id": "war_final",
+      "payloadFields": [
+        "aiSectId",
+        "discipleIds"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Quyết chiến tông môn",
+      "group": "Chiến tranh"
+    },
+    {
+      "id": "war_outcome",
+      "payloadFields": [
+        "aiSectId",
+        "outcomeId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Đàm phán hậu chiến",
+      "group": "Chiến tranh"
+    },
+    {
+      "id": "colonize_pocket_world",
+      "payloadFields": [
+        "discipleIds",
+        "pocketWorldId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Khai phá Tiểu Thế Giới",
+      "group": "Thiên hạ"
+    },
+    {
+      "id": "activate_grand_strategy",
+      "payloadFields": [
+        "durationYears",
+        "strategyId"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Khởi động Đại Kế",
+      "group": "Đại kế"
+    },
+    {
+      "id": "abandon_grand_strategy",
+      "payloadFields": [],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Bãi bỏ Đại Kế",
+      "group": "Đại kế"
+    },
+    {
+      "id": "resolve_grand_strategy_moment",
+      "payloadFields": [
+        "decision"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Quyết định cơ hội Đại Kế",
+      "group": "Đại kế"
+    },
+    {
+      "id": "resolve_successor_direction",
+      "payloadFields": [
+        "choice"
+      ],
+      "unityUIImplemented": false,
+      "integrationVerified": false,
+      "title": "Định hướng người kế vị",
+      "group": "Kế vị"
+    }
+  ]
+}

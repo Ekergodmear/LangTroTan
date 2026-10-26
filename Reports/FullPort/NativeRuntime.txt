@@ -1,0 +1,19 @@
+PASS snapshot contains complete server world
+PASS authoritative harvest creates animated native worker
+PASS native spatial overview, catalog, placement ghost and details rendered
+PASS all 69 native decision forms rendered
+PASS native projected hall section chinhvu
+PASS native projected hall section tongphong
+PASS native projected hall section tauchuong
+PASS native projected hall section hoidong
+PASS native projected hall section giapha
+PASS native projected hall section lanhtho
+PASS native projected hall section ngoaigiao
+PASS native projected hall section quocgia
+PASS native projected hall section thiencobao
+PASS native projected hall section khivan
+PASS native projected hall section thienmenh
+PASS native projected hall section biennienthu
+PASS native projected hall section thienhaky
+PASS native projected hall section baokho
+FULL_PORT_RUNTIME_OK

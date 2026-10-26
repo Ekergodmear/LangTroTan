@@ -1,0 +1,332 @@
+{
+  "passed": 58,
+  "tests": [
+    {
+      "view": "mountain",
+      "mature": false,
+      "nodes": 56
+    },
+    {
+      "view": "disciples",
+      "mature": false,
+      "nodes": 23
+    },
+    {
+      "view": "governance",
+      "mature": false,
+      "nodes": 55
+    },
+    {
+      "view": "world",
+      "mature": false,
+      "nodes": 32
+    },
+    {
+      "view": "chronicle",
+      "mature": false,
+      "nodes": 18
+    },
+    {
+      "view": "daidien",
+      "tab": "chinhvu",
+      "mature": false,
+      "nodes": 101
+    },
+    {
+      "view": "daidien",
+      "tab": "tongphong",
+      "mature": false,
+      "nodes": 200
+    },
+    {
+      "view": "daidien",
+      "tab": "tauchuong",
+      "mature": false,
+      "nodes": 29
+    },
+    {
+      "view": "daidien",
+      "tab": "hoidong",
+      "mature": false,
+      "nodes": 29
+    },
+    {
+      "view": "daidien",
+      "tab": "giapha",
+      "mature": false,
+      "nodes": 29
+    },
+    {
+      "view": "daidien",
+      "tab": "lanhtho",
+      "mature": false,
+      "nodes": 89
+    },
+    {
+      "view": "daidien",
+      "tab": "ngoaigiao",
+      "mature": false,
+      "nodes": 145
+    },
+    {
+      "view": "daidien",
+      "tab": "quocgia",
+      "mature": false,
+      "nodes": 54
+    },
+    {
+      "view": "daidien",
+      "tab": "thiencobao",
+      "mature": false,
+      "nodes": 47
+    },
+    {
+      "view": "daidien",
+      "tab": "khivan",
+      "mature": false,
+      "nodes": 37
+    },
+    {
+      "view": "daidien",
+      "tab": "thienmenh",
+      "mature": false,
+      "nodes": 41
+    },
+    {
+      "view": "daidien",
+      "tab": "biennienthu",
+      "mature": false,
+      "nodes": 37
+    },
+    {
+      "view": "daidien",
+      "tab": "thienhaky",
+      "mature": false,
+      "nodes": 163
+    },
+    {
+      "view": "daidien",
+      "tab": "baokho",
+      "mature": false,
+      "nodes": 81
+    },
+    {
+      "view": "operations",
+      "tab": "buildings",
+      "mature": false,
+      "nodes": 33
+    },
+    {
+      "view": "operations",
+      "tab": "policies",
+      "mature": false,
+      "nodes": 24
+    },
+    {
+      "view": "operations",
+      "tab": "resources",
+      "mature": false,
+      "nodes": 58
+    },
+    {
+      "view": "operations",
+      "tab": "inventory",
+      "mature": false,
+      "nodes": 73
+    },
+    {
+      "view": "operations",
+      "tab": "production",
+      "mature": false,
+      "nodes": 67
+    },
+    {
+      "view": "operations",
+      "tab": "recruitment",
+      "mature": false,
+      "nodes": 33
+    },
+    {
+      "view": "operations",
+      "tab": "outer",
+      "mature": false,
+      "nodes": 43
+    },
+    {
+      "view": "operations",
+      "tab": "strategy",
+      "mature": false,
+      "nodes": 100
+    },
+    {
+      "view": "operations",
+      "tab": "assignments",
+      "mature": false,
+      "nodes": 38
+    },
+    {
+      "view": "mountain",
+      "mature": true,
+      "nodes": 58
+    },
+    {
+      "view": "disciples",
+      "mature": true,
+      "nodes": 24
+    },
+    {
+      "view": "governance",
+      "mature": true,
+      "nodes": 59
+    },
+    {
+      "view": "world",
+      "mature": true,
+      "nodes": 37
+    },
+    {
+      "view": "chronicle",
+      "mature": true,
+      "nodes": 40
+    },
+    {
+      "view": "daidien",
+      "tab": "chinhvu",
+      "mature": true,
+      "nodes": 103
+    },
+    {
+      "view": "daidien",
+      "tab": "tongphong",
+      "mature": true,
+      "nodes": 208
+    },
+    {
+      "view": "daidien",
+      "tab": "tauchuong",
+      "mature": true,
+      "nodes": 32
+    },
+    {
+      "view": "daidien",
+      "tab": "hoidong",
+      "mature": true,
+      "nodes": 29
+    },
+    {
+      "view": "daidien",
+      "tab": "giapha",
+      "mature": true,
+      "nodes": 29
+    },
+    {
+      "view": "daidien",
+      "tab": "lanhtho",
+      "mature": true,
+      "nodes": 89
+    },
+    {
+      "view": "daidien",
+      "tab": "ngoaigiao",
+      "mature": true,
+      "nodes": 100
+    },
+    {
+      "view": "daidien",
+      "tab": "quocgia",
+      "mature": true,
+      "nodes": 54
+    },
+    {
+      "view": "daidien",
+      "tab": "thiencobao",
+      "mature": true,
+      "nodes": 65
+    },
+    {
+      "view": "daidien",
+      "tab": "khivan",
+      "mature": true,
+      "nodes": 37
+    },
+    {
+      "view": "daidien",
+      "tab": "thienmenh",
+      "mature": true,
+      "nodes": 41
+    },
+    {
+      "view": "daidien",
+      "tab": "biennienthu",
+      "mature": true,
+      "nodes": 62
+    },
+    {
+      "view": "daidien",
+      "tab": "thienhaky",
+      "mature": true,
+      "nodes": 201
+    },
+    {
+      "view": "daidien",
+      "tab": "baokho",
+      "mature": true,
+      "nodes": 81
+    },
+    {
+      "view": "operations",
+      "tab": "buildings",
+      "mature": true,
+      "nodes": 33
+    },
+    {
+      "view": "operations",
+      "tab": "policies",
+      "mature": true,
+      "nodes": 24
+    },
+    {
+      "view": "operations",
+      "tab": "resources",
+      "mature": true,
+      "nodes": 58
+    },
+    {
+      "view": "operations",
+      "tab": "inventory",
+      "mature": true,
+      "nodes": 74
+    },
+    {
+      "view": "operations",
+      "tab": "production",
+      "mature": true,
+      "nodes": 68
+    },
+    {
+      "view": "operations",
+      "tab": "recruitment",
+      "mature": true,
+      "nodes": 37
+    },
+    {
+      "view": "operations",
+      "tab": "outer",
+      "mature": true,
+      "nodes": 43
+    },
+    {
+      "view": "operations",
+      "tab": "strategy",
+      "mature": true,
+      "nodes": 104
+    },
+    {
+      "view": "operations",
+      "tab": "assignments",
+      "mature": true,
+      "nodes": 45
+    }
+  ],
+  "readOnlyVerified": true
+}

@@ -1,0 +1,89 @@
+PASS server ids preserve integer precision
+PASS Vietnamese text and newline preserved
+PASS nested object array bool null and decimal round trip
+PASS escaped Unicode including surrogate pair
+PASS malformed server JSON rejected: {"x":1,"x":2}
+PASS malformed server JSON rejected: [1,]
+PASS malformed server JSON rejected: 01
+PASS malformed server JSON rejected: 1.
+PASS malformed server JSON rejected: 1e
+PASS malformed server JSON rejected: 1e9999
+PASS malformed server JSON rejected: true x
+PASS malformed server JSON rejected: "bad\n"
+PASS malformed server JSON rejected: {"x":}
+PASS malformed server JSON rejected: [
+PASS all seventy six reference data modules present
+PASS complete initial server snapshot retained without DTO field loss
+PASS inventory locks one hundred server gameplay systems
+PASS all sixty nine server action names match coverage manifest
+PASS native command forms cover all server command ids
+PASS localized command form: fulfill_peak_demand
+PASS localized command form: start_upgrade
+PASS localized command form: attempt_breakthrough
+PASS localized command form: attempt_ascension
+PASS localized command form: approve_petition
+PASS localized command form: gacha_pull
+PASS localized command form: set_mission_priority
+PASS localized command form: honor_ancestor
+PASS localized command form: set_policy
+PASS localized command form: promote_tier
+PASS localized command form: allocate_resources
+PASS localized command form: found_phong
+PASS localized command form: set_production_focus
+PASS localized command form: resolve_recipe_research
+PASS localized command form: resolve_allocation_dispute
+PASS localized command form: appoint_grand_elder
+PASS localized command form: reject_grand_elder
+PASS localized command form: appoint_heir
+PASS localized command form: reject_heir
+PASS localized command form: resolve_war_captive
+PASS localized command form: resolve_elder_dispute
+PASS localized command form: rebellion_accept
+PASS localized command form: rebellion_suppress
+PASS localized command form: rebellion_compromise
+PASS localized command form: seek_heavenly_fortune
+PASS localized command form: start_pilgrimage
+PASS localized command form: activate_linhmach
+PASS localized command form: assign_job
+PASS localized command form: force_dai_khao_hach
+PASS localized command form: cancel_dai_khao_hach
+PASS localized command form: apply_khaohach_kit
+PASS localized command form: grant_khaohach_item
+PASS localized command form: grant_sect_artifact
+PASS localized command form: use_sect_pill
+PASS localized command form: finish_khaohach_reward
+PASS localized command form: teach_manual
+PASS localized command form: set_ngoaimon_policy
+PASS localized command form: investigate_rumor
+PASS localized command form: resolve_rumor
+PASS localized command form: resolve_clique_event
+PASS localized command form: equip_skill
+PASS localized command form: start_sparring
+PASS localized command form: confirm_bicanh_squad
+PASS localized command form: court_genius
+PASS localized command form: grant_inheritance
+PASS localized command form: start_expedition
+PASS localized command form: start_dungeon
+PASS localized command form: claim_expedition
+PASS localized command form: diplomacy_action
+PASS localized command form: proselytize
+PASS localized command form: reinforce_chinh_dao
+PASS localized command form: select_true_disciple
+PASS localized command form: finish_true_disciple_selection
+PASS localized command form: resolve_chan_truyen_challenge
+PASS localized command form: manual_demand
+PASS localized command form: manual_buy
+PASS localized command form: manual_trade
+PASS localized command form: propose_forbidden_ground
+PASS localized command form: resolve_council_vote
+PASS localized command form: lobby_succession
+PASS localized command form: war_skirmish
+PASS localized command form: war_siege
+PASS localized command form: war_final
+PASS localized command form: war_outcome
+PASS localized command form: colonize_pocket_world
+PASS localized command form: activate_grand_strategy
+PASS localized command form: abandon_grand_strategy
+PASS localized command form: resolve_grand_strategy_moment
+PASS localized command form: resolve_successor_direction
+PASS APK export remains blocked while port incomplete

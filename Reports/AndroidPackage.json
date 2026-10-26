@@ -1,0 +1,10 @@
+{
+  "version": "0.1.1",
+  "package": "com.langtrotan.prototype",
+  "abi": "arm64-v8a",
+  "minimumAndroid": "10",
+  "sha256": "8d82821e38c5dcbb2317e0198952be85b659fc39fe7735245c65fadf658a8adc",
+  "bytes": 26282404,
+  "logicChecksPassed": 35,
+  "testedOnPhysicalAndroid": false
+}

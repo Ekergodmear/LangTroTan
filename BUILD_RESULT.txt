@@ -1,0 +1,196 @@
+Build Succeeded
+173191747 bytes
+PASS new game baseline
+PASS place farm exact cost
+PASS atomic placement no duplicate debit
+PASS overlap rejected without debit
+PASS outside build radius rejected
+PASS reserve builder 0
+PASS reserve builder 1
+PASS reserve builder 2
+PASS reserve builder 3
+PASS reserve builder 4
+PASS reserve builder 5
+PASS reserve builder 6
+PASS reserve builder 7
+PASS no builder rejects construction
+PASS housing after completion
+PASS completed demolition refund
+PASS blueprint refund eighty percent
+PASS assign workers
+PASS farm grows a crop while villagers consume food
+PASS archer locked at level one
+PASS training reserves person
+PASS training cancellation restores person and food
+PASS barracks queue capacity four
+PASS soldier completes and remains in population
+PASS squad receives reachable path
+PASS blocked order rejected
+PASS unit follows path over ticks
+PASS save checksum and round trip
+PASS backup recovers corrupt primary
+PASS night one spawns four enemies once
+PASS wave not duplicated
+PASS clearing night seven does not end sandbox
+PASS defeat precedes victory in same tick
+PASS combat spear bonus and enemy damage
+PASS combat removes defeated enemy without changing friendly population
+PASS living world starts with finite resources and three neighbors
+PASS survival continues beyond day seven
+PASS calendar advances four hundred days without a victory cap
+PASS spring starts year
+PASS summer and longer daylight
+PASS autumn follows summer
+PASS winter and shorter daylight
+PASS four seasons roll into next year
+PASS seeded weather produces sunshine rain and winter snow
+PASS manual logging reserves one villager
+PASS duplicate harvesting job rejected
+PASS logger travels harvests and returns finite timber
+PASS replanting stump has a cost and growth timer
+PASS planted tree regrows
+PASS manual hunting can be ordered
+PASS hunter completes a finite hunting trip
+PASS crops grow before producing harvest
+PASS mature crop harvested and automatically replanted
+PASS winter reduces crop growth
+PASS player can choose a vegetable crop
+PASS vegetables pause in freezing temperatures
+PASS nearby well irrigates farm
+PASS winter heating consumes stored wood
+PASS diplomatic gift costs food and improves relations
+PASS trade debits both economies atomically
+PASS war changes hostility and blocks trading
+PASS paid peace ends player war
+PASS AI cannot recruit without resources
+PASS AI spends its own resources to recruit
+PASS aggressive neighbor prepares declares war and dispatches an army
+PASS AI villages fight each other without consuming player population
+PASS defeated neighboring village does not auto revive or end sandbox
+PASS old victorious seven-day save migrates to continuing sandbox
+PASS season weather diplomacy and crop state survive save round trip
+PASS sect foundation does not duplicate population
+PASS sect buildings and recruitment lock before hall two
+PASS ordinary building cannot exceed hall tier
+PASS hall upgrade reserves builder and takes time
+PASS repeated upgrade does not double charge
+PASS cancel upgrade returns eighty percent and builder
+PASS hall upgrade restarts after cancellation
+PASS hall completes timed upgrade and gains max hp
+PASS house starts upgrade after hall unlock
+PASS upgraded house increases housing and hp
+PASS store upgrade expands resource capacity
+PASS disciple converts one available person without population inflation
+PASS disciple has school and deterministic aptitude
+PASS disciple accumulates cultivation over simulation ticks
+PASS source realm table uses nine qi layers
+PASS later realms use four named sublevels
+PASS minor realm advances without manual action
+PASS early breakthrough rejects without debit
+PASS source breakthrough base eighty five percent and one pill adds fifteen points
+PASS guaranteed qi breakthrough consumes one pill and stones
+PASS higher realm blocked until next sect tier
+PASS failed breakthrough applies injury and heart demon
+PASS healing consumes actual herbs and stones
+PASS artifact cannot be equipped twice or duplicate inventory
+PASS assigned spirit mine generates stones
+PASS alchemy produces an actual pill from ingredients
+PASS workshop cannot craft for free when materials absent
+PASS forge produces inventory artifact
+PASS missions require mission hall
+PASS mission pays supplies and reserves disciple
+PASS duplicate mission cannot double debit
+PASS mission resolves automatically into success or retreat
+PASS policy validates allowed rules
+PASS chronicle retention bounded to latest one hundred twenty events
+PASS old save sect initialization is idempotent
+PASS save roundtrip preserves disciple upgrade timer and sect resources
+PASS server ids preserve integer precision
+PASS Vietnamese text and newline preserved
+PASS nested object array bool null and decimal round trip
+PASS escaped Unicode including surrogate pair
+PASS malformed server JSON rejected: {"x":1,"x":2}
+PASS malformed server JSON rejected: [1,]
+PASS malformed server JSON rejected: 01
+PASS malformed server JSON rejected: 1.
+PASS malformed server JSON rejected: 1e
+PASS malformed server JSON rejected: 1e9999
+PASS malformed server JSON rejected: true x
+PASS malformed server JSON rejected: "bad\n"
+PASS malformed server JSON rejected: {"x":}
+PASS malformed server JSON rejected: [
+PASS all seventy six reference data modules present
+PASS complete initial server snapshot retained without DTO field loss
+PASS inventory locks one hundred server gameplay systems
+PASS all sixty nine server action names match coverage manifest
+PASS native command forms cover all server command ids
+PASS localized command form: fulfill_peak_demand
+PASS localized command form: start_upgrade
+PASS localized command form: attempt_breakthrough
+PASS localized command form: attempt_ascension
+PASS localized command form: approve_petition
+PASS localized command form: gacha_pull
+PASS localized command form: set_mission_priority
+PASS localized command form: honor_ancestor
+PASS localized command form: set_policy
+PASS localized command form: promote_tier
+PASS localized command form: allocate_resources
+PASS localized command form: found_phong
+PASS localized command form: set_production_focus
+PASS localized command form: resolve_recipe_research
+PASS localized command form: resolve_allocation_dispute
+PASS localized command form: appoint_grand_elder
+PASS localized command form: reject_grand_elder
+PASS localized command form: appoint_heir
+PASS localized command form: reject_heir
+PASS localized command form: resolve_war_captive
+PASS localized command form: resolve_elder_dispute
+PASS localized command form: rebellion_accept
+PASS localized command form: rebellion_suppress
+PASS localized command form: rebellion_compromise
+PASS localized command form: seek_heavenly_fortune
+PASS localized command form: start_pilgrimage
+PASS localized command form: activate_linhmach
+PASS localized command form: assign_job
+PASS localized command form: force_dai_khao_hach
+PASS localized command form: cancel_dai_khao_hach
+PASS localized command form: apply_khaohach_kit
+PASS localized command form: grant_khaohach_item
+PASS localized command form: grant_sect_artifact
+PASS localized command form: use_sect_pill
+PASS localized command form: finish_khaohach_reward
+PASS localized command form: teach_manual
+PASS localized command form: set_ngoaimon_policy
+PASS localized command form: investigate_rumor
+PASS localized command form: resolve_rumor
+PASS localized command form: resolve_clique_event
+PASS localized command form: equip_skill
+PASS localized command form: start_sparring
+PASS localized command form: confirm_bicanh_squad
+PASS localized command form: court_genius
+PASS localized command form: grant_inheritance
+PASS localized command form: start_expedition
+PASS localized command form: start_dungeon
+PASS localized command form: claim_expedition
+PASS localized command form: diplomacy_action
+PASS localized command form: proselytize
+PASS localized command form: reinforce_chinh_dao
+PASS localized command form: select_true_disciple
+PASS localized command form: finish_true_disciple_selection
+PASS localized command form: resolve_chan_truyen_challenge
+PASS localized command form: manual_demand
+PASS localized command form: manual_buy
+PASS localized command form: manual_trade
+PASS localized command form: propose_forbidden_ground
+PASS localized command form: resolve_council_vote
+PASS localized command form: lobby_succession
+PASS localized command form: war_skirmish
+PASS localized command form: war_siege
+PASS localized command form: war_final
+PASS localized command form: war_outcome
+PASS localized command form: colonize_pocket_world
+PASS localized command form: activate_grand_strategy
+PASS localized command form: abandon_grand_strategy
+PASS localized command form: resolve_grand_strategy_moment
+PASS localized command form: resolve_successor_direction
+PASS APK export remains blocked while port incomplete

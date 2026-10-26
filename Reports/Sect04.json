@@ -1,0 +1,13 @@
+{
+  "version": "0.4.0",
+  "package": "com.langtrotan.prototype",
+  "abi": "arm64-v8a",
+  "minimumAndroid": "10",
+  "sha256": "54aee5cf55206b1c6e827f99f8f099d92f5b027e291bd7ae09a4054c59e3207e",
+  "bytes": 29665104,
+  "logicChecksPassed": 105,
+  "windowsRuntimeSmokePassed": true,
+  "signatureMatchesPreviousApk": true,
+  "physicalAndroidTested": false,
+  "status": "Development build; MVP acceptance incomplete"
+}

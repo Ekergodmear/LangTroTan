@@ -1,0 +1,11 @@
+{
+  "mongoColdRestartPreserved": true,
+  "serverColdRestartPreserved": true,
+  "requestReceiptSurvivesRestart": true,
+  "retryDoesNotDoubleDebit": true,
+  "linhThach": 200,
+  "discipleIdsStable": true,
+  "aiSectIdsStable": true,
+  "isolatedDatabase": "tu_tien_unity_port_qa",
+  "isolatedMongoPort": 27028
+}

@@ -1,0 +1,784 @@
+{
+  "version": 1,
+  "createdAt": 1792942061677,
+  "lastTick": 1792942061677,
+  "day": 0,
+  "hardcore": false,
+  "sect": {
+    "name": "Bất Diệt Các",
+    "resources": {
+      "linhThach": 500,
+      "linhKhiMach": 10,
+      "khiVan": 0,
+      "danhVong": 0
+    },
+    "buildings": {
+      "chanh_dien": {
+        "level": 1,
+        "upgrading": null
+      },
+      "tang_kinh_cac": {
+        "level": 1,
+        "upgrading": null
+      },
+      "dien_vo_truong": {
+        "level": 1,
+        "upgrading": null
+      },
+      "luyen_dan_duong": {
+        "level": 1,
+        "upgrading": null
+      },
+      "luyen_khi_dien": {
+        "level": 1,
+        "upgrading": null
+      },
+      "linh_dien_linh_mo": {
+        "level": 1,
+        "upgrading": null
+      }
+    },
+    "tier": 0,
+    "policy": null,
+    "currentGrandStrategy": null,
+    "grandStrategyHistory": [],
+    "linhMachLevel": 1,
+    "factions": {
+      "kiem": {
+        "loyalty": 70,
+        "lordId": null
+      },
+      "dao": {
+        "loyalty": 70,
+        "lordId": null
+      },
+      "phat": {
+        "loyalty": 70,
+        "lordId": null
+      },
+      "nho": {
+        "loyalty": 70,
+        "lordId": null
+      },
+      "vo": {
+        "loyalty": 70,
+        "lordId": null
+      }
+    },
+    "foundedPhong": [],
+    "linhThachFraction": 0,
+    "stability": 60,
+    "grandElderId": null,
+    "heirId": null,
+    "destiny": "nho_gia_chinh_thong",
+    "destinyProgress": {},
+    "destinyAwakened": false,
+    "dungeonsCleared": 0,
+    "grandElderHistory": 0,
+    "worldInfluence": 0,
+    "ascendedCount": 0,
+    "bicanhCooldowns": {},
+    "omens": [],
+    "pocketWorldLaws": [],
+    "lastTick": 1792942061678,
+    "hardcore": false,
+    "missions": [],
+    "missionPriority": "free",
+    "lastMissionGenDay": -1,
+    "dailyReport": [],
+    "towerLeaderboard": [],
+    "lastKhaiSonDay": -360,
+    "leaderId": "disc_mvnzestp_1",
+    "leaderBornDay": 0,
+    "leaderHistory": 0,
+    "lastElderDisputeDay": -240,
+    "ngoaiMonPolicy": "tu_luyen",
+    "lastDaiKhaoHachDay": -5,
+    "ngoaiMonSnapshot": null,
+    "ngoaiMonFactions": [],
+    "lastCliqueScanDay": -60,
+    "publicOpinion": 60,
+    "missionFailStreak": 0,
+    "rumors": [],
+    "trueDisciples": [],
+    "lastTrueDiscipleDay": -3600,
+    "inventory": {
+      "tu_khi_dan": 5,
+      "truc_co_dan": 3,
+      "hoi_linh_dan": 2,
+      "huyen_linh_thao": 10,
+      "khoang_thach": 10
+    },
+    "lastAlchemyDay": -1,
+    "lastForgeDay": -1,
+    "materialRequests": [],
+    "recentCrafts": [],
+    "alchemyFocus": null,
+    "forgeFocus": null,
+    "honoredAncestors": [],
+    "lastHonorTickDay": -360,
+    "manuals": [
+      {
+        "id": "manual_mvnzestq_d",
+        "name": "Cơ Bản Kiếm Quyết",
+        "school": "kiem",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Kiếm Tu",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Cơ Bản Kiếm Quyết gia nhập Tàng Kinh Các (Tổ Sư Kiếm Tu)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_e",
+        "name": "Cơ Bản Kiếm Quyết",
+        "school": "kiem",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Kiếm Tu",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Cơ Bản Kiếm Quyết gia nhập Tàng Kinh Các (Tổ Sư Kiếm Tu)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_f",
+        "name": "Thái Cực Đạo Quyết",
+        "school": "dao",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Đạo Giáo",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Thái Cực Đạo Quyết gia nhập Tàng Kinh Các (Tổ Sư Đạo Giáo)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_g",
+        "name": "Thái Cực Đạo Quyết",
+        "school": "dao",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Đạo Giáo",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Thái Cực Đạo Quyết gia nhập Tàng Kinh Các (Tổ Sư Đạo Giáo)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_h",
+        "name": "Kim Cang Tâm Quyết",
+        "school": "phat",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Phật Giáo",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Kim Cang Tâm Quyết gia nhập Tàng Kinh Các (Tổ Sư Phật Giáo)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_i",
+        "name": "Kim Cang Tâm Quyết",
+        "school": "phat",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Phật Giáo",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Kim Cang Tâm Quyết gia nhập Tàng Kinh Các (Tổ Sư Phật Giáo)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_j",
+        "name": "Hạo Nhiên Tâm Quyết",
+        "school": "nho",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Nho Gia",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Hạo Nhiên Tâm Quyết gia nhập Tàng Kinh Các (Tổ Sư Nho Gia)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_k",
+        "name": "Hạo Nhiên Tâm Quyết",
+        "school": "nho",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Nho Gia",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Hạo Nhiên Tâm Quyết gia nhập Tàng Kinh Các (Tổ Sư Nho Gia)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_l",
+        "name": "Luyện Thể Quyết",
+        "school": "vo",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Võ Gia",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Luyện Thể Quyết gia nhập Tàng Kinh Các (Tổ Sư Võ Gia)."
+          }
+        ]
+      },
+      {
+        "id": "manual_mvnzestq_m",
+        "name": "Luyện Thể Quyết",
+        "school": "vo",
+        "tier": "hoang",
+        "creatorName": "Tổ Sư Võ Gia",
+        "origin": "founding",
+        "acquiredDay": 0,
+        "teachingDiscipleId": null,
+        "history": [
+          {
+            "day": 0,
+            "text": "Luyện Thể Quyết gia nhập Tàng Kinh Các (Tổ Sư Võ Gia)."
+          }
+        ]
+      }
+    ]
+  },
+  "disciples": [
+    {
+      "id": "disc_mvnzestp_1",
+      "archetypeId": "kiem_r1",
+      "name": "Chu Tuyệt Trần",
+      "gender": "male",
+      "rarity": "R",
+      "school": "kiem",
+      "flavor": "Đệ tử tạp dịch mới nhập môn, tay còn cầm kiếm gỗ.",
+      "realm": 1,
+      "subLevel": 1,
+      "exp": 0,
+      "stars": 0,
+      "equippedSkills": [
+        "kiem_single3",
+        "kiem_debuff2"
+      ],
+      "unlockedSkillSlots": 2,
+      "status": "leading",
+      "assignment": null,
+      "breakthroughLockedUntil": 0,
+      "statModifiers": [],
+      "lifespanEvents": 0,
+      "corruption": 0,
+      "heartDemonTier": "kien_dinh",
+      "towerLossStreak": 0,
+      "karma": 0,
+      "bornAt": 1792942061677,
+      "alive": true,
+      "biography": [
+        {
+          "day": 0,
+          "text": "Gia nhập tông môn."
+        }
+      ],
+      "fame": 0,
+      "title": null,
+      "achievements": [],
+      "masterId": null,
+      "traits": {
+        "ambition": 54,
+        "courage": 21,
+        "greed": 24,
+        "loyalty": 32,
+        "discipline": 54
+      },
+      "rank": 9,
+      "everLeader": true,
+      "leaderStartedDay": 0,
+      "leaderEndedDay": null
+    },
+    {
+      "id": "disc_mvnzestp_2",
+      "archetypeId": "dao_r1",
+      "name": "Tống Chấn Thiên",
+      "gender": "male",
+      "rarity": "R",
+      "school": "dao",
+      "flavor": "Tạp dịch trong Đạo quán, ngày ngày quét sân hái thuốc.",
+      "realm": 1,
+      "subLevel": 1,
+      "exp": 0,
+      "stars": 0,
+      "equippedSkills": [
+        "dao_single2",
+        "dao_debuff1"
+      ],
+      "unlockedSkillSlots": 2,
+      "status": "idle",
+      "assignment": null,
+      "breakthroughLockedUntil": 0,
+      "statModifiers": [],
+      "lifespanEvents": 0,
+      "corruption": 0,
+      "heartDemonTier": "kien_dinh",
+      "towerLossStreak": 0,
+      "karma": 0,
+      "bornAt": 1792942061677,
+      "alive": true,
+      "biography": [
+        {
+          "day": 0,
+          "text": "Gia nhập tông môn."
+        }
+      ],
+      "fame": 0,
+      "title": null,
+      "achievements": [],
+      "masterId": null,
+      "traits": {
+        "ambition": 49,
+        "courage": 37,
+        "greed": 12,
+        "loyalty": 63,
+        "discipline": 87
+      },
+      "rank": 1
+    }
+  ],
+  "gacha": {
+    "bannerIndex": 0,
+    "bannerStartDay": 0,
+    "featuredUR": "kiem_ur1",
+    "featuredSSR": [
+      "kiem_ssr2",
+      "dao_ssr1"
+    ],
+    "pity": {
+      "sinceSR": 0,
+      "sinceSSR": 0,
+      "sinceUR": 0
+    },
+    "history": []
+  },
+  "world": {
+    "aiSects": [
+      {
+        "id": "ai_mvnzestq_3",
+        "name": "Thiên Cơ Trai",
+        "continentId": "dong_thang",
+        "personality": "opportunist",
+        "amity": -1,
+        "power": 28,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 163,
+        "legends": [],
+        "goal": {
+          "id": "dominate_continent",
+          "assignedDay": 0
+        },
+        "founderName": "Diệp Tường Vi",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_4",
+        "name": "Tàng Long Tông",
+        "continentId": "dong_thang",
+        "personality": "opportunist",
+        "amity": -9,
+        "power": 39,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 351,
+        "legends": [],
+        "goal": {
+          "id": "dominate_continent",
+          "assignedDay": 0
+        },
+        "founderName": "Bạch Linh Nhi",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_5",
+        "name": "Kim Quang Lĩnh",
+        "continentId": "nam_thiem",
+        "personality": "opportunist",
+        "amity": 6,
+        "power": 36,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 4,
+        "legends": [],
+        "goal": {
+          "id": "economic_hegemony",
+          "assignedDay": 0
+        },
+        "founderName": "Lý Thanh Vân",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_6",
+        "name": "Lạc Nhật Các",
+        "continentId": "nam_thiem",
+        "personality": "tyrant",
+        "amity": 7,
+        "power": 42,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 179,
+        "legends": [],
+        "goal": {
+          "id": "dominate_continent",
+          "assignedDay": 0
+        },
+        "founderName": "Tô Tường Vi",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_7",
+        "name": "Thiên Cơ Môn",
+        "continentId": "tay_nguu",
+        "personality": "opportunist",
+        "amity": -8,
+        "power": 31,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 265,
+        "legends": [],
+        "goal": {
+          "id": "economic_hegemony",
+          "assignedDay": 0
+        },
+        "founderName": "Tống Bất Quần",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_8",
+        "name": "Huyết Nguyệt Tông",
+        "continentId": "tay_nguu",
+        "personality": "opportunist",
+        "amity": -5,
+        "power": 25,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 124,
+        "legends": [],
+        "goal": {
+          "id": "economic_hegemony",
+          "assignedDay": 0
+        },
+        "founderName": "Âu Dương Nhược Y",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_9",
+        "name": "Thiên Cơ Trai",
+        "continentId": "bac_cau",
+        "personality": "tyrant",
+        "amity": 6,
+        "power": 45,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 424,
+        "legends": [],
+        "goal": {
+          "id": "become_sacred_land",
+          "assignedDay": 0
+        },
+        "founderName": "Lý Tử Yên",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_a",
+        "name": "Bích Huyết Lĩnh",
+        "continentId": "bac_cau",
+        "personality": "paranoid",
+        "amity": -7,
+        "power": 19,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 437,
+        "legends": [],
+        "goal": {
+          "id": "become_sacred_land",
+          "assignedDay": 0
+        },
+        "founderName": "Hàn Nhược Hi",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_b",
+        "name": "Tàng Long Trai",
+        "continentId": "trung_hai",
+        "personality": "tyrant",
+        "amity": 4,
+        "power": 25,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 252,
+        "legends": [],
+        "goal": {
+          "id": "become_sacred_land",
+          "assignedDay": 0
+        },
+        "founderName": "Diêu Nhược Y",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      },
+      {
+        "id": "ai_mvnzestq_c",
+        "name": "Vô Cực Cung",
+        "continentId": "trung_hai",
+        "personality": "opportunist",
+        "amity": 9,
+        "power": 19,
+        "alive": true,
+        "subSectOf": null,
+        "war": null,
+        "renown": 250,
+        "legends": [],
+        "goal": {
+          "id": "dominate_continent",
+          "assignedDay": 0
+        },
+        "founderName": "Chu Tử Kiếm",
+        "foundedDay": 0,
+        "parentSectId": null,
+        "allianceId": null,
+        "declineTimer": null,
+        "lastHostedDay": null,
+        "achievedSacredLand": false
+      }
+    ],
+    "expeditions": [],
+    "specialDungeon": null,
+    "territories": {
+      "mo_thanh_ngoc": {
+        "ownerSectId": "ai_mvnzestq_3"
+      },
+      "ngo_dao_tra_vien": {
+        "ownerSectId": null
+      },
+      "kiem_than_son": {
+        "ownerSectId": null
+      },
+      "long_mach_khoang_sang": {
+        "ownerSectId": null
+      },
+      "nhan_gian_co_tran": {
+        "ownerSectId": "ai_mvnzestq_6"
+      },
+      "thien_co_cung": {
+        "ownerSectId": null
+      },
+      "bo_de_lam": {
+        "ownerSectId": "ai_mvnzestq_7"
+      },
+      "kim_cuong_khoang": {
+        "ownerSectId": null
+      },
+      "dai_loi_am_tu": {
+        "ownerSectId": null
+      },
+      "ma_tinh_khoang_mach": {
+        "ownerSectId": "ai_mvnzestq_9"
+      },
+      "huyen_bang_coc": {
+        "ownerSectId": null
+      },
+      "thuong_co_to_mach": {
+        "ownerSectId": "ai_mvnzestq_a"
+      },
+      "thuy_linh_chau_uyen": {
+        "ownerSectId": "ai_mvnzestq_c"
+      },
+      "hai_dao_thuong_cang": {
+        "ownerSectId": "ai_mvnzestq_b"
+      },
+      "linh_tuyen_bao_dia": {
+        "ownerSectId": "ai_mvnzestq_b"
+      }
+    },
+    "threats": [],
+    "bicanh": [],
+    "geniuses": [],
+    "alliances": [],
+    "eraId": "khai_hoang",
+    "eraSinceDay": 0,
+    "civilizationSchool": null,
+    "civilizationSinceDay": null,
+    "heavenlyWill": {
+      "ascensionDifficultyPct": 0,
+      "lastReactionDay": null,
+      "personality": "sat_phat"
+    },
+    "legacies": [],
+    "legacyBelieverIndex": {},
+    "legacyIndex": {},
+    "legaciesBySchoolIndex": {},
+    "legaciesArchive": [],
+    "lastDataRetentionDay": -1000,
+    "apocalypse": null,
+    "apocalypseCooldownUntil": null,
+    "totalAscensions": 0,
+    "pocketWorlds": [],
+    "historians": [],
+    "lastTournamentDay": -1800,
+    "tournamentHistory": [],
+    "nations": {},
+    "lastContinentalWarDay": -3600,
+    "totalContinentalWars": 0,
+    "thienTrieu": null,
+    "lastThienTrieuCheckDay": -900,
+    "daiKiep": null,
+    "daiKiepHistory": [],
+    "forbiddenGroundTrial": null,
+    "families": [],
+    "familyMemberIndex": {},
+    "familySovereignCandidates": [],
+    "bloodlines": [],
+    "sectRuins": [],
+    "activeRuins": [],
+    "tienKieuBang": {},
+    "lastTienKieuBangDay": -180,
+    "ngoaiVucUnlocked": false,
+    "rivalManuals": [],
+    "lastDaiHoiThienHaDay": -18000,
+    "daiHoiThienHaHistory": [],
+    "protagonist": null,
+    "thienMenhChiTu": null,
+    "lastThienMenhCheckDay": -900,
+    "lastThienMenhRebelCheckDay": -1800,
+    "lastAscendedInfluenceCheckDay": -3600,
+    "lastCollectiveAscensionCheckDay": -3600,
+    "characterEra": null,
+    "worldProtagonist": null,
+    "lastWorldProtagonistCheckDay": -900,
+    "legendaryStories": [],
+    "lastLegendaryStoryCheckDay": -900,
+    "folklore": [],
+    "lastFolkloreCheckDay": -3600,
+    "classics": [],
+    "lastClassicCheckDay": -1800,
+    "lastLegendaryDescendantCheckDay": -900,
+    "pastEras": []
+  },
+  "chronicle": [],
+  "relationships": [],
+  "pendingElderEvent": null,
+  "pendingRebellionEvent": null,
+  "pendingHeirEvent": null,
+  "pendingWarCaptive": null,
+  "pendingElderDispute": null,
+  "pendingCliqueEvent": null,
+  "pendingRumorEvent": null,
+  "pendingCouncilVote": null,
+  "pendingTrueDiscipleSelection": null,
+  "pendingSuccessionCrisis": null,
+  "pendingKhaoHachRewards": [],
+  "pendingChanTruyenChallenge": null,
+  "pendingCamDiaPetition": null,
+  "pendingRecipeResearch": null,
+  "pendingAllocationDispute": null,
+  "log": [
+    {
+      "ts": 1792942061677,
+      "text": "Thiên Mệnh giáng lâm: Nho Gia Chính Thống — Thánh hiền chi đạo, lấy văn trị quốc, lấy lễ đãi người."
+    },
+    {
+      "ts": 1792942061677,
+      "text": "Thiên Đạo Sát Phạt cai quản thế giới này: Ưu ái chiến tranh, cường giả — sát phạt áp đảo được ban ân, chiến hỏa liên miên khiến Thiên Kiếp nương tay cho kẻ mạnh."
+    },
+    {
+      "ts": 1792942061677,
+      "text": "Tông môn được kiến lập. Bắt đầu con đường tu tiên..."
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "hall": {
+    "id": "hall",
+    "name": "Chánh Điện",
+    "width": 4,
+    "depth": 4,
+    "wood": 0,
+    "stone": 0,
+    "hp": 2000,
+    "seconds": 0,
+    "slots": 0
+  },
+  "house": {
+    "id": "house",
+    "name": "Dân Xá",
+    "width": 2,
+    "depth": 2,
+    "wood": 40,
+    "stone": 10,
+    "hp": 350,
+    "seconds": 250,
+    "slots": 0
+  },
+  "store": {
+    "id": "store",
+    "name": "Kho",
+    "width": 2,
+    "depth": 2,
+    "wood": 50,
+    "stone": 20,
+    "hp": 500,
+    "seconds": 300,
+    "slots": 0
+  },
+  "wood": {
+    "id": "wood",
+    "name": "Trạm gỗ",
+    "width": 2,
+    "depth": 2,
+    "wood": 30,
+    "stone": 0,
+    "hp": 300,
+    "seconds": 200,
+    "slots": 3
+  },
+  "stone": {
+    "id": "stone",
+    "name": "Mỏ đá",
+    "width": 2,
+    "depth": 2,
+    "wood": 40,
+    "stone": 10,
+    "hp": 350,
+    "seconds": 250,
+    "slots": 3
+  },
+  "farm": {
+    "id": "farm",
+    "name": "Ruộng Lương Thực",
+    "width": 3,
+    "depth": 3,
+    "wood": 45,
+    "stone": 0,
+    "hp": 300,
+    "seconds": 250,
+    "slots": 3
+  },
+  "barracks": {
+    "id": "barracks",
+    "name": "Doanh Trại Hộ Vệ",
+    "width": 3,
+    "depth": 3,
+    "wood": 70,
+    "stone": 30,
+    "hp": 700,
+    "seconds": 400,
+    "slots": 0
+  },
+  "wall": {
+    "id": "wall",
+    "name": "Tường",
+    "width": 1,
+    "depth": 1,
+    "wood": 10,
+    "stone": 5,
+    "hp": 450,
+    "seconds": 80,
+    "slots": 0
+  },
+  "gate": {
+    "id": "gate",
+    "name": "Cổng",
+    "width": 2,
+    "depth": 1,
+    "wood": 25,
+    "stone": 10,
+    "hp": 650,
+    "seconds": 150,
+    "slots": 0
+  },
+  "tower": {
+    "id": "tower",
+    "name": "Tháp canh",
+    "width": 2,
+    "depth": 2,
+    "wood": 60,
+    "stone": 40,
+    "hp": 600,
+    "seconds": 350,
+    "slots": 0
+  },
+  "hunter": {
+    "id": "hunter",
+    "name": "Lều thợ săn",
+    "width": 2,
+    "depth": 2,
+    "wood": 40,
+    "stone": 10,
+    "hp": 350,
+    "seconds": 250,
+    "slots": 3
+  },
+  "forester": {
+    "id": "forester",
+    "name": "Vườn ươm",
+    "width": 2,
+    "depth": 2,
+    "wood": 35,
+    "stone": 10,
+    "hp": 350,
+    "seconds": 250,
+    "slots": 2
+  },
+  "well": {
+    "id": "well",
+    "name": "Giếng nước",
+    "width": 2,
+    "depth": 2,
+    "wood": 35,
+    "stone": 20,
+    "hp": 500,
+    "seconds": 300,
+    "slots": 0
+  },
+  "hearth": {
+    "id": "hearth",
+    "name": "Nhà sưởi",
+    "width": 2,
+    "depth": 2,
+    "wood": 45,
+    "stone": 20,
+    "hp": 500,
+    "seconds": 300,
+    "slots": 0
+  },
+  "scripture": {
+    "id": "scripture",
+    "name": "Tàng Kinh Các",
+    "width": 3,
+    "depth": 3,
+    "wood": 90,
+    "stone": 50,
+    "hp": 800,
+    "seconds": 450,
+    "slots": 2
+  },
+  "meditation": {
+    "id": "meditation",
+    "name": "Tụ Linh Trận",
+    "width": 3,
+    "depth": 3,
+    "wood": 70,
+    "stone": 65,
+    "hp": 650,
+    "seconds": 400,
+    "slots": 0
+  },
+  "spiritmine": {
+    "id": "spiritmine",
+    "name": "Linh Mỏ",
+    "width": 2,
+    "depth": 2,
+    "wood": 65,
+    "stone": 45,
+    "hp": 550,
+    "seconds": 350,
+    "slots": 3
+  },
+  "herbgarden": {
+    "id": "herbgarden",
+    "name": "Dược Viên",
+    "width": 3,
+    "depth": 3,
+    "wood": 55,
+    "stone": 25,
+    "hp": 450,
+    "seconds": 300,
+    "slots": 3
+  },
+  "alchemy": {
+    "id": "alchemy",
+    "name": "Luyện Đan Đường",
+    "width": 3,
+    "depth": 3,
+    "wood": 85,
+    "stone": 55,
+    "hp": 750,
+    "seconds": 450,
+    "slots": 2
+  },
+  "forge": {
+    "id": "forge",
+    "name": "Luyện Khí Điện",
+    "width": 3,
+    "depth": 3,
+    "wood": 95,
+    "stone": 65,
+    "hp": 850,
+    "seconds": 500,
+    "slots": 2
+  },
+  "mission": {
+    "id": "mission",
+    "name": "Nhiệm Vụ Điện",
+    "width": 2,
+    "depth": 2,
+    "wood": 65,
+    "stone": 35,
+    "hp": 600,
+    "seconds": 350,
+    "slots": 0
+  }
+}
