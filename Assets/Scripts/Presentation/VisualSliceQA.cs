@@ -51,31 +51,46 @@ namespace LangTroTan.Presentation
             File.WriteAllText(Path.Combine(visualOutput,"layout-"+name+"-"+width+".json"),ServerJson.Stringify(new Dictionary<string,object>{{"width",width},{"height",height},{"textOverflow",overflow.Cast<object>().ToList()},{"screenshotIsUnityCameraRender",true}}));
         }
         Button FindSliceButton(Transform root,string caption)=>root.GetComponentsInChildren<Button>().First(b=>b.GetComponentsInChildren<Text>().Any(t=>t.text==caption));
-        void ClickVisualButton(Button button)
+        static string HierarchyPath(Transform t)=>t.parent==null?t.name:HierarchyPath(t.parent)+"/"+t.name;
+        // GraphicRaycaster ignores graphics that have not been rendered yet (depth -1), so a freshly rebuilt
+        // screen cannot be clicked in the frame it was created. Wait until the button is drawn, as a player would.
+        IEnumerator ClickVisualButton(Button button)
         {
+            for(int frame=0;frame<30&&(button.targetGraphic==null||button.targetGraphic.depth<0);frame++)yield return null;
             Canvas.ForceUpdateCanvases();var point=RectTransformUtility.WorldToScreenPoint(null,button.GetComponent<RectTransform>().TransformPoint(button.GetComponent<RectTransform>().rect.center));var pointer=new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current){position=point};var hits=new List<UnityEngine.EventSystems.RaycastResult>();UnityEngine.EventSystems.EventSystem.current.RaycastAll(pointer,hits);
-            VisualCheck(hits.Count>0&&hits[0].gameObject.GetComponentInParent<Button>()==button,"pointer raycast reaches visible button: "+button.name);button.onClick.Invoke();
+            bool reached=hits.Count>0&&hits[0].gameObject.GetComponentInParent<Button>()==button;
+            if(!reached)
+            {
+                var raycasters=FindObjectsByType<GraphicRaycaster>(FindObjectsSortMode.None);
+                var buttonCanvas=button.GetComponentInParent<Canvas>().rootCanvas;
+                Debug.Log("VISUAL_QA_RAYCAST point="+point+" screen="+Screen.width+"x"+Screen.height+" displays="+Display.displays.Length+" relative="+Display.RelativeMouseAt(point)
+                    +" inRect="+RectTransformUtility.RectangleContainsScreenPoint(button.GetComponent<RectTransform>(),point,null)
+                    +" buttonCanvas="+buttonCanvas.name+" mode="+buttonCanvas.renderMode+" display="+buttonCanvas.targetDisplay+" eventSystems="+FindObjectsByType<UnityEngine.EventSystems.EventSystem>(FindObjectsSortMode.None).Length
+                    +" raycasters="+string.Join(",",raycasters.Select(r=>r.name+(r.IsActive()?":on":":off")))
+                    +" hits="+string.Join(" | ",hits.Take(5).Select(h=>HierarchyPath(h.gameObject.transform))));
+            }
+            VisualCheck(reached,"pointer raycast reaches visible button: "+button.name);button.onClick.Invoke();
         }
         IEnumerator AwaitVisualAction(){while(api.Busy||api.IsRefreshing)yield return null;yield return api.Refresh();while(api.IsRefreshing)yield return null;}
         IEnumerator VisualInteractionRegression()
         {
             object pillReceipt=null;api.DecisionCompleted+=(action,result)=>{if(action=="use_sect_pill")pillReceipt=result;};
             projectionActive=false;tab=1;Draw();var people=List(Get(api.Snapshot,"disciples")).Where(Alive).ToList();var disciple=people.First(d=>S(Get(d,"status"))!="leading");string id=S(Get(disciple,"id")),oldStatus=S(Get(disciple,"status"));int index=people.IndexOf(disciple);page=index/4;Draw();
-            var trainingButtons=body.GetComponentsInChildren<Button>().Where(b=>b.GetComponentsInChildren<Text>().Any(t=>t.text=="Tu luyện")).ToArray();ClickVisualButton(trainingButtons[index%4]);yield return AwaitVisualAction();CloseDialog();
+            var trainingButtons=body.GetComponentsInChildren<Button>().Where(b=>b.GetComponentsInChildren<Text>().Any(t=>t.text=="Tu luyện")).ToArray();yield return ClickVisualButton(trainingButtons[index%4]);yield return AwaitVisualAction();CloseDialog();
             VisualCheck(S(Get(List(Get(api.Snapshot,"disciples")).First(d=>S(Get(d,"id"))==id),"status"))=="training","real disciple card button applies authoritative training assignment");VisualCheck(!api.HasPending,"training request journal resolved");
             SubmitJob(id,oldStatus);yield return AwaitVisualAction();CloseDialog();
             yield return api.Presentation("daidien",new Dictionary<string,object>{{"daiDienTab","baokho"}},null,data=>{projection=data;projectionActive=true;projectionView="daidien";projectionUi=new Dictionary<string,object>{{"daiDienTab","baokho"}};inventoryCategory="all";DrawProjection();});
             var inventory=List(Get(inventoryData,"groups")).SelectMany(g=>List(Get(g,"items"))).ToList();foreach(var item in inventory){string itemId=S(Get(item,"id"));inventorySelection=itemId;DrawSliceInventory();VisualCheck(body.GetComponentsInChildren<Text>().Any(t=>t.text==S(Get(item,"name"))),"selected treasure displays canonical name: "+itemId);}
             inventorySelection="tu_khi_dan";DrawSliceInventory();double beforeQty=N(Get(api.Snapshot,"sect","inventory","tu_khi_dan"));double beforeExp=N(Get(List(Get(api.Snapshot,"disciples")).First(d=>S(Get(d,"id"))==id),"exp"));
-            ClickVisualButton(FindSliceButton(body,"Dùng tăng tu vi"));VisualCheck(dialog!=null,"treasure action opens native recipient picker");var personButton=dialog.GetComponentsInChildren<Button>().First(b=>b.gameObject.name=="PillRecipient:"+id);ClickVisualButton(personButton);ClickVisualButton(FindSliceButton(dialog,"Xác nhận sử dụng"));yield return AwaitVisualAction();CloseDialog();
+            yield return ClickVisualButton(FindSliceButton(body,"Dùng tăng tu vi"));VisualCheck(dialog!=null,"treasure action opens native recipient picker");var personButton=dialog.GetComponentsInChildren<Button>().First(b=>b.gameObject.name=="PillRecipient:"+id);yield return ClickVisualButton(personButton);yield return ClickVisualButton(FindSliceButton(dialog,"Xác nhận sử dụng"));yield return AwaitVisualAction();CloseDialog();
             File.WriteAllText(Path.Combine(visualOutput,"pill-receipt.json"),ServerJson.Stringify(new Dictionary<string,object>{{"expectedDiscipleId",id},{"receipt",pillReceipt},{"beforeQuantity",beforeQty},{"afterQuantity",Get(api.Snapshot,"sect","inventory","tu_khi_dan")}}));
             VisualCheck(N(Get(api.Snapshot,"sect","inventory","tu_khi_dan"))==beforeQty-1,"native Bao Kho use consumes exactly one real pill");VisualCheck(S(Get(pillReceipt,"discipleId"))==id&&N(Get(pillReceipt,"expGain"))==40&&Math.Abs(N(Get(pillReceipt,"expAfter"))-N(Get(pillReceipt,"expBefore"))-40)<.000001,"native Bao Kho authoritative receipt grants forty EXP to the exact selected disciple id");VisualCheck(!api.HasPending,"pill request journal resolved");
             projectionActive=false;tab=0;Draw();CloseSpatialDetail();double oldWood=N(Get(spatial,"wood"));int oldCount=List(Get(spatial,"buildings")).Count;
-            BeginSpatialPlace("house");Vector3 focus=physicalFocus;physicalFocus+=new Vector3(2,0,1);SetSpatialCamera();VisualCheck(cam.transform.position!=Vector3.zero,"camera pan and zoom recompute playable world view");physicalFocus=focus;SetSpatialCamera();ClickVisualButton(FindSliceButton(placementControls,"XÁC NHẬN XÂY"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);
+            BeginSpatialPlace("house");Vector3 focus=physicalFocus;physicalFocus+=new Vector3(2,0,1);SetSpatialCamera();VisualCheck(cam.transform.position!=Vector3.zero,"camera pan and zoom recompute playable world view");physicalFocus=focus;SetSpatialCamera();yield return ClickVisualButton(FindSliceButton(placementControls,"XÁC NHẬN XÂY"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);
             VisualCheck(List(Get(spatial,"buildings")).Count==oldCount+1&&N(Get(spatial,"wood"))==oldWood-40,"native placement confirmation creates one house and debits exact wood");var house=List(Get(spatial,"buildings")).Last(b=>S(Get(b,"type"))=="house");api.Submit("spatial_demolish",new Dictionary<string,object>{{"buildingId",Get(house,"id")}});while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);
             VisualCheck(List(Get(spatial,"buildings")).Count==oldCount&&N(Get(spatial,"wood"))==oldWood-8,"cancelled QA construction restores original building count and eighty percent materials");
             var coreModel=models["core:chanh_dien"];var collider=coreModel.GetComponent<BoxCollider>();var target=collider.bounds.center+Vector3.up*collider.bounds.extents.y*.5f;VisualCheck(Physics.Raycast(cam.ScreenPointToRay(cam.WorldToScreenPoint(target)),out var hit)&&hit.collider==collider,"3D roof and building geometry are covered by selectable bounds");
-            var tree=List(Get(spatial,"nodes")).First(n=>S(Get(n,"kind"))=="tree"&&N(Get(n,"amount"))>0);ShowSpatialNode(S(Get(tree,"id")));ClickVisualButton(FindSliceButton(spatialPanel,"CỬ NGƯỜI KHAI THÁC"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);VisualCheck(spatialActors.Count>0,"harvest interaction creates authoritative animated 3D worker");yield return new WaitForSecondsRealtime(2);VisualCapture("worker-interaction",1920,1080);ClickVisualButton(FindSliceButton(spatialPanel,"HỦY CHUYẾN"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);VisualCheck(List(Get(spatial,"jobs")).Count==0,"harvest cancellation releases QA worker");
+            var tree=List(Get(spatial,"nodes")).First(n=>S(Get(n,"kind"))=="tree"&&N(Get(n,"amount"))>0);ShowSpatialNode(S(Get(tree,"id")));yield return ClickVisualButton(FindSliceButton(spatialPanel,"CỬ NGƯỜI KHAI THÁC"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);VisualCheck(spatialActors.Count>0,"harvest interaction creates authoritative animated 3D worker");yield return new WaitForSecondsRealtime(2);VisualCapture("worker-interaction",1920,1080);yield return ClickVisualButton(FindSliceButton(spatialPanel,"HỦY CHUYẾN"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);VisualCheck(List(Get(spatial,"jobs")).Count==0,"harvest cancellation releases QA worker");
         }
         IEnumerator ProfileVisual(string area,int width,int height)
         {
