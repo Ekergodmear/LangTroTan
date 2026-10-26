@@ -1,13 +1,13 @@
 # Visual Vertical Slice Plan
 
-Status: Milestone A complete (docs). **Milestone B is blocked on two approvals (§1).** No implementation has started.
+Status (updated 2026-10-26): Milestone A complete. D1 and D2 **approved** by you. Milestone B is waiting only on the commercial architecture kit, which you are buying.
 
 ## 1. Decisions needed from you
 
 | # | Decision | Why it blocks |
 |---|---|---|
-| D1 | Allow `git init` plus a baseline commit in the project folder (existing `.gitignore`, local only, no push) | Every later change must be reversible and diffable |
-| D2 | Choose the 3D asset route (§2) | There are no 3D assets in the project, no Blender, and no Asset Store cache. Downloading or purchasing needs your permission |
+| D1 ✅ approved: done, repo at `e9d7424` | Allow `git init` plus a baseline commit in the project folder (existing `.gitignore`, local only, no push) | Every later change must be reversible and diffable |
+| D2 ✅ approved: route D (hybrid) | Choose the 3D asset route (§2) | There are no 3D assets in the project, no Blender, and no Asset Store cache. Downloading or purchasing needs your permission |
 
 ## 2. Asset sourcing options
 

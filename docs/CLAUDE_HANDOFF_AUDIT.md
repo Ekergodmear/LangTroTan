@@ -17,7 +17,7 @@ Legend: **VERIFIED** = I checked it directly today. **REPORTED** = a claim from 
 | Render pipeline | URP 17.4.0 (`Packages/manifest.json`), pipeline asset `Assets/VisualSlice/JadeMountainURP.asset`. The previous session switched the project from Built-in to URP | VERIFIED |
 | Scenes | One scene, `Assets/Scenes/Village.unity` (3.5 KB, an empty bootstrap). All world and UI is spawned from code at runtime | VERIFIED |
 | Code size | 30 C# files, about 364 KB. Written in a very dense code-golf style (many statements per line), which makes review and diffs hard | VERIFIED |
-| Tools | Node and MongoDB 8.2 present. **Blender not installed.** No 3D assets on disk (see `UNITY_ASSET_INVENTORY.md`) | VERIFIED |
+| Tools | Node and MongoDB 8.2 present. Blender was not installed at audit time (4.5.10 LTS installed later with approval; headless FBX export verified). No 3D assets on disk (see `UNITY_ASSET_INVENTORY.md`) | VERIFIED |
 | Builds | `Builds/VisualSlice` (latest, 14:29), `Builds/VisualBaseline`, `Builds/Windows_FullPort_Dev`, and older 0.x builds. About 1.1 GB in total | VERIFIED |
 
 ### Running processes found at audit start (none started by me)
@@ -111,14 +111,14 @@ Unity Game View captures taken today (`work/claude-audit/VisualSlice/After/son-m
 
 | Risk | Severity | Note |
 |---|---|---|
-| No version control | High | Any edit is unrecoverable except via zip snapshots. **Recommend `git init` with the existing `.gitignore`** (needs your approval) |
+| No version control | High | Any edit is unrecoverable except via zip snapshots. Resolved: local git repo initialised with approval, baseline commit `e9d7424` |
 | Unverified final build / failing regression | High | Fix before building more on top |
 | Runtime-generated, unshared meshes (1.0M tris, no LOD/instancing/batching) | High for scale and mobile | Replacing them with imported, LOD'd, instanced prefabs is necessary anyway |
 | Dense code-golf C# | Medium | Slows safe changes. New presentation code should be written readable and kept separate |
 | Two gameplay generations in one assembly | Medium | Keep the legacy offline domain compiling. Do not delete it during the art pass |
 | Protected player DB on 27017 on the same machine | Medium | All QA scripts hard-assert ports 27028/27029. Keep that discipline |
 | Asset licensing of user-supplied 2D art | Medium | No licence is inferred. You need to confirm rights before release |
-| Art pipeline gap (no Blender, no models) | **Blocking for Milestone B** | Needs your decision; see the plan |
+| Art pipeline gap (no models) | **Blocking for Milestone B** | Route D approved: Blender installed, CC0 Poly Haven textures and HDRIs imported, commercial kit pending your purchase |
 
 ## 8. What GPT Work was doing most recently
 
@@ -126,8 +126,8 @@ From file timestamps (13:25–14:29 on 2026-10-26): it switched the project to U
 
 ## 9. Recommended continuation order
 
-1. **(Approval needed)** `git init` and commit the baseline, so every later change is reversible and reviewable.
-2. Fix the failing interaction regression: make the status chip non-interactive or caption it differently, and select buttons by role rather than caption. Do not weaken the test. Re-run the full `-visual-regression`, then also run `-full-port-smoke` against 8899.
-3. **(Approval needed)** Decide on the asset sourcing route (`VISUAL_VERTICAL_SLICE_PLAN.md` §2).
+1. ✅ Done: `git init` and commit the baseline, so every later change is reversible and reviewable.
+2. ✅ Done: real root cause was clicking before buttons were rendered (see the QA doc). Original suggestion, kept for the record: make the status chip non-interactive or caption it differently, and select buttons by role rather than caption. Do not weaken the test. Re-run the full `-visual-regression`, then also run `-full-port-smoke` against 8899.
+3. ✅ Route D approved. Was: decide on the asset sourcing route (`VISUAL_VERTICAL_SLICE_PLAN.md` §2).
 4. Milestone B: build an authored `SonMon_Slice` scene and prefabs from the real assets. Move from runtime-only generation to prefab lookup by building `type`, keeping the server contract unchanged.
 5. Milestones C, D and E as planned, each with real screenshots, performance JSON and functional QA.

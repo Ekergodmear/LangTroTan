@@ -250,11 +250,14 @@ namespace LangTroTan.Presentation
             bool projectionOnly=Environment.GetCommandLineArgs().Contains("-projection-only");bool ok=true;
             if(!projectionOnly)
             {
+            // Expected cost follows the reference formula upgradeCost = round(baseCost * 1.5^level), so the check stays exact at any hall level.
+            double level=N(Get(api.Snapshot,"sect","buildings","chanh_dien","level"));double expectedCost=Math.Floor(N(Get(Module("sectBuildings"),"BUILDINGS","chanh_dien","baseCost"))*Math.Pow(1.5,level)+.5);
+            if(Get(api.Snapshot,"sect","buildings","chanh_dien","upgrading")!=null)System.IO.File.AppendAllText(smokeFile,"FAIL precondition: chanh_dien is already upgrading in the QA game; reset the isolated fixture\n");
             double before=N(Get(api.Snapshot,"sect","resources","linhThach"));api.Submit("start_upgrade",new Dictionary<string,object>{{"buildingId","chanh_dien"}});
             while(api.Busy)yield return null;yield return api.Refresh();
             if(api.HasPending){System.IO.File.AppendAllText(smokeFile,"PASS network uncertainty retained original request journal\n");api.RetryPending();while(api.Busy)yield return null;yield return api.Refresh();}
             yield return new WaitForSecondsRealtime(.5f);var upgrading=Get(api.Snapshot,"sect","buildings","chanh_dien","upgrading");double after=N(Get(api.Snapshot,"sect","resources","linhThach"));
-            ok=upgrading!=null&&Math.Abs(before-after-300)<.01&&!api.HasPending;
+            ok=upgrading!=null&&Math.Abs(before-after-expectedCost)<.01&&!api.HasPending;
             System.IO.File.AppendAllText(smokeFile,ok?"PASS native UI receives authoritative building upgrade\nPASS exact server upgrade cost debited once\nPASS pending journal resolved\nFULL_PORT_SLICE_OK\n":"FAIL upgrade or retry: "+api.Notice+" before="+before+" after="+after);
             Capture("full-port-upgrade.png");
             }
