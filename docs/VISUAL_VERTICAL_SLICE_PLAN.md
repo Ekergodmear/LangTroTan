@@ -1,6 +1,19 @@
 # Visual Vertical Slice Plan
 
-Status (updated 2026-10-26): Milestone A complete. D1 and D2 **approved** by you. Milestone B is waiting only on the commercial architecture kit, which you are buying.
+Status (corrected 2026-10-27): Milestone A complete. D1 done. **No paid purchase is approved, and none is required for Milestone B.** The earlier line "Milestone B is waiting only on the commercial kit" over-stated the dependency. Milestone B proceeds on the free route (§2a); a paid kit is an optional accelerator, to be judged only after free-route screenshots exist.
+
+## 2a. Asset research, 2026-10-27 (verified sources)
+
+| Option | Publisher / source | Price | Licence | Visual fit for "stylized anime Xianxia sect" | Verdict |
+|---|---|---|---|---|---|
+| [STYLIZED Far East Kingdom](https://assetstore.unity.com/packages/3d/environments/historic/stylized-far-east-269978) | PHIDEAS (Ramtin Rad) | $60, Single Entity | Unity Asset Store EULA | The closest paid match found. Stylized and hand-painted, palaces/shops/shrines/pagoda/temple, modular walls and gatehouses, trees/cliffs, about 8k polys per building. Mixed Chinese/Japanese "town" theme rather than a mountain sect. v1.0 (Jan 2024), 8 reviews, URP needs material conversion. I could not inspect its screenshots myself (browser pane hidden) | Optional later. **Not required** |
+| [Ancient Dragon Temple](https://www.fab.com/listings/1ae6bd57-fea5-4409-b40c-9d042c946291) | DanStudios (Fab) | $79.99 exterior / $69.99 interior | Fab licence | Realistic AAA / dark fantasy, 4K textures, Unreal format listed | **Unsuitable** (style mismatch) |
+| Sketchfab free models (12 best CC-BY/CC0 downloadable, contact sheet reviewed) | various authors | Free | CC-BY (attribution) / CC0 | Mostly realistic or photogrammetry, 180k–1.1M tris, inconsistent styles | Not usable as a kit. One or two might serve as decor or modelling reference |
+| [Quaternius Stylized Nature MegaKit](https://quaternius.com/packs/stylizednaturemegakit.html) | Quaternius | Free (Standard, ~68 of 110+ models) | CC0 | Stylized pine, cherry, rocks, plants; FBX/glTF | **Good fit for vegetation.** Needs your OK to download |
+| Poly Haven textures + HDRI | Poly Haven | Free | CC0 | Ground, stone, tile, wood, sky | Already imported (`27febbd`) |
+| Blender-authored modular kit | this project | Free | Project-owned | Exactly matches the art direction and the server grid | **Primary route for architecture** |
+
+**What can proceed with no purchase (all of Milestone B):** the Blender modular architecture kit (curved tiled roofs with ridge ornaments, dougong bands, lacquer pillars, lattice walls, railings, stairs, plinths, paifang gate, hall/pagoda/pavilion variants) with Poly Haven materials and a stylized URP shader; terraced terrain, cliffs, stream and waterfall; vegetation (Quaternius CC0 plus Blender bamboo); HDRI sky, lighting and post-processing; formation, crystal and spirit-particle VFX; the prefab factory hooked to server building types; QA and performance capture.
 
 ## 1. Decisions needed from you
 

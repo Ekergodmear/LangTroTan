@@ -47,4 +47,4 @@ Files are in `Assets/ThirdParty/PolyHaven/`. `PROVENANCE.json` records each file
 
 ### Pending
 
-- Commercial stylized Chinese architecture kit: **the user is purchasing it.** Import it untouched into `Assets/ThirdParty/<vendor>/` and record the licence and seat count here.
+- Commercial architecture kit: **not approved and not required.** Optional, to be reconsidered after free-route screenshots (see docs/VISUAL_VERTICAL_SLICE_PLAN.md §2a).
