@@ -44,6 +44,11 @@ public static class SonMonKitBuilder
         kit.resourceRocks = new[] { "Rock_Medium_1", "Rock_Medium_2", "Rock_Medium_3" }.Select(name => NaturePrefab(name, natureMats, .45f)).ToArray();
         kit.daySky = Skybox("SonMon Sky Day", PolyHaven + "/HDRI/kloofendal_48d_partly_cloudy_puresky_2k.hdr", 1.05f);
         kit.nightSky = Skybox("SonMon Sky Night", PolyHaven + "/HDRI/qwantani_night_puresky_2k.hdr", .55f);
+        kit.cloudMaterial = mats["Cloud"];
+        kit.cloudDayColor = mats["Cloud"].GetColor("_BaseColor");
+        kit.dawnSky = Skybox("SonMon Sky Dawn", PolyHaven + "/HDRI/qwantani_sunrise_puresky_2k.hdr", .9f);
+        kit.glowMaterials = new[] { "Paper", "Glow" }.Select(slot => new SonMonKit.GlowEntry
+            { material = mats[slot], baseEmission = mats[slot].GetColor("_EmissionColor") }).ToArray();
         kit.environment = BuildEnvironment(mats, natureMats);
         EditorUtility.SetDirty(kit);
         AssetDatabase.SaveAssets();
@@ -133,7 +138,7 @@ public static class SonMonKitBuilder
             ["TrimGrey"] = Lit("SonMon Roof Grey Trim", new Color(.27f, .29f, .31f), null, null, 1, .4f),
             ["Lacquer"] = Lit("SonMon Red Lacquer", new Color(.72f, .16f, .11f), cedar, cedarNor, 1, .55f),
             ["Wood"] = Lit("SonMon Dark Wood", new Color(.45f, .3f, .2f), cedar, cedarNor, 1, .3f),
-            ["Plaster"] = Lit("SonMon Ivory Plaster", new Color(1f, .96f, .86f), Ph("clay_plaster", "diff"), Ph("clay_plaster", "nor_gl"), 1, .15f),
+            ["Plaster"] = Lit("SonMon Ivory Plaster", new Color(.96f, .92f, .82f), null, null, 1, .15f),  // flat painted ivory reads cleaner than the scanned plaster
             ["Stone"] = Lit("SonMon Plinth Stone", new Color(.86f, .86f, .84f), Ph("mossy_stone_wall", "diff"), Ph("mossy_stone_wall", "nor_gl"), 1, .2f),
             ["Marble"] = Lit("SonMon White Marble", new Color(.95f, .94f, .9f), paving, pavingNor, 1, .35f),
             ["Gold"] = Lit("SonMon Gilded Bronze", new Color(.93f, .7f, .32f), null, null, 1, .62f, .85f),
@@ -148,12 +153,15 @@ public static class SonMonKitBuilder
             ["Peak"] = Lit("SonMon Distant Peak", new Color(.47f, .6f, .62f), null, null, 1, .05f),
             ["Water"] = Water(),
             ["Cloud"] = Cloud(),
+            ["Formation"] = Additive("SonMon Formation", "Universal Render Pipeline/Unlit", RuneTexture(), new Color(.35f, 1.6f, 1.45f, .9f)),
+            ["Mote"] = Additive("SonMon Spirit Mote", "Universal Render Pipeline/Particles/Unlit", MoteTexture(), new Color(.7f, 1.3f, 1.15f, 1f)),
+            ["Mist"] = Additive("SonMon Waterfall Mist", "Universal Render Pipeline/Particles/Unlit", MoteTexture(), new Color(.75f, .85f, .9f, .35f), false),
         };
     }
 
     static Material Water()
     {
-        var mat = Lit("SonMon Waterfall", new Color(.75f, .95f, .97f, .85f), CloudTexture(), null, 1, .9f, 0, new Color(.25f, .45f, .5f));
+        var mat = Lit("SonMon Waterfall", new Color(.78f, .95f, 1f, .9f), WaterTexture(), null, 1, .92f, 0, new Color(.22f, .42f, .48f));
         MakeTransparent(mat);
         return mat;
     }
@@ -322,6 +330,7 @@ public static class SonMonKitBuilder
             instance.transform.localPosition = Vector3.zero;
             instance.transform.localRotation = facing;
             var bounds = Bounds(instance);
+            if (type == "meditation") FormationDisc(root.transform, new Vector3(0, .32f, 0), 2.2f, mats["Formation"], 9);
             var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/Building_{type}.prefab");
             Object.DestroyImmediate(root);
             Debug.Log($"SONMON_PREFAB {type} size={Bounds(prefab).size} centerZ={bounds.center.z:F2}");
@@ -522,10 +531,267 @@ public static class SonMonKitBuilder
             ribbon.AddComponent<SonMonDrift>().speed = new Vector2(0, -.35f - k * .1f);
         }
 
+        BuildAtmosphere(root, mats, natureMats);
+
         var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/SonMon_Environment.prefab");
         Object.DestroyImmediate(root);
         return prefab;
     }
+
+    // ------------------------------------------------------------------ atmosphere and magic
+
+    static void BuildAtmosphere(GameObject root, Dictionary<string, Material> mats, Dictionary<string, Material> natureMats)
+    {
+        var magic = new GameObject("Spirit atmosphere");
+        magic.transform.SetParent(root.transform, false);
+
+        // Great formation in front of the Chánh Điện (plaza front, clear of the hall stair) and a smaller
+        // echo where the sacred axis meets the gate terrace.
+        FormationDisc(magic.transform, new Vector3(0, .07f, -5.6f), 3.4f, mats["Formation"], 4);
+        FormationDisc(magic.transform, new Vector3(0, .07f, -15.2f), 2.2f, mats["Formation"], -6);
+
+        Particles(magic, "SonMon Spirit motes", new Vector3(0, 1.5f, -1), new Vector3(34, 5, 30), mats["Mote"], 90, 70, 10,
+            new Vector2(.07f, .16f), new Vector3(0, .12f, 0), new Color(.75f, 1f, .92f), new Color(1f, .9f, .6f));
+        Particles(magic, "SonMon Formation updraft", new Vector3(0, .2f, -5.6f), new Vector3(2.6f, .2f, 2.6f), mats["Mote"], 40, 12, 3.5f,
+            new Vector2(.06f, .12f), new Vector3(0, .65f, 0), new Color(.5f, 1f, .95f), new Color(.8f, 1f, 1f));
+        var fireflies = Particles(magic, "SonMon Night fireflies", new Vector3(0, 1.2f, 0), new Vector3(60, 3, 60), mats["Mote"], 140, 30, 8,
+            new Vector2(.08f, .14f), new Vector3(0, .05f, 0), new Color(1f, .9f, .55f), new Color(.7f, 1f, .7f));
+        var fly = fireflies.emission;
+        fly.enabled = false;  // switched on at night by SonMonSky
+
+        BuildWaterfall(root, mats, natureMats);
+    }
+
+    static void FormationDisc(Transform parent, Vector3 at, float size, Material mat, float spin)
+    {
+        var disc = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        Object.DestroyImmediate(disc.GetComponent<Collider>());
+        disc.name = "Spirit formation";
+        disc.transform.SetParent(parent, false);
+        disc.transform.localPosition = at;
+        disc.transform.localRotation = Quaternion.Euler(90, 0, 0);
+        disc.transform.localScale = Vector3.one * size;
+        var renderer = disc.GetComponent<MeshRenderer>();
+        renderer.sharedMaterial = mat;
+        renderer.shadowCastingMode = ShadowCastingMode.Off;
+        renderer.receiveShadows = false;
+        var turn = disc.AddComponent<SonMonSpin>();
+        turn.degreesPerSecond = spin;
+    }
+
+    static ParticleSystem Particles(GameObject parent, string name, Vector3 at, Vector3 box, Material mat, int max, float rate,
+        float life, Vector2 size, Vector3 velocity, Color a, Color b)
+    {
+        var go = new GameObject(name);
+        go.transform.SetParent(parent.transform, false);
+        go.transform.localPosition = at;
+        var ps = go.AddComponent<ParticleSystem>();
+        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        var main = ps.main;
+        main.loop = true;
+        main.prewarm = true;
+        main.duration = life;
+        main.maxParticles = max;
+        main.startLifetime = new ParticleSystem.MinMaxCurve(life * .6f, life);
+        main.startSpeed = 0;
+        main.startSize = new ParticleSystem.MinMaxCurve(size.x, size.y);
+        main.startColor = new ParticleSystem.MinMaxGradient(a, b);
+        main.simulationSpace = ParticleSystemSimulationSpace.World;
+        var shape = ps.shape;
+        shape.shapeType = ParticleSystemShapeType.Box;
+        shape.scale = box;
+        var emission = ps.emission;
+        emission.rateOverTime = rate;
+        var vel = ps.velocityOverLifetime;
+        vel.enabled = true;
+        vel.space = ParticleSystemSimulationSpace.World;
+        vel.x = new ParticleSystem.MinMaxCurve(velocity.x - .05f, velocity.x + .05f);
+        vel.y = new ParticleSystem.MinMaxCurve(velocity.y * .6f, velocity.y);
+        vel.z = new ParticleSystem.MinMaxCurve(velocity.z - .05f, velocity.z + .05f);
+        var noise = ps.noise;
+        noise.enabled = true;
+        noise.strength = .25f;
+        noise.frequency = .4f;
+        var fade = ps.colorOverLifetime;
+        fade.enabled = true;
+        var gradient = new Gradient();
+        gradient.SetKeys(new[] { new GradientColorKey(Color.white, 0), new GradientColorKey(Color.white, 1) },
+            new[] { new GradientAlphaKey(0, 0), new GradientAlphaKey(1, .25f), new GradientAlphaKey(.8f, .7f), new GradientAlphaKey(0, 1) });
+        fade.color = gradient;
+        var renderer = go.GetComponent<ParticleSystemRenderer>();
+        renderer.sharedMaterial = mat;
+        renderer.shadowCastingMode = ShadowCastingMode.Off;
+        renderer.receiveShadows = false;
+        ps.Play();
+        return ps;
+    }
+
+    // A mossy crag inside the main camera's view (upper left of the default framing) with a waterfall
+    // facing the camera, a spirit pool at its foot and drifting mist.
+    static void BuildWaterfall(GameObject root, Dictionary<string, Material> mats, Dictionary<string, Material> natureMats)
+    {
+        var fall = new GameObject("Crag waterfall");
+        fall.transform.SetParent(root.transform, false);
+        var basePoint = new Vector3(-21, -.3f, 17);
+        var toCamera = new Vector3(31, 0, -38).normalized;
+        const float height = 9.5f, radius = 4.2f;
+
+        var crag = new GameObject("Waterfall crag", typeof(MeshFilter), typeof(MeshRenderer));
+        crag.transform.SetParent(fall.transform, false);
+        crag.transform.localPosition = basePoint;
+        crag.GetComponent<MeshFilter>().sharedMesh = SaveMesh(PeakMesh(radius, height, 77), "SonMonWaterfallCrag");
+        crag.GetComponent<MeshRenderer>().sharedMaterial = mats["Cliff"];
+        for (int k = 0; k < 3; k++)
+            PlaceNature(fall, natureMats, "Pine_" + (2 + k), basePoint + new Vector3(-1 + k, height - .4f, k - 1), k * 120, TreeScale * 1.1f);
+        foreach (var offset in new[] { new Vector3(3.5f, 0, 1), new Vector3(-3, 0, 3), new Vector3(2, 0, -3.5f) })
+            PlaceNature(fall, natureMats, "Rock_Medium_" + (1 + (int)Mathf.Abs(offset.x) % 3), basePoint + offset, offset.z * 40, 1.3f);
+
+        var lip = basePoint + toCamera * (radius * .55f) + Vector3.up * (height * .82f);
+        var poolCentre = basePoint + toCamera * (radius + 1.8f);
+        for (int k = 0; k < 2; k++)
+        {
+            var ribbon = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            Object.DestroyImmediate(ribbon.GetComponent<Collider>());
+            ribbon.name = "Falling water";
+            ribbon.transform.SetParent(fall.transform, false);
+            var top = lip + toCamera * (.25f * k);
+            var bottom = poolCentre - toCamera * .6f + Vector3.up * .1f;
+            ribbon.transform.localPosition = (top + bottom) * .5f;
+            // Quad faces local -Z: point it at the camera, with local +Y running from pool up to the lip.
+            ribbon.transform.localRotation = Quaternion.LookRotation(-toCamera, (top - bottom).normalized);
+            ribbon.transform.localScale = new Vector3(1.9f - k * .5f, Vector3.Distance(top, bottom), 1);
+            ribbon.GetComponent<MeshRenderer>().sharedMaterial = mats["Water"];
+            ribbon.GetComponent<MeshRenderer>().shadowCastingMode = ShadowCastingMode.Off;
+            var flow = ribbon.AddComponent<SonMonDrift>();
+            flow.speed = new Vector2(0, .9f + k * .25f);
+        }
+
+        var pool = new GameObject("Spirit pool", typeof(MeshFilter), typeof(MeshRenderer));
+        pool.transform.SetParent(fall.transform, false);
+        pool.transform.localPosition = poolCentre + Vector3.up * .04f;
+        pool.GetComponent<MeshFilter>().sharedMesh = SaveMesh(DiscMesh(3.1f, 40, 5), "SonMonSpiritPool");
+        pool.GetComponent<MeshRenderer>().sharedMaterial = mats["Water"];
+        for (int k = 0; k < 9; k++)
+        {
+            float a = k / 9f * Mathf.PI * 2;
+            PlaceNature(fall, natureMats, k % 2 == 0 ? "RockPath_Round_Small_1" : "Pebble_Round_" + (1 + k % 5),
+                poolCentre + new Vector3(Mathf.Cos(a), 0, Mathf.Sin(a)) * 3.2f, a * 57, 1.2f);
+        }
+        Particles(fall, "SonMon Waterfall mist", poolCentre + Vector3.up * .4f, new Vector3(2.2f, .4f, 1.2f), mats["Mist"], 50, 14, 3.5f,
+            new Vector2(.7f, 1.6f), new Vector3(0, .45f, 0), new Color(.9f, .97f, 1f, .45f), new Color(.8f, .9f, .95f, .25f));
+    }
+
+    static Mesh DiscMesh(float radius, int segments, int seed)
+    {
+        var verts = new List<Vector3> { Vector3.zero };
+        var uvs = new List<Vector2> { new Vector2(.5f, .5f) };
+        for (int i = 0; i <= segments; i++)
+        {
+            float a = i / (float)segments * Mathf.PI * 2;
+            float r = radius * (.82f + .22f * Mathf.PerlinNoise(Mathf.Cos(a) * 1.7f + seed, Mathf.Sin(a) * 1.7f));
+            verts.Add(new Vector3(Mathf.Cos(a) * r, 0, Mathf.Sin(a) * r));
+            uvs.Add(new Vector2(.5f + Mathf.Cos(a) * .5f, .5f + Mathf.Sin(a) * .5f));
+        }
+        var tris = new List<int>();
+        for (int i = 1; i <= segments; i++) tris.AddRange(new[] { 0, i + 1, i });
+        var mesh = new Mesh { name = "SonMon pool" };
+        mesh.SetVertices(verts);
+        mesh.SetUVs(0, uvs);
+        mesh.SetTriangles(tris, 0);
+        mesh.RecalculateNormals();
+        return mesh;
+    }
+
+    static Material Additive(string name, string shader, Texture2D tex, Color color, bool additive = true)
+    {
+        var path = $"{MaterialDir}/{name}.mat";
+        var mat = AssetDatabase.LoadAssetAtPath<Material>(path);
+        if (mat == null) { mat = new Material(Shader.Find(shader)); AssetDatabase.CreateAsset(mat, path); }
+        mat.shader = Shader.Find(shader);
+        mat.SetTexture("_BaseMap", tex);
+        mat.SetColor("_BaseColor", color);
+        mat.SetFloat("_Surface", 1);
+        mat.SetFloat("_Blend", additive ? 2 : 0);
+        mat.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha);
+        mat.SetFloat("_DstBlend", additive ? (float)BlendMode.One : (float)BlendMode.OneMinusSrcAlpha);
+        mat.SetFloat("_ZWrite", 0);
+        mat.SetFloat("_Cull", (float)CullMode.Off);
+        mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+        mat.renderQueue = (int)RenderQueue.Transparent + 10;
+        mat.SetOverrideTag("RenderType", "Transparent");
+        EditorUtility.SetDirty(mat);
+        return mat;
+    }
+
+    static Texture2D SaveTexture(string file, int width, int height, Func<int, int, Color> pixel, bool repeat)
+    {
+        var path = TextureDir + "/" + file;
+        var existing = Tex(path);
+        if (existing != null) return existing;
+        var tex = new Texture2D(width, height, TextureFormat.RGBA32, true);
+        for (int y = 0; y < height; y++)
+        for (int x = 0; x < width; x++)
+            tex.SetPixel(x, y, pixel(x, y));
+        tex.Apply();
+        File.WriteAllBytes(path, tex.EncodeToPNG());
+        Object.DestroyImmediate(tex);
+        AssetDatabase.ImportAsset(path);
+        var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+        importer.alphaIsTransparency = true;
+        importer.wrapMode = repeat ? TextureWrapMode.Repeat : TextureWrapMode.Clamp;
+        importer.SaveAndReimport();
+        return Tex(path);
+    }
+
+    static Texture2D MoteTexture() => SaveTexture("SonMonMote.png", 64, 64, (x, y) =>
+    {
+        float r = Vector2.Distance(new Vector2(x, y), new Vector2(31.5f, 31.5f)) / 31.5f;
+        float core = Mathf.Pow(Mathf.Clamp01(1 - r), 3), halo = Mathf.Pow(Mathf.Clamp01(1 - r), 1.4f) * .35f;
+        return new Color(1, 1, 1, Mathf.Clamp01(core + halo));
+    }, false);
+
+    static Texture2D WaterTexture() => SaveTexture("SonMonWaterStreaks.png", 128, 512, (x, y) =>
+    {
+        float u = x / 128f * Mathf.PI * 2, v = y / 512f;
+        float streak = Mathf.PerlinNoise(Mathf.Cos(u) * 3 + 5, Mathf.Sin(u) * 3 + v * 2);
+        float fine = Mathf.PerlinNoise(x * .35f, y * .02f);
+        float alpha = Mathf.Clamp01(.45f + streak * .45f + (fine - .5f) * .3f);
+        float foam = Mathf.SmoothStep(.62f, .9f, streak) * .3f;
+        return new Color(.85f + foam, .85f + foam, .85f + foam, alpha);
+    }, true);
+
+    // Formation sigil: concentric rings, 64 radial ticks, eight trigram groups, an octagram and node dots.
+    static Texture2D RuneTexture() => SaveTexture("SonMonFormation.png", 1024, 1024, (x, y) =>
+    {
+        var p = new Vector2(x - 511.5f, y - 511.5f) / 511.5f;
+        float r = p.magnitude, deg = (Mathf.Atan2(p.y, p.x) * Mathf.Rad2Deg + 360) % 360;
+        float Ring(float radius, float width) => Mathf.Clamp01(1 - Mathf.Abs(r - radius) / width);
+        float v = Ring(.97f, .012f) + Ring(.92f, .006f) + Ring(.70f, .01f) + Ring(.64f, .005f) + Ring(.36f, .008f) + Ring(.30f, .004f);
+        if (r > .92f && r < .97f && Mathf.Abs((deg % 5.625f) - 2.8f) < .35f) v += .9f;
+        float sector = (deg + 22.5f) % 45f - 22.5f;
+        int trigram = Mathf.FloorToInt((deg + 22.5f) / 45f) % 8;
+        for (int bar = 0; bar < 3; bar++)
+        {
+            bool broken = ((trigram >> bar) & 1) == 1;
+            if (Mathf.Abs(r - (.74f + bar * .055f)) < .013f && Mathf.Abs(sector) < 13 && !(broken && Mathf.Abs(sector) < 2.5f)) v += 1;
+        }
+        for (int k = 0; k < 8; k++)
+        {
+            float t1 = k * Mathf.PI / 4, t2 = t1 + Mathf.PI * 3 / 4;
+            var a1 = new Vector2(Mathf.Cos(t1), Mathf.Sin(t1)) * .64f;
+            var d = new Vector2(Mathf.Cos(t2), Mathf.Sin(t2)) * .64f - a1;
+            float t = Mathf.Clamp01(Vector2.Dot(p - a1, d) / d.sqrMagnitude);
+            v += Mathf.Clamp01(1 - Vector2.Distance(p, a1 + d * t) / .007f) * .8f;
+        }
+        for (int k = 0; k < 8; k++)
+        {
+            float t1 = k * Mathf.PI / 4 + Mathf.PI / 8;
+            v += Mathf.Clamp01(1 - Vector2.Distance(p, new Vector2(Mathf.Cos(t1), Mathf.Sin(t1)) * .5f) / .03f);
+        }
+        v += Mathf.Clamp01(1 - r / .12f) * .6f;
+        float glow = r < .97f ? Mathf.Clamp01(1 - r) * .08f : 0;
+        return new Color(1, 1, 1, Mathf.Clamp01(v + glow));
+    }, false);
 
     static Vector3 RimPoint(float angle, float radius)
     {

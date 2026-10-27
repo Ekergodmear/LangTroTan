@@ -6,8 +6,8 @@ PASS core building opens authoritative upgrade decision
 PASS disciple contextual controls present
 PASS Bao Kho source projection available
 PASS QA fixture has a disciple the reference rules allow to be assigned
-PASS disciple card shows the allowed assignment button: AssignJob:disc_mvqa0gar_2:alchemy
-PASS pointer raycast reaches visible button: AssignJob:disc_mvqa0gar_2:alchemy
+PASS disciple card shows the allowed assignment button: AssignJob:disc_mvqaz765_2:alchemy
+PASS pointer raycast reaches visible button: AssignJob:disc_mvqaz765_2:alchemy
 PASS real disciple card button applies authoritative assignment idle -> alchemy
 PASS assignment request journal resolved
 PASS selected treasure displays canonical name: tu_khi_dan
@@ -17,7 +17,7 @@ PASS selected treasure displays canonical name: huyen_linh_thao
 PASS selected treasure displays canonical name: khoang_thach
 PASS pointer raycast reaches visible button: Dùng tăng tu vi
 PASS treasure action opens native recipient picker
-PASS pointer raycast reaches visible button: PillRecipient:disc_mvqa0gar_2
+PASS pointer raycast reaches visible button: PillRecipient:disc_mvqaz765_2
 PASS pointer raycast reaches visible button: Xác nhận sử dụng
 PASS native Bao Kho use consumes exactly one real pill
 PASS native Bao Kho authoritative receipt grants forty EXP to the exact selected disciple id

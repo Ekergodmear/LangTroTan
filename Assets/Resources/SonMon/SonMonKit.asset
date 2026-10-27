@@ -72,6 +72,14 @@ MonoBehaviour:
   environment: {fileID: 3431208331038746481, guid: c5323f724fe40924891f694e6be23f38, type: 3}
   daySky: {fileID: 2100000, guid: a77b10c02d9349f46ba25ca6ee2d1756, type: 2}
   nightSky: {fileID: 2100000, guid: 9cad98cbc31c0b44485d7061ed377107, type: 2}
+  dawnSky: {fileID: 2100000, guid: 6304c34525cf5ed4bb1051c995de72ba, type: 2}
+  glowMaterials:
+  - material: {fileID: 2100000, guid: 0df9a8f0099bf0d40a46438bf06287e4, type: 2}
+    baseEmission: {r: 1.08, g: 0.3, b: 0.096, a: 1.2}
+  - material: {fileID: 2100000, guid: 930fbcb24f1c15348a55fafcb8f00e6b, type: 2}
+    baseEmission: {r: 0.26, g: 1.105, b: 1.04, a: 1.3}
+  cloudMaterial: {fileID: 2100000, guid: 57b3da52977c66b4ea7670b93693d6e8, type: 2}
+  cloudDayColor: {r: 0.88, g: 0.93, b: 0.97999996, a: 0.62}
   seasonLeafTint:
   - {r: 1, g: 0.86, b: 0.9, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}

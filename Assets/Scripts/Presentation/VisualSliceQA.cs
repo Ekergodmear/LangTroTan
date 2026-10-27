@@ -36,6 +36,7 @@ namespace LangTroTan.Presentation
             }
             if(SliceEnabled&&Environment.GetCommandLineArgs().Contains("-visual-regression"))yield return VisualInteractionRegression();
             if(SliceEnabled){CloseDialog();CloseSpatialDetail();projectionActive=false;tab=0;Draw();CloseSpatialDetail();var focus=physicalFocus;float zoom=physicalZoom;physicalFocus=new Vector3(0,2,0);physicalZoom=11;SetSpatialCamera();yield return new WaitForSecondsRealtime(.5f);VisualCapture("architecture-detail",1920,1080);physicalFocus=focus;physicalZoom=zoom;SetSpatialCamera();}
+            if(SliceEnabled&&SonMonKit.Instance!=null)yield return SonMonTimeOfDayCaptures();
             visualChecks.Add("COMPLETE");File.WriteAllLines(Path.Combine(visualOutput,"regression.txt"),visualChecks);Debug.Log("VISUAL_QA_COMPLETE "+visualOutput);Application.Quit();
         }
         void VisualCapture(string name,int width,int height)
@@ -51,6 +52,21 @@ namespace LangTroTan.Presentation
             File.WriteAllText(Path.Combine(visualOutput,"layout-"+name+"-"+width+".json"),ServerJson.Stringify(new Dictionary<string,object>{{"width",width},{"height",height},{"textOverflow",overflow.Cast<object>().ToList()},{"screenshotIsUnityCameraRender",true}}));
         }
         Button FindSliceButton(Transform root,string caption)=>root.GetComponentsInChildren<Button>().First(b=>b.GetComponentsInChildren<Text>().Any(t=>t.text==caption));
+        // Presentation-only captures for the Milestone B review: Chánh Điện hero close-up, dawn and night.
+        // The clock override never reaches the server; it is cleared before the run ends.
+        IEnumerator SonMonTimeOfDayCaptures()
+        {
+            CloseDialog();CloseSpatialDetail();projectionActive=false;tab=0;Draw();CloseSpatialDetail();
+            var hall=models.TryGetValue("core:chanh_dien",out var root)?root.transform.position:Vector3.zero;
+            IEnumerator Settle(float phase){SonMonSky.PreviewPhase=phase;SonMonSky.PreviewSeason=0;for(int i=0;i<3;i++){SonMonArt.ApplyTimeOfDay(phase,0,false,"clear",spatialSun,cam,1);yield return new WaitForSecondsRealtime(.4f);}}
+            void Hero(){cam.transform.position=hall+new Vector3(4.6f,2.4f,-8.4f);cam.transform.LookAt(hall+new Vector3(0,2.2f,0));}
+            yield return Settle(.30f);Hero();yield return new WaitForSecondsRealtime(.3f);Hero();VisualCapture("hall-closeup",1920,1080);
+            yield return Settle(.03f);SetSpatialCamera();yield return new WaitForSecondsRealtime(.3f);VisualCapture("dawn-son-mon",1920,1080);
+            Hero();VisualCapture("dawn-hall-closeup",1920,1080);
+            yield return Settle(.85f);SetSpatialCamera();yield return new WaitForSecondsRealtime(1.5f);VisualCapture("night-son-mon",1920,1080);
+            Hero();VisualCapture("night-hall-closeup",1920,1080);
+            SonMonSky.PreviewPhase=null;SonMonSky.PreviewSeason=null;SetSpatialCamera();
+        }
         static string HierarchyPath(Transform t)=>t.parent==null?t.name:HierarchyPath(t.parent)+"/"+t.name;
         // GraphicRaycaster ignores graphics that have not been rendered yet (depth -1), so a freshly rebuilt
         // screen cannot be clicked in the frame it was created. Wait until the button is drawn, as a player would.

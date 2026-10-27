@@ -86,3 +86,22 @@ Defects found and fixed during this pass, each caught by a screenshot or a build
 6. Photo-scanned leaf litter read as autumn mud. Replaced with a generated painted meadow.
 
 **Still placeholder or not done (Milestone B is not complete):** worker characters and deer are the old primitive meshes; no spirit-particle or formation VFX pass yet; waterfall not visible from the default camera; no close-up hero shot of the hall or night capture yet; the meadow between resource trees is plain; HUD panels hide the sky and peaks (Milestone C).
+
+## Milestone B, atmosphere and magic pass (2026-10-27)
+
+Added (presentation only, server untouched):
+- **Spirit formations:** a generated sigil (rings, 64 ticks, eight trigrams, octagram, nodes) as additive, slowly rotating and breathing discs. One great formation in front of the Chánh Điện, one at the gate terrace, one built into the Tụ Linh Trận prefab.
+- **Particles:** plaza spirit motes (90 max), a formation updraft (40), night fireflies (140, emission only at night), waterfall mist (50).
+- **Waterfall visible from the default camera:** a mossy crag with pines at (−21, 17), two streaked water ribbons facing the camera, an irregular spirit pool with stones, and mist.
+- **Time of day (`SonMonSky`):** follows the server's spatial clock (phase from dawn; night at phase ≥ daylight[season], the same table as `server/unity/spatial.js`). It drives sun angle, colour and intensity, trilight ambient, fog, sky HDRI (dawn / day / night), bloom, lantern and spirit glow, and cloud-sea tint. The legacy weather lighting is used only when the kit is absent.
+- **QA captures** (camera only; a clock override that never reaches the server and is cleared afterwards): `hall-closeup`, `dawn-son-mon`, `dawn-hall-closeup`, `night-son-mon`, `night-hall-closeup`.
+
+| Check | Result |
+|---|---|
+| ProjectBuild editor checks | 194 PASS |
+| `-visual-regression` | **33/33 PASS** (fresh isolated fixture) |
+| Performance, Sơn Môn 1080p | CPU 5.39 ms (p95 5.86), GPU 1.70 ms (p95 1.98), 1.16 M triangles incl. shadow passes, 381 renderers |
+
+Fixed during the pass, from screenshots: the cloud sea glared white at night (an unlit material ignoring the light), so it is now tinted by time of day. Gold bracket caps read as blocks and are now roof-trim coloured. Scanned plaster read brown; walls are now flat painted ivory. Dawn was too dim, so dawn sun and ambient were raised.
+
+Still open: worker and deer placeholders; waterfall is a flat ribbon (no splash mesh); dawn could be more golden; the HUD hides the sky (Milestone C); triangle budget.

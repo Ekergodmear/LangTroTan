@@ -19,7 +19,21 @@ namespace LangTroTan.Presentation
         public GameObject[] resourceTrees = Array.Empty<GameObject>();
         public GameObject[] resourceRocks = Array.Empty<GameObject>();
         public GameObject environment;
-        public Material daySky, nightSky;
+        public Material daySky, nightSky, dawnSky;
+
+        [Serializable]
+        public struct GlowEntry
+        {
+            public Material material;
+            [ColorUsage(false, true)] public Color baseEmission;
+        }
+
+        // Emissive kit materials (lantern paper, spirit glow, formations) brightened at dusk and night.
+        public GlowEntry[] glowMaterials = Array.Empty<GlowEntry>();
+
+        // Unlit cloud sea: tinted by time of day so it does not glare at night.
+        public Material cloudMaterial;
+        public Color cloudDayColor = Color.white;
         public Color[] seasonLeafTint = { new Color(.92f, 1f, .9f), Color.white, new Color(1.25f, .72f, .42f), new Color(.88f, .95f, 1f) };
 
         const string ResourcePath = "SonMon/SonMonKit";
@@ -92,16 +106,18 @@ namespace LangTroTan.Presentation
             var kit = SonMonKit.Instance;
             if (kit == null || kit.environment == null) return false;
             UnityEngine.Object.Instantiate(kit.environment, parent, false).name = kit.environment.name;
+            SonMonSky.Reset();
             if (kit.daySky != null) RenderSettings.skybox = kit.daySky;
             return true;
         }
 
-        public static void ApplyTimeOfDay(bool night)
+        // Drives sun, sky, ambient, fog, bloom and emissive glow from the server's spatial clock.
+        public static bool ApplyTimeOfDay(float phase, int season, bool night, string weather, Light sun, Camera cam, float blend)
         {
             var kit = SonMonKit.Instance;
-            if (kit == null) return;
-            var sky = night ? kit.nightSky : kit.daySky;
-            if (sky != null && RenderSettings.skybox != sky) RenderSettings.skybox = sky;
+            if (kit == null || kit.daySky == null) return false;
+            SonMonSky.Apply(kit, SonMonSky.Evaluate(kit, phase, season, night, weather), sun, cam, blend);
+            return true;
         }
 
         static void TintLeaves(GameObject tree, Color tint)

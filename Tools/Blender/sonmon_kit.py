@@ -229,7 +229,7 @@ def bracket_band(b, w, d, z, step=0.42):
             oy = sy * 0.1 if horizontal else 0
             b.box((x, y, z + 0.06), (0.16, 0.16, 0.12), "Wood")
             b.box((x + ox, y + oy, z + 0.17), (0.3 if horizontal else 0.14, 0.14 if horizontal else 0.3, 0.1), "Lacquer")
-            b.box((x + ox * 2, y + oy * 2, z + 0.27), (0.2, 0.2, 0.08), "Gold")
+            b.box((x + ox * 2, y + oy * 2, z + 0.27), (0.18, 0.18, 0.07), "RoofTrim")
 
 
 def roof_height(x, y, hw, hd, ridge_half, rise, sag=1.55, lift=0.32):
