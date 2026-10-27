@@ -40,7 +40,7 @@ namespace LangTroTan.Presentation
                 if(!models.TryGetValue(id,out var root)||!levels.TryGetValue(id,out int previous)||previous!=level)
                 {
                     if(root!=null)Destroy(root);root=new GameObject(type);var model=new Building{type=type,level=Mathf.Clamp(level,1,4),rotation=(int)N(Get(b,"rotation")),complete=true};
-                    if(SliceEnabled)SliceArt.Building(root.transform,new Building{type=type,level=model.level,rotation=0,complete=true},Material);else VillageArt.Building(root.transform,model,Material);VillageArt.Combine(root.transform);
+                    if(SliceEnabled&&SonMonArt.TryBuilding(root.transform,type)){}else{if(SliceEnabled)SliceArt.Building(root.transform,new Building{type=type,level=model.level,rotation=0,complete=true},Material);else VillageArt.Building(root.transform,model,Material);VillageArt.Combine(root.transform);}
                     var box=root.AddComponent<BoxCollider>();box.center=new Vector3(0,1,0);box.size=new Vector3(model.W,3,model.D);
                     if(SliceEnabled){var geometry=root.GetComponentsInChildren<Renderer>().Where(r=>r.enabled).ToArray();if(geometry.Length>0){var bounds=geometry[0].bounds;foreach(var renderer in geometry.Skip(1))bounds.Encapsulate(renderer.bounds);box.center=bounds.center;box.size=bounds.size;}root.transform.rotation=Quaternion.Euler(0,90*(int)N(Get(b,"rotation")),0);}
                     var marker=root.AddComponent<FullPortBuilding>();marker.serverId=id;
@@ -56,10 +56,11 @@ namespace LangTroTan.Presentation
             {
                 string id=S(Get(node,"id")),kind=S(Get(node,"kind"));nodeAlive.Add(id);bool full=N(Get(node,"amount"))>0;int stage=(full?2:0)+(kind=="tree"?season*10:0);
                 if(spatialStages.TryGetValue(id,out int previous)&&previous==stage)continue;
-                if(spatialNodes.TryGetValue(id,out var old))Destroy(old);var root=new GameObject(kind);root.transform.position=new Vector3((float)N(Get(node,"x")),0,(float)N(Get(node,"z")));
+                if(spatialNodes.TryGetValue(id,out var old))Destroy(old);var root=new GameObject(kind);bool authored=false;root.transform.position=new Vector3((float)N(Get(node,"x")),0,(float)N(Get(node,"z")));
                 if(kind=="deer"&&full)VillageArt.Deer(root.transform,Material);
+                else if(kind=="stone"&&SliceEnabled&&(authored=SonMonArt.TryRock(root.transform,StableTreeSeed(id),full))){}
                 else if(kind=="stone")VillageArt.Rock(root.transform,new Vector3(0,full?.5f:.12f,0),Vector3.one*(full?1.2f:.3f),Material("spatial stone",new Color(.46f,.51f,.48f)));
-                else if(SliceEnabled&&kind=="tree"&&full)SliceArt.Tree(root.transform,season,StableTreeSeed(id),Material);
+                else if(SliceEnabled&&kind=="tree"&&full){authored=SonMonArt.TryTree(root.transform,StableTreeSeed(id),season);if(!authored)SliceArt.Tree(root.transform,season,StableTreeSeed(id),Material);}
                 else
                 {
                     SpatialPart(root.transform,PrimitiveType.Cylinder,new Vector3(0,full?.8f:.18f,0),new Vector3(.22f,full?.8f:.18f,.22f),Material("spatial bark",new Color(.28f,.19f,.12f)));
@@ -69,7 +70,7 @@ namespace LangTroTan.Presentation
                         VillageArt.Rock(root.transform,new Vector3(.5f,1.85f,-.22f),new Vector3(1.5f,1.6f,1.4f),leaf);
                     }
                 }
-                VillageArt.Combine(root.transform);var collider=root.AddComponent<BoxCollider>();float height=full?(kind=="tree"?3:1.5f):.4f;collider.center=Vector3.up*height*.5f;collider.size=new Vector3(1.3f,height,1.3f);
+                if(!authored)VillageArt.Combine(root.transform);var collider=root.AddComponent<BoxCollider>();float height=full?(kind=="tree"?3:1.5f):.4f;collider.center=Vector3.up*height*.5f;collider.size=new Vector3(1.3f,height,1.3f);
                 var marker=root.AddComponent<FullPortNode>();marker.id=id;marker.selected=selected=>{if(!physicalDragged&&placingSpatial==null)ShowSpatialNode(selected);};spatialNodes[id]=root;spatialStages[id]=stage;
             }
             foreach(string id in spatialNodes.Keys.Where(id=>!nodeAlive.Contains(id)).ToArray()){Destroy(spatialNodes[id]);spatialNodes.Remove(id);spatialStages.Remove(id);}
@@ -113,7 +114,7 @@ namespace LangTroTan.Presentation
         {
             string weather=S(Get(spatial,"environment","weather"));bool night=Get(spatial,"environment","night") is bool value&&value;float light=night?.32f:1.05f;if(weather=="storm")light*=.65f;else if(weather=="rain"||weather=="snow")light*=.8f;
             if(spatialSun!=null)spatialSun.intensity=Mathf.Lerp(spatialSun.intensity,SliceEnabled?light*1.3f:light,Time.unscaledDeltaTime);if(!SliceEnabled)RenderSettings.ambientLight=night?new Color(.24f,.31f,.42f):new Color(.48f,.57f,.50f);
-            if(SliceEnabled){var sky=night?new Color(.16f,.25f,.34f):new Color(.65f,.77f,.75f);RenderSettings.fogColor=Color.Lerp(RenderSettings.fogColor,sky,Time.unscaledDeltaTime);cam.backgroundColor=RenderSettings.fogColor;Shader.SetGlobalColor("_XianxiaFog",RenderSettings.fogColor);RenderSettings.ambientSkyColor=Color.Lerp(RenderSettings.ambientSkyColor,night?new Color(.24f,.34f,.48f):new Color(.66f,.77f,.8f),Time.unscaledDeltaTime);spatialSun.color=Color.Lerp(spatialSun.color,night?new Color(.58f,.72f,1):new Color(1,.89f,.73f),Time.unscaledDeltaTime);}
+            if(SliceEnabled){var sky=night?new Color(.16f,.25f,.34f):new Color(.65f,.77f,.75f);RenderSettings.fogColor=Color.Lerp(RenderSettings.fogColor,sky,Time.unscaledDeltaTime);cam.backgroundColor=RenderSettings.fogColor;Shader.SetGlobalColor("_XianxiaFog",RenderSettings.fogColor);RenderSettings.ambientSkyColor=Color.Lerp(RenderSettings.ambientSkyColor,night?new Color(.24f,.34f,.48f):new Color(.66f,.77f,.8f),Time.unscaledDeltaTime);spatialSun.color=Color.Lerp(spatialSun.color,night?new Color(.58f,.72f,1):new Color(1,.89f,.73f),Time.unscaledDeltaTime);SonMonArt.ApplyTimeOfDay(night);}
             if(spatialRain==null)
             {
                 var root=new GameObject("Mưa và tuyết");root.transform.rotation=Quaternion.Euler(90,0,0);spatialRain=root.AddComponent<ParticleSystem>();spatialRain.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);var main=spatialRain.main;main.loop=true;main.simulationSpace=ParticleSystemSimulationSpace.World;main.maxParticles=600;main.startLifetime=3;

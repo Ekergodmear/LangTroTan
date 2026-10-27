@@ -41,6 +41,18 @@ Files are in `Assets/ThirdParty/PolyHaven/`. `PROVENANCE.json` records each file
 - HDRIs (2k .hdr, pure sky): qwantani_sunrise_puresky (dawn), kloofendal_48d_partly_cloudy_puresky (day), kloofendal_28d_misty_puresky (mist), qwantani_night_puresky (night).
 - Fetch script: `work/claude-audit/tools/fetch_polyhaven.py` (fixed list, official API).
 
+### Quaternius Stylized Nature MegaKit, Standard (CC0 1.0): downloaded with user approval 2026-10-27
+
+- Location: `Assets/ThirdParty/Quaternius/StylizedNatureMegaKit/` ("FBX (Unity)" models + Textures + `License_Standard.txt`). `PROVENANCE.json` lists every file with its SHA-256.
+- Source: https://quaternius.com/packs/stylizednaturemegakit.html. File downloaded from Quaternius's own OpenGameArt upload: https://opengameart.org/sites/default/files/stylized_nature_megakitstandard.zip (archive SHA-256 `298f6732…58c9`).
+- Licence text in the archive: CC0 1.0 Universal. 68 of the 116 models (the free Standard tier). The paid Source tier's stylized shader is **not** included; URP materials are project-made.
+
+### Sơn Môn architecture kit (project-authored, 2026-10-27)
+
+- Generator: `Tools/Blender/sonmon_kit.py` (Blender 4.5 LTS, headless). Output: `Assets/Art/SonMon/Models/SonMon_*.fbx` (one per server building type, plus a stone-lantern prop).
+- Unity assembly: `Assets/Editor/SonMonKitBuilder.cs` builds URP materials (Poly Haven CC0 textures), prefabs, the environment prefab and `Assets/Resources/SonMon/SonMonKit.asset`.
+- No third-party geometry; project-owned.
+
 ### Tools
 
 - Blender 4.5.10 LTS, installed with user approval via winget (`BlenderFoundation.Blender.LTS.4.5`, official blender.org package). GPL tool; models made with it belong to the project.

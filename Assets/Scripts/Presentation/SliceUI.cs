@@ -179,7 +179,7 @@ namespace LangTroTan.Presentation
             spatialSun=new GameObject("Warm mountain sunlight").AddComponent<Light>();spatialSun.type=LightType.Directional;spatialSun.color=new Color(1,.89f,.73f);spatialSun.intensity=1.3f;spatialSun.shadows=LightShadows.Soft;spatialSun.shadowStrength=.7f;spatialSun.transform.rotation=Quaternion.Euler(48,-32,0);
             RenderSettings.ambientMode=AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.66f,.77f,.8f);RenderSettings.ambientEquatorColor=new Color(.58f,.64f,.58f);RenderSettings.ambientGroundColor=new Color(.3f,.36f,.32f);RenderSettings.fog=true;RenderSettings.fogMode=FogMode.Linear;RenderSettings.fogColor=new Color(.65f,.77f,.75f);RenderSettings.fogStartDistance=45;RenderSettings.fogEndDistance=145;
             Shader.SetGlobalColor("_XianxiaFog",RenderSettings.fogColor);
-            var world=new GameObject("Authored Xianxia environment");SliceArt.Environment(world.transform,Material);CreateSliceAtmosphere();SetSpatialCamera();
+            var world=new GameObject("Authored Xianxia environment");if(SonMonArt.TryEnvironment(world.transform)){cam.clearFlags=CameraClearFlags.Skybox;cam.farClipPlane=420;RenderSettings.fogStartDistance=70;RenderSettings.fogEndDistance=260;}else SliceArt.Environment(world.transform,Material);CreateSliceAtmosphere();SetSpatialCamera();
         }
     }
 }

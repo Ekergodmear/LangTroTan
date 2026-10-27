@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502be9cef8bdb8044b1484dbf2c6df38, type: 3}
+  m_Name: SonMonKit
+  m_EditorClassIdentifier: LangTroTan.Presentation::LangTroTan.Presentation.SonMonKit
+  buildings:
+  - type: alchemy
+    prefab: {fileID: 7529310774585011592, guid: eab3245ff2985f240a422761ee971c8b, type: 3}
+  - type: barracks
+    prefab: {fileID: 7414511351835109181, guid: 4da0583e064104b48bfc734d5c46cb3b, type: 3}
+  - type: farm
+    prefab: {fileID: 6003784238262956536, guid: 63ae5fbbf7797b649a865d1867837ee8, type: 3}
+  - type: forester
+    prefab: {fileID: 116165382834050479, guid: 959a7e2f4979a65458b3d3b1037e53da, type: 3}
+  - type: forge
+    prefab: {fileID: 3137201235533246114, guid: 613dc5652cb1882459bb6f2fefe8e732, type: 3}
+  - type: gate
+    prefab: {fileID: 7987304957999586917, guid: 398befa9f441ae44ca1388d354c87888, type: 3}
+  - type: hall
+    prefab: {fileID: 296949847031356141, guid: 432a3b598787c3f489cab5af777865cc, type: 3}
+  - type: hearth
+    prefab: {fileID: 8720259064584241937, guid: 32cd324f6718b2b4b945b8f73281fe4a, type: 3}
+  - type: herbgarden
+    prefab: {fileID: 4530944128521436956, guid: 0571141b9f4eb3c4886161af168f9efa, type: 3}
+  - type: house
+    prefab: {fileID: 2806479521179686271, guid: 1157ae2af20102d44a35de43671be82d, type: 3}
+  - type: hunter
+    prefab: {fileID: 2178076419297449747, guid: a362fbda1380fab41b4ebdd4108a6e04, type: 3}
+  - type: meditation
+    prefab: {fileID: 1714486415536912766, guid: 18b45264342ed9747ae48d81db18be3f, type: 3}
+  - type: mission
+    prefab: {fileID: 999025529234933889, guid: a2f406bf6f20dc046b9fb15be03484c8, type: 3}
+  - type: scripture
+    prefab: {fileID: 3581431934959074364, guid: 33f25520e600f6d49bce9da5ad9b96b3, type: 3}
+  - type: spiritmine
+    prefab: {fileID: 1416575840054441488, guid: 126edf9d80d27904aa4a39c95eecc26b, type: 3}
+  - type: stone
+    prefab: {fileID: 4151622688283310763, guid: 2f88157233f91a648b2644c4bfe61af2, type: 3}
+  - type: store
+    prefab: {fileID: 6630857128746340321, guid: 582504cfbc79b57429facfdd76162950, type: 3}
+  - type: tower
+    prefab: {fileID: 1937282381265857862, guid: 8c620195b43493945ace7bd7464d881c, type: 3}
+  - type: wall
+    prefab: {fileID: 6281066940363871764, guid: cbbc27c0889e6f64e863fe98522cf7a1, type: 3}
+  - type: well
+    prefab: {fileID: 111263986397173009, guid: b41044dde429f724eb5baec26550fb56, type: 3}
+  - type: wood
+    prefab: {fileID: 3814969030413409984, guid: edb1fb1e8ed69354082dfc515262520e, type: 3}
+  resourceTrees:
+  - {fileID: 504334032309743259, guid: 3591229a6f4333c4192e29deb175f3a4, type: 3}
+  - {fileID: 4607559866367361718, guid: a0115aa06860a7a40accb7fada9d27cd, type: 3}
+  - {fileID: 6065978591272341908, guid: 1fb81e7fe2ad969449db6b0190dc5e96, type: 3}
+  - {fileID: 934331679436237685, guid: df104c841e6b19c4d8849f7f01a45b5f, type: 3}
+  - {fileID: 3591511733183177003, guid: 4a2afb0bf8dbd16408fc47b28dad7c9c, type: 3}
+  - {fileID: 4607559866367361718, guid: a0115aa06860a7a40accb7fada9d27cd, type: 3}
+  - {fileID: 4084580285961776330, guid: a16468ce152e41e4396121bb04ac093e, type: 3}
+  - {fileID: 504334032309743259, guid: 3591229a6f4333c4192e29deb175f3a4, type: 3}
+  - {fileID: 1897329140611068129, guid: 345baf6051fba6e41be6a61575c0052f, type: 3}
+  resourceRocks:
+  - {fileID: 2424713062540375383, guid: f1cbbc8aa57ed96418d97664d2232ed1, type: 3}
+  - {fileID: 4966452437188638004, guid: bec8e8f1a927afc43a810d07ebeb2e5e, type: 3}
+  - {fileID: 43440533568610726, guid: 4aad5ee0a39d0d84e987be301206d82e, type: 3}
+  environment: {fileID: 3431208331038746481, guid: c5323f724fe40924891f694e6be23f38, type: 3}
+  daySky: {fileID: 2100000, guid: a77b10c02d9349f46ba25ca6ee2d1756, type: 2}
+  nightSky: {fileID: 2100000, guid: 9cad98cbc31c0b44485d7061ed377107, type: 2}
+  seasonLeafTint:
+  - {r: 1, g: 0.86, b: 0.9, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.62, b: 0.38, a: 1}
+  - {r: 0.82, g: 0.9, b: 0.95, a: 1}

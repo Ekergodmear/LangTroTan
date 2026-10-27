@@ -3,6 +3,7 @@
   "references": [
     "LangTroTan.Domain",
     "LangTroTan.Infrastructure",
+    "LangTroTan.Presentation",
     "Unity.RenderPipelines.Universal.Runtime",
     "Unity.RenderPipelines.Core.Runtime"
   ],

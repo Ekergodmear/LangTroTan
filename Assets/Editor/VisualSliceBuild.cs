@@ -19,6 +19,6 @@ public static class VisualSliceBuild
         foreach(string name in new[]{"Universal Render Pipeline/Lit","Universal Render Pipeline/Simple Lit","Universal Render Pipeline/Unlit","Universal Render Pipeline/Particles/Unlit"}){
             var shader=Shader.Find(name);if(shader==null)throw new System.Exception("Missing URP shader "+name);bool found=false;for(int i=0;i<list.arraySize;i++)if(list.GetArrayElementAtIndex(i).objectReferenceValue==shader)found=true;if(!found){int i=list.arraySize;list.InsertArrayElementAtIndex(i);list.GetArrayElementAtIndex(i).objectReferenceValue=shader;}
         }
-        settings.ApplyModifiedPropertiesWithoutUndo();EditorUtility.SetDirty(pipeline);AssetDatabase.SaveAssets();ProjectBuild.Build();
+        settings.ApplyModifiedPropertiesWithoutUndo();EditorUtility.SetDirty(pipeline);AssetDatabase.SaveAssets();SonMonKitBuilder.BuildAll();ProjectBuild.Build();
     }
 }
