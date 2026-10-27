@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Bamboo
+    second: {fileID: 2100000, guid: f3b2da1b48de00a488b6889290f1961c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glow
     second: {fileID: 2100000, guid: 930fbcb24f1c15348a55fafcb8f00e6b, type: 2}
   - first:

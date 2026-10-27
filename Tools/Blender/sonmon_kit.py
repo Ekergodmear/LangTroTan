@@ -3,7 +3,7 @@
 Builds stylized Xianxia buildings from modular parts and exports one FBX per server
 building type into Assets/Art/SonMon/Models. Material slot names are mapped to URP
 materials by Assets/Editor/SonMonKitBuilder.cs:
-    Roof, RoofTrim, RoofGrey, TrimGrey, Lacquer, Wood, Plaster, Stone, Marble, Gold, Paper, Glow, Soil, Leaf
+    Roof, RoofTrim, RoofGrey, TrimGrey, Lacquer, Wood, Plaster, Stone, Marble, Gold, Paper, Glow, Soil, Leaf, Bamboo
 
 Usage:
     blender -b --factory-startup -P Tools/Blender/sonmon_kit.py -- <out_dir> [type ...] [--preview <png>]
@@ -18,12 +18,12 @@ import bmesh
 import bpy
 from mathutils import Vector
 
-SLOTS = ["Roof", "RoofTrim", "RoofGrey", "TrimGrey", "Lacquer", "Wood", "Plaster", "Stone", "Marble", "Gold", "Paper", "Glow", "Soil", "Leaf"]
+SLOTS = ["Roof", "RoofTrim", "RoofGrey", "TrimGrey", "Lacquer", "Wood", "Plaster", "Stone", "Marble", "Gold", "Paper", "Glow", "Soil", "Leaf", "Bamboo"]
 PREVIEW_COLORS = {
     "Roof": (0.10, 0.30, 0.31, 1), "RoofTrim": (0.07, 0.20, 0.21, 1), "RoofGrey": (0.30, 0.31, 0.32, 1), "TrimGrey": (0.20, 0.21, 0.22, 1), "Lacquer": (0.50, 0.08, 0.06, 1),
     "Wood": (0.24, 0.12, 0.07, 1), "Plaster": (0.90, 0.85, 0.72, 1), "Stone": (0.55, 0.55, 0.52, 1),
     "Marble": (0.86, 0.85, 0.80, 1), "Gold": (0.85, 0.62, 0.24, 1), "Paper": (0.85, 0.22, 0.12, 1),
-    "Glow": (0.45, 0.95, 0.85, 1), "Soil": (0.28, 0.18, 0.10, 1), "Leaf": (0.30, 0.55, 0.25, 1),
+    "Glow": (0.45, 0.95, 0.85, 1), "Soil": (0.28, 0.18, 0.10, 1), "Leaf": (0.30, 0.55, 0.25, 1), "Bamboo": (0.55, 0.65, 0.30, 1),
 }
 
 
@@ -248,6 +248,8 @@ def hip_roof(b, w, d, z, rise, overhang=0.7, ridge_ratio=0.45, thickness=0.14, o
     """skirt=(w2, d2): lower eave of a double roof; ridges start at the upper storey's corners."""
     """Concave hip roof with thickness, ridge caps, hip ridges with upturned tips, and ridge beasts."""
     hw, hd = w / 2 + overhang, d / 2 + overhang
+    ks = min(1.0, max(0.3, hd / 1.5))  # detail scale: small roofs get proportionally smaller trims
+    lift *= ks
     # Ridge length: what remains after the hips rise from both short ends, plus a share of the width.
     ridge_half = max(0.05, (hw - hd) + hd * ridge_ratio * 0.4) if w >= d else 0.05
     verts, faces = [], []
@@ -275,8 +277,8 @@ def hip_roof(b, w, d, z, rise, overhang=0.7, ridge_ratio=0.45, thickness=0.14, o
         tile_ribs(b, hw, hd, ridge_half, surface, ribs, skirt, trim)
     top = z + rise + thickness * 0.5
     if skirt is None:
-        b.tube([(-ridge_half - 0.1, 0, top), (ridge_half + 0.1, 0, top)], 0.11, trim, sides=10)
-        b.box((0, 0, top - 0.02), (ridge_half * 2 + 0.2, 0.16, 0.18), trim)
+        b.tube([(-ridge_half - 0.1 * ks, 0, top), (ridge_half + 0.1 * ks, 0, top)], 0.11 * ks, trim, sides=10)
+        b.box((0, 0, top - 0.02 * ks), (ridge_half * 2 + 0.2 * ks, 0.16 * ks, 0.18 * ks), trim)
     for sx in (-1, 1):
         for sy in (-1, 1):
             pts = []
@@ -287,12 +289,12 @@ def hip_roof(b, w, d, z, rise, overhang=0.7, ridge_ratio=0.45, thickness=0.14, o
                 t = start + (1 - start) * s / 12
                 x = sx * (ridge_half + (hw - ridge_half) * t * 0.97) if skirt is None else sx * hw * t * 0.97
                 y = sy * hd * t * 0.97
-                pts.append((x, y, surface(x, y) + 0.09))
+                pts.append((x, y, surface(x, y) + 0.09 * ks))
             tip = Vector(pts[-1])
-            pts.append(tuple(tip + Vector((sx * 0.10, sy * 0.10, 0.12))))
-            b.tube(pts, lambda t: 0.08 * (1 - 0.35 * t), trim, sides=8)
+            pts.append(tuple(tip + Vector((sx * 0.10, sy * 0.10, 0.12)) * ks))
+            b.tube(pts, lambda t: 0.08 * ks * (1 - 0.35 * t), trim, sides=8)
             if ornaments:
-                b.cylinder(tuple(tip + Vector((sx * 0.12, sy * 0.12, 0.1))), 0.12, 0.05, "Gold", sides=6, top_radius=0.02)
+                b.cylinder(tuple(tip + Vector((sx * 0.12, sy * 0.12, 0.1)) * ks), 0.12 * ks, 0.05 * ks, "Gold", sides=6, top_radius=0.02 * ks)
     if lanterns:  # a pair hanging from the front eave, flanking the entrance
         for sx in (-1, 1):
             x, y = sx * w * 0.3, -(d / 2 + overhang * 0.55)
@@ -300,12 +302,12 @@ def hip_roof(b, w, d, z, rise, overhang=0.7, ridge_ratio=0.45, thickness=0.14, o
     if ornaments and skirt is None:
         for sx in (-1, 1):  # chiwen: curling ridge-end beasts
             base = Vector((sx * (ridge_half + 0.05), 0, top))
-            curl = [(base.x, 0, base.z + 0.05 + 0.055 * k) for k in range(6)]
-            curl += [(base.x - sx * 0.11 * (1 - math.cos(a)), 0, base.z + 0.33 + 0.11 * math.sin(a)) for a in (0.6, 1.2, 1.8, 2.4, 3.0)]
-            b.tube(curl, lambda t: 0.075 * (1 - 0.45 * t), trim, sides=8)
-            b.box((base.x - sx * 0.2, 0, base.z + 0.3), (0.05, 0.05, 0.1), "Gold")
-        b.cylinder((0, 0, top + 0.08), 0.18, 0.12, "Gold", sides=10, top_radius=0.06)
-        b.cylinder((0, 0, top + 0.26), 0.22, 0.05, "Gold", sides=8, top_radius=0.01)
+            curl = [(base.x, 0, base.z + (0.05 + 0.055 * i) * ks) for i in range(6)]
+            curl += [(base.x - sx * 0.11 * ks * (1 - math.cos(a)), 0, base.z + (0.33 + 0.11 * math.sin(a)) * ks) for a in (0.6, 1.2, 1.8, 2.4, 3.0)]
+            b.tube(curl, lambda t: 0.075 * ks * (1 - 0.45 * t), trim, sides=8)
+            b.box((base.x - sx * 0.2 * ks, 0, base.z + 0.3 * ks), (0.05 * ks, 0.05 * ks, 0.1 * ks), "Gold")
+        b.cylinder((0, 0, top + 0.08 * ks), 0.18 * ks, 0.12 * ks, "Gold", sides=10, top_radius=0.06 * ks)
+        b.cylinder((0, 0, top + 0.26 * ks), 0.22 * ks, 0.05 * ks, "Gold", sides=8, top_radius=0.01 * ks)
     return top
 
 
@@ -690,7 +692,34 @@ def build_prop_lantern():
     return b.finish("prop_lantern")
 
 
+def build_prop_bamboo():
+    """Bamboo grove clump: jointed culms with drooping leaf sprays (scenery prop)."""
+    import random
+    rnd = random.Random(7)
+    b = Builder()
+    for i in range(11):
+        a, r = rnd.uniform(0, math.tau), rnd.uniform(0, 0.55)
+        x, y = math.cos(a) * r, math.sin(a) * r
+        h = rnd.uniform(2.2, 3.4)
+        lean = (rnd.uniform(-0.25, 0.25), rnd.uniform(-0.25, 0.25))
+        pts = [(x + lean[0] * (t / 6) ** 2, y + lean[1] * (t / 6) ** 2, h * t / 6) for t in range(7)]
+        b.tube(pts, 0.035, "Bamboo", sides=6)
+        for t in range(1, 6):  # culm nodes
+            px, py, pz = pts[t]
+            b.cylinder((px, py, pz - 0.015), 0.03, 0.043, "Bamboo", sides=6)
+        for k in range(4):  # leaf sprays near the top, drooping outward
+            px, py, pz = pts[4 + k % 3]
+            da = rnd.uniform(0, math.tau)
+            for leaf in range(3):
+                la = da + leaf * 0.5
+                tip = (px + math.cos(la) * 0.45, py + math.sin(la) * 0.45, pz - 0.18)
+                mid = (px + math.cos(la) * 0.22, py + math.sin(la) * 0.22, pz + 0.04)
+                b.tube([(px, py, pz), mid, tip], lambda t: 0.045 * math.sin(math.pi * (0.15 + 0.85 * t)) + 0.004, "Leaf", sides=3)
+    return b.finish("prop_bamboo")
+
+
 BUILDERS = {
+    "prop_bamboo": build_prop_bamboo,
     "prop_lantern": build_prop_lantern,
     "hall": build_hall, "scripture": build_scripture, "tower": build_tower, "house": build_house,
     "store": build_store, "mission": build_mission, "alchemy": build_alchemy, "forge": build_forge,

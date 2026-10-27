@@ -64,3 +64,25 @@ CPU median 4.82 ms (p95 5.84 ms). GPU median 0.75 ms (p95 0.77 ms). 1,012,771 tr
 
 ## Functional QA matrix still to run (after the art pass)
 Server connection · world sync · resource changes · building selection · placement · upgrade · harvesting · worker movement · disciple actions · decision forms · Grand Hall data · save/load (Mongo restart) · UI navigation · camera. For each item, record separately: renders / correct content / action works / state persists.
+
+## Milestone B, free route: first integrated pass (2026-10-27)
+
+Build `Builds/VisualSlice` (VisualSliceBuild → SonMonKitBuilder → ProjectBuild), isolated fixture reset before the run. Evidence: `Reports/MilestoneB/` (real Unity camera renders; the GPT baseline images there are named `before-gpt-*`).
+
+| Check | Result |
+|---|---|
+| Editor checks in ProjectBuild | 194 PASS, 0 FAIL |
+| `-visual-regression` | **33/33 PASS** (placement debits exact wood, 80% cancel refund, harvest worker, assignment, pill, selectable 3D roof bounds) |
+| Kit sanity (logged by builder) | 21 building prefabs, 9 resource-tree prefabs with LODGroups, environment prefab. LOD1 verified on all three axes against LOD0 |
+
+**Performance, Sơn Môn 1920×1080** (dev player, D3D11, RX 6600M, vsync off): CPU median 5.44 ms (p95 8.84), GPU median 1.91 ms (p95 2.17), 1.13 M triangles counted by the profiler (includes the 2-cascade shadow passes), 346 visible renderers. The GPT baseline had 1.01 M triangles and 0.75 ms GPU. GPU cost rose about 1.2 ms for real modelled and textured content. Triangle count is still above my 300 k target, which needs instancing and LOD on the buildings and meadow props.
+
+Defects found and fixed during this pass, each caught by a screenshot or a builder guard:
+1. FBX came in Z-up (models lying on their backs). Fixed with `bake_space_transform` plus a guard that throws if the hall is not Y-up.
+2. Slab faces were culled (inverted winding), so the plaza was invisible.
+3. LOD1 imported 100× too large (unit mismatch). Now normalised and checked on 3 axes.
+4. Roof trims used absolute sizes ("horns" on small roofs). Now scaled to the roof.
+5. A detail-scale variable shadowed a loop index and made every roof 12× too large. This broke one regression check and was caught by the regression.
+6. Photo-scanned leaf litter read as autumn mud. Replaced with a generated painted meadow.
+
+**Still placeholder or not done (Milestone B is not complete):** worker characters and deer are the old primitive meshes; no spirit-particle or formation VFX pass yet; waterfall not visible from the default camera; no close-up hero shot of the hall or night capture yet; the meadow between resource trees is plain; HUD panels hide the sky and peaks (Milestone C).

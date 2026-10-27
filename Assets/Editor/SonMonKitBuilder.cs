@@ -141,6 +141,7 @@ public static class SonMonKitBuilder
             ["Glow"] = Lit("SonMon Spirit Glow", new Color(.45f, .9f, .85f), null, null, 1, .8f, 0, new Color(.2f, .85f, .8f) * 1.3f),
             ["Soil"] = Lit("SonMon Soil", new Color(.6f, .48f, .38f), Ph("forest_ground_04", "diff"), Ph("forest_ground_04", "nor_gl"), 1, .1f),
             ["Leaf"] = Lit("SonMon Crop Leaf", new Color(.42f, .66f, .3f), null, null, 1, .2f),
+            ["Bamboo"] = Lit("SonMon Bamboo", new Color(.62f, .72f, .36f), null, null, 1, .45f),
             ["Ground"] = Lit("SonMon Meadow", Color.white, MeadowTexture(), null, 1, .05f),
             ["Courtyard"] = Lit("SonMon Courtyard Paving", new Color(.9f, .9f, .87f), paving, pavingNor, 1, .3f),
             ["Cliff"] = Lit("SonMon Cliff", new Color(.62f, .72f, .74f), Ph("mossy_rock", "diff"), Ph("mossy_rock", "nor_gl"), 1, .15f),
@@ -220,9 +221,9 @@ public static class SonMonKitBuilder
         var existing = Tex(path);
         if (existing != null) return existing;
         const int size = 512;
-        var deep = new Color(.33f, .52f, .27f);
-        var light = new Color(.55f, .70f, .36f);
-        var sun = new Color(.66f, .74f, .42f);
+        var deep = new Color(.27f, .43f, .27f);
+        var light = new Color(.42f, .56f, .33f);
+        var sun = new Color(.55f, .60f, .38f);
         var tex = new Texture2D(size, size, TextureFormat.RGB24, true);
         for (int y = 0; y < size; y++)
         for (int x = 0; x < size; x++)
@@ -291,7 +292,7 @@ public static class SonMonKitBuilder
             if (target != null) importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material), embedded.name), target);
         }
         // Material descriptions are not loadable until first import; also remap known kit slot names.
-        foreach (var slot in new[] { "Roof", "RoofTrim", "RoofGrey", "TrimGrey", "Lacquer", "Wood", "Plaster", "Stone", "Marble", "Gold", "Paper", "Glow", "Soil", "Leaf" })
+        foreach (var slot in new[] { "Roof", "RoofTrim", "RoofGrey", "TrimGrey", "Lacquer", "Wood", "Plaster", "Stone", "Marble", "Gold", "Paper", "Glow", "Soil", "Leaf", "Bamboo" })
         {
             var target = lookup(slot);
             if (target != null) importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material), slot), target);
@@ -415,12 +416,18 @@ public static class SonMonKitBuilder
         Slab(root, "Central plaza", new Vector3(0, .02f, -1), new Vector3(15, .08f, 13), mats["Courtyard"], 2.5f);
         Slab(root, "Sacred axis", new Vector3(0, .02f, -12), new Vector3(3.2f, .08f, 10), mats["Courtyard"], 2.5f);
         Slab(root, "Gate terrace", new Vector3(0, .02f, -18.5f), new Vector3(8, .08f, 4), mats["Courtyard"], 2.5f);
-        Place(root, "Building_gate", new Vector3(0, 0, -18.5f), 0, 2.1f);
+        Place(root, "Building_gate", new Vector3(0, 0, -18.5f), 0, 1.7f);
         foreach (int side in new[] { -1, 1 })
             for (int k = 0; k < 4; k++)
                 Place(root, "Building_prop_lantern", new Vector3(side * 2.2f, 0, -8.5f - k * 2.4f), 0, 1.1f);
         foreach (var corner in new[] { new Vector3(-6.8f, 0, 4.8f), new Vector3(6.8f, 0, 4.8f), new Vector3(-6.8f, 0, -6.8f), new Vector3(6.8f, 0, -6.8f) })
             Place(root, "Building_prop_lantern", corner, 0, 1.2f);
+
+        var groves = new GameObject("Bamboo groves");
+        groves.transform.SetParent(root.transform, false);
+        foreach (var at in new[] { new Vector3(-8, 0, -1), new Vector3(-12.5f, 0, 7.5f), new Vector3(-13.5f, 0, 2.5f), new Vector3(10.5f, 0, -1.5f),
+                                   new Vector3(4.5f, 0, 8.5f), new Vector3(-4.5f, 0, 8.5f), new Vector3(-4, 0, -16.5f), new Vector3(4, 0, -16.5f) })
+            Place(groves, "Building_prop_bamboo", at, R(0, 360), R(.9f, 1.2f));
 
         // Stone paths from the plaza to each core hall (server core positions + half footprint).
         var paths = new GameObject("Stone paths");
@@ -501,7 +508,6 @@ public static class SonMonKitBuilder
         var fall = new GameObject("Spirit waterfall");
         fall.transform.SetParent(root.transform, false);
         var lip = RimPoint(Mathf.PI * .78f, 50);
-        Slab(fall, "Spirit pool", lip + new Vector3(3.5f, -.05f, -2.5f) * .9f, new Vector3(7, .12f, 5), mats["Water"], 1);
         for (int k = 0; k < 3; k++)
         {
             var ribbon = GameObject.CreatePrimitive(PrimitiveType.Quad);
