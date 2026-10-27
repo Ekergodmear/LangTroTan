@@ -75,10 +75,20 @@ namespace LangTroTan.Presentation
         IEnumerator VisualInteractionRegression()
         {
             object pillReceipt=null;api.DecisionCompleted+=(action,result)=>{if(action=="use_sect_pill")pillReceipt=result;};
-            projectionActive=false;tab=1;Draw();var people=List(Get(api.Snapshot,"disciples")).Where(Alive).ToList();var disciple=people.First(d=>S(Get(d,"status"))!="leading");string id=S(Get(disciple,"id")),oldStatus=S(Get(disciple,"status"));int index=people.IndexOf(disciple);page=index/4;Draw();
-            var trainingButtons=body.GetComponentsInChildren<Button>().Where(b=>b.GetComponentsInChildren<Text>().Any(t=>t.text=="Tu luyện")).ToArray();yield return ClickVisualButton(trainingButtons[index%4]);yield return AwaitVisualAction();CloseDialog();
-            VisualCheck(S(Get(List(Get(api.Snapshot,"disciples")).First(d=>S(Get(d,"id"))==id),"status"))=="training","real disciple card button applies authoritative training assignment");VisualCheck(!api.HasPending,"training request journal resolved");
-            SubmitJob(id,oldStatus);yield return AwaitVisualAction();CloseDialog();
+            // Exercise a real player assignment the reference rules allow (luyện đan / rèn round-trip preferred, else thu hồi).
+            yield return AwaitVisualAction();projectionActive=false;tab=1;Draw();
+            var people=List(Get(api.Snapshot,"disciples")).Where(Alive).ToList();
+            var disciple=people.Where(d=>SliceJobAction(d)!=null).OrderBy(d=>SliceJobAction(d).Value.status=="idle"?1:0).FirstOrDefault();
+            VisualCheck(disciple!=null,"QA fixture has a disciple the reference rules allow to be assigned");
+            string id=S(Get(disciple,"id")),oldStatus=S(Get(disciple,"status")),school=S(Get(disciple,"school")),jobTarget=SliceJobAction(disciple).Value.status,buttonName="AssignJob:"+id+":"+jobTarget;
+            page=people.IndexOf(disciple)/4;Draw();
+            Button jobButton=null;for(int frame=0;frame<60;frame++){jobButton=body.GetComponentsInChildren<Button>().FirstOrDefault(b=>b.name==buttonName);if(jobButton!=null&&jobButton.targetGraphic!=null&&jobButton.targetGraphic.depth>=0)break;yield return null;}
+            VisualCheck(jobButton!=null,"disciple card shows the allowed assignment button: "+buttonName);
+            yield return ClickVisualButton(jobButton);yield return AwaitVisualAction();CloseDialog();
+            string newStatus=S(Get(List(Get(api.Snapshot,"disciples")).First(d=>S(Get(d,"id"))==id),"status"));
+            if(newStatus!=jobTarget)Debug.Log("VISUAL_QA_ASSIGN id="+id+" old="+oldStatus+" jobTarget="+jobTarget+" new="+newStatus+" notice="+api.Notice+" pending="+api.HasPending);
+            VisualCheck(newStatus==jobTarget,"real disciple card button applies authoritative assignment "+oldStatus+" -> "+jobTarget);VisualCheck(!api.HasPending,"assignment request journal resolved");
+            if(CanAssignJob(newStatus,oldStatus,school)){SubmitJob(id,oldStatus);yield return AwaitVisualAction();CloseDialog();}
             yield return api.Presentation("daidien",new Dictionary<string,object>{{"daiDienTab","baokho"}},null,data=>{projection=data;projectionActive=true;projectionView="daidien";projectionUi=new Dictionary<string,object>{{"daiDienTab","baokho"}};inventoryCategory="all";DrawProjection();});
             var inventory=List(Get(inventoryData,"groups")).SelectMany(g=>List(Get(g,"items"))).ToList();foreach(var item in inventory){string itemId=S(Get(item,"id"));inventorySelection=itemId;DrawSliceInventory();VisualCheck(body.GetComponentsInChildren<Text>().Any(t=>t.text==S(Get(item,"name"))),"selected treasure displays canonical name: "+itemId);}
             inventorySelection="tu_khi_dan";DrawSliceInventory();double beforeQty=N(Get(api.Snapshot,"sect","inventory","tu_khi_dan"));double beforeExp=N(Get(List(Get(api.Snapshot,"disciples")).First(d=>S(Get(d,"id"))==id),"exp"));

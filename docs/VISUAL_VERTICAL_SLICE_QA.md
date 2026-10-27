@@ -25,7 +25,18 @@ Conclusion: the previously reported `COMPLETE` regression (14:22) does **not** r
 
 **Result:** `-visual-regression` gives **33/33 PASS** on a fresh fixture. That covers training assignment through a real card button, the exact pill consumed and +40 EXP to the exact disciple id, placement debiting exactly 40 wood, cancel refunding 80%, selectable 3D roof bounds, harvest worker spawn and release, and resolved request journals. Logs: `work/claude-audit/fix1/`.
 
-**Open issue (not fixed):** a later run on the final build (which also contains the smoke fix) passed the raycast and then **failed** `real disciple card button applies authoritative training assignment`. While that run was going, the server's world engine grew the roster from 4 to 9 disciples. The server rejects `assign_job` when `canAssignJob` fails (for example, a disciple on a mission). Root cause not confirmed. A diagnostic log line (`VISUAL_QA_TRAINING`) has been added, uncommitted, and the diagnostic runs were stopped before they finished. So the regression is **intermittent**: 1 PASS (fix1) and 1 FAIL (final).
+## "Tu luyện" card button: real product bug, fixed (2026-10-27)
+
+**Root cause (verified in the reference rules):** the Đệ Tử card's primary button sent `assign_job {status: "training"}`. In the reference game, `canAssignJob` (`js/systems/workerAssignment.js`) **never** allows `training` as a target. Players may only recall a disciple to `idle`, or move an idle disciple to `labor`, `alchemy` (Đạo/Phật) or `forge` (Kiếm/Võ). `training` is set by the Ngoại Môn policy (`js/systems/ngoaiMon.js`). The server therefore always rejected the button ("Đệ tử không đáp ứng điều kiện phân công hoặc thu hồi."). The earlier 33/33 PASS (fix1) was a **false pass**: the disciple it picked happened to be in `training` already, so the rejected command left the status that the assertion expected.
+
+**Fix (client presentation only; server and rules unchanged):**
+- `SliceUI.CanAssignJob` mirrors the reference rule. Each card now shows only the command the server can accept, using the web UI's own wording: **Thu hồi** (→ idle), **Xếp luyện đan** (→ alchemy) or **Xếp rèn khí** (→ forge). When no assignment is valid (Chưởng môn, on a mission, etc.), the card shows only a full-width **Hồ sơ** button.
+- The status tag uses the reference labels: `training` displays as "Luyện võ" instead of "Tu luyện", and "Luyện đan", "Luyện khí", "Thám hiểm", "Du hành" and "Bế quan" were added. State and command no longer share a caption.
+- The regression now picks a disciple the reference rules allow to be assigned (it prefers the luyện đan/rèn round trip), finds the button by its id-based name (`AssignJob:<id>:<status>`) once it is alive and drawn, asserts the exact authoritative result, and restores the previous status only when the rules permit.
+
+**Result:** two consecutive runs on fresh fixtures (`work/claude-audit/assign1`, `assign2`): **33/33 PASS each**. Both exercised `training → idle` (Thu hồi). **Not yet exercised:** the luyện đan/rèn path, because the fixture had no idle Đạo/Phật/Kiếm/Võ disciple at the time.
+
+Observation, not fixed: the card shows "Tu vi 223 / 88". The requirement `80 × realm × (1 + 0.1 × subLevel)` is a client-side formula from the previous session, not taken from the reference game. It needs checking against `realms.js` in Milestone D.
 
 ## Full-port smoke (`-full-port-smoke`, isolated 8899 / Mongo 27028)
 
@@ -40,7 +51,7 @@ The run used a freshly reseeded `unity-port-qa` game (`work/claude-audit/tools/r
 
 ## Known issues found during QA
 - `VisualSliceBuild.Build` appends duplicate entries to `m_AlwaysIncludedShaders` in `ProjectSettings/GraphicsSettings.asset` on every build. The URP shader dedupe check never matches under `-nographics`. It is harmless but grows the file, so I revert it after each build. To fix later.
-- The status chip ("Tu luyện" = current state) and the action button ("Tu luyện" = command) share a caption on the Đệ Tử card. This is a UX problem, to fix in Milestone D.
+- ~~Status chip and action button shared the caption "Tu luyện"~~: fixed 2026-10-27 (see above).
 
 ### Performance, Sơn Môn, 1920×1080, run 2
 CPU median 4.82 ms (p95 5.84 ms). GPU median 0.75 ms (p95 0.77 ms). 1,012,771 triangles. 315 renderers. About 100 MB allocated. Draw calls not captured by the existing profiler.

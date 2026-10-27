@@ -98,6 +98,25 @@ namespace LangTroTan.Presentation
             var text=Ink(content,copy,5,0,width-21,1200,17);float preferred=text.preferredHeight;content.sizeDelta=new Vector2(0,Mathf.Max(height,preferred+12));text.rectTransform.pivot=new Vector2(0,1);text.rectTransform.anchoredPosition=new Vector2(5,0);text.rectTransform.sizeDelta=new Vector2(width-21,preferred+12);
             var scroll=view.gameObject.AddComponent<ScrollRect>();scroll.viewport=view;scroll.content=content;scroll.horizontal=false;scroll.scrollSensitivity=24;scroll.movementType=ScrollRect.MovementType.Clamped;
         }
+        // Mirrors the reference rule canAssignJob (js/systems/workerAssignment.js) and the web UI's three
+        // assignment buttons. The server still decides; this only hides commands it would always reject.
+        // "training" is never player-assignable: the Ngoại Môn policy sets it.
+        static bool CanAssignJob(string current,string target,string school)
+        {
+            if(target=="idle")return new[]{"idle","labor","training","alchemy","forge"}.Contains(current);
+            if(current!="idle")return false;
+            if(target=="alchemy")return school=="dao"||school=="phat";
+            if(target=="forge")return school=="kiem"||school=="vo";
+            return target=="labor";
+        }
+        static (string status,string label)? SliceJobAction(object d)
+        {
+            string status=S(Get(d,"status")),school=S(Get(d,"school"));
+            if(status!="idle"&&CanAssignJob(status,"idle",school))return ("idle","Thu hồi");
+            if(CanAssignJob(status,"alchemy",school))return ("alchemy","Xếp luyện đan");
+            if(CanAssignJob(status,"forge",school))return ("forge","Xếp rèn khí");
+            return null;
+        }
         void DrawSliceDisciples()
         {
             var disciples=List(Get(api.Snapshot,"disciples")).Where(Alive).ToList();SliceBody("Đệ tử lục · Nhân tài tông môn","Đồng hành trên tiên lộ",disciples.Count+" đệ tử · Theo dõi tu vi, phân công và quyết định đột phá.");page=Mathf.Clamp(page,0,Mathf.Max(0,(disciples.Count-1)/4));
@@ -108,7 +127,9 @@ namespace LangTroTan.Presentation
                 string state=StatusName(S(Get(d,"status")));var badge=Surface(card,"Disciple status",161,124,152,42,new Color(.83f,.88f,.80f));Ink(badge,state,7,8,139,28,15,true,deepJade).alignment=TextAnchor.MiddleCenter;
                 Ink(card,S(Get(d,"name")),16,211,300,34,22,true);var realm=List(Get(Module("realms"),"REALMS")).FirstOrDefault(r=>N(Get(r,"id"))==N(Get(d,"realm")));Ink(card,S(Get(realm,"name"))+" · Tầng "+Fmt(Get(d,"subLevel")),16,251,299,30,16);
                 double exp=N(Get(d,"exp")),required=Math.Round(80*N(Get(d,"realm"))*(1+.1*N(Get(d,"subLevel"))));Progress(card,16,292,299,(float)(exp/Math.Max(1,required)),"Tu vi  "+Fmt(exp)+" / "+Fmt(required));
-                SliceButton(card,"Tu luyện",14,351,143,45,()=>SubmitJob(id,"training"),true);SliceButton(card,"Hồ sơ",172,351,143,45,()=>ShowSliceDisciple(d));
+                var job=SliceJobAction(d);
+                if(job!=null){string target=job.Value.status;var action=SliceButton(card,job.Value.label,14,351,143,45,()=>SubmitJob(id,target),true);action.name="AssignJob:"+id+":"+target;}
+                SliceButton(card,"Hồ sơ",job!=null?172:14,351,job!=null?143:301,45,()=>ShowSliceDisciple(d));
             }
             SliceButton(body,"‹",28,592,55,44,()=>{page--;Draw();});Ink(body,(page+1)+" / "+Mathf.Max(1,(disciples.Count+3)/4),98,603,130,28,16);SliceButton(body,"›",200,592,55,44,()=>{page++;Draw();});SliceButton(body,"THU ĐỒ",1136,590,255,48,()=>ConfirmAction("Thu đồ","Chiêu mộ một lượt theo chi phí Thiên Cơ Các.","gacha_pull",new Dictionary<string,object>{{"count",1L}}),true);
         }

@@ -194,7 +194,7 @@ namespace LangTroTan.Presentation
             }
             Button(body,"TRANG TRƯỚC",22,594,230,43,()=>{page--;Draw();});Button(body,"TRANG SAU",269,594,230,43,()=>{page++;Draw();});Button(body,"THU ĐỒ · 1 LƯỢT",830,594,230,43,()=>ConfirmAction("Thu đồ","Sử dụng chiêu mộ một lượt theo chi phí và bảo hiểm của Thiên Cơ Các.","gacha_pull",new Dictionary<string,object>{{"count",1L}}));
         }
-        static string StatusName(string s){return s=="training"?"Tu luyện":s=="labor"?"Lao động":s=="idle"?"Nhàn rỗi":s=="leading"?"Chưởng môn":s=="mission"?"Làm nhiệm vụ":s=="dead"?"Đã mất":s=="ascended"?"Đã phi thăng":s;}
+        static string StatusName(string s){return s=="training"?"Luyện võ":s=="labor"?"Lao động":s=="alchemy"?"Luyện đan":s=="forge"?"Luyện khí":s=="expedition"?"Thám hiểm":s=="pilgrimage"?"Du hành":s=="seclusion"?"Bế quan":s=="idle"?"Nhàn rỗi":s=="leading"?"Chưởng môn":s=="mission"?"Làm nhiệm vụ":s=="dead"?"Đã mất":s=="ascended"?"Đã phi thăng":s;}
         void SubmitJob(string id,string state){api.Submit("assign_job",new Dictionary<string,object>{{"discipleId",id},{"status",state}});}
         void ShowBreakthrough(string id)
         {
