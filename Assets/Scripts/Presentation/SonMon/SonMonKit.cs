@@ -21,7 +21,8 @@ namespace LangTroTan.Presentation
         public GameObject environment;
         public GameObject spiritDeer;  // Bạch Ngọc Linh Lộc, visual stand-in for server deer nodes
         public GameObject disciple;    // single disciple prototype (awaiting visual approval)
-        public BuildingVisualTierSet[] visualTiers = Array.Empty<BuildingVisualTierSet>();
+        public BuildingVisualLevelSet[] visualLevels = Array.Empty<BuildingVisualLevelSet>();
+        public GameObject upgradeFx;   // formation, gathering motes, light pillar and burst (SonMonUpgradeFx)
         public Material daySky, nightSky, dawnSky;
 
         [Serializable]
@@ -70,24 +71,25 @@ namespace LangTroTan.Presentation
         static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
         static MaterialPropertyBlock leafBlock;
 
-        // Instantiates the authored model for a server building type under root. Returns false when the
-        // kit has no prefab for it, so the caller can fall back to the legacy procedural geometry.
         const string VisualName = "SonMonVisual";
 
         // Builds the authored visual for a server building under root, inside a swappable "SonMonVisual"
-        // container: a level-specific tier when the kit defines tiers for the type, otherwise the single
-        // kit prefab. Returns false when nothing authored exists (caller falls back to legacy geometry).
+        // container: the model for the exact server level when the kit defines level visuals for the type
+        // (nearest lower level as a development fallback), otherwise the single kit prefab. Returns false
+        // when nothing authored exists (caller falls back to legacy geometry).
         public static bool TryBuilding(Transform root, string type, int level)
         {
             var kit = SonMonKit.Instance;
             if (kit == null) return false;
             GameObject prefab;
-            int tierIndex = -1;
-            string source = "kit";
-            if (SonMonTiers.Resolve(kit, type, level, out tierIndex, out var tierPrefab, out bool fellBack))
+            int modelLevel = -1;
+            string status = "", source = "kit";
+            if (SonMonTiers.Resolve(kit, type, level, out var shown, out bool fellBack))
             {
-                prefab = tierPrefab;
-                source = fellBack ? "tier-fallback" : "tier";
+                prefab = shown.prefab;
+                modelLevel = shown.level;
+                status = shown.status;
+                source = fellBack ? "fallback" : "level";
             }
             else prefab = kit.BuildingPrefab(type);
             if (prefab == null) return false;
@@ -98,40 +100,88 @@ namespace LangTroTan.Presentation
             var tag = container.AddComponent<SonMonVisualTag>();
             tag.type = type;
             tag.level = level;
-            tag.tierIndex = tierIndex;
+            tag.modelLevel = modelLevel;
+            tag.status = status;
             tag.source = source;
-            if (tierIndex >= 0)
+            if (modelLevel > 0)
             {
-                var tier = SonMonTiers.Tier(kit, type, tierIndex);
-                tag.tierLabel = tier.label;
-                if (tier.decorations != null)
-                    foreach (var deco in tier.decorations)
+                if (shown.decorations != null)
+                    foreach (var deco in shown.decorations)
                         if (deco != null) UnityEngine.Object.Instantiate(deco, container.transform, false).name = deco.name;
+                DevPlaque(container.transform, tag);
             }
             return true;
         }
 
-        // Level changed on the server: replace only the visual container. The root GameObject, its
+        // Development label above level visuals that are not approved art, so a placeholder or a fallback is
+        // never mistaken for a finished model in screenshots. Only exists while -visual-tiers is on.
+        static void DevPlaque(Transform container, SonMonVisualTag tag)
+        {
+            if (tag.status == "approved" && !tag.Fallback) return;
+            if (!LocalVisualBounds(container, container, out var bounds)) return;
+            var plaque = new GameObject("DevPlaque");
+            plaque.transform.SetParent(container, false);
+            plaque.transform.localPosition = new Vector3(bounds.center.x, bounds.max.y + .55f, bounds.center.z);
+            var text = plaque.AddComponent<TextMesh>();
+            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            plaque.GetComponent<MeshRenderer>().sharedMaterial = text.font.material;
+            text.fontSize = 48;
+            text.characterSize = .045f;
+            text.anchor = TextAnchor.LowerCenter;
+            text.alignment = TextAlignment.Center;
+            text.text = tag.Fallback
+                ? $"DEV · Cấp {tag.level}: chưa có mô hình\n(tạm hiển thị mô hình cấp {tag.modelLevel})"
+                : $"DEV · Cấp {tag.level} · {(tag.status == "candidate" ? "ứng viên chờ duyệt" : "mô hình tạm")}";
+            text.color = tag.Fallback ? new Color(1f, .62f, .25f) : new Color(1f, .95f, .6f);
+            plaque.AddComponent<SonMonBillboard>();
+        }
+
+        // Replaces only the visual container under root with the visual for level. The root GameObject, its
         // FullPortBuilding marker (server id), position, rotation and selection stay untouched, and the
-        // collider is refitted to the new visual. Returns false if the root has no authored visual or the
-        // tier is unchanged (caller then keeps or rebuilds as before).
-        public static bool TrySwapLevel(Transform root, string type, int level)
+        // collider is refitted. Returns the new container, or null if nothing authored exists.
+        public static Transform SwapVisual(Transform root, string type, int level)
         {
             var old = root.Find(VisualName);
-            var oldTag = old != null ? old.GetComponent<SonMonVisualTag>() : null;
-            if (oldTag == null) return false;
-            var kit = SonMonKit.Instance;
-            int newIndex = SonMonTiers.Resolve(kit, type, level, out int idx, out _, out _) ? idx : -1;
-            if (newIndex == oldTag.tierIndex)
+            if (old != null)
             {
-                oldTag.level = level;  // same tier: nothing to rebuild
+                old.name = VisualName + " (retired)";
+                old.SetParent(null, false);  // leave the hierarchy at once so lookups never see two visuals
+                UnityEngine.Object.Destroy(old.gameObject);
+            }
+            if (!TryBuilding(root, type, level)) return null;
+            FitCollider(root);
+            return root.Find(VisualName);
+        }
+
+        public static SonMonVisualTag VisualTag(Transform root)
+        {
+            var visual = root != null ? root.Find(VisualName) : null;
+            return visual != null ? visual.GetComponent<SonMonVisualTag>() : null;
+        }
+
+        // Server level changed. A rise plays the upgrade transition (the model changes inside it); anything
+        // else (a restore, a correction, a lower level) snaps instantly. Returns false if the root has no
+        // authored visual (caller then rebuilds as before).
+        public static bool TrySwapLevel(Transform root, string type, int level)
+        {
+            var oldTag = VisualTag(root);
+            if (oldTag == null) return false;
+            var fx = root.GetComponent<SonMonUpgradeFx>();
+            if (fx != null && fx.Playing)
+            {
+                if (level > fx.ToLevel) { fx.Retarget(level); return true; }
+                if (level == fx.ToLevel) return true;
+                fx.Cancel();
+                oldTag = VisualTag(root);
+                if (oldTag == null) return false;
+            }
+            var kit = SonMonKit.Instance;
+            if (level > oldTag.level && SonMonTiers.Enabled && kit != null && kit.upgradeFx != null)
+            {
+                SonMonUpgradeFx.Play(root, type, oldTag.level, level);
                 return true;
             }
-            old.name = VisualName + " (retired)";
-            UnityEngine.Object.Destroy(old.gameObject);
-            if (!TryBuilding(root, type, level)) return false;
-            FitCollider(root);
-            return true;
+            return SwapVisual(root, type, level) != null;
         }
 
         // Fit the root BoxCollider to the active visual in the root's local space.
@@ -139,25 +189,30 @@ namespace LangTroTan.Presentation
         {
             var visual = root.Find(VisualName);
             var box = root.GetComponent<BoxCollider>();
-            if (visual == null || box == null) return;
+            if (visual == null || box == null || !LocalVisualBounds(root, visual, out var bounds)) return;
+            box.center = bounds.center;
+            box.size = bounds.size;
+        }
+
+        // Mesh bounds of a building visual in space's local frame. Text (the dev plaque) is ignored.
+        public static bool LocalVisualBounds(Transform space, Transform visual, out Bounds bounds)
+        {
             bool any = false;
-            var bounds = new Bounds();
+            bounds = new Bounds();
             foreach (var filter in visual.GetComponentsInChildren<MeshFilter>())
             {
-                if (filter.sharedMesh == null || filter.GetComponent<MeshRenderer>() == null) continue;
+                if (filter.sharedMesh == null || filter.GetComponent<MeshRenderer>() == null || filter.GetComponent<TextMesh>() != null) continue;
                 var local = filter.sharedMesh.bounds;
-                var toRoot = root.worldToLocalMatrix * filter.transform.localToWorldMatrix;
+                var toSpace = space.worldToLocalMatrix * filter.transform.localToWorldMatrix;
                 for (int i = 0; i < 8; i++)
                 {
                     var corner = local.center + Vector3.Scale(local.extents, new Vector3((i & 1) == 0 ? -1 : 1, (i & 2) == 0 ? -1 : 1, (i & 4) == 0 ? -1 : 1));
-                    var p = toRoot.MultiplyPoint3x4(corner);
+                    var p = toSpace.MultiplyPoint3x4(corner);
                     if (!any) { bounds = new Bounds(p, Vector3.zero); any = true; }
                     else bounds.Encapsulate(p);
                 }
             }
-            if (!any) return;
-            box.center = bounds.center;
-            box.size = bounds.size;
+            return any;
         }
 
         // Harvestable tree node. The seed keeps the species and rotation stable across redraws.

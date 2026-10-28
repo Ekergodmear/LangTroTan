@@ -23,6 +23,16 @@ namespace LangTroTan.Presentation
             File.WriteAllText(Path.Combine(visualOutput,"regression.txt"),"RUNNING\n");
             float deadline=Time.realtimeSinceStartup+30;while(api.Snapshot==null&&Time.realtimeSinceStartup<deadline)yield return null;
             VisualCheck(api.Snapshot!=null,"isolated QA server snapshot received");
+            if(SonMonTiers.Enabled&&Environment.GetCommandLineArgs().Contains("-tier-only"))
+            {
+                Screen.SetResolution(1920,1080,FullScreenMode.Windowed);yield return new WaitForSecondsRealtime(2);projectionActive=false;tab=0;Draw();CloseSpatialDetail();SonMonSky.PreviewPhase=.30f;SonMonSky.PreviewSeason=0;yield return new WaitForSecondsRealtime(2);yield return LevelRegression();
+                visualChecks.Add("COMPLETE");File.WriteAllLines(Path.Combine(visualOutput,"regression.txt"),visualChecks);Debug.Log("VISUAL_QA_COMPLETE "+visualOutput);Application.Quit();yield break;
+            }
+            if(SonMonTiers.Enabled&&Environment.GetCommandLineArgs().Contains("-tier-live"))
+            {
+                Screen.SetResolution(1920,1080,FullScreenMode.Windowed);yield return new WaitForSecondsRealtime(2);yield return LiveUpgradeRegression();
+                visualChecks.Add("COMPLETE");File.WriteAllLines(Path.Combine(visualOutput,"regression.txt"),visualChecks);Debug.Log("VISUAL_QA_COMPLETE "+visualOutput);Application.Quit();yield break;
+            }
             foreach(int width in new[]{1600,1920})
             {
                 int height=width*9/16;Screen.SetResolution(width,height,FullScreenMode.Windowed);yield return new WaitForSecondsRealtime(2);
@@ -62,7 +72,7 @@ namespace LangTroTan.Presentation
             void Hero(){cam.transform.position=hall+new Vector3(4.6f,2.4f,-8.4f);cam.transform.LookAt(hall+new Vector3(0,2.2f,0));}
             yield return Settle(.30f);Hero();yield return new WaitForSecondsRealtime(.3f);Hero();VisualCapture("hall-closeup",1920,1080);
             yield return CharacterCaptures();
-            if(SonMonTiers.Enabled)yield return TierRegression();
+            if(SonMonTiers.Enabled)yield return LevelRegression();
             yield return Settle(.03f);SetSpatialCamera();yield return new WaitForSecondsRealtime(.3f);VisualCapture("dawn-son-mon",1920,1080);
             Hero();VisualCapture("dawn-hall-closeup",1920,1080);
             yield return Settle(.85f);SetSpatialCamera();yield return new WaitForSecondsRealtime(1.5f);VisualCapture("night-son-mon",1920,1080);
@@ -92,42 +102,155 @@ namespace LangTroTan.Presentation
             else VisualCheck(false,"disciple prototype present in the Son Mon scene");
             physicalFocus=new Vector3(0,4,0);physicalZoom=21;SetSpatialCamera();
         }
-        // Building visual tiers (scripture). Checks the tier chosen for the authoritative server level, then
-        // swaps levels by feeding modified copies of the spatial snapshot through the normal draw path (server
-        // untouched, polling paused) and asserts identity, no duplicates and fallback, then restores.
-        IEnumerator TierRegression()
+        // Building visual levels (scripture, server levels 1..10) and the upgrade transition. Simulated levels go
+        // through the normal draw path as modified copies of the spatial snapshot (server untouched, polling
+        // paused); the original snapshot is restored and the server level re-checked afterwards.
+        const string LevelBuilding="core:tang_kinh_cac";
+        int LevelMarkers()=>FindObjectsByType<FullPortBuilding>(FindObjectsSortMode.None).Count(m=>m!=null&&m.serverId==LevelBuilding);
+        void FrameLevel(GameObject root){cam.transform.position=root.transform.position+new Vector3(5.6f,4.3f,-8.6f);cam.transform.LookAt(root.transform.position+Vector3.up*2.5f);}
+        void CaptureLevel(GameObject root,string name){FrameLevel(root);VisualCapture(name,1920,1080);}
+        // One visual container, nothing retired left behind, no temporary glow material left on the building.
+        bool CleanVisual(GameObject root)=>root.transform.Cast<Transform>().Count(c=>c.name=="SonMonVisual")==1&&GameObject.Find("SonMonVisual (retired)")==null&&root.transform.Find("Fx_building_upgrade")==null
+            &&root.GetComponentsInChildren<Renderer>().All(r=>r.sharedMaterials.All(m=>m==null||!m.name.EndsWith("(upgrade glow)")));
+        IEnumerator FinishFx(GameObject root){float limit=Time.realtimeSinceStartup+10;while(SonMonUpgradeFx.IsPlaying(root.transform,out _)&&Time.realtimeSinceStartup<limit)yield return null;yield return null;yield return null;}
+        IEnumerator WaitFx(GameObject root,float elapsed){while(SonMonUpgradeFx.IsPlaying(root.transform,out var fx)&&fx.Elapsed<elapsed){FrameLevel(root);yield return null;}}
+        // Captures the transition at its key beats: energy gathering, rune formation, model change, burst, settled.
+        IEnumerator CaptureFx(GameObject root,string prefix)
         {
-            const string id="core:tang_kinh_cac";
+            string[] beats={"1-gather","2-formation","3-change","4-burst"};float[] at={.7f,1.6f,2.25f,2.65f};
+            for(int i=0;i<beats.Length;i++){yield return WaitFx(root,at[i]);if(SonMonUpgradeFx.IsPlaying(root.transform,out _))CaptureLevel(root,prefix+"-"+beats[i]);}
+            yield return FinishFx(root);CaptureLevel(root,prefix+"-5-settled");
+        }
+        IEnumerator LevelRegression()
+        {
+            string id=LevelBuilding;
             if(!models.TryGetValue(id,out var root)){VisualCheck(false,"scripture core building present");yield break;}
-            var kit=SonMonKit.Instance;int serverLevel=levels[id];
-            int Expected(int level)=>SonMonTiers.Resolve(kit,"scripture",level,out int i,out _,out _)?i:-1;
-            SonMonVisualTag Tag()=>root.transform.Find("SonMonVisual")?.GetComponent<SonMonVisualTag>();
-            int Markers()=>FindObjectsByType<FullPortBuilding>(FindObjectsSortMode.None).Count(m=>m!=null&&m.serverId==id);
-            void Frame(){cam.transform.position=root.transform.position+new Vector3(4.8f,3.4f,-7.2f);cam.transform.LookAt(root.transform.position+Vector3.up*2.1f);}
-            VisualCheck(Tag()!=null&&Tag().tierIndex==Expected(serverLevel),"scripture server level "+serverLevel+" renders tier "+Expected(serverLevel));
-            Frame();yield return new WaitForSecondsRealtime(.6f);Frame();VisualCapture("tier-scripture-server-L"+serverLevel,1920,1080);
-            while(spatialPolling)yield return null;spatialPolling=true;  // let an in-flight poll land first
+            var kit=SonMonKit.Instance;int serverLevel=levels[id],max=MaxBuildingLevel;
+            int Expected(int level)=>SonMonTiers.Resolve(kit,"scripture",level,out var e,out _)?e.level:-1;
+            SonMonVisualTag Tag()=>SonMonArt.VisualTag(root.transform);
+            VisualCheck(max==10,"server reports MAX_BUILDING_LEVEL "+max);
+            VisualCheck(SonMonTiers.TryGetSet(kit,"scripture",out var set)&&set.maxLevel==max&&Enumerable.Range(1,max).All(l=>set.levels.Count(e=>e.level==l)==1),"scripture defines exactly one visual entry per level 1.."+max);
+            VisualCheck(root.GetComponent<SonMonUpgradeFx>()==null,"saved level "+serverLevel+" loads without the upgrade animation");
+            VisualCheck(Tag()!=null&&Tag().level==serverLevel&&Tag().modelLevel==Expected(serverLevel),"server level "+serverLevel+" renders the level-"+Expected(serverLevel)+" model");
+            CaptureLevel(root,"level-scripture-server-L"+serverLevel);
+            while(spatialPolling)yield return null;spatialPolling=true;spatialSimulation=true;  // let an in-flight poll land first
             var original=Get(spatial,"buildings");int modelCount=models.Count;
-            foreach(int simulated in new[]{4,7,10})
+            void Feed(int level){var copy=new List<object>();foreach(var raw in List(original)){var b=Map(raw);if(S(Get(b,"id"))==id){var changed=new Dictionary<string,object>(b);changed["level"]=(double)level;copy.Add(changed);}else copy.Add(raw);}spatial["buildings"]=copy;DrawSpatialModels();}
+            void Same(string when)=>VisualCheck(models[id]==root&&LevelMarkers()==1&&models.Count==modelCount,when+": same building GameObject, no duplicate");
+
+            // 1. Every level 10..1. Reaching 10 is a rise (transition); stepping down snaps instantly.
+            Feed(10);if(serverLevel<10)VisualCheck(SonMonUpgradeFx.IsPlaying(root.transform,out _),"rise "+serverLevel+" -> 10 plays the upgrade transition");yield return FinishFx(root);
+            var heights=new Dictionary<int,Vector3>();
+            for(int level=10;level>=1;level--)
             {
-                var copy=new List<object>();
-                foreach(var raw in List(original)){var b=Map(raw);if(S(Get(b,"id"))==id){var changed=new Dictionary<string,object>(b);changed["level"]=(double)simulated;copy.Add(changed);}else copy.Add(raw);}
-                spatial["buildings"]=copy;DrawSpatialModels();yield return null;
-                var tag=Tag();
-                VisualCheck(models[id]==root,"level "+simulated+" keeps the same building GameObject (no reload)");
-                VisualCheck(Markers()==1&&models.Count==modelCount,"level "+simulated+" creates no duplicate building");
-                VisualCheck(tag!=null&&tag.tierIndex==Expected(simulated),"level "+simulated+" swaps to tier "+Expected(simulated));
-                VisualCheck(root.GetComponent<BoxCollider>().size.y>1,"level "+simulated+" keeps a fitted selection collider");
-                if(simulated==10)VisualCheck(tag!=null&&tag.source=="tier-fallback","missing tier-IV model falls back to the tier-III model");
-                Frame();yield return new WaitForSecondsRealtime(.6f);Frame();VisualCapture("tier-scripture-sim-L"+simulated,1920,1080);
+                Feed(level);yield return null;var tag=Tag();Same("level "+level);
+                var left=root.GetComponent<SonMonUpgradeFx>();VisualCheck(left==null,"level "+level+" lower-level update snaps without animation"+(left!=null?" [fx playing="+left.Playing+" t="+left.Elapsed.ToString("0.00")+" "+left.FromLevel+"->"+left.ToLevel+" swapped="+left.Swapped+"]":""));
+                VisualCheck(tag!=null&&tag.level==level&&tag.modelLevel==Expected(level)&&tag.Fallback==(Expected(level)!=level),"level "+level+" shows model L"+Expected(level)+(tag!=null&&tag.Fallback?" (dev fallback, plaque)":" ("+tag?.status+")"));
+                VisualCheck(!tag.Fallback||tag.transform.Find("DevPlaque")!=null,"level "+level+" fallback is labelled as development-only");
+                VisualCheck(root.GetComponent<BoxCollider>().size.y>1&&CleanVisual(root),"level "+level+" fitted selection collider and a single clean visual");
+                SonMonArt.LocalVisualBounds(root.transform,tag.transform,out var bounds);heights[level]=bounds.size;
+                CaptureLevel(root,"level-scripture-L"+level.ToString("00"));
             }
-            spatial["buildings"]=original;DrawSpatialModels();yield return null;
-            VisualCheck(models[id]==root&&Tag()!=null&&Tag().tierIndex==Expected(serverLevel),"restored snapshot returns to the server tier");
-            spatialPolling=false;
+            bool ladder=true;string sizes="";for(int level=1;level<=max;level++){sizes+=" L"+level+"="+heights[level].y.ToString("0.00")+"h/"+Mathf.Max(heights[level].x,heights[level].z).ToString("0.00")+"w";if(level>1&&(heights[level].y+.01f<heights[level-1].y||Mathf.Max(heights[level].x,heights[level].z)+.01f<Mathf.Max(heights[level-1].x,heights[level-1].z)))ladder=false;}
+            VisualCheck(ladder,"no level is smaller than the level below:"+sizes);
+
+            // 2. Reduced effects 1 -> 4: short glow and change, no particles or formation.
+            SonMonUpgradeFx.SessionOverride=true;float started=Time.realtimeSinceStartup;Feed(4);
+            VisualCheck(SonMonUpgradeFx.IsPlaying(root.transform,out var reduced)&&reduced.Reduced&&root.transform.Find("Fx_building_upgrade")==null,"reduced effects: transition without particles or formation");
+            yield return FinishFx(root);float reducedTime=Time.realtimeSinceStartup-started;SonMonUpgradeFx.SessionOverride=false;
+            VisualCheck(reducedTime<SonMonUpgradeFx.ReducedDuration+.6f&&Tag().level==4&&CleanVisual(root),"reduced effects finish in "+reducedTime.ToString("0.00")+" s at level 4");
+
+            // 3. Full transition 4 -> 5 (fallback model -> ForgeGUI candidate), non-blocking: selection works mid-way.
+            Feed(5);VisualCheck(SonMonUpgradeFx.IsPlaying(root.transform,out var full)&&!full.Reduced&&full.FromLevel==4&&full.ToLevel==5,"server-confirmed rise 4 -> 5 starts the full transition");
+            yield return WaitFx(root,1.0f);ShowSpatialBuilding(id);yield return null;
+            var state=dialog!=null?dialog.GetComponentsInChildren<Text>().FirstOrDefault(t=>t.name=="UpgradeState"):null;
+            VisualCheck(state!=null&&state.text.Contains("Đang thăng cấp 4 → 5"),"building stays selectable during the transition and the panel shows it");CloseDialog();
+            yield return CaptureFx(root,"upgrade-fx-L4-L5");
+            VisualCheck(Tag().level==5&&Tag().modelLevel==Expected(5)&&CleanVisual(root),"transition ends on the level-5 model with materials restored");Same("after transition");
+            VisualCheck(status.text.Contains("Cấp 5"),"UI announces the new level after the transition: "+status.text);
+
+            // 4. Performance: idle window vs. transition window (no captures).
+            var idle=new List<double>();var during=new List<double>();float until=Time.realtimeSinceStartup+SonMonUpgradeFx.FullDuration;
+            while(Time.realtimeSinceStartup<until){FrameLevel(root);yield return null;idle.Add(Time.unscaledDeltaTime*1000);}
+            Feed(6);while(SonMonUpgradeFx.IsPlaying(root.transform,out _)){FrameLevel(root);yield return null;during.Add(Time.unscaledDeltaTime*1000);}
+            object Stats(List<double> v){v.Sort();return new Dictionary<string,object>{{"samples",v.Count},{"median",v.Count>0?v[v.Count/2]:0},{"p95",v.Count>0?v[Math.Min(v.Count-1,(int)(v.Count*.95))]:0},{"max",v.Count>0?v[v.Count-1]:0}};}
+            double idleMedian=idle.Count>0?idle.OrderBy(x=>x).ElementAt(idle.Count/2):0,fxMedian=during.Count>0?during.OrderBy(x=>x).ElementAt(during.Count/2):0;
+            File.WriteAllText(Path.Combine(visualOutput,"performance-upgrade-fx.json"),ServerJson.Stringify(new Dictionary<string,object>{{"gpu",SystemInfo.graphicsDeviceName},{"resolution",Screen.width+"x"+Screen.height},{"idleFrameMs",Stats(idle)},{"transitionFrameMs",Stats(during)},{"transition","5 -> 6 full effects"}}));
+            VisualCheck(fxMedian<=Math.Max(idleMedian*1.5,idleMedian+4),"transition frame time median "+fxMedian.ToString("0.0")+" ms vs idle "+idleMedian.ToString("0.0")+" ms");
+            VisualCheck(Tag().level==6&&CleanVisual(root),"transition 5 -> 6 ends clean");
+
+            // 5. Repeated updates: a newer level before the model change, then after it.
+            Feed(7);yield return WaitFx(root,.5f);Feed(8);
+            VisualCheck(SonMonUpgradeFx.IsPlaying(root.transform,out var retarget)&&retarget.ToLevel==8&&!retarget.Swapped,"newer level 8 during 6 -> 7 retargets before the model change");
+            yield return FinishFx(root);VisualCheck(Tag().level==8&&CleanVisual(root),"retargeted transition ends on level 8");Same("retarget before change");
+            Feed(9);yield return WaitFx(root,2.35f);Feed(10);yield return null;
+            VisualCheck(SonMonUpgradeFx.IsPlaying(root.transform,out var late)&&late.ToLevel==10&&Tag().level==10,"newer level 10 after the 8 -> 9 model change swaps again at once");
+            yield return FinishFx(root);VisualCheck(Tag().level==10&&CleanVisual(root),"repeated updates end on level 10 with one visual");Same("retarget after change");
+
+            // 6. Cancellation: a lower level mid-transition stops it and snaps.
+            Feed(3);yield return null;Feed(4);yield return WaitFx(root,1.0f);Feed(2);
+            VisualCheck(!SonMonUpgradeFx.IsPlaying(root.transform,out _)&&Tag().level==2,"lower level mid-transition cancels it and snaps to level 2");
+            yield return null;yield return null;VisualCheck(CleanVisual(root),"cancelled transition leaves no effect or glow material behind");Same("cancel");
+
+            // 7. Restore the authoritative snapshot.
+            spatial["buildings"]=original;DrawSpatialModels();yield return FinishFx(root);
+            VisualCheck(models[id]==root&&Tag()!=null&&Tag().level==serverLevel&&CleanVisual(root),"restored snapshot returns to server level "+serverLevel);
+            spatialPolling=false;spatialSimulation=false;
             Dictionary<string,object> fresh=null;yield return api.SpatialState(false,area=>fresh=area);
             var serverCopy=List(Get(fresh,"buildings")).Select(Map).FirstOrDefault(b=>S(Get(b,"id"))==id);
-            VisualCheck(serverCopy!=null&&(int)N(Get(serverCopy,"level"))==serverLevel,"authoritative server level unchanged by the visual swap test");
+            VisualCheck(serverCopy!=null&&(int)N(Get(serverCopy,"level"))==serverLevel,"authoritative server level unchanged by the visual tests");
+            yield return UpgradeUiChecks(root,serverLevel,"");
             physicalFocus=new Vector3(0,4,0);physicalZoom=21;SetSpatialCamera();
+        }
+        // Upgrade decision UI against the real server: MAX state and server-side rejection at the cap, or the
+        // normal confirm state below it.
+        IEnumerator UpgradeUiChecks(GameObject root,int serverLevel,string prefix)
+        {
+            int max=MaxBuildingLevel;ShowSpatialBuilding(LevelBuilding);yield return new WaitForSecondsRealtime(.3f);
+            var state=dialog!=null?dialog.GetComponentsInChildren<Text>().FirstOrDefault(t=>t.name=="UpgradeState"):null;
+            bool confirm=dialog!=null&&dialog.GetComponentsInChildren<Button>().Any(b=>b.GetComponentsInChildren<Text>().Any(t=>t.text=="Xác nhận nâng cấp"));
+            if(serverLevel>=max)
+            {
+                VisualCheck(state!=null&&state.text.Contains("CẤP TỐI ĐA")&&!confirm,"level "+serverLevel+" upgrade panel shows MAX LEVEL and offers no upgrade");
+                VisualCapture(prefix+"upgrade-ui-max",1920,1080);CloseDialog();
+                yield return AwaitVisualAction();double stones=N(Get(api.Snapshot,"sect","resources","linhThach"));
+                api.Submit("start_upgrade",new Dictionary<string,object>{{"buildingId","tang_kinh_cac"}});yield return AwaitVisualAction();
+                var after=Get(api.Snapshot,"sect","buildings","tang_kinh_cac");
+                VisualCheck((int)N(Get(after,"level"))==serverLevel&&Get(after,"upgrading")==null&&N(Get(api.Snapshot,"sect","resources","linhThach"))>=stones,"server rejects "+serverLevel+" -> "+(serverLevel+1)+" and deducts nothing (notice: "+api.Notice+")");
+                VisualCheck(!api.HasPending,"rejected upgrade request journal resolved");
+            }
+            else
+            {
+                VisualCheck(state!=null&&state.text.Contains("→ "+(serverLevel+1)+" / "+max)&&confirm,"level "+serverLevel+" upgrade panel shows the next level out of "+max+" and a confirm button");
+                VisualCapture(prefix+"upgrade-ui-L"+serverLevel,1920,1080);CloseDialog();
+            }
+        }
+        // -tier-live: the isolated fixture is seeded at level 9 with an upgrade finishing shortly after launch.
+        // Nothing is simulated: the server clock completes the upgrade, the poll delivers level 10 and the
+        // transition must play from that authoritative update.
+        IEnumerator LiveUpgradeRegression()
+        {
+            string id=LevelBuilding;SonMonSky.PreviewPhase=.30f;SonMonSky.PreviewSeason=0;
+            projectionActive=false;tab=0;Draw();CloseSpatialDetail();
+            float limit=Time.realtimeSinceStartup+20;while(!models.ContainsKey(id)&&Time.realtimeSinceStartup<limit)yield return null;
+            if(!models.TryGetValue(id,out var root)){VisualCheck(false,"scripture core building present");yield break;}
+            yield return new WaitForSecondsRealtime(1.5f);
+            VisualCheck(levels[id]==9&&root.GetComponent<SonMonUpgradeFx>()==null,"seeded save loads Tàng Kinh Các at level 9 without animation");
+            VisualCheck(Get(api.Snapshot,"sect","buildings","tang_kinh_cac","upgrading")!=null,"server reports the 9 -> 10 upgrade in progress");
+            ShowSpatialBuilding(id);yield return new WaitForSecondsRealtime(.3f);
+            var state=dialog!=null?dialog.GetComponentsInChildren<Text>().FirstOrDefault(t=>t.name=="UpgradeState"):null;
+            VisualCheck(state!=null&&state.text.Contains("Đang nâng cấp đến"),"upgrade panel shows the server upgrade in progress");VisualCapture("live-upgrade-ui-in-progress",1920,1080);CloseDialog();
+            CaptureLevel(root,"live-L09-before");
+            limit=Time.realtimeSinceStartup+240;while(levels[id]!=10&&Time.realtimeSinceStartup<limit){FrameLevel(root);yield return null;}
+            VisualCheck(levels[id]==10,"authoritative server completes the upgrade to level 10");
+            VisualCheck(SonMonUpgradeFx.IsPlaying(root.transform,out var fx)&&fx.FromLevel==9&&fx.ToLevel==10,"server-confirmed level 10 plays the 9 -> 10 transition");
+            yield return CaptureFx(root,"live-fx-L9-L10");
+            var tag=SonMonArt.VisualTag(root.transform);
+            VisualCheck(models[id]==root&&LevelMarkers()==1&&tag!=null&&tag.level==10&&CleanVisual(root),"live transition ends on level 10, same GameObject, clean");
+            VisualCheck(status.text.Contains("Cấp 10"),"UI announces level 10 after the transition: "+status.text);
+            yield return AwaitVisualAction();
+            yield return UpgradeUiChecks(root,10,"live-");
+            SonMonSky.PreviewPhase=null;SonMonSky.PreviewSeason=null;
         }
         static string HierarchyPath(Transform t)=>t.parent==null?t.name:HierarchyPath(t.parent)+"/"+t.name;
         // GraphicRaycaster ignores graphics that have not been rendered yet (depth -1), so a freshly rebuilt

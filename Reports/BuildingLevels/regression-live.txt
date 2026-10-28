@@ -1,0 +1,12 @@
+PASS isolated QA server snapshot received
+PASS seeded save loads Tàng Kinh Các at level 9 without animation
+PASS server reports the 9 -> 10 upgrade in progress
+PASS upgrade panel shows the server upgrade in progress
+PASS authoritative server completes the upgrade to level 10
+PASS server-confirmed level 10 plays the 9 -> 10 transition
+PASS live transition ends on level 10, same GameObject, clean
+PASS UI announces level 10 after the transition: Tàng Kinh Các đã đạt Cấp 10 · CẤP TỐI ĐA
+PASS level 10 upgrade panel shows MAX LEVEL and offers no upgrade
+PASS server rejects 10 -> 11 and deducts nothing (notice: Đã đồng bộ thế giới)
+PASS rejected upgrade request journal resolved
+COMPLETE

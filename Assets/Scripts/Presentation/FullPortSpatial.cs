@@ -21,8 +21,10 @@ namespace LangTroTan.Presentation
         Vector2 physicalPointerStart,physicalPointerLast;Vector3 physicalFocus=new Vector3(0,4,0);
         string placingSpatial;int placingRotation,placingX=4,placingZ=5,spatialCatalogPage;
         GameObject spatialGhost;RectTransform placementControls;
+        bool spatialSimulation;  // QA only: simulated snapshot on screen, hold server updates until restored
         void ApplySpatial(Dictionary<string,object> area)
         {
+            if(spatialSimulation)return;
             if(spatial==null)
             {foreach(var root in models.Values)Destroy(root);models.Clear();levels.Clear();spatial=new Dictionary<string,object>();}
             double timestamp=N(Get(area,"lastAdvancedAt"));bool newer=timestamp>=N(Get(spatial,"lastAdvancedAt"));bool staticNewer=timestamp>=spatialStaticAt;
@@ -31,19 +33,33 @@ namespace LangTroTan.Presentation
             if(spatialCatalog==null)spatialCatalog=Map(LangTroTan.Infrastructure.ServerJson.Parse(Resources.Load<TextAsset>("FullPort/SpatialCatalog").text));
             DrawSpatialModels();RefreshSpatialInfo();if(api.Snapshot!=null)RefreshHeader();
         }
+        // Upgrade transition (presentation): the panel shows the transition while it plays and the new level
+        // once it ends, as the last step of the sequence.
+        void UpgradeFxStarted(Transform root,int from,int to){if(this!=null)RefreshSpatialInfo();}
+        void UpgradeFxFinished(Transform root,int from,int to,bool cancelled)
+        {
+            if(this==null)return;RefreshSpatialInfo();if(cancelled||status==null||root==null)return;
+            var marker=root.GetComponent<FullPortBuilding>();var b=marker==null?null:List(Get(spatial,"buildings")).FirstOrDefault(v=>S(Get(v,"id"))==marker.serverId);
+            status.text=S(Get(spatialCatalog,S(Get(b,"type")),"name"),"Công trình")+" đã đạt Cấp "+to+(to>=MaxBuildingLevel?" · CẤP TỐI ĐA":"");
+        }
+        void OnDestroy(){SonMonUpgradeFx.Started-=UpgradeFxStarted;SonMonUpgradeFx.Finished-=UpgradeFxFinished;}
         void DrawSpatialModels()
         {
             var buildings=List(Get(spatial,"buildings"));var alive=new HashSet<string>();
             foreach(var raw in buildings)
             {
-                var b=Map(raw);string id=S(Get(b,"id")),type=S(Get(b,"type"));int level=(int)N(Get(b,"level"));alive.Add(id);
+                var b=Map(raw);string id=S(Get(b,"id")),type=S(Get(b,"type")),core=S(Get(b,"coreId"),"");int level=(int)N(Get(b,"level"));alive.Add(id);
+                // Core halls: the spatial copy of the level is only re-synced when the server advances, so a fresh
+                // snapshot can carry a stale mirror. sect.buildings is authoritative (a stale value would otherwise
+                // play an upgrade transition on load). QA simulations drive the spatial copy directly.
+                if(core!=""&&!spatialSimulation&&Get(api.Snapshot,"sect","buildings",core,"level") is object coreLevel)level=(int)N(coreLevel);
                 if(SliceEnabled&&models.TryGetValue(id,out var current)&&levels.TryGetValue(id,out int before)&&before!=level&&SonMonArt.TrySwapLevel(current.transform,type,level))levels[id]=level;
                 if(!models.TryGetValue(id,out var root)||!levels.TryGetValue(id,out int previous)||previous!=level)
                 {
                     if(root!=null)Destroy(root);root=new GameObject(type);var model=new Building{type=type,level=Mathf.Clamp(level,1,4),rotation=(int)N(Get(b,"rotation")),complete=true};
                     if(SliceEnabled&&SonMonArt.TryBuilding(root.transform,type,level)){}else{if(SliceEnabled)SliceArt.Building(root.transform,new Building{type=type,level=model.level,rotation=0,complete=true},Material);else VillageArt.Building(root.transform,model,Material);VillageArt.Combine(root.transform);}
                     var box=root.AddComponent<BoxCollider>();box.center=new Vector3(0,1,0);box.size=new Vector3(model.W,3,model.D);
-                    if(SliceEnabled){var geometry=root.GetComponentsInChildren<Renderer>().Where(r=>r.enabled).ToArray();if(geometry.Length>0){var bounds=geometry[0].bounds;foreach(var renderer in geometry.Skip(1))bounds.Encapsulate(renderer.bounds);box.center=bounds.center;box.size=bounds.size;}root.transform.rotation=Quaternion.Euler(0,90*(int)N(Get(b,"rotation")),0);}
+                    if(SliceEnabled){var geometry=root.GetComponentsInChildren<Renderer>().Where(r=>r.enabled&&r.GetComponent<TextMesh>()==null).ToArray();if(geometry.Length>0){var bounds=geometry[0].bounds;foreach(var renderer in geometry.Skip(1))bounds.Encapsulate(renderer.bounds);box.center=bounds.center;box.size=bounds.size;}root.transform.rotation=Quaternion.Euler(0,90*(int)N(Get(b,"rotation")),0);}
                     var marker=root.AddComponent<FullPortBuilding>();marker.serverId=id;
                     marker.selected=selected=>{if(physicalDragged||placingSpatial!=null)return;ShowSpatialBuilding(selected);};models[id]=root;levels[id]=level;
                 }

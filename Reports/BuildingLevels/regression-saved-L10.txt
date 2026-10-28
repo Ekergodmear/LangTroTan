@@ -1,0 +1,80 @@
+PASS isolated QA server snapshot received
+PASS server reports MAX_BUILDING_LEVEL 10
+PASS scripture defines exactly one visual entry per level 1..10
+PASS saved level 10 loads without the upgrade animation
+PASS server level 10 renders the level-5 model
+PASS level 10: same building GameObject, no duplicate
+PASS level 10 lower-level update snaps without animation
+PASS level 10 shows model L5 (dev fallback, plaque)
+PASS level 10 fallback is labelled as development-only
+PASS level 10 fitted selection collider and a single clean visual
+PASS level 9: same building GameObject, no duplicate
+PASS level 9 lower-level update snaps without animation
+PASS level 9 shows model L5 (dev fallback, plaque)
+PASS level 9 fallback is labelled as development-only
+PASS level 9 fitted selection collider and a single clean visual
+PASS level 8: same building GameObject, no duplicate
+PASS level 8 lower-level update snaps without animation
+PASS level 8 shows model L5 (dev fallback, plaque)
+PASS level 8 fallback is labelled as development-only
+PASS level 8 fitted selection collider and a single clean visual
+PASS level 7: same building GameObject, no duplicate
+PASS level 7 lower-level update snaps without animation
+PASS level 7 shows model L5 (dev fallback, plaque)
+PASS level 7 fallback is labelled as development-only
+PASS level 7 fitted selection collider and a single clean visual
+PASS level 6: same building GameObject, no duplicate
+PASS level 6 lower-level update snaps without animation
+PASS level 6 shows model L5 (dev fallback, plaque)
+PASS level 6 fallback is labelled as development-only
+PASS level 6 fitted selection collider and a single clean visual
+PASS level 5: same building GameObject, no duplicate
+PASS level 5 lower-level update snaps without animation
+PASS level 5 shows model L5 (candidate)
+PASS level 5 fallback is labelled as development-only
+PASS level 5 fitted selection collider and a single clean visual
+PASS level 4: same building GameObject, no duplicate
+PASS level 4 lower-level update snaps without animation
+PASS level 4 shows model L1 (dev fallback, plaque)
+PASS level 4 fallback is labelled as development-only
+PASS level 4 fitted selection collider and a single clean visual
+PASS level 3: same building GameObject, no duplicate
+PASS level 3 lower-level update snaps without animation
+PASS level 3 shows model L1 (dev fallback, plaque)
+PASS level 3 fallback is labelled as development-only
+PASS level 3 fitted selection collider and a single clean visual
+PASS level 2: same building GameObject, no duplicate
+PASS level 2 lower-level update snaps without animation
+PASS level 2 shows model L1 (dev fallback, plaque)
+PASS level 2 fallback is labelled as development-only
+PASS level 2 fitted selection collider and a single clean visual
+PASS level 1: same building GameObject, no duplicate
+PASS level 1 lower-level update snaps without animation
+PASS level 1 shows model L1 (placeholder)
+PASS level 1 fallback is labelled as development-only
+PASS level 1 fitted selection collider and a single clean visual
+PASS no level is smaller than the level below: L1=3.60h/2.71w L2=3.60h/2.71w L3=3.60h/2.71w L4=3.60h/2.71w L5=4.20h/3.49w L6=4.20h/3.49w L7=4.20h/3.49w L8=4.20h/3.49w L9=4.20h/3.49w L10=4.20h/3.49w
+PASS reduced effects: transition without particles or formation
+PASS reduced effects finish in 1.05 s at level 4
+PASS server-confirmed rise 4 -> 5 starts the full transition
+PASS building stays selectable during the transition and the panel shows it
+PASS transition ends on the level-5 model with materials restored
+PASS after transition: same building GameObject, no duplicate
+PASS UI announces the new level after the transition: Tàng Kinh Các đã đạt Cấp 5
+PASS transition frame time median 3.2 ms vs idle 3.3 ms
+PASS transition 5 -> 6 ends clean
+PASS newer level 8 during 6 -> 7 retargets before the model change
+PASS retargeted transition ends on level 8
+PASS retarget before change: same building GameObject, no duplicate
+PASS newer level 10 after the 8 -> 9 model change swaps again at once
+PASS repeated updates end on level 10 with one visual
+PASS retarget after change: same building GameObject, no duplicate
+PASS lower level mid-transition cancels it and snaps to level 2
+PASS cancelled transition leaves no effect or glow material behind
+PASS cancel: same building GameObject, no duplicate
+PASS restored snapshot returns to server level 10
+PASS authoritative server level unchanged by the visual tests
+PASS level 10 upgrade panel shows MAX LEVEL and offers no upgrade
+PASS server rejects 10 -> 11 and deducts nothing (notice: Đã đồng bộ thế giới)
+PASS rejected upgrade request journal resolved
+COMPLETE

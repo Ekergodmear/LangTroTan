@@ -72,27 +72,61 @@ MonoBehaviour:
   environment: {fileID: 3431208331038746481, guid: c5323f724fe40924891f694e6be23f38, type: 3}
   spiritDeer: {fileID: 3569735779258905443, guid: b21beeba495f60949a883494082fa0c0, type: 3}
   disciple: {fileID: 2373270768411564567, guid: 964fc65eeadf69049a3282fd3df95f76, type: 3}
-  visualTiers:
+  visualLevels:
   - type: scripture
-    tiers:
-    - label: "I \xB7 Th\u01B0 C\xE1c s\u01A1 l\u1EADp"
-      minLevel: 1
-      prefab: {fileID: 3581431934959074364, guid: 33f25520e600f6d49bce9da5ad9b96b3, type: 3}
+    maxLevel: 10
+    levels:
+    - level: 1
+      prefab: {fileID: 8909716886513163272, guid: 3e5f77f7921812a4bb4d17e8f38698cb, type: 3}
       decorations: []
-    - label: "II \xB7 T\xE0ng Kinh C\xE1c trung ph\u1EA9m"
-      minLevel: 3
-      prefab: {fileID: 5717338319592702776, guid: 71e355b3750e8ef408c7e037d4ff075d, type: 3}
-      decorations: []
-    - label: "III \xB7 Linh Kinh C\xE1c"
-      minLevel: 6
-      prefab: {fileID: 5717338319592702776, guid: 71e355b3750e8ef408c7e037d4ff075d, type: 3}
-      decorations:
-      - {fileID: 8256475634593071399, guid: 45a236fbc9c18b443a37974f3737af26, type: 3}
-    - label: "IV \xB7 Thi\xEAn Kinh C\xE1c (d\u1EF1 ki\u1EBFn)"
-      minLevel: 9
+      status: placeholder
+      targetHeight: 3.6
+    - level: 2
       prefab: {fileID: 0}
-      decorations:
-      - {fileID: 3920587194952874242, guid: 083095610ce1eb54a8539c75ea2b3c7e, type: 3}
+      decorations: []
+      status: missing
+      targetHeight: 3.75
+    - level: 3
+      prefab: {fileID: 0}
+      decorations: []
+      status: missing
+      targetHeight: 3.8999999
+    - level: 4
+      prefab: {fileID: 0}
+      decorations: []
+      status: missing
+      targetHeight: 4.0499997
+    - level: 5
+      prefab: {fileID: 2711675128941095794, guid: b7bccd0949a10da46918b7346ee6621d, type: 3}
+      decorations: []
+      status: candidate
+      targetHeight: 4.2
+    - level: 6
+      prefab: {fileID: 0}
+      decorations: []
+      status: missing
+      targetHeight: 4.35
+    - level: 7
+      prefab: {fileID: 0}
+      decorations: []
+      status: missing
+      targetHeight: 4.5
+    - level: 8
+      prefab: {fileID: 0}
+      decorations: []
+      status: missing
+      targetHeight: 4.65
+    - level: 9
+      prefab: {fileID: 0}
+      decorations: []
+      status: missing
+      targetHeight: 4.8
+    - level: 10
+      prefab: {fileID: 0}
+      decorations: []
+      status: missing
+      targetHeight: 4.95
+  upgradeFx: {fileID: 3030384861216621318, guid: 9707b09f4423e944f8cbca739c4acfc9, type: 3}
   daySky: {fileID: 2100000, guid: a77b10c02d9349f46ba25ca6ee2d1756, type: 2}
   nightSky: {fileID: 2100000, guid: 9cad98cbc31c0b44485d7061ed377107, type: 2}
   dawnSky: {fileID: 2100000, guid: 6304c34525cf5ed4bb1051c995de72ba, type: 2}

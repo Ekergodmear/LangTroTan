@@ -27,12 +27,13 @@ wait_server() {
 wait_server
 
 # Optional: TIER_LEVEL=<n> seeds the isolated fixture's Tàng Kinh Các level, then restarts the QA server so
-# the game loads it from the save (tests loading saved buildings at higher levels).
+# the game loads it from the save (tests loading saved buildings at higher levels). TIER_UPGRADE_IN=<s> also
+# leaves a real upgrade in flight that the server completes <s> seconds after seeding.
 if [ -n "${TIER_LEVEL:-}" ]; then
   pid=$(netstat -ano | grep "127.0.0.1:8901 .*LISTENING" | awk '{print $5}' | head -1)
   [ -n "$pid" ] && taskkill //PID "$pid" //F >/dev/null
   sleep 1
-  "$NODE" "$ROOT/work/claude-audit/tools/seedTierFixture.mjs" "$TIER_LEVEL" || exit 1
+  "$NODE" "$ROOT/work/claude-audit/tools/seedTierFixture.mjs" "$TIER_LEVEL" ${TIER_UPGRADE_IN:-} || exit 1
   (cd "$BACKEND" && nohup "$NODE" visualQaServer.mjs > "$ROOT/work/claude-audit/qa-server.log" 2>&1 &)
   wait_server
 fi

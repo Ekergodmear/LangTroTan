@@ -50,7 +50,8 @@ public static class SonMonKitBuilder
         kit.glowMaterials = new[] { "Paper", "Glow" }.Select(slot => new SonMonKit.GlowEntry
             { material = mats[slot], baseEmission = mats[slot].GetColor("_EmissionColor") }).ToArray();
         BuildCharacters(kit, mats);
-        kit.visualTiers = BuildVisualTiers(mats);
+        kit.visualLevels = BuildVisualLevels();
+        kit.upgradeFx = BuildUpgradeFx(mats);
         kit.environment = BuildEnvironment(mats, natureMats);
         EditorUtility.SetDirty(kit);
         AssetDatabase.SaveAssets();
@@ -871,34 +872,151 @@ public static class SonMonKitBuilder
         route.waypoints = new[] { new Vector3(.9f, 0, -8.5f), new Vector3(.9f, 0, -15.6f) };
     }
 
-    // ------------------------------------------------------------------ building visual tiers
+    // ------------------------------------------------------------------ building visual levels
 
     const string ForgeDir = "Assets/ThirdParty/ForgeGUI/ScripturePavilion";
+    const int MaxBuildingLevel = 10;  // mirrors the server's MAX_BUILDING_LEVEL (js/data/sectBuildings.js)
 
-    // Scripture Pavilion (server type "scripture"). Server facts (see docs/BUILDING_VISUAL_TIERS.md):
-    // the core Tàng Kinh Các has no level cap in the reference rules; player-built spatial copies cap at 3.
-    static BuildingVisualTierSet[] BuildVisualTiers(Dictionary<string, Material> mats)
+    // Height ladder for one 3x3 building: every level is at least as tall as the one below, so an upgrade
+    // never reads smaller. Each model is scaled uniformly to its rung.
+    static float LevelHeight(int level) => 3.6f + .15f * (level - 1);
+
+    // Scripture Pavilion (server type "scripture", Tàng Kinh Các): one entry per server level 1..10. Only
+    // models that actually exist are assigned; the other levels stay empty until approved exports are
+    // supplied, and the runtime shows the nearest lower model with a DEV plaque (never production art).
+    static BuildingVisualLevelSet[] BuildVisualLevels()
     {
-        var kitScripture = AssetDatabase.LoadAssetAtPath<GameObject>($"{PrefabDir}/Building_scripture.prefab");
-        var forge = ForgeGuiPavilionPrefab();
-        var spirit = ScriptureDecoration("Deco_scripture_spirit", mats, false);
-        var celestial = ScriptureDecoration("Deco_scripture_celestial", mats, true);
-        return new[]
+        var levels = new BuildingVisualLevel[MaxBuildingLevel];
+        for (int l = 1; l <= MaxBuildingLevel; l++)
+            levels[l - 1] = new BuildingVisualLevel { level = l, status = "missing", targetHeight = LevelHeight(l) };
+        void Assign(int level, GameObject source, string name, string status)
         {
-            new BuildingVisualTierSet
-            {
-                type = "scripture",
-                tiers = new[]
-                {
-                    new BuildingVisualTier { label = "I · Thư Các sơ lập", minLevel = 1, prefab = kitScripture },
-                    new BuildingVisualTier { label = "II · Tàng Kinh Các trung phẩm", minLevel = 3, prefab = forge },
-                    new BuildingVisualTier { label = "III · Linh Kinh Các", minLevel = 6, prefab = forge, decorations = new[] { spirit } },
-                    // No bespoke tier-IV model yet: prefab left empty on purpose so the resolver falls back to
-                    // tier III's model while still adding the tier-IV decorations.
-                    new BuildingVisualTier { label = "IV · Thiên Kinh Các (dự kiến)", minLevel = 9, prefab = null, decorations = new[] { celestial } },
-                },
-            },
-        };
+            if (source == null) return;
+            levels[level - 1].prefab = LevelPrefab(name, source, LevelHeight(level));
+            levels[level - 1].status = status;
+        }
+        Assign(1, AssetDatabase.LoadAssetAtPath<GameObject>($"{PrefabDir}/Building_scripture.prefab"), "Level_scripture_L01_kit", "placeholder");
+        Assign(5, ForgeGuiPavilionPrefab(), "Level_scripture_L05_forgegui", "candidate");
+        ValidateLadder("scripture", levels, 3);
+        return new[] { new BuildingVisualLevelSet { type = "scripture", maxLevel = MaxBuildingLevel, levels = levels } };
+    }
+
+    static GameObject LevelPrefab(string name, GameObject source, float height)
+    {
+        var root = new GameObject(name);
+        var model = (GameObject)PrefabUtility.InstantiatePrefab(source, root.transform);
+        model.transform.localScale = Vector3.one * (height / Bounds(model).size.y);
+        model.transform.localPosition = new Vector3(0, -Bounds(model).min.y, 0);
+        var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/{name}.prefab");
+        Object.DestroyImmediate(root);
+        return prefab;
+    }
+
+    // Build-time guard: assigned models must not shrink from one level to the next (height and width), and
+    // must not spill far past the server footprint.
+    static void ValidateLadder(string type, BuildingVisualLevel[] levels, float footprint)
+    {
+        Vector3 previous = Vector3.zero;
+        int previousLevel = 0;
+        foreach (var entry in levels)
+        {
+            if (entry.prefab == null) { Debug.Log($"SONMON_LEVEL {type} L{entry.level} missing (dev fallback)"); continue; }
+            var size = Bounds(entry.prefab).size;
+            Debug.Log($"SONMON_LEVEL {type} L{entry.level} {entry.status} size={size}");
+            if (size.y + .01f < previous.y || Mathf.Max(size.x, size.z) + .01f < Mathf.Max(previous.x, previous.z))
+                throw new InvalidOperationException($"{type} level {entry.level} is smaller than level {previousLevel}: {size} < {previous}");
+            if (Mathf.Max(size.x, size.z) > footprint * 1.2f)
+                throw new InvalidOperationException($"{type} level {entry.level} spills past its {footprint}x{footprint} footprint: {size}");
+            previous = size;
+            previousLevel = entry.level;
+        }
+    }
+
+    // Shared upgrade transition effect (driven by SonMonUpgradeFx at runtime): two rune formation discs, a
+    // crossed light pillar, motes gathering inward and a burst. Authored for a 3x3 building.
+    static GameObject BuildUpgradeFx(Dictionary<string, Material> mats)
+    {
+        var root = new GameObject("Fx_building_upgrade");
+        Quad(root.transform, "Formation inner", new Vector3(0, .07f, 0), Quaternion.Euler(90, 0, 0), new Vector3(4.2f, 4.2f, 1), mats["Formation"]);
+        Quad(root.transform, "Formation outer", new Vector3(0, .05f, 0), Quaternion.Euler(90, 0, 0), new Vector3(6.4f, 6.4f, 1), mats["Formation"]);
+        Quad(root.transform, "Pillar a", new Vector3(0, 4.5f, 0), Quaternion.identity, new Vector3(1.7f, 9, 1), mats["Mote"]);
+        Quad(root.transform, "Pillar b", new Vector3(0, 4.5f, 0), Quaternion.Euler(0, 90, 0), new Vector3(1.7f, 9, 1), mats["Mote"]);
+
+        var gather = FxParticles(root, "Gather", new Vector3(0, 1.8f, 0), mats["Mote"], 220, new Vector2(.9f, 1.25f), new Vector2(.08f, .17f),
+            new Color(.6f, 1f, .9f), new Color(1f, .9f, .55f));
+        var shape = gather.shape;
+        shape.shapeType = ParticleSystemShapeType.Sphere;
+        shape.radius = 3.6f;
+        shape.radiusThickness = 0;  // spawn on the shell, then pulled inward
+        var emission = gather.emission;
+        emission.rateOverTime = 80;
+        var vel = gather.velocityOverLifetime;
+        vel.enabled = true;
+        vel.radial = -3.2f;
+
+        var burst = FxParticles(root, "Burst", new Vector3(0, 2.2f, 0), mats["Mote"], 320, new Vector2(.7f, 1.4f), new Vector2(.07f, .2f),
+            new Color(1f, .95f, .7f), new Color(.6f, 1f, .9f));
+        var main = burst.main;
+        main.startSpeed = new ParticleSystem.MinMaxCurve(4f, 8.5f);
+        main.gravityModifier = .35f;
+        var burstShape = burst.shape;
+        burstShape.shapeType = ParticleSystemShapeType.Sphere;
+        burstShape.radius = .7f;
+        var drag = burst.limitVelocityOverLifetime;
+        drag.enabled = true;
+        drag.drag = 2.2f;
+        var burstEmission = burst.emission;
+        burstEmission.rateOverTime = 0;
+
+        var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/Fx_building_upgrade.prefab");
+        Object.DestroyImmediate(root);
+        return prefab;
+    }
+
+    static void Quad(Transform parent, string name, Vector3 at, Quaternion rotation, Vector3 scale, Material mat)
+    {
+        var quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        Object.DestroyImmediate(quad.GetComponent<Collider>());
+        quad.name = name;
+        quad.transform.SetParent(parent, false);
+        quad.transform.localPosition = at;
+        quad.transform.localRotation = rotation;
+        quad.transform.localScale = scale;
+        var renderer = quad.GetComponent<MeshRenderer>();
+        renderer.sharedMaterial = mat;
+        renderer.shadowCastingMode = ShadowCastingMode.Off;
+        renderer.receiveShadows = false;
+        renderer.enabled = false;  // SonMonUpgradeFx fades it in
+    }
+
+    static ParticleSystem FxParticles(GameObject parent, string name, Vector3 at, Material mat, int max, Vector2 life, Vector2 size, Color a, Color b)
+    {
+        var go = new GameObject(name);
+        go.transform.SetParent(parent.transform, false);
+        go.transform.localPosition = at;
+        var ps = go.AddComponent<ParticleSystem>();
+        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        var main = ps.main;
+        main.loop = true;
+        main.playOnAwake = false;
+        main.duration = 1;
+        main.maxParticles = max;
+        main.startLifetime = new ParticleSystem.MinMaxCurve(life.x, life.y);
+        main.startSpeed = 0;
+        main.startSize = new ParticleSystem.MinMaxCurve(size.x, size.y);
+        main.startColor = new ParticleSystem.MinMaxGradient(a, b);
+        main.simulationSpace = ParticleSystemSimulationSpace.Local;
+        var fade = ps.colorOverLifetime;
+        fade.enabled = true;
+        var gradient = new Gradient();
+        gradient.SetKeys(new[] { new GradientColorKey(Color.white, 0), new GradientColorKey(Color.white, 1) },
+            new[] { new GradientAlphaKey(0, 0), new GradientAlphaKey(1, .2f), new GradientAlphaKey(.8f, .7f), new GradientAlphaKey(0, 1) });
+        fade.color = gradient;
+        var renderer = go.GetComponent<ParticleSystemRenderer>();
+        renderer.sharedMaterial = mat;
+        renderer.shadowCastingMode = ShadowCastingMode.Off;
+        renderer.receiveShadows = false;
+        return ps;
     }
 
     static GameObject ForgeGuiPavilionPrefab()
@@ -937,29 +1055,6 @@ public static class SonMonKitBuilder
         model.transform.localPosition = new Vector3(-b.center.x, -b.min.y, -b.center.z);
         var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/Tier_scripture_forgegui.prefab");
         Debug.Log($"SONMON_TIER forgegui size={Bounds(root).size}");
-        Object.DestroyImmediate(root);
-        return prefab;
-    }
-
-    // Additive tier dressing built only from existing assets: stone lanterns, a formation disc and a mote
-    // aura. The celestial variant adds a wide outer formation ring and a denser aura.
-    static GameObject ScriptureDecoration(string name, Dictionary<string, Material> mats, bool celestial)
-    {
-        var root = new GameObject(name);
-        var lantern = AssetDatabase.LoadAssetAtPath<GameObject>($"{PrefabDir}/Building_prop_lantern.prefab");
-        foreach (var corner in new[] { new Vector3(-1.75f, 0, -1.75f), new Vector3(1.75f, 0, -1.75f), new Vector3(-1.75f, 0, 1.75f), new Vector3(1.75f, 0, 1.75f) })
-        {
-            if (lantern == null) break;
-            var l = (GameObject)PrefabUtility.InstantiatePrefab(lantern, root.transform);
-            l.transform.localPosition = corner;
-            l.transform.localScale = Vector3.one * 1.1f;
-        }
-        FormationDisc(root.transform, new Vector3(0, .06f, -2.3f), 1.7f, mats["Formation"], 8);
-        if (celestial) FormationDisc(root.transform, new Vector3(0, .04f, 0), 5.2f, mats["Formation"], -3);
-        Particles(root, "Scripture aura", new Vector3(0, 2.6f, 0), new Vector3(2.8f, 3.2f, 2.8f), mats["Mote"],
-            celestial ? 90 : 40, celestial ? 22 : 9, 5, new Vector2(.05f, .12f), new Vector3(0, .25f, 0),
-            new Color(.6f, 1f, .9f), celestial ? new Color(1f, .9f, .55f) : new Color(.85f, 1f, 1f));
-        var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/{name}.prefab");
         Object.DestroyImmediate(root);
         return prefab;
     }

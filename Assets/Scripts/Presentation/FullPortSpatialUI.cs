@@ -62,7 +62,8 @@ namespace LangTroTan.Presentation
             string type=S(Get(b,"type"));OpenSpatialDetail(S(Get(spatialCatalog,type,"name")));spatialBuildingId=id;RefreshSpatialInfo();
             int slots=(int)N(Get(spatialCatalog,type,"slots"));
             if(slots>0){ContextButton(spatialPanel,"− NGƯỜI",18,322,148,40,()=>SpatialBuildingAction("spatial_assign",-1));ContextButton(spatialPanel,"+ NGƯỜI",180,322,148,40,()=>SpatialBuildingAction("spatial_assign",1));}
-            ContextButton(spatialPanel,"NÂNG CẤP",18,371,148,40,()=>SpatialBuildingAction("spatial_upgrade"));
+            bool max=(int)N(Get(b,"level"))>=MaxBuildingLevel;
+            ContextButton(spatialPanel,max?"CẤP TỐI ĐA":"NÂNG CẤP",18,371,148,40,()=>SpatialBuildingAction("spatial_upgrade")).interactable=!max;
             ContextButton(spatialPanel,"HỦY NÂNG",180,371,148,40,()=>SpatialBuildingAction("spatial_cancel_upgrade"));
             if(type=="farm"){
                 ContextButton(spatialPanel,"GIEO LÚA",18,423,148,40,()=>SpatialBuildingAction("spatial_sow",0,"wheat"));
@@ -89,10 +90,12 @@ namespace LangTroTan.Presentation
             if(spatialInfo==null)return;
             if(spatialBuildingId!=null){var b=List(Get(spatial,"buildings")).FirstOrDefault(v=>S(Get(v,"id"))==spatialBuildingId);if(b==null){CloseSpatialDetail();return;}
                 string type=S(Get(b,"type"));int level=(int)N(Get(b,"level"));var d=Get(spatialCatalog,type);double hp=N(Get(d,"hp"))+Math.Floor(N(Get(d,"hp"))/2)*(level-1);
-                spatialInfo.text="Cấp "+level+" / 3 · HP "+Math.Floor(N(Get(b,"hp")))+" / "+hp+"\nNgười làm: "+S(Get(b,"workers"))+" / "+(N(Get(d,"slots"))>0?N(Get(d,"slots"))+level-1:0)+"\nDân rảnh: "+S(Get(spatial,"idle"))+" · Sức chứa: "+S(Get(spatial,"housing"))+"\n";
+                bool max=level>=MaxBuildingLevel;string levelText=SonMonUpgradeFx.IsPlaying(models.TryGetValue(spatialBuildingId,out var shownRoot)?shownRoot.transform:null,out var fx)?"Đang thăng cấp "+fx.FromLevel+" → "+fx.ToLevel:"Cấp "+level+" / "+MaxBuildingLevel+(max?" · TỐI ĐA":"");
+                spatialInfo.text=levelText+" · HP "+Math.Floor(N(Get(b,"hp")))+" / "+hp+"\nNgười làm: "+S(Get(b,"workers"))+" / "+(N(Get(d,"slots"))>0?N(Get(d,"slots"))+level-1:0)+"\nDân rảnh: "+S(Get(spatial,"idle"))+" · Sức chứa: "+S(Get(spatial,"housing"))+"\n";
                 if(!(Get(b,"complete") is bool done&&done))spatialInfo.text+="Đang xây: "+SpatialTime(Get(b,"finishAt"))+"\n";
                 else if(N(Get(b,"upgradeAt"))>0)spatialInfo.text+="Đang nâng: "+SpatialTime(Get(b,"upgradeAt"))+"\n";
-                else if(level<3)spatialInfo.text+="Nâng cấp: "+Math.Max(20,N(Get(d,"wood")))*level+" gỗ · "+Math.Max(10,N(Get(d,"stone")))*level+" đá\nThời gian: "+5*level+" phút\n";
+                else if(max)spatialInfo.text+="Đã đạt cấp tối đa\n";
+                else spatialInfo.text+="Nâng cấp: "+Math.Max(20,N(Get(d,"wood")))*level+" gỗ · "+Math.Max(10,N(Get(d,"stone")))*level+" đá\nThời gian: "+5*level+" phút\n";
                 if(type=="farm")spatialInfo.text+="Vụ: "+(S(Get(b,"crop"))=="vegetable"?"Rau":"Lúa")+" · "+Math.Floor(N(Get(b,"cropProgress"))*100)+"%\nĐộ ẩm: "+Math.Floor(N(Get(b,"moisture")))+"% · Giống: 5 lương thực";
             }else if(spatialNodeId!=null){var n=List(Get(spatial,"nodes")).FirstOrDefault(v=>S(Get(v,"id"))==spatialNodeId);var job=List(Get(spatial,"jobs")).FirstOrDefault(v=>S(Get(v,"nodeId"))==spatialNodeId);string phase=S(Get(job,"phase"),"");
                 spatialInfo.text="Còn lại: "+Math.Floor(N(Get(n,"amount")))+" / "+S(Get(n,"maximum"))+"\nDân rảnh: "+S(Get(spatial,"idle"))+"\nChuyến khai thác: "+List(Get(spatial,"jobs")).Count+" / 4\n\n"+(job!=null?(phase=="outbound"?"Đang đi đến nguồn":phase=="work"?"Đang khai thác":"Đang mang vật tư về kho"):"Mỗi chuyến cần một người rảnh.");

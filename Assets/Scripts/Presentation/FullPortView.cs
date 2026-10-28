@@ -41,7 +41,7 @@ namespace LangTroTan.Presentation
             catalog=ServerJson.Map(ServerJson.Parse(Resources.Load<TextAsset>("FullPort/ReferenceCatalog").text));
             Application.targetFrameRate=Application.isMobilePlatform?30:60;Application.runInBackground=true;
             initialSmoke=Environment.GetCommandLineArgs().Contains("-full-port-smoke");
-            CreateMountain();CreateInterface();api=gameObject.AddComponent<AuthoritativeClient>();api.StateChanged+=Changed;api.StatusChanged+=()=>status.text=api.Notice;
+            CreateMountain();CreateInterface();api=gameObject.AddComponent<AuthoritativeClient>();api.StateChanged+=Changed;api.StatusChanged+=()=>status.text=api.Notice;SonMonUpgradeFx.Started+=UpgradeFxStarted;SonMonUpgradeFx.Finished+=UpgradeFxFinished;
             api.DecisionCompleted+=(action,result)=>{if(action.StartsWith("spatial_")){status.text=S(Get(result,"message"));StartCoroutine(api.SpatialState(false,ApplySpatial));return;}if(SliceEnabled&&(action=="assign_job"||action=="use_sect_pill")){status.text=action=="assign_job"?"Đã cập nhật công việc đệ tử.":"Đã dùng đan theo xác nhận của tông môn.";return;}if(!initialSmoke)ShowRecord(result,"Kết quả quyết định");};
             if(Environment.GetCommandLineArgs().Contains("-visual-qa"))
             {
@@ -167,15 +167,30 @@ namespace LangTroTan.Presentation
                 var def=Map(Get(defs,pair.Key));var b=Map(pair.Value);int col=i%3,row=i/3;i++;var card=Box(body,pair.Key,22+col*433,82+row*261,417,244,new Color(.11f,.22f,.20f));
                 Label(card,S(Get(def,"name"))+" · Cấp "+S(Get(b,"level")),16,12,386,35,21,true);Label(card,S(Get(def,"desc")),16,59,386,100,16);
                 bool upgrading=Get(b,"upgrading")!=null;double level=N(Get(b,"level"));
-                Label(card,upgrading?"Đang nâng cấp đến "+DateTimeOffset.FromUnixTimeMilliseconds((long)N(Get(b,"upgrading","finishAt"))).ToLocalTime().ToString("HH:mm"):"Chi phí: "+Math.Round(N(Get(def,"baseCost"))*Math.Pow(1.5,level))+" linh thạch",16,164,386,29,16);
-                string id=pair.Key;Button(card,upgrading?"ĐANG THI CÔNG":"NÂNG CẤP",16,199,386,35,()=>ShowUpgrade(id)).interactable=!upgrading&&!api.Busy&&!api.HasPending;
+                bool max=level>=MaxBuildingLevel;
+                Label(card,max?"Cấp "+level+" / "+MaxBuildingLevel+" · CẤP TỐI ĐA":upgrading?"Đang nâng cấp đến "+DateTimeOffset.FromUnixTimeMilliseconds((long)N(Get(b,"upgrading","finishAt"))).ToLocalTime().ToString("HH:mm"):"Chi phí: "+UpgradeCost(def,level)+" linh thạch",16,164,386,29,16);
+                string id=pair.Key;Button(card,max?"CẤP TỐI ĐA":upgrading?"ĐANG THI CÔNG":"NÂNG CẤP",16,199,386,35,()=>ShowUpgrade(id)).interactable=!max&&!upgrading&&!api.Busy&&!api.HasPending;
             }
         }
+        // Mirrors the server: MAX_BUILDING_LEVEL (sent with the spatial state) and upgradeCost = round(baseCost x 1.5^level)
+        // with JavaScript rounding (halves away from zero), so the shown cost matches what the server charges.
+        int MaxBuildingLevel=>spatial!=null&&Get(spatial,"maxBuildingLevel")!=null?(int)N(Get(spatial,"maxBuildingLevel")):10;
+        double UpgradeCost(object def,double level)=>Math.Round(N(Get(def,"baseCost"))*Math.Pow(1.5,level),MidpointRounding.AwayFromZero);
         void ShowUpgrade(string id)
         {
             var def=Get(Module("sectBuildings"),"BUILDINGS",id);var b=Get(api.Snapshot,"sect","buildings",id);if(b==null)return;double level=N(Get(b,"level"));
-            if(SliceEnabled){SliceDialog("Nâng "+S(Get(def,"name")),720,460);Ink(dialog,"Cấp "+level+" → "+(level+1)+"\nChi phí: "+Fmt(Math.Round(N(Get(def,"baseCost"))*Math.Pow(1.5,level)))+" linh thạch\nThời gian: "+Math.Round(N(Get(def,"baseTimeMin"))*Math.Pow(1.3,level))+" phút thực\n"+S(Get(def,"effectPerLevel")),24,91,672,230,21);SliceButton(dialog,"Xác nhận nâng cấp",24,355,327,56,()=>{api.Submit("start_upgrade",new Dictionary<string,object>{{"buildingId",id}});CloseDialog();},true);SliceButton(dialog,"Quay lại",369,355,327,56,CloseDialog);return;}
-            OpenDialog("Nâng "+S(Get(def,"name")));Label(dialog,"Cấp "+level+" → "+(level+1)+"\nChi phí: "+Math.Round(N(Get(def,"baseCost"))*Math.Pow(1.5,level))+" linh thạch\nThời gian: "+Math.Round(N(Get(def,"baseTimeMin"))*Math.Pow(1.3,level))+" phút thực\n"+S(Get(def,"effectPerLevel")),24,83,632,200,20);
+            // The server owns the cap (MAX_BUILDING_LEVEL); the client only mirrors it to avoid offering a request
+            // the server would reject. Saves above the cap are shown as they are, never clamped.
+            string transition=models.TryGetValue("core:"+id,out var coreRoot)&&SonMonUpgradeFx.IsPlaying(coreRoot.transform,out var fx)?"Đang thăng cấp "+fx.FromLevel+" → "+fx.ToLevel+"\n":"";
+            if(level>=MaxBuildingLevel)
+            {
+                string note=transition+"Cấp "+level+" / "+MaxBuildingLevel+" · CẤP TỐI ĐA\n"+(level>MaxBuildingLevel?"Bản lưu cũ vượt giới hạn mới: giữ nguyên cấp, không thể nâng thêm.\n":"Công trình đã đạt cấp cao nhất.\n")+S(Get(def,"effectPerLevel"));
+                if(SliceEnabled){SliceDialog(S(Get(def,"name"))+" · Cấp tối đa",720,460);Ink(dialog,note,24,91,672,230,21).name="UpgradeState";SliceButton(dialog,"Quay lại",197,355,327,56,CloseDialog);return;}
+                OpenDialog(S(Get(def,"name"))+" · Cấp tối đa");Label(dialog,note,24,83,632,200,20);Button(dialog,"QUAY LẠI",186,317,309,55,CloseDialog);return;
+            }
+            bool upgrading=Get(b,"upgrading")!=null;string state=transition+(upgrading?"Đang nâng cấp đến "+DateTimeOffset.FromUnixTimeMilliseconds((long)N(Get(b,"upgrading","finishAt"))).ToLocalTime().ToString("HH:mm")+"\n":"");
+            if(SliceEnabled){SliceDialog("Nâng "+S(Get(def,"name")),720,460);Ink(dialog,state+"Cấp "+level+" → "+(level+1)+" / "+MaxBuildingLevel+"\nChi phí: "+Fmt(UpgradeCost(def,level))+" linh thạch\nThời gian: "+Math.Round(N(Get(def,"baseTimeMin"))*Math.Pow(1.3,level),MidpointRounding.AwayFromZero)+" phút thực\n"+S(Get(def,"effectPerLevel")),24,91,672,230,21).name="UpgradeState";SliceButton(dialog,"Xác nhận nâng cấp",24,355,327,56,()=>{api.Submit("start_upgrade",new Dictionary<string,object>{{"buildingId",id}});CloseDialog();},true).interactable=!upgrading;SliceButton(dialog,"Quay lại",369,355,327,56,CloseDialog);return;}
+            OpenDialog("Nâng "+S(Get(def,"name")));Label(dialog,state+"Cấp "+level+" → "+(level+1)+" / "+MaxBuildingLevel+"\nChi phí: "+UpgradeCost(def,level)+" linh thạch\nThời gian: "+Math.Round(N(Get(def,"baseTimeMin"))*Math.Pow(1.3,level),MidpointRounding.AwayFromZero)+" phút thực\n"+S(Get(def,"effectPerLevel")),24,83,632,200,20);
             Button(dialog,"NÂNG CẤP",24,317,305,55,()=>{api.Submit("start_upgrade",new Dictionary<string,object>{{"buildingId",id}});CloseDialog();});Button(dialog,"QUAY LẠI",347,317,309,55,CloseDialog);
         }
         void DrawDisciples()

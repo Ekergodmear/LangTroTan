@@ -1,5 +1,7 @@
 # Building Visual Tiers: proposal and prototype (Scripture Pavilion)
 
+> **Superseded (2026-10-28)** by `BUILDING_UPGRADE_LEVELS.md`: max level 10 on the server and one visual per level, replacing the four tiers below. Kept for history.
+
 Status (2026-10-28): **prototype for one building type (`scripture`, Tàng Kinh Các) only, gated behind the `-visual-tiers` flag.** The production and preview scene is unchanged until you approve. No models were generated or purchased. The only new asset is the user-supplied ForgeGUI GLB, converted.
 
 ## 1. Verified server rules (no assumption of 10 levels)
