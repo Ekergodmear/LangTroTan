@@ -37,10 +37,11 @@ namespace LangTroTan.Presentation
             foreach(var raw in buildings)
             {
                 var b=Map(raw);string id=S(Get(b,"id")),type=S(Get(b,"type"));int level=(int)N(Get(b,"level"));alive.Add(id);
+                if(SliceEnabled&&models.TryGetValue(id,out var current)&&levels.TryGetValue(id,out int before)&&before!=level&&SonMonArt.TrySwapLevel(current.transform,type,level))levels[id]=level;
                 if(!models.TryGetValue(id,out var root)||!levels.TryGetValue(id,out int previous)||previous!=level)
                 {
                     if(root!=null)Destroy(root);root=new GameObject(type);var model=new Building{type=type,level=Mathf.Clamp(level,1,4),rotation=(int)N(Get(b,"rotation")),complete=true};
-                    if(SliceEnabled&&SonMonArt.TryBuilding(root.transform,type)){}else{if(SliceEnabled)SliceArt.Building(root.transform,new Building{type=type,level=model.level,rotation=0,complete=true},Material);else VillageArt.Building(root.transform,model,Material);VillageArt.Combine(root.transform);}
+                    if(SliceEnabled&&SonMonArt.TryBuilding(root.transform,type,level)){}else{if(SliceEnabled)SliceArt.Building(root.transform,new Building{type=type,level=model.level,rotation=0,complete=true},Material);else VillageArt.Building(root.transform,model,Material);VillageArt.Combine(root.transform);}
                     var box=root.AddComponent<BoxCollider>();box.center=new Vector3(0,1,0);box.size=new Vector3(model.W,3,model.D);
                     if(SliceEnabled){var geometry=root.GetComponentsInChildren<Renderer>().Where(r=>r.enabled).ToArray();if(geometry.Length>0){var bounds=geometry[0].bounds;foreach(var renderer in geometry.Skip(1))bounds.Encapsulate(renderer.bounds);box.center=bounds.center;box.size=bounds.size;}root.transform.rotation=Quaternion.Euler(0,90*(int)N(Get(b,"rotation")),0);}
                     var marker=root.AddComponent<FullPortBuilding>();marker.serverId=id;

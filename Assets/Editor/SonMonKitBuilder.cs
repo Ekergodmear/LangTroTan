@@ -50,6 +50,7 @@ public static class SonMonKitBuilder
         kit.glowMaterials = new[] { "Paper", "Glow" }.Select(slot => new SonMonKit.GlowEntry
             { material = mats[slot], baseEmission = mats[slot].GetColor("_EmissionColor") }).ToArray();
         BuildCharacters(kit, mats);
+        kit.visualTiers = BuildVisualTiers(mats);
         kit.environment = BuildEnvironment(mats, natureMats);
         EditorUtility.SetDirty(kit);
         AssetDatabase.SaveAssets();
@@ -868,6 +869,99 @@ public static class SonMonKitBuilder
         walker.transform.localPosition = new Vector3(.9f, 0, -8.5f);
         var route = walker.AddComponent<SonMonWalker>();
         route.waypoints = new[] { new Vector3(.9f, 0, -8.5f), new Vector3(.9f, 0, -15.6f) };
+    }
+
+    // ------------------------------------------------------------------ building visual tiers
+
+    const string ForgeDir = "Assets/ThirdParty/ForgeGUI/ScripturePavilion";
+
+    // Scripture Pavilion (server type "scripture"). Server facts (see docs/BUILDING_VISUAL_TIERS.md):
+    // the core Tàng Kinh Các has no level cap in the reference rules; player-built spatial copies cap at 3.
+    static BuildingVisualTierSet[] BuildVisualTiers(Dictionary<string, Material> mats)
+    {
+        var kitScripture = AssetDatabase.LoadAssetAtPath<GameObject>($"{PrefabDir}/Building_scripture.prefab");
+        var forge = ForgeGuiPavilionPrefab();
+        var spirit = ScriptureDecoration("Deco_scripture_spirit", mats, false);
+        var celestial = ScriptureDecoration("Deco_scripture_celestial", mats, true);
+        return new[]
+        {
+            new BuildingVisualTierSet
+            {
+                type = "scripture",
+                tiers = new[]
+                {
+                    new BuildingVisualTier { label = "I · Thư Các sơ lập", minLevel = 1, prefab = kitScripture },
+                    new BuildingVisualTier { label = "II · Tàng Kinh Các trung phẩm", minLevel = 3, prefab = forge },
+                    new BuildingVisualTier { label = "III · Linh Kinh Các", minLevel = 6, prefab = forge, decorations = new[] { spirit } },
+                    // No bespoke tier-IV model yet: prefab left empty on purpose so the resolver falls back to
+                    // tier III's model while still adding the tier-IV decorations.
+                    new BuildingVisualTier { label = "IV · Thiên Kinh Các (dự kiến)", minLevel = 9, prefab = null, decorations = new[] { celestial } },
+                },
+            },
+        };
+    }
+
+    static GameObject ForgeGuiPavilionPrefab()
+    {
+        var modelPath = $"{ForgeDir}/ForgeGUI_ScripturePavilion.fbx";
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(modelPath) == null) return null;
+        void TextureType(string file, bool normal, bool linear)
+        {
+            var importer = (TextureImporter)AssetImporter.GetAtPath($"{ForgeDir}/{file}");
+            if (importer == null) return;
+            importer.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
+            importer.sRGBTexture = !linear && !normal;
+            importer.maxTextureSize = 2048;
+            importer.SaveAndReimport();
+        }
+        TextureType("ForgeGUI_ScripturePavilion_albedo.png", false, false);
+        TextureType("ForgeGUI_ScripturePavilion_normal.png", true, true);
+        TextureType("ForgeGUI_ScripturePavilion_mask.png", false, true);
+        var mat = Lit("ForgeGUI Scripture Pavilion", Color.white, Tex($"{ForgeDir}/ForgeGUI_ScripturePavilion_albedo.png"),
+            Tex($"{ForgeDir}/ForgeGUI_ScripturePavilion_normal.png"), 1, 1f);
+        mat.SetTexture("_MetallicGlossMap", Tex($"{ForgeDir}/ForgeGUI_ScripturePavilion_mask.png"));
+        mat.EnableKeyword("_METALLICSPECGLOSSMAP");
+        mat.SetFloat("_Metallic", 1);
+        mat.SetFloat("_Smoothness", 1);  // scales the mask's alpha (smoothness)
+        mat.SetFloat("_SmoothnessTextureChannel", 0);
+        EditorUtility.SetDirty(mat);
+        Remap(modelPath, _ => mat);
+
+        var root = new GameObject("Tier_scripture_forgegui");
+        var model = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(modelPath), root.transform);
+        // Fit the 3x3 footprint like the kit pavilion (≈3.1 wide) and face the entrance to -Z.
+        var size = Bounds(model).size;
+        model.transform.localScale = Vector3.one * (3.1f / Mathf.Max(size.x, size.z));
+        model.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        var b = Bounds(model);
+        model.transform.localPosition = new Vector3(-b.center.x, -b.min.y, -b.center.z);
+        var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/Tier_scripture_forgegui.prefab");
+        Debug.Log($"SONMON_TIER forgegui size={Bounds(root).size}");
+        Object.DestroyImmediate(root);
+        return prefab;
+    }
+
+    // Additive tier dressing built only from existing assets: stone lanterns, a formation disc and a mote
+    // aura. The celestial variant adds a wide outer formation ring and a denser aura.
+    static GameObject ScriptureDecoration(string name, Dictionary<string, Material> mats, bool celestial)
+    {
+        var root = new GameObject(name);
+        var lantern = AssetDatabase.LoadAssetAtPath<GameObject>($"{PrefabDir}/Building_prop_lantern.prefab");
+        foreach (var corner in new[] { new Vector3(-1.75f, 0, -1.75f), new Vector3(1.75f, 0, -1.75f), new Vector3(-1.75f, 0, 1.75f), new Vector3(1.75f, 0, 1.75f) })
+        {
+            if (lantern == null) break;
+            var l = (GameObject)PrefabUtility.InstantiatePrefab(lantern, root.transform);
+            l.transform.localPosition = corner;
+            l.transform.localScale = Vector3.one * 1.1f;
+        }
+        FormationDisc(root.transform, new Vector3(0, .06f, -2.3f), 1.7f, mats["Formation"], 8);
+        if (celestial) FormationDisc(root.transform, new Vector3(0, .04f, 0), 5.2f, mats["Formation"], -3);
+        Particles(root, "Scripture aura", new Vector3(0, 2.6f, 0), new Vector3(2.8f, 3.2f, 2.8f), mats["Mote"],
+            celestial ? 90 : 40, celestial ? 22 : 9, 5, new Vector2(.05f, .12f), new Vector3(0, .25f, 0),
+            new Color(.6f, 1f, .9f), celestial ? new Color(1f, .9f, .55f) : new Color(.85f, 1f, 1f));
+        var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/{name}.prefab");
+        Object.DestroyImmediate(root);
+        return prefab;
     }
 
     static Vector3 RimPoint(float angle, float radius)

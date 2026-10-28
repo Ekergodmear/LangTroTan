@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 393588531846211714}
   - component: {fileID: 6720828564231681273}
   - component: {fileID: 5253394582974543724}
-  - component: {fileID: 5896528259459008752}
+  - component: {fileID: 5459967942073340937}
   m_Layer: 0
   m_Name: Spirit formation
   m_TagString: Untagged
@@ -124,7 +124,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5896528259459008752
+--- !u!114 &5459967942073340937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

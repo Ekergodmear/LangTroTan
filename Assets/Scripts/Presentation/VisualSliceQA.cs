@@ -62,6 +62,7 @@ namespace LangTroTan.Presentation
             void Hero(){cam.transform.position=hall+new Vector3(4.6f,2.4f,-8.4f);cam.transform.LookAt(hall+new Vector3(0,2.2f,0));}
             yield return Settle(.30f);Hero();yield return new WaitForSecondsRealtime(.3f);Hero();VisualCapture("hall-closeup",1920,1080);
             yield return CharacterCaptures();
+            if(SonMonTiers.Enabled)yield return TierRegression();
             yield return Settle(.03f);SetSpatialCamera();yield return new WaitForSecondsRealtime(.3f);VisualCapture("dawn-son-mon",1920,1080);
             Hero();VisualCapture("dawn-hall-closeup",1920,1080);
             yield return Settle(.85f);SetSpatialCamera();yield return new WaitForSecondsRealtime(1.5f);VisualCapture("night-son-mon",1920,1080);
@@ -89,6 +90,43 @@ namespace LangTroTan.Presentation
                 physicalFocus=new Vector3(d.position.x,2,d.position.z);physicalZoom=21;SetSpatialCamera();yield return new WaitForSecondsRealtime(.4f);VisualCapture("disciple-gameplay",1920,1080);
             }
             else VisualCheck(false,"disciple prototype present in the Son Mon scene");
+            physicalFocus=new Vector3(0,4,0);physicalZoom=21;SetSpatialCamera();
+        }
+        // Building visual tiers (scripture). Checks the tier chosen for the authoritative server level, then
+        // swaps levels by feeding modified copies of the spatial snapshot through the normal draw path (server
+        // untouched, polling paused) and asserts identity, no duplicates and fallback, then restores.
+        IEnumerator TierRegression()
+        {
+            const string id="core:tang_kinh_cac";
+            if(!models.TryGetValue(id,out var root)){VisualCheck(false,"scripture core building present");yield break;}
+            var kit=SonMonKit.Instance;int serverLevel=levels[id];
+            int Expected(int level)=>SonMonTiers.Resolve(kit,"scripture",level,out int i,out _,out _)?i:-1;
+            SonMonVisualTag Tag()=>root.transform.Find("SonMonVisual")?.GetComponent<SonMonVisualTag>();
+            int Markers()=>FindObjectsByType<FullPortBuilding>(FindObjectsSortMode.None).Count(m=>m!=null&&m.serverId==id);
+            void Frame(){cam.transform.position=root.transform.position+new Vector3(4.8f,3.4f,-7.2f);cam.transform.LookAt(root.transform.position+Vector3.up*2.1f);}
+            VisualCheck(Tag()!=null&&Tag().tierIndex==Expected(serverLevel),"scripture server level "+serverLevel+" renders tier "+Expected(serverLevel));
+            Frame();yield return new WaitForSecondsRealtime(.6f);Frame();VisualCapture("tier-scripture-server-L"+serverLevel,1920,1080);
+            while(spatialPolling)yield return null;spatialPolling=true;  // let an in-flight poll land first
+            var original=Get(spatial,"buildings");int modelCount=models.Count;
+            foreach(int simulated in new[]{4,7,10})
+            {
+                var copy=new List<object>();
+                foreach(var raw in List(original)){var b=Map(raw);if(S(Get(b,"id"))==id){var changed=new Dictionary<string,object>(b);changed["level"]=(double)simulated;copy.Add(changed);}else copy.Add(raw);}
+                spatial["buildings"]=copy;DrawSpatialModels();yield return null;
+                var tag=Tag();
+                VisualCheck(models[id]==root,"level "+simulated+" keeps the same building GameObject (no reload)");
+                VisualCheck(Markers()==1&&models.Count==modelCount,"level "+simulated+" creates no duplicate building");
+                VisualCheck(tag!=null&&tag.tierIndex==Expected(simulated),"level "+simulated+" swaps to tier "+Expected(simulated));
+                VisualCheck(root.GetComponent<BoxCollider>().size.y>1,"level "+simulated+" keeps a fitted selection collider");
+                if(simulated==10)VisualCheck(tag!=null&&tag.source=="tier-fallback","missing tier-IV model falls back to the tier-III model");
+                Frame();yield return new WaitForSecondsRealtime(.6f);Frame();VisualCapture("tier-scripture-sim-L"+simulated,1920,1080);
+            }
+            spatial["buildings"]=original;DrawSpatialModels();yield return null;
+            VisualCheck(models[id]==root&&Tag()!=null&&Tag().tierIndex==Expected(serverLevel),"restored snapshot returns to the server tier");
+            spatialPolling=false;
+            Dictionary<string,object> fresh=null;yield return api.SpatialState(false,area=>fresh=area);
+            var serverCopy=List(Get(fresh,"buildings")).Select(Map).FirstOrDefault(b=>S(Get(b,"id"))==id);
+            VisualCheck(serverCopy!=null&&(int)N(Get(serverCopy,"level"))==serverLevel,"authoritative server level unchanged by the visual swap test");
             physicalFocus=new Vector3(0,4,0);physicalZoom=21;SetSpatialCamera();
         }
         static string HierarchyPath(Transform t)=>t.parent==null?t.name:HierarchyPath(t.parent)+"/"+t.name;

@@ -1,0 +1,50 @@
+PASS isolated QA server snapshot received
+PASS core building opens authoritative upgrade decision
+PASS disciple contextual controls present
+PASS Bao Kho source projection available
+PASS core building opens authoritative upgrade decision
+PASS disciple contextual controls present
+PASS Bao Kho source projection available
+PASS QA fixture has a disciple the reference rules allow to be assigned
+PASS disciple card shows the allowed assignment button: AssignJob:disc_mvrmez8h_2:idle
+PASS pointer raycast reaches visible button: AssignJob:disc_mvrmez8h_2:idle
+PASS real disciple card button applies authoritative assignment training -> idle
+PASS assignment request journal resolved
+PASS selected treasure displays canonical name: tu_khi_dan
+PASS selected treasure displays canonical name: truc_co_dan
+PASS selected treasure displays canonical name: hoi_linh_dan
+PASS selected treasure displays canonical name: huyen_linh_thao
+PASS selected treasure displays canonical name: khoang_thach
+PASS pointer raycast reaches visible button: Dùng tăng tu vi
+PASS treasure action opens native recipient picker
+PASS pointer raycast reaches visible button: PillRecipient:disc_mvrmez8h_2
+PASS pointer raycast reaches visible button: Xác nhận sử dụng
+PASS native Bao Kho use consumes exactly one real pill
+PASS native Bao Kho authoritative receipt grants forty EXP to the exact selected disciple id
+PASS pill request journal resolved
+PASS camera pan and zoom recompute playable world view
+PASS pointer raycast reaches visible button: XÁC NHẬN XÂY
+PASS native placement confirmation creates one house and debits exact wood
+PASS cancelled QA construction restores original building count and eighty percent materials
+PASS 3D roof and building geometry are covered by selectable bounds
+PASS pointer raycast reaches visible button: CỬ NGƯỜI KHAI THÁC
+PASS harvest interaction creates authoritative animated 3D worker
+PASS pointer raycast reaches visible button: HỦY CHUYẾN
+PASS harvest cancellation releases QA worker
+PASS scripture server level 6 renders tier 2
+PASS level 4 keeps the same building GameObject (no reload)
+PASS level 4 creates no duplicate building
+PASS level 4 swaps to tier 1
+PASS level 4 keeps a fitted selection collider
+PASS level 7 keeps the same building GameObject (no reload)
+PASS level 7 creates no duplicate building
+PASS level 7 swaps to tier 2
+PASS level 7 keeps a fitted selection collider
+PASS level 10 keeps the same building GameObject (no reload)
+PASS level 10 creates no duplicate building
+PASS level 10 swaps to tier 3
+PASS level 10 keeps a fitted selection collider
+PASS missing tier-IV model falls back to the tier-III model
+PASS restored snapshot returns to the server tier
+PASS authoritative server level unchanged by the visual swap test
+COMPLETE

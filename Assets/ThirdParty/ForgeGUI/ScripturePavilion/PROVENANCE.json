@@ -1,0 +1,11 @@
+{
+  "asset": "Three-storey Scripture Pavilion (Tàng Kinh Các)",
+  "generator": "ForgeGUI (AI 3D generation), supplied by the user",
+  "source_file": "C:/Users/Admin/Downloads/a-highly-detailed-premium-stylized-anime-xianxia-3d-architec.glb",
+  "source_sha256": "7a2469849b0b82fb9a56098b78788858c428b0f7dfb91f7269205d15dc757017",
+  "source_bytes": 13833740,
+  "source_stats": "1 mesh, 8,703 triangles, 1 PBR material, 3 x 2048 textures (base colour, glTF metallic-roughness, normal), no rig, no animation",
+  "conversion": "Tools/Blender/import_glb_asset.py (Blender 4.5): origin to footprint centre, base on ground, Y-up baked; metallic-roughness repacked to URP metallic (R) + smoothness (A). Geometry and colours unchanged.",
+  "license": "UNVERIFIED: ForgeGUI terms of service for commercial use of generated models must be confirmed by the user before release.",
+  "status": "Prototype mid-tier visual for the Scripture Pavilion; not assigned to level 1."
+}
