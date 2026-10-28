@@ -70,6 +70,8 @@ MonoBehaviour:
   - {fileID: 4966452437188638004, guid: bec8e8f1a927afc43a810d07ebeb2e5e, type: 3}
   - {fileID: 43440533568610726, guid: 4aad5ee0a39d0d84e987be301206d82e, type: 3}
   environment: {fileID: 3431208331038746481, guid: c5323f724fe40924891f694e6be23f38, type: 3}
+  spiritDeer: {fileID: 3569735779258905443, guid: b21beeba495f60949a883494082fa0c0, type: 3}
+  disciple: {fileID: 2373270768411564567, guid: 964fc65eeadf69049a3282fd3df95f76, type: 3}
   daySky: {fileID: 2100000, guid: a77b10c02d9349f46ba25ca6ee2d1756, type: 2}
   nightSky: {fileID: 2100000, guid: 9cad98cbc31c0b44485d7061ed377107, type: 2}
   dawnSky: {fileID: 2100000, guid: 6304c34525cf5ed4bb1051c995de72ba, type: 2}

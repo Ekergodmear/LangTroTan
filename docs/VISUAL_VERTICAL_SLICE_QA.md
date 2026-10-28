@@ -105,3 +105,18 @@ Added (presentation only, server untouched):
 Fixed during the pass, from screenshots: the cloud sea glared white at night (an unlit material ignoring the light), so it is now tinted by time of day. Gold bracket caps read as blocks and are now roof-trim coloured. Scanned plaster read brown; walls are now flat painted ivory. Dawn was too dim, so dawn sun and ambient were raised.
 
 Still open: worker and deer placeholders; waterfall is a flat ribbon (no splash mesh); dawn could be more golden; the HUD hides the sky (Milestone C); triangle budget.
+
+## Creatures & disciple prototype (2026-10-28): awaiting visual approval
+
+Evidence: `Reports/Characters/` (real Unity camera renders).
+
+| Asset | Source / licence | Triangles | Rig | Animation |
+|---|---|---|---|---|
+| Bạch Ngọc Linh Lộc | Project-authored (Blender script) | 7,676 (5 meshes: body, markings, antlers, eyes, eye shine) | 21 bones, automatic weights; antlers and eyes rigid on `head` | Procedural on bones: breathing, look-around and dips, ear twitch, tail flick; 24-particle aura |
+| Disciple prototype | Project-authored (Blender script) | 11,064 (body, robe skirt, sleeves and cuffs, sash ribbons; rigid head, hair and robe parts) | 21 bones, automatic weights | Procedural on bones: idle (breathing, head sway, arm rest) and walk (legs, knees, arm swing, torso counter-rotation, bob) |
+
+- The deer replaces the server `deer` node visual only. Hunting, regrowth and sync are unchanged (`authored` path, no Combine on skinned meshes).
+- Two scenery instances of the one disciple prototype (idle by the great formation; walking the sacred axis). Server workers are still the old placeholder.
+- `-visual-regression`: **33/33 PASS**. Performance (Sơn Môn 1080p): CPU 4.31 ms (p95 6.37), GPU 2.77 ms (p95 3.06), 1.26 M triangles including shadow passes, 447 renderers. GPU was 1.70 ms before this pass. The extra cost comes from 4 skinned deer and 2 skinned disciples with several sub-meshes each, plus aura particles. A first measurement of 3.6 ms was taken while the machine was out of memory.
+- Bugs caught only in Unity screenshots, not in Blender previews: both models faced away (Blender −Y arrives as +Z), and the robe shells had inward normals (Blender draws back faces; Unity culls them). Both fixed. Posing now uses the model's own axes so the 180° turn does not invert pitch.
+- Known flaws for review: the disciple's neck is long, skin shows at the top of the sleeves, arms rest a little wide, faces are simple (painted-shape eyes, no texture), and the deer's ears are small.

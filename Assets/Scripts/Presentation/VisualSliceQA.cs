@@ -61,11 +61,35 @@ namespace LangTroTan.Presentation
             IEnumerator Settle(float phase){SonMonSky.PreviewPhase=phase;SonMonSky.PreviewSeason=0;for(int i=0;i<3;i++){SonMonArt.ApplyTimeOfDay(phase,0,false,"clear",spatialSun,cam,1);yield return new WaitForSecondsRealtime(.4f);}}
             void Hero(){cam.transform.position=hall+new Vector3(4.6f,2.4f,-8.4f);cam.transform.LookAt(hall+new Vector3(0,2.2f,0));}
             yield return Settle(.30f);Hero();yield return new WaitForSecondsRealtime(.3f);Hero();VisualCapture("hall-closeup",1920,1080);
+            yield return CharacterCaptures();
             yield return Settle(.03f);SetSpatialCamera();yield return new WaitForSecondsRealtime(.3f);VisualCapture("dawn-son-mon",1920,1080);
             Hero();VisualCapture("dawn-hall-closeup",1920,1080);
             yield return Settle(.85f);SetSpatialCamera();yield return new WaitForSecondsRealtime(1.5f);VisualCapture("night-son-mon",1920,1080);
             Hero();VisualCapture("night-hall-closeup",1920,1080);
             SonMonSky.PreviewPhase=null;SonMonSky.PreviewSeason=null;SetSpatialCamera();
+        }
+        // Spirit deer and disciple prototype review captures (camera only).
+        IEnumerator CharacterCaptures()
+        {
+            Transform deer=null;foreach(var node in spatialNodes.Values)if(node!=null&&node.name=="deer"&&node.GetComponentInChildren<SonMonPuppet>()!=null){deer=node.transform;break;}
+            if(deer!=null)
+            {
+                var model=deer.GetComponentInChildren<SonMonPuppet>().transform;
+                cam.transform.position=model.position+model.rotation*new Vector3(1.5f,1.25f,-2.6f);cam.transform.LookAt(model.position+Vector3.up*.95f);
+                yield return new WaitForSecondsRealtime(.4f);cam.transform.LookAt(model.position+Vector3.up*.95f);VisualCapture("spiritdeer-closeup",1920,1080);
+                physicalFocus=new Vector3(deer.position.x,2,deer.position.z);physicalZoom=13;SetSpatialCamera();yield return new WaitForSecondsRealtime(.4f);VisualCapture("spiritdeer-in-sonmon",1920,1080);
+            }
+            else VisualCheck(false,"a server deer node is rendered as the spirit deer");
+            var disciple=GameObject.Find("SonMon Disciple (idle)");
+            if(disciple!=null)
+            {
+                var d=disciple.transform;
+                cam.transform.position=d.position+d.rotation*new Vector3(.75f,1.05f,-1.9f);cam.transform.LookAt(d.position+Vector3.up*.8f);
+                yield return new WaitForSecondsRealtime(.4f);cam.transform.LookAt(d.position+Vector3.up*.8f);VisualCapture("disciple-closeup",1920,1080);
+                physicalFocus=new Vector3(d.position.x,2,d.position.z);physicalZoom=21;SetSpatialCamera();yield return new WaitForSecondsRealtime(.4f);VisualCapture("disciple-gameplay",1920,1080);
+            }
+            else VisualCheck(false,"disciple prototype present in the Son Mon scene");
+            physicalFocus=new Vector3(0,4,0);physicalZoom=21;SetSpatialCamera();
         }
         static string HierarchyPath(Transform t)=>t.parent==null?t.name:HierarchyPath(t.parent)+"/"+t.name;
         // GraphicRaycaster ignores graphics that have not been rendered yet (depth -1), so a freshly rebuilt

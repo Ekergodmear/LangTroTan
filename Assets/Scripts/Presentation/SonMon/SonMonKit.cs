@@ -19,6 +19,8 @@ namespace LangTroTan.Presentation
         public GameObject[] resourceTrees = Array.Empty<GameObject>();
         public GameObject[] resourceRocks = Array.Empty<GameObject>();
         public GameObject environment;
+        public GameObject spiritDeer;  // Bạch Ngọc Linh Lộc, visual stand-in for server deer nodes
+        public GameObject disciple;    // single disciple prototype (awaiting visual approval)
         public Material daySky, nightSky, dawnSky;
 
         [Serializable]
@@ -98,6 +100,18 @@ namespace LangTroTan.Presentation
             var rock = UnityEngine.Object.Instantiate(kit.resourceRocks[seed % kit.resourceRocks.Length], root, false);
             rock.transform.localRotation = Quaternion.Euler(0, seed % 360, 0);
             rock.transform.localScale *= full ? 1f : .35f;
+            return true;
+        }
+
+        // Server deer node -> White Jade Spirit Deer. Visual only: the node, its harvesting and its
+        // synchronisation are unchanged.
+        public static bool TryCreature(Transform root, int seed)
+        {
+            var kit = SonMonKit.Instance;
+            if (kit == null || kit.spiritDeer == null) return false;
+            var deer = UnityEngine.Object.Instantiate(kit.spiritDeer, root, false);
+            deer.name = kit.spiritDeer.name;
+            deer.transform.localRotation = Quaternion.Euler(0, seed % 360, 0);
             return true;
         }
 

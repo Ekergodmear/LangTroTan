@@ -1,0 +1,34 @@
+PASS isolated QA server snapshot received
+PASS core building opens authoritative upgrade decision
+PASS disciple contextual controls present
+PASS Bao Kho source projection available
+PASS core building opens authoritative upgrade decision
+PASS disciple contextual controls present
+PASS Bao Kho source projection available
+PASS QA fixture has a disciple the reference rules allow to be assigned
+PASS disciple card shows the allowed assignment button: AssignJob:disc_mvrjna4q_2:idle
+PASS pointer raycast reaches visible button: AssignJob:disc_mvrjna4q_2:idle
+PASS real disciple card button applies authoritative assignment labor -> idle
+PASS assignment request journal resolved
+PASS selected treasure displays canonical name: tu_khi_dan
+PASS selected treasure displays canonical name: truc_co_dan
+PASS selected treasure displays canonical name: hoi_linh_dan
+PASS selected treasure displays canonical name: huyen_linh_thao
+PASS selected treasure displays canonical name: khoang_thach
+PASS pointer raycast reaches visible button: Dùng tăng tu vi
+PASS treasure action opens native recipient picker
+PASS pointer raycast reaches visible button: PillRecipient:disc_mvrjna4q_2
+PASS pointer raycast reaches visible button: Xác nhận sử dụng
+PASS native Bao Kho use consumes exactly one real pill
+PASS native Bao Kho authoritative receipt grants forty EXP to the exact selected disciple id
+PASS pill request journal resolved
+PASS camera pan and zoom recompute playable world view
+PASS pointer raycast reaches visible button: XÁC NHẬN XÂY
+PASS native placement confirmation creates one house and debits exact wood
+PASS cancelled QA construction restores original building count and eighty percent materials
+PASS 3D roof and building geometry are covered by selectable bounds
+PASS pointer raycast reaches visible button: CỬ NGƯỜI KHAI THÁC
+PASS harvest interaction creates authoritative animated 3D worker
+PASS pointer raycast reaches visible button: HỦY CHUYẾN
+PASS harvest cancellation releases QA worker
+COMPLETE

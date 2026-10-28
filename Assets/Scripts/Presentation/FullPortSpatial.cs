@@ -57,7 +57,7 @@ namespace LangTroTan.Presentation
                 string id=S(Get(node,"id")),kind=S(Get(node,"kind"));nodeAlive.Add(id);bool full=N(Get(node,"amount"))>0;int stage=(full?2:0)+(kind=="tree"?season*10:0);
                 if(spatialStages.TryGetValue(id,out int previous)&&previous==stage)continue;
                 if(spatialNodes.TryGetValue(id,out var old))Destroy(old);var root=new GameObject(kind);bool authored=false;root.transform.position=new Vector3((float)N(Get(node,"x")),0,(float)N(Get(node,"z")));
-                if(kind=="deer"&&full)VillageArt.Deer(root.transform,Material);
+                if(kind=="deer"&&full){authored=SliceEnabled&&SonMonArt.TryCreature(root.transform,StableTreeSeed(id));if(!authored)VillageArt.Deer(root.transform,Material);}
                 else if(kind=="stone"&&SliceEnabled&&(authored=SonMonArt.TryRock(root.transform,StableTreeSeed(id),full))){}
                 else if(kind=="stone")VillageArt.Rock(root.transform,new Vector3(0,full?.5f:.12f,0),Vector3.one*(full?1.2f:.3f),Material("spatial stone",new Color(.46f,.51f,.48f)));
                 else if(SliceEnabled&&kind=="tree"&&full){authored=SonMonArt.TryTree(root.transform,StableTreeSeed(id),season);if(!authored)SliceArt.Tree(root.transform,season,StableTreeSeed(id),Material);}

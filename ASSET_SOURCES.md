@@ -60,3 +60,7 @@ Files are in `Assets/ThirdParty/PolyHaven/`. `PROVENANCE.json` records each file
 ### Pending
 
 - Commercial architecture kit: **not approved and not required.** Optional, to be reconsidered after free-route screenshots (see docs/VISUAL_VERTICAL_SLICE_PLAN.md §2a).
+
+### Creatures and characters (project-authored, 2026-10-28)
+
+- `Tools/Blender/sonmon_creatures.py` generates `Assets/Art/SonMon/Models/Characters/SonMon_spiritdeer.fbx` (White Jade Spirit Deer, 7,676 tris, 21 bones) and `SonMon_disciple.fbx` (disciple prototype, 11,064 tris, 21 bones). Both use a skin-modifier body, a real armature, automatic weights, and accessories weighted to bones. No third-party geometry; project-owned. Motion is procedural on the bones (`SonMonPuppet`). No downloaded animations.

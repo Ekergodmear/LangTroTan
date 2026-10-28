@@ -49,6 +49,7 @@ public static class SonMonKitBuilder
         kit.dawnSky = Skybox("SonMon Sky Dawn", PolyHaven + "/HDRI/qwantani_sunrise_puresky_2k.hdr", .9f);
         kit.glowMaterials = new[] { "Paper", "Glow" }.Select(slot => new SonMonKit.GlowEntry
             { material = mats[slot], baseEmission = mats[slot].GetColor("_EmissionColor") }).ToArray();
+        BuildCharacters(kit, mats);
         kit.environment = BuildEnvironment(mats, natureMats);
         EditorUtility.SetDirty(kit);
         AssetDatabase.SaveAssets();
@@ -532,6 +533,7 @@ public static class SonMonKitBuilder
         }
 
         BuildAtmosphere(root, mats, natureMats);
+        PlaceDisciplePrototypes(root);
 
         var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/SonMon_Environment.prefab");
         Object.DestroyImmediate(root);
@@ -792,6 +794,81 @@ public static class SonMonKitBuilder
         float glow = r < .97f ? Mathf.Clamp01(1 - r) * .08f : 0;
         return new Color(1, 1, 1, Mathf.Clamp01(v + glow));
     }, false);
+
+    // ------------------------------------------------------------------ creatures and characters
+
+    const string CharacterDir = ModelDir + "/Characters";
+
+    static void BuildCharacters(SonMonKit kit, Dictionary<string, Material> mats)
+    {
+        var look = new Dictionary<string, Material>
+        {
+            ["Ivory"] = Lit("Creature Ivory Coat", new Color(.96f, .94f, .89f), null, null, 1, .38f),
+            ["JadeGlow"] = Lit("Creature Jade Antler", new Color(.55f, 1f, .85f), null, null, 1, .85f, 0, new Color(.25f, 1.25f, .95f) * 1.4f),
+            ["Marking"] = Lit("Creature Spirit Marking", new Color(.55f, .95f, .86f), null, null, 1, .6f, 0, new Color(.2f, .85f, .75f) * .8f),
+            ["Hoof"] = Lit("Creature Jade Hoof", new Color(.42f, .58f, .58f), null, null, 1, .7f),
+            ["Eye"] = Lit("Character Eye", new Color(.03f, .05f, .07f), null, null, 1, .92f),
+            ["Highlight"] = Lit("Character Eye Highlight", Color.white, null, null, 1, .5f, 0, Color.white * 1.2f),
+            ["Skin"] = Lit("Character Skin", new Color(1f, .87f, .78f), null, null, 1, .3f),
+            ["Hair"] = Lit("Character Hair", new Color(.07f, .08f, .11f), null, null, 1, .55f),
+            ["RobeWhite"] = Lit("Character Robe White", new Color(.95f, .96f, .97f), null, null, 1, .22f),
+            ["RobeJade"] = Lit("Character Robe Jade", new Color(.33f, .63f, .6f), null, null, 1, .28f),
+            ["Sash"] = Lit("Character Sash", new Color(.16f, .3f, .36f), null, null, 1, .35f),
+            ["Gold"] = mats["Gold"],
+            ["Iris"] = Lit("Character Iris", new Color(.26f, .62f, .64f), null, null, 1, .9f, 0, new Color(.05f, .2f, .2f)),
+            ["Boot"] = Lit("Character Boot", new Color(.13f, .14f, .16f), null, null, 1, .4f),
+            ["Blush"] = Lit("Character Blush", new Color(1f, .66f, .66f), null, null, 1, .2f),
+            ["Mouth"] = Lit("Character Mouth", new Color(.62f, .3f, .32f), null, null, 1, .3f),
+        };
+
+        GameObject Character(string file, string name, SonMonPuppet.Kind kind, Action<GameObject> extra)
+        {
+            var path = $"{CharacterDir}/{file}.fbx";
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            if (importer == null) return null;
+            importer.animationType = ModelImporterAnimationType.Generic;
+            importer.optimizeGameObjects = false;  // SonMonPuppet drives the bone transforms by name
+            Remap(path, n => look.TryGetValue(n, out var m) ? m : null);
+            var root = new GameObject(name);
+            var model = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(path), root.transform);
+            model.transform.localPosition = Vector3.zero;
+            model.transform.localRotation = Quaternion.Euler(0, 180, 0);  // Blender -Y front arrives as +Z; face -Z like the kit
+            foreach (var skinned in model.GetComponentsInChildren<SkinnedMeshRenderer>()) skinned.updateWhenOffscreen = false;
+            root.AddComponent<SonMonPuppet>().kind = kind;
+            extra?.Invoke(root);
+            var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/Character_{file.Substring("SonMon_".Length)}.prefab");
+            var size = Bounds(root).size;
+            int tris = model.GetComponentsInChildren<SkinnedMeshRenderer>().Sum(r => r.sharedMesh.triangles.Length / 3) +
+                       model.GetComponentsInChildren<MeshFilter>().Sum(f => f.sharedMesh.triangles.Length / 3);
+            int boneCount = model.GetComponentsInChildren<SkinnedMeshRenderer>().SelectMany(r => r.bones).Distinct().Count();
+            Debug.Log($"SONMON_CHARACTER {name} size={size} tris={tris} bones={boneCount}");
+            Object.DestroyImmediate(root);
+            return prefab;
+        }
+
+        kit.spiritDeer = Character("SonMon_spiritdeer", "Bach Ngoc Linh Loc", SonMonPuppet.Kind.SpiritDeer, root =>
+            Particles(root, "Spirit deer aura", new Vector3(0, .95f, 0), new Vector3(.9f, .7f, 1.3f), mats["Mote"], 24, 5, 4,
+                new Vector2(.03f, .07f), new Vector3(0, .14f, 0), new Color(.55f, 1f, .85f), new Color(.9f, 1f, .95f)));
+        kit.disciple = Character("SonMon_disciple", "SonMon Disciple", SonMonPuppet.Kind.Disciple, null);
+    }
+
+    // Two instances of the single disciple prototype as scenery (not server entities): one standing by
+    // the great formation facing the default camera, one walking the sacred axis.
+    static void PlaceDisciplePrototypes(GameObject root)
+    {
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>($"{PrefabDir}/Character_disciple.prefab");
+        if (prefab == null) return;
+        var toCamera = new Vector3(31, 0, -38).normalized;
+        var idle = (GameObject)PrefabUtility.InstantiatePrefab(prefab, root.transform);
+        idle.name = "SonMon Disciple (idle)";
+        idle.transform.localPosition = new Vector3(2.1f, 0, -5.2f);
+        idle.transform.localRotation = Quaternion.LookRotation(-toCamera);
+        var walker = (GameObject)PrefabUtility.InstantiatePrefab(prefab, root.transform);
+        walker.name = "SonMon Disciple (walking)";
+        walker.transform.localPosition = new Vector3(.9f, 0, -8.5f);
+        var route = walker.AddComponent<SonMonWalker>();
+        route.waypoints = new[] { new Vector3(.9f, 0, -8.5f), new Vector3(.9f, 0, -15.6f) };
+    }
 
     static Vector3 RimPoint(float angle, float radius)
     {
