@@ -1,6 +1,6 @@
 # Xianxia Creature & Character Direction
 
-Status: **only the White Jade Spirit Deer and one disciple prototype are implemented, and both await your visual approval.** No combat, taming, gameplay or server mechanics are planned in this scope. Creatures are visual replacements and scenery.
+Status (2026-10-28): **the script-built deer and disciple were visually rejected and are temporary placeholders only. Production characters and creatures follow docs/CHARACTER_CREATURE_PIPELINE.md.** No combat, taming, gameplay or server mechanics are planned in this scope. Creatures are visual replacements and scenery.
 
 ## Shared rules
 
