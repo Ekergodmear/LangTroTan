@@ -1,0 +1,5 @@
+model,doorSource,sourceHeight,scale,worldWidth,worldDepth,worldHeight,frontEdgeZ,insideStageI(7x5)
+L5,0.200,1.6002,2.600,4.57,4.93,4.16,4.00,True
+jade,anchorWorld,-8.50,1.79,5.52,wallHit,True,wallZ,5.87,anchorLocalToLevelRoot,(0.00, 1.79, 1.52)
+jade,full,built,True,motes,True,propSize,0.80x1.15x0.27
+jade,reduced,built,True,motes,False,propSize,0.80x1.09x0.27

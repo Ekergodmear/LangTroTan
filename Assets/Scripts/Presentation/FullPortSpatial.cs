@@ -40,7 +40,8 @@ namespace LangTroTan.Presentation
         {
             if(this==null)return;RefreshSpatialInfo();if(cancelled||status==null||root==null)return;
             var marker=root.GetComponent<FullPortBuilding>();var b=marker==null?null:List(Get(spatial,"buildings")).FirstOrDefault(v=>S(Get(v,"id"))==marker.serverId);
-            status.text=S(Get(spatialCatalog,S(Get(b,"type")),"name"),"Công trình")+" đã đạt Cấp "+to+(to>=MaxBuildingLevel?" · CẤP TỐI ĐA":"");
+            string core=S(Get(b,"coreId"),"");  // core halls use their server name (catalog names differ, e.g. barracks)
+            status.text=(core!=""?S(Get(Module("sectBuildings"),"BUILDINGS",core,"name"),core):S(Get(spatialCatalog,S(Get(b,"type")),"name"),"Công trình"))+" đã đạt Cấp "+to+(to>=MaxBuildingLevel?" · CẤP TỐI ĐA":"");
         }
         void OnDestroy(){SonMonUpgradeFx.Started-=UpgradeFxStarted;SonMonUpgradeFx.Finished-=UpgradeFxFinished;}
         void DrawSpatialModels()
@@ -57,7 +58,7 @@ namespace LangTroTan.Presentation
                 if(!models.TryGetValue(id,out var root)||!levels.TryGetValue(id,out int previous)||previous!=level)
                 {
                     if(root!=null)Destroy(root);root=new GameObject(type);var model=new Building{type=type,level=Mathf.Clamp(level,1,4),rotation=(int)N(Get(b,"rotation")),complete=true};
-                    if(SliceEnabled&&SonMonArt.TryBuilding(root.transform,type,level)){}else{if(SliceEnabled)SliceArt.Building(root.transform,new Building{type=type,level=model.level,rotation=0,complete=true},Material);else VillageArt.Building(root.transform,model,Material);VillageArt.Combine(root.transform);}
+                    if(SliceEnabled&&SonMonArt.TryBuilding(root.transform,type,level,core==""?null:core)){}else{if(SliceEnabled)SliceArt.Building(root.transform,new Building{type=type,level=model.level,rotation=0,complete=true},Material);else VillageArt.Building(root.transform,model,Material);VillageArt.Combine(root.transform);}
                     var box=root.AddComponent<BoxCollider>();box.center=new Vector3(0,1,0);box.size=new Vector3(model.W,3,model.D);
                     if(SliceEnabled){var geometry=root.GetComponentsInChildren<Renderer>().Where(r=>r.enabled&&r.GetComponent<TextMesh>()==null).ToArray();if(geometry.Length>0){var bounds=geometry[0].bounds;foreach(var renderer in geometry.Skip(1))bounds.Encapsulate(renderer.bounds);box.center=bounds.center;box.size=bounds.size;}root.transform.rotation=Quaternion.Euler(0,90*(int)N(Get(b,"rotation")),0);}
                     var marker=root.AddComponent<FullPortBuilding>();marker.serverId=id;
@@ -95,7 +96,7 @@ namespace LangTroTan.Presentation
             foreach(var job in jobs)
             {
                 string id=S(Get(job,"id"));jobsAlive.Add(id);var target=new Vector3((float)N(Get(job,"x")),0,(float)N(Get(job,"z")));
-                if(!spatialActors.TryGetValue(id,out var actor)){actor=new GameObject("Dân phục dịch");actor.transform.position=target;if(SliceEnabled)SliceArt.Character(actor.transform,S(Get(job,"kind")),Material);else VillageArt.Worker(actor.transform,S(Get(job,"kind")),Material);VillageArt.Combine(actor.transform,true);actor.AddComponent<ActorMotion>();spatialActors[id]=actor;}
+                if(!spatialActors.TryGetValue(id,out var actor)){actor=new GameObject("Dân phục dịch");actor.transform.position=target;var visual=SonMonWorldScale.VisualChild(actor.transform);if(SliceEnabled)SliceArt.Character(visual,S(Get(job,"kind")),Material);else VillageArt.Worker(visual,S(Get(job,"kind")),Material);VillageArt.Combine(visual,true);SonMonWorldScale.ApplyCharacter(visual);actor.AddComponent<ActorMotion>();spatialActors[id]=actor;}
                 spatialActorTargets[id]=target;
             }
             foreach(string id in spatialActors.Keys.Where(id=>!jobsAlive.Contains(id)).ToArray()){Destroy(spatialActors[id]);spatialActors.Remove(id);spatialActorTargets.Remove(id);}

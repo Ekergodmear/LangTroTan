@@ -1,0 +1,50 @@
+{
+  "source": "C:\\Users\\Admin\\Downloads\\a-highly-detailed-premium-stylized-anime-xianxia-3d-architec.glb",
+  "sha256": "7a2469849b0b82fb9a56098b78788858c428b0f7dfb91f7269205d15dc757017",
+  "bytes": 13833740,
+  "meshes": 1,
+  "triangles": 8703,
+  "materials": [
+    "Material_0"
+  ],
+  "images": [
+    {
+      "name": "Image_0",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "Image_1",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "normal",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ],
+  "armatures": [],
+  "actions": [],
+  "bounds_size_xyz": [
+    1.5558,
+    1.581,
+    1.9006
+  ],
+  "checks": {
+    "has_geometry": true,
+    "no_rig": true,
+    "no_animation": true,
+    "has_textures": true,
+    "triangles_under_60k": true,
+    "footprint_roughly_square": true,
+    "taller_than_wide_or_close": true
+  },
+  "passed": true
+}

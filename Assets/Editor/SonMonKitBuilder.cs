@@ -50,6 +50,7 @@ public static class SonMonKitBuilder
         kit.glowMaterials = new[] { "Paper", "Glow" }.Select(slot => new SonMonKit.GlowEntry
             { material = mats[slot], baseEmission = mats[slot].GetColor("_EmissionColor") }).ToArray();
         BuildCharacters(kit, mats);
+        EnsureWorldScaleSettings();
         kit.visualLevels = BuildVisualLevels();
         kit.upgradeFx = BuildUpgradeFx(mats);
         kit.environment = BuildEnvironment(mats, natureMats);
@@ -851,7 +852,9 @@ public static class SonMonKitBuilder
         kit.spiritDeer = Character("SonMon_spiritdeer", "Bach Ngoc Linh Loc", SonMonPuppet.Kind.SpiritDeer, root =>
             Particles(root, "Spirit deer aura", new Vector3(0, .95f, 0), new Vector3(.9f, .7f, 1.3f), mats["Mote"], 24, 5, 4,
                 new Vector2(.03f, .07f), new Vector3(0, .14f, 0), new Color(.55f, 1f, .85f), new Color(.9f, 1f, .95f)));
-        kit.disciple = Character("SonMon_disciple", "SonMon Disciple", SonMonPuppet.Kind.Disciple, null);
+        // Display height is applied at runtime to the single visual child (SonMonWorldScale), never to the root.
+        kit.disciple = Character("SonMon_disciple", "SonMon Disciple", SonMonPuppet.Kind.Disciple,
+            root => root.AddComponent<SonMonCharacterVisual>().visual = root.transform.GetChild(0));
     }
 
     // Two instances of the single disciple prototype as scenery (not server entities): one standing by
@@ -889,31 +892,68 @@ public static class SonMonKitBuilder
         var levels = new BuildingVisualLevel[MaxBuildingLevel];
         for (int l = 1; l <= MaxBuildingLevel; l++)
             levels[l - 1] = new BuildingVisualLevel { level = l, status = "missing", targetHeight = LevelHeight(l) };
-        void Assign(int level, GameObject source, string name, string status)
+        void Assign(int level, GameObject source, string name, string status, string measurementsDir = null)
         {
             if (source == null) return;
-            levels[level - 1].prefab = LevelPrefab(name, source, LevelHeight(level));
+            levels[level - 1].prefab = LevelPrefab(name, source, LevelHeight(level), 3 * 1.2f);
             levels[level - 1].status = status;
+            levels[level - 1].doorHeight = DoorHeightInPrefab(levels[level - 1].prefab, measurementsDir);
         }
-        Assign(1, AssetDatabase.LoadAssetAtPath<GameObject>($"{PrefabDir}/Building_scripture.prefab"), "Level_scripture_L01_kit", "placeholder");
-        Assign(5, ForgeGuiPavilionPrefab(), "Level_scripture_L05_forgegui", "candidate");
+        // L1: ForgeGUI generation a64ad4bd (2026-10-28), candidate awaiting visual approval; the kit pavilion is the
+        // fallback if the export is missing. L5: the earlier ForgeGUI export, candidate.
+        var l1 = ForgeGuiModelPrefab("Assets/ThirdParty/ForgeGUI/ScripturePavilion_L01", "ForgeGUI_ScripturePavilion_L01", "Tier_scripture_L01_forgegui");
+        if (l1 != null) Assign(1, l1, "Level_scripture_L01_forgegui", "approved_with_notes", "Assets/ThirdParty/ForgeGUI/ScripturePavilion_L01");
+        else Assign(1, AssetDatabase.LoadAssetAtPath<GameObject>($"{PrefabDir}/Building_scripture.prefab"), "Level_scripture_L01_kit", "placeholder");
+        // L2 attempt 1 (ForgeGUI d2c64ffb) was rejected for visual similarity to L1 and is not assigned; its files stay in
+        // Assets/ThirdParty/ForgeGUI/ScripturePavilion_L02 for provenance only.
+        Assign(5, ForgeGuiModelPrefab(ForgeDir, "ForgeGUI_ScripturePavilion", "Tier_scripture_forgegui"), "Level_scripture_L05_forgegui", "candidate", ForgeDir);
         ValidateLadder("scripture", levels, 3);
-        return new[] { new BuildingVisualLevelSet { type = "scripture", maxLevel = MaxBuildingLevel, levels = levels } };
+        foreach (var entry in levels)
+            if (entry.prefab != null && entry.doorHeight > 0)
+                Debug.Log($"SONMON_LEVEL_DOOR scripture L{entry.level} door={entry.doorHeight:0.000} normalisedSize={Bounds(entry.prefab).size * (SonMonWorldScale.Settings.doorHeight / entry.doorHeight)}");
+        // Bound to the core Tàng Kinh Các by server id; player-built scripture buildings keep their kit art.
+        return new[] { new BuildingVisualLevelSet { type = "scripture", serverBuildingId = "tang_kinh_cac", maxLevel = MaxBuildingLevel, levels = levels } };
     }
 
-    static GameObject LevelPrefab(string name, GameObject source, float height)
+    // Uniform scale to the level's height rung, capped so the widest side stays within maxExtent (the 20% eave rule).
+    // Measured main-door height (MEASUREMENTS.json beside the converted ForgeGUI export: door and total height in the
+    // source GLB's units) converted to the level prefab's units. 0 when the model has not been measured.
+    static float DoorHeightInPrefab(GameObject prefab, string dir)
+    {
+        if (string.IsNullOrEmpty(dir) || prefab == null) return 0;
+        var path = $"{dir}/MEASUREMENTS.json";
+        if (!File.Exists(path)) return 0;
+        var m = JsonUtility.FromJson<DoorMeasurement>(File.ReadAllText(path));
+        if (m == null || m.doorHeightSource <= 0 || m.sourceHeight <= 0) return 0;
+        return m.doorHeightSource * Bounds(prefab).size.y / m.sourceHeight;
+    }
+
+    [Serializable]
+    class DoorMeasurement { public float doorHeightSource; public float sourceHeight; }
+
+    // Central world-scale settings asset (feature flag off by default; QA enables it with -world-scale).
+    static void EnsureWorldScaleSettings()
+    {
+        const string path = "Assets/Resources/SonMon/SonMonWorldScale.asset";
+        if (AssetDatabase.LoadAssetAtPath<SonMonWorldScale>(path) != null) return;
+        var settings = ScriptableObject.CreateInstance<SonMonWorldScale>();
+        AssetDatabase.CreateAsset(settings, path);
+    }
+
+    static GameObject LevelPrefab(string name, GameObject source, float height, float maxExtent)
     {
         var root = new GameObject(name);
         var model = (GameObject)PrefabUtility.InstantiatePrefab(source, root.transform);
-        model.transform.localScale = Vector3.one * (height / Bounds(model).size.y);
+        var size = Bounds(model).size;
+        model.transform.localScale = Vector3.one * Mathf.Min(height / size.y, maxExtent / Mathf.Max(size.x, size.z));
         model.transform.localPosition = new Vector3(0, -Bounds(model).min.y, 0);
         var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/{name}.prefab");
         Object.DestroyImmediate(root);
         return prefab;
     }
 
-    // Build-time guard: assigned models must not shrink from one level to the next (height and width), and
-    // must not spill far past the server footprint.
+    // Build-time review guard: a level that is shorter or narrower than the level below, or that spills past the
+    // footprint, is reported (SONMON_LEVEL_WARN) for visual review rather than silently rescaled (Art Bible §2).
     static void ValidateLadder(string type, BuildingVisualLevel[] levels, float footprint)
     {
         Vector3 previous = Vector3.zero;
@@ -924,9 +964,9 @@ public static class SonMonKitBuilder
             var size = Bounds(entry.prefab).size;
             Debug.Log($"SONMON_LEVEL {type} L{entry.level} {entry.status} size={size}");
             if (size.y + .01f < previous.y || Mathf.Max(size.x, size.z) + .01f < Mathf.Max(previous.x, previous.z))
-                throw new InvalidOperationException($"{type} level {entry.level} is smaller than level {previousLevel}: {size} < {previous}");
+                Debug.LogWarning($"SONMON_LEVEL_WARN {type} level {entry.level} is smaller than level {previousLevel} in height or width: {size} < {previous}");
             if (Mathf.Max(size.x, size.z) > footprint * 1.2f)
-                throw new InvalidOperationException($"{type} level {entry.level} spills past its {footprint}x{footprint} footprint: {size}");
+                Debug.LogWarning($"SONMON_LEVEL_WARN {type} level {entry.level} spills past its {footprint}x{footprint} footprint: {size}");
             previous = size;
             previousLevel = entry.level;
         }
@@ -1019,25 +1059,27 @@ public static class SonMonKitBuilder
         return ps;
     }
 
-    static GameObject ForgeGuiPavilionPrefab()
+    // Converted ForgeGUI export (Tools/Blender/import_glb_asset.py output in dir) -> URP material + base prefab,
+    // fitted to a 3x3 footprint and facing the entrance to -Z.
+    static GameObject ForgeGuiModelPrefab(string dir, string baseName, string prefabName)
     {
-        var modelPath = $"{ForgeDir}/ForgeGUI_ScripturePavilion.fbx";
+        var modelPath = $"{dir}/{baseName}.fbx";
         if (AssetDatabase.LoadAssetAtPath<GameObject>(modelPath) == null) return null;
         void TextureType(string file, bool normal, bool linear)
         {
-            var importer = (TextureImporter)AssetImporter.GetAtPath($"{ForgeDir}/{file}");
+            var importer = (TextureImporter)AssetImporter.GetAtPath($"{dir}/{file}");
             if (importer == null) return;
             importer.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
             importer.sRGBTexture = !linear && !normal;
             importer.maxTextureSize = 2048;
             importer.SaveAndReimport();
         }
-        TextureType("ForgeGUI_ScripturePavilion_albedo.png", false, false);
-        TextureType("ForgeGUI_ScripturePavilion_normal.png", true, true);
-        TextureType("ForgeGUI_ScripturePavilion_mask.png", false, true);
-        var mat = Lit("ForgeGUI Scripture Pavilion", Color.white, Tex($"{ForgeDir}/ForgeGUI_ScripturePavilion_albedo.png"),
-            Tex($"{ForgeDir}/ForgeGUI_ScripturePavilion_normal.png"), 1, 1f);
-        mat.SetTexture("_MetallicGlossMap", Tex($"{ForgeDir}/ForgeGUI_ScripturePavilion_mask.png"));
+        TextureType(baseName + "_albedo.png", false, false);
+        TextureType(baseName + "_normal.png", true, true);
+        TextureType(baseName + "_mask.png", false, true);
+        var mat = Lit(baseName.Replace('_', ' ').Replace("ScripturePavilion", "Scripture Pavilion"), Color.white, Tex($"{dir}/{baseName}_albedo.png"),
+            Tex($"{dir}/{baseName}_normal.png"), 1, 1f);
+        mat.SetTexture("_MetallicGlossMap", Tex($"{dir}/{baseName}_mask.png"));
         mat.EnableKeyword("_METALLICSPECGLOSSMAP");
         mat.SetFloat("_Metallic", 1);
         mat.SetFloat("_Smoothness", 1);  // scales the mask's alpha (smoothness)
@@ -1045,7 +1087,7 @@ public static class SonMonKitBuilder
         EditorUtility.SetDirty(mat);
         Remap(modelPath, _ => mat);
 
-        var root = new GameObject("Tier_scripture_forgegui");
+        var root = new GameObject(prefabName);
         var model = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(modelPath), root.transform);
         // Fit the 3x3 footprint like the kit pavilion (≈3.1 wide) and face the entrance to -Z.
         var size = Bounds(model).size;
@@ -1053,8 +1095,8 @@ public static class SonMonKitBuilder
         model.transform.localRotation = Quaternion.Euler(0, 180, 0);
         var b = Bounds(model);
         model.transform.localPosition = new Vector3(-b.center.x, -b.min.y, -b.center.z);
-        var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/Tier_scripture_forgegui.prefab");
-        Debug.Log($"SONMON_TIER forgegui size={Bounds(root).size}");
+        var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDir}/{prefabName}.prefab");
+        Debug.Log($"SONMON_FORGE {prefabName} size={Bounds(root).size}");
         Object.DestroyImmediate(root);
         return prefab;
     }

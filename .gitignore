@@ -16,3 +16,8 @@
 /build/
 *.apk
 *.aab
+
+# QA capture frame sequences (contact sheets, GIFs and CSVs are kept)
+/Reports/**/cycle/
+/Reports/**/cycle_zoom21/
+/Reports/**/motion/

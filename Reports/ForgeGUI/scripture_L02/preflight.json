@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-28",
+  "route": "forgegui.com Text to 3D Assets (same as L1)",
+  "verifiedInPage": {
+    "promptLength": 1348,
+    "promptSha256": "6539b3053093524b6dd4c644a35e2c2d56c7ec6f3ef9f9a71a9eb6224f72ddb7",
+    "matchesManifest": true,
+    "mode": "3D Model",
+    "meshModel": "Auto",
+    "style": "Anime",
+    "automaticallyRig": false,
+    "generations": "1/1",
+    "referencesUploaded": 0
+  },
+  "createNowClicked": false,
+  "styleReferencePrepared": "Reports/ForgeGUI/scripture_L02/reference/L1_style_reference_45.png (L1 45-degree render, 1024 px)",
+  "referenceStatus": "NOT attached. The website 'Add a style reference' (+) control opens a hidden local-file input (accept=image/*); the Style list shows only Cartoon/Realistic/Anime and no account images, so the ForgeMCP-uploaded asset cannot be selected there. Generation stopped per instruction; prompt and settings re-verified unchanged.",
+  "scaleTargetsAtDoor0_52": {
+    "frontage": "2.3-2.6",
+    "depth": "1.7-2.0",
+    "height": ">=1.8",
+    "rule": "at least as large as L1 (2.18 x 1.55 x 1.72); eaves within 3.6"
+  },
+  "creditEstimate": {
+    "basis": "L1 measured 4,585 credits, same tool, model and settings",
+    "estimate": 4585,
+    "note": "a style/reference image may change the cost; measured again on the L2 run"
+  },
+  "styleReferenceUpload": {
+    "via": "ForgeMCP image_upload_authorize/register (official connector, no credits)",
+    "assetId": "b44e6685-6bcb-4372-b381-8fe3d84664d0",
+    "sha256": "e6576c57c0670ac53df9d1885ed48bd09ad0f53c5cfa070610aa87e789604b25",
+    "size": "1024x1024 PNG, 835,936 bytes",
+    "date": "2026-10-28"
+  },
+  "styleReferenceChosen": {
+    "file": "Reports/ForgeGUI/scripture_L02/reference/L1_style_reference_painted.webp",
+    "sha256": "3eb337597891153b1fb1249c7046077ddec387e611935039917d2231e91322d4",
+    "size": "1536x1024 WebP",
+    "source": "supplied by the user in chat 2026-10-28 (2D painted image of the Level-1 pavilion)",
+    "decision": "user chose it over the Blender render",
+    "slot": "Style > Add a style reference (References slot empty)"
+  },
+  "supersededReference": "L1_style_reference_45.png (Blender render; also uploaded to the account via ForgeMCP as asset b44e6685-..., not used)"
+}

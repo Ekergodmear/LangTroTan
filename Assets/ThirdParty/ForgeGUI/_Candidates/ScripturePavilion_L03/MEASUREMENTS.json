@@ -1,0 +1,6 @@
+{
+  "doorHeightSource": 0.2125,
+  "sourceHeight": 1.4828,
+  "method": "orthographic front render, pixel ruler, +-5%; the ground-floor centre bay is an open hall with no doors, so the measured door is the side-room double door",
+  "status": "candidate (Level 3, awaiting review); isolated QA only, not assigned to the kit"
+}

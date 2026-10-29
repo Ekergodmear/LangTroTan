@@ -1,0 +1,4 @@
+model,doorSource,sourceHeight,scale,worldWidth,worldDepth,worldHeight,frontEdgeZ,insideStageI(7x5),insideStageII(9x7)
+L4,0.197,1.1540,2.645,5.01,4.41,3.05,4.00,True,True
+L5,0.200,1.6002,2.600,4.57,4.93,4.16,4.00,True,True
+L6,0.151,1.0896,3.444,6.55,4.55,3.75,4.00,True,True

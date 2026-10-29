@@ -1,0 +1,25 @@
+{
+ "original": [
+  6.55,
+  4.55,
+  3.75
+ ],
+ "refined": [
+  7.51,
+  5.85,
+  4.68
+ ],
+ "buildingsOnlyWidth": 7.15,
+ "terraceTriangles": 33236,
+ "totalTriangles": 48022,
+ "floatingTerraceParts": [],
+ "terraceTexelDensity": {
+  "median": 0.0005578423750092313,
+  "p5": 0.8977634978977865,
+  "p95": 1.0825087924233514
+ },
+ "buildingSinkIntoTier": 0.01,
+ "bakeBackgroundFilled": 0.118,
+ "textures": "building: original 3 x 2048 (unchanged); terrace: 2048 albedo + 512 mask, no normal",
+ "vfxAnchors": "VFX_ANCHORS.json"
+}

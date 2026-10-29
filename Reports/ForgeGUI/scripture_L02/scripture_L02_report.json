@@ -1,0 +1,50 @@
+{
+  "source": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-25\\referenced-chatgpt-conversation-this-is-an\\work\\forgegui\\downloads\\scripture_L02_forge_d2c64ffb.glb",
+  "sha256": "784195c0880c7e65796266c908cd0f18ebdcb22015669ed22f8b4e8b4611d509",
+  "bytes": 13693236,
+  "meshes": 1,
+  "triangles": 8817,
+  "materials": [
+    "Material_0"
+  ],
+  "images": [
+    {
+      "name": "Image_0",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "Image_1",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "normal",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ],
+  "armatures": [],
+  "actions": [],
+  "bounds_size_xyz": [
+    1.8988,
+    1.3198,
+    1.3385
+  ],
+  "checks": {
+    "has_geometry": true,
+    "no_rig": true,
+    "no_animation": true,
+    "has_textures": true,
+    "triangles_under_60k": true,
+    "footprint_roughly_square": true,
+    "taller_than_wide_or_close": true
+  },
+  "passed": true
+}

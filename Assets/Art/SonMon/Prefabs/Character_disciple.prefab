@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5957743730006765435}
   - component: {fileID: 4397668817137983528}
+  - component: {fileID: 281485049375192648}
   m_Layer: 0
   m_Name: Character_disciple
   m_TagString: Untagged
@@ -48,6 +49,19 @@ MonoBehaviour:
   kind: 1
   speed: 0
   phaseOffset: 0
+--- !u!114 &281485049375192648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2373270768411564567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c295ed9567369394ea771e02a97d1695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LangTroTan.Presentation::LangTroTan.Presentation.SonMonCharacterVisual
+  visual: {fileID: 586471261842231915}
 --- !u!1001 &1128479344472733056
 PrefabInstance:
   m_ObjectHideFlags: 0

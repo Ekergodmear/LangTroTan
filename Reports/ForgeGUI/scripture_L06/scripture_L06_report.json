@@ -1,0 +1,69 @@
+{
+  "source": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-25\\referenced-chatgpt-conversation-this-is-an\\work\\forgegui\\downloads\\scripture_L06_forge_d31673e5.glb",
+  "sha256": "0d31ded5149bfd1ca77bf119d4a226ebac7106f38a213497b16f765cd6419f11",
+  "bytes": 15420732,
+  "meshes": 1,
+  "triangles": 9624,
+  "materials": [
+    "Material_0"
+  ],
+  "images": [
+    {
+      "name": "Image_0",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "Image_1",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "normal",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ],
+  "armatures": [],
+  "actions": [],
+  "brokenImages": [],
+  "degenerateFaces": 0,
+  "stageProportions": {
+    "frontage_over_depth": [
+      1.086,
+      1.672
+    ],
+    "height_over_frontage": [
+      0.545,
+      0.849
+    ],
+    "measured": {
+      "frontage_over_depth": 1.441,
+      "height_over_frontage": 0.573
+    }
+  },
+  "bounds_size_xyz": [
+    1.9027,
+    1.3206,
+    1.0896
+  ],
+  "checks": {
+    "has_geometry": true,
+    "no_rig": true,
+    "no_animation": true,
+    "has_textures": true,
+    "triangles_under_60k": true,
+    "textures_loaded": true,
+    "materials_textured": true,
+    "degenerate_faces_under_1pct": true,
+    "stage_plan_proportion": true,
+    "stage_height_proportion": true
+  },
+  "passed": true
+}

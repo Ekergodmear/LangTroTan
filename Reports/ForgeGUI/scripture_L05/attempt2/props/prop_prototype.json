@@ -1,0 +1,32 @@
+{
+ "L4": [
+  5.01,
+  4.41,
+  3.05
+ ],
+ "L5": [
+  4.57,
+  4.93,
+  4.16
+ ],
+ "annexSize": [
+  1.12,
+  2.58,
+  1.62
+ ],
+ "jewel": {
+  "heightAboveGround": 1.79,
+  "frameSize": [
+   0.81,
+   1.01
+  ],
+  "gemSize": [
+   0.54,
+   0.24,
+   0.68
+  ],
+  "wallHit": true,
+  "forwardOfWall": 0.35
+ },
+ "L5WithAnnexesWidth": 6.72
+}

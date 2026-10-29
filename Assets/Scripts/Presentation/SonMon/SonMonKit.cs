@@ -77,14 +77,14 @@ namespace LangTroTan.Presentation
         // container: the model for the exact server level when the kit defines level visuals for the type
         // (nearest lower level as a development fallback), otherwise the single kit prefab. Returns false
         // when nothing authored exists (caller falls back to legacy geometry).
-        public static bool TryBuilding(Transform root, string type, int level)
+        public static bool TryBuilding(Transform root, string type, int level, string serverBuildingId = null)
         {
             var kit = SonMonKit.Instance;
             if (kit == null) return false;
             GameObject prefab;
             int modelLevel = -1;
             string status = "", source = "kit";
-            if (SonMonTiers.Resolve(kit, type, level, out var shown, out bool fellBack))
+            if (SonMonTiers.Resolve(kit, type, serverBuildingId, level, out var shown, out bool fellBack))
             {
                 prefab = shown.prefab;
                 modelLevel = shown.level;
@@ -96,9 +96,14 @@ namespace LangTroTan.Presentation
 
             var container = new GameObject(VisualName);
             container.transform.SetParent(root, false);
-            UnityEngine.Object.Instantiate(prefab, container.transform, false).name = prefab.name;
+            var model = UnityEngine.Object.Instantiate(prefab, container.transform, false);
+            model.name = prefab.name;
+            // World-scale rollout: normalise the level model to the standard door height (presentation only; the
+            // root, its footprint position and server data are untouched).
+            if (modelLevel > 0) model.transform.localScale *= SonMonWorldScale.BuildingFactor(shown.doorHeight);
             var tag = container.AddComponent<SonMonVisualTag>();
             tag.type = type;
+            tag.serverBuildingId = serverBuildingId;
             tag.level = level;
             tag.modelLevel = modelLevel;
             tag.status = status;
@@ -117,7 +122,7 @@ namespace LangTroTan.Presentation
         // never mistaken for a finished model in screenshots. Only exists while -visual-tiers is on.
         static void DevPlaque(Transform container, SonMonVisualTag tag)
         {
-            if (tag.status == "approved" && !tag.Fallback) return;
+            if (tag.status != null && tag.status.StartsWith("approved") && !tag.Fallback) return;  // approved / approved_with_notes
             if (!LocalVisualBounds(container, container, out var bounds)) return;
             var plaque = new GameObject("DevPlaque");
             plaque.transform.SetParent(container, false);
@@ -142,13 +147,14 @@ namespace LangTroTan.Presentation
         public static Transform SwapVisual(Transform root, string type, int level)
         {
             var old = root.Find(VisualName);
+            string serverBuildingId = old != null ? old.GetComponent<SonMonVisualTag>()?.serverBuildingId : null;  // identity carries over
             if (old != null)
             {
                 old.name = VisualName + " (retired)";
                 old.SetParent(null, false);  // leave the hierarchy at once so lookups never see two visuals
                 UnityEngine.Object.Destroy(old.gameObject);
             }
-            if (!TryBuilding(root, type, level)) return null;
+            if (!TryBuilding(root, type, level, serverBuildingId)) return null;
             FitCollider(root);
             return root.Find(VisualName);
         }

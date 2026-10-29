@@ -1,0 +1,16 @@
+{
+  "left": {
+    "width_px": 495,
+    "height_px": 437,
+    "area_px": 139586
+  },
+  "right": {
+    "width_px": 709,
+    "height_px": 395,
+    "area_px": 146067
+  },
+  "front_silhouette_iou": 0.459,
+  "area_ratio_right_over_left": 1.046,
+  "width_ratio": 1.432,
+  "height_ratio": 0.904
+}

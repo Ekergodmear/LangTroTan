@@ -1,0 +1,8 @@
+{
+  "doorHeightSource": 0.449,
+  "sourceHeight": 1.4872,
+  "sourceBounds": [1.8841, 1.3344, 1.4872],
+  "method": "orthographic front render with pixel ruler, about ±5%; door leaf top to threshold",
+  "source": "work/forgegui/downloads/scripture_L01_forge_a64ad4bd.glb (sha256 6a925fbb5e8511fd2f7641e70308f9545b2f2b83d9b58313049544f1e1bbf79d)",
+  "measured": "2026-10-28"
+}

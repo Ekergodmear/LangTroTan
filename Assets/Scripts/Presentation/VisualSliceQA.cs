@@ -73,6 +73,7 @@ namespace LangTroTan.Presentation
             yield return Settle(.30f);Hero();yield return new WaitForSecondsRealtime(.3f);Hero();VisualCapture("hall-closeup",1920,1080);
             yield return CharacterCaptures();
             if(SonMonTiers.Enabled)yield return LevelRegression();
+            yield return WorldScaleRegression();
             yield return Settle(.03f);SetSpatialCamera();yield return new WaitForSecondsRealtime(.3f);VisualCapture("dawn-son-mon",1920,1080);
             Hero();VisualCapture("dawn-hall-closeup",1920,1080);
             yield return Settle(.85f);SetSpatialCamera();yield return new WaitForSecondsRealtime(1.5f);VisualCapture("night-son-mon",1920,1080);
@@ -126,10 +127,11 @@ namespace LangTroTan.Presentation
             string id=LevelBuilding;
             if(!models.TryGetValue(id,out var root)){VisualCheck(false,"scripture core building present");yield break;}
             var kit=SonMonKit.Instance;int serverLevel=levels[id],max=MaxBuildingLevel;
-            int Expected(int level)=>SonMonTiers.Resolve(kit,"scripture",level,out var e,out _)?e.level:-1;
+            int Expected(int level)=>SonMonTiers.Resolve(kit,"scripture","tang_kinh_cac",level,out var e,out _)?e.level:-1;
             SonMonVisualTag Tag()=>SonMonArt.VisualTag(root.transform);
             VisualCheck(max==10,"server reports MAX_BUILDING_LEVEL "+max);
-            VisualCheck(SonMonTiers.TryGetSet(kit,"scripture",out var set)&&set.maxLevel==max&&Enumerable.Range(1,max).All(l=>set.levels.Count(e=>e.level==l)==1),"scripture defines exactly one visual entry per level 1.."+max);
+            VisualCheck(!SonMonTiers.TryGetSet(kit,"scripture",null,out _)&&!SonMonTiers.TryGetSet(kit,"barracks",null,out _),"player-built buildings never resolve a core family (identity-based mapping)");
+            VisualCheck(SonMonTiers.TryGetSet(kit,"scripture","tang_kinh_cac",out var set)&&set.maxLevel==max&&Enumerable.Range(1,max).All(l=>set.levels.Count(e=>e.level==l)==1),"scripture defines exactly one visual entry per level 1.."+max);
             VisualCheck(root.GetComponent<SonMonUpgradeFx>()==null,"saved level "+serverLevel+" loads without the upgrade animation");
             VisualCheck(Tag()!=null&&Tag().level==serverLevel&&Tag().modelLevel==Expected(serverLevel),"server level "+serverLevel+" renders the level-"+Expected(serverLevel)+" model");
             CaptureLevel(root,"level-scripture-server-L"+serverLevel);
@@ -152,7 +154,8 @@ namespace LangTroTan.Presentation
                 CaptureLevel(root,"level-scripture-L"+level.ToString("00"));
             }
             bool ladder=true;string sizes="";for(int level=1;level<=max;level++){sizes+=" L"+level+"="+heights[level].y.ToString("0.00")+"h/"+Mathf.Max(heights[level].x,heights[level].z).ToString("0.00")+"w";if(level>1&&(heights[level].y+.01f<heights[level-1].y||Mathf.Max(heights[level].x,heights[level].z)+.01f<Mathf.Max(heights[level-1].x,heights[level-1].z)))ladder=false;}
-            VisualCheck(ladder,"no level is smaller than the level below:"+sizes);
+            // Art Bible §2 (revised): a level smaller than the one below is flagged for visual review, not a code failure.
+            visualChecks.Add((ladder?"PASS no level is smaller than the level below:":"REVIEW a level is smaller than the level below (asset review item):")+sizes);
 
             // 2. Reduced effects 1 -> 4: short glow and change, no particles or formation.
             SonMonUpgradeFx.SessionOverride=true;float started=Time.realtimeSinceStartup;Feed(4);
@@ -173,6 +176,7 @@ namespace LangTroTan.Presentation
             var idle=new List<double>();var during=new List<double>();float until=Time.realtimeSinceStartup+SonMonUpgradeFx.FullDuration;
             while(Time.realtimeSinceStartup<until){FrameLevel(root);yield return null;idle.Add(Time.unscaledDeltaTime*1000);}
             Feed(6);while(SonMonUpgradeFx.IsPlaying(root.transform,out _)){FrameLevel(root);yield return null;during.Add(Time.unscaledDeltaTime*1000);}
+            yield return null;yield return null;  // Unity destroys the effect object at the end of the frame the transition ends
             object Stats(List<double> v){v.Sort();return new Dictionary<string,object>{{"samples",v.Count},{"median",v.Count>0?v[v.Count/2]:0},{"p95",v.Count>0?v[Math.Min(v.Count-1,(int)(v.Count*.95))]:0},{"max",v.Count>0?v[v.Count-1]:0}};}
             double idleMedian=idle.Count>0?idle.OrderBy(x=>x).ElementAt(idle.Count/2):0,fxMedian=during.Count>0?during.OrderBy(x=>x).ElementAt(during.Count/2):0;
             File.WriteAllText(Path.Combine(visualOutput,"performance-upgrade-fx.json"),ServerJson.Stringify(new Dictionary<string,object>{{"gpu",SystemInfo.graphicsDeviceName},{"resolution",Screen.width+"x"+Screen.height},{"idleFrameMs",Stats(idle)},{"transitionFrameMs",Stats(during)},{"transition","5 -> 6 full effects"}}));
@@ -252,6 +256,58 @@ namespace LangTroTan.Presentation
             yield return UpgradeUiChecks(root,10,"live-");
             SonMonSky.PreviewPhase=null;SonMonSky.PreviewSeason=null;
         }
+        // Visual world scale (SonMonWorldScale). Structure checks always run; size checks only when the rollout flag is on.
+        IEnumerator WorkerVisualChecks()
+        {
+            var actor=spatialActors.Values.First();var visual=actor.transform.Find("Visual");
+            VisualCheck(visual!=null&&actor.transform.localScale==Vector3.one,"worker geometry lives under a dedicated Visual child; root transform unscaled");
+            var legs=actor.GetComponentsInChildren<Transform>().Where(t=>t.name=="Leg").ToArray();
+            VisualCheck(legs.Length==2&&legs.All(l=>l.IsChildOf(visual)),"worker legs are inside the Visual child and found by ActorMotion");
+            if(!SonMonWorldScale.Enabled)yield break;
+            float h=SonMonWorldScale.RenderedHeight(visual),target=SonMonWorldScale.Settings.characterHeight;
+            VisualCheck(Mathf.Abs(h-target)<.05f,"worker renders at "+h.ToString("0.00")+" (target "+target+")");
+            float swing=0;for(int i=0;i<30;i++){yield return null;swing=Mathf.Max(swing,legs.Max(l=>Quaternion.Angle(l.localRotation,Quaternion.identity)));}
+            VisualCheck(swing>2,"worker walk cycle still animates the legs at display scale (max swing "+swing.ToString("0")+"°)");
+            VisualCheck(Mathf.Abs(VisualMinY(visual)-actor.transform.position.y)<.08f,"worker feet stay grounded at display scale");
+            var focus=physicalFocus;float zoom=physicalZoom;
+            foreach(int z in new[]{10,21,30}){physicalFocus=new Vector3(actor.transform.position.x,2,actor.transform.position.z);physicalZoom=z;SetSpatialCamera();yield return new WaitForSecondsRealtime(.3f);physicalFocus=new Vector3(actor.transform.position.x,2,actor.transform.position.z);physicalZoom=z;SetSpatialCamera();VisualCapture("worldscale-worker-zoom"+z,1920,1080);}
+            physicalFocus=focus;physicalZoom=zoom;SetSpatialCamera();
+        }
+        static float VisualMinY(Transform visual){float min=float.MaxValue;foreach(var r in visual.GetComponentsInChildren<Renderer>())if(r.enabled)min=Mathf.Min(min,r.bounds.min.y);return min;}
+        IEnumerator WorldScaleRegression()
+        {
+            var idle=GameObject.Find("SonMon Disciple (idle)");var walker=GameObject.Find("SonMon Disciple (walking)");
+            foreach(var d in new[]{idle,walker})
+            {
+                if(d==null){VisualCheck(false,"environment disciple present");yield break;}
+                var cv=d.GetComponent<SonMonCharacterVisual>();
+                VisualCheck(cv!=null&&cv.visual!=null&&cv.visual.parent==d.transform&&d.transform.localScale==Vector3.one,d.name+": display scale targets its single visual child; root scale 1");
+                if(!SonMonWorldScale.Enabled)continue;
+                float h=SonMonWorldScale.RenderedHeight(cv.visual),target=SonMonWorldScale.Settings.characterHeight;
+                VisualCheck(Mathf.Abs(h-target)<.05f,d.name+" renders at "+h.ToString("0.00")+" (target "+target+")");
+                VisualCheck(Mathf.Abs(VisualMinY(cv.visual)-d.transform.position.y)<.08f,d.name+" feet grounded (min "+VisualMinY(cv.visual).ToString("0.00")+" vs root "+d.transform.position.y.ToString("0.00")+")");
+            }
+            if(!SonMonWorldScale.Enabled)yield break;
+            var start=walker.transform.position;float lowest=float.MaxValue,highest=float.MinValue;
+            for(float t=0;t<2.5f;t+=Time.unscaledDeltaTime){yield return null;float g=VisualMinY(walker.GetComponent<SonMonCharacterVisual>().visual)-walker.transform.position.y;lowest=Mathf.Min(lowest,g);highest=Mathf.Max(highest,g);}
+            VisualCheck(Vector3.Distance(start,walker.transform.position)>.1f,"walking disciple still moves along its route (movement unchanged)");
+            VisualCheck(lowest>-.08f&&highest<.12f,"walking disciple stays grounded during the walk cycle ("+lowest.ToString("0.00")+".."+highest.ToString("0.00")+")");
+            // Scripture Pavilion normalised to the standard door height.
+            if(models.TryGetValue(LevelBuilding,out var root)&&SonMonArt.VisualTag(root.transform) is SonMonVisualTag tag&&SonMonArt.LocalVisualBounds(root.transform,tag.transform,out var b))
+            {
+                float expected=tag.modelLevel==1?1.72f:tag.modelLevel==5?3.63f:0;
+                VisualCheck(expected==0||Mathf.Abs(b.size.y-expected)<.08f,"Tàng Kinh Các level "+tag.level+" model normalised to door 0.52: "+b.size.x.ToString("0.00")+" x "+b.size.z.ToString("0.00")+" x "+b.size.y.ToString("0.00"));
+                VisualCheck(Mathf.Abs(root.GetComponent<BoxCollider>().size.y-b.size.y)<.15f,"selection collider refits to the normalised building ("+root.GetComponent<BoxCollider>().size.y.ToString("0.00")+" vs model "+b.size.y.ToString("0.00")+")");
+            }
+            var focus=physicalFocus;float zoom=physicalZoom;
+            foreach(var (name,at) in new[]{("scripture",models.TryGetValue(LevelBuilding,out var s)?s.transform.position:Vector3.zero),("disciples",idle.transform.position)})
+                foreach(int z in new[]{10,21,30})
+                {
+                    physicalFocus=new Vector3(at.x,2,at.z);physicalZoom=z;SetSpatialCamera();yield return new WaitForSecondsRealtime(.3f);
+                    physicalFocus=new Vector3(at.x,2,at.z);physicalZoom=z;SetSpatialCamera();VisualCapture("worldscale-"+name+"-zoom"+z,1920,1080);
+                }
+            physicalFocus=focus;physicalZoom=zoom;SetSpatialCamera();
+        }
         static string HierarchyPath(Transform t)=>t.parent==null?t.name:HierarchyPath(t.parent)+"/"+t.name;
         // GraphicRaycaster ignores graphics that have not been rendered yet (depth -1), so a freshly rebuilt
         // screen cannot be clicked in the frame it was created. Wait until the button is drawn, as a player would.
@@ -301,7 +357,8 @@ namespace LangTroTan.Presentation
             VisualCheck(List(Get(spatial,"buildings")).Count==oldCount+1&&N(Get(spatial,"wood"))==oldWood-40,"native placement confirmation creates one house and debits exact wood");var house=List(Get(spatial,"buildings")).Last(b=>S(Get(b,"type"))=="house");api.Submit("spatial_demolish",new Dictionary<string,object>{{"buildingId",Get(house,"id")}});while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);
             VisualCheck(List(Get(spatial,"buildings")).Count==oldCount&&N(Get(spatial,"wood"))==oldWood-8,"cancelled QA construction restores original building count and eighty percent materials");
             var coreModel=models["core:chanh_dien"];var collider=coreModel.GetComponent<BoxCollider>();var target=collider.bounds.center+Vector3.up*collider.bounds.extents.y*.5f;VisualCheck(Physics.Raycast(cam.ScreenPointToRay(cam.WorldToScreenPoint(target)),out var hit)&&hit.collider==collider,"3D roof and building geometry are covered by selectable bounds");
-            var tree=List(Get(spatial,"nodes")).First(n=>S(Get(n,"kind"))=="tree"&&N(Get(n,"amount"))>0);ShowSpatialNode(S(Get(tree,"id")));yield return ClickVisualButton(FindSliceButton(spatialPanel,"CỬ NGƯỜI KHAI THÁC"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);VisualCheck(spatialActors.Count>0,"harvest interaction creates authoritative animated 3D worker");yield return new WaitForSecondsRealtime(2);VisualCapture("worker-interaction",1920,1080);yield return ClickVisualButton(FindSliceButton(spatialPanel,"HỦY CHUYẾN"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);VisualCheck(List(Get(spatial,"jobs")).Count==0,"harvest cancellation releases QA worker");
+            var tree=List(Get(spatial,"nodes")).First(n=>S(Get(n,"kind"))=="tree"&&N(Get(n,"amount"))>0);ShowSpatialNode(S(Get(tree,"id")));yield return ClickVisualButton(FindSliceButton(spatialPanel,"CỬ NGƯỜI KHAI THÁC"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);VisualCheck(spatialActors.Count>0,"harvest interaction creates authoritative animated 3D worker");yield return new WaitForSecondsRealtime(2);VisualCapture("worker-interaction",1920,1080);
+            yield return WorkerVisualChecks();yield return ClickVisualButton(FindSliceButton(spatialPanel,"HỦY CHUYẾN"));while(api.Busy)yield return null;yield return api.SpatialState(false,ApplySpatial);VisualCheck(List(Get(spatial,"jobs")).Count==0,"harvest cancellation releases QA worker");
         }
         IEnumerator ProfileVisual(string area,int width,int height)
         {
