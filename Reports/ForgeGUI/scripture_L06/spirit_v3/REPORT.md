@@ -45,6 +45,8 @@ The loop point is as smooth as any ordinary frame step; the remaining difference
 
 ## Performance (isolated QA player)
 
+> **Correction (v4 pass):** these numbers were measured while the game's own UI was also booting inside the QA player. The QA scene now blocks that boot. Corrected v3 numbers are in `../spirit_v4/perf/benchmark_v3.csv` and `../spirit_v4/REPORT.md`.
+
 **How it was measured:**
 - `perf/benchmark.csv` comes from a development Windows build of the isolated QA scene `Assets/QA/L6SpiritQA/L6SpiritQA.unity`. The build lives outside the project in `work/qa_builds/L6SpiritQA`.
 - **Hardware:** RX 6600M, Ryzen 7 5800H, 1600 × 900 windowed, D3D12, vSync off with a target frame rate.

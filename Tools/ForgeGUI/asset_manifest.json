@@ -1619,7 +1619,24 @@
         "loopSeconds": 10,
         "qaScene": "Assets/QA/L6SpiritQA/L6SpiritQA.unity (isolated; QA player built to work/qa_builds/L6SpiritQA, outside the project)",
         "reports": "Reports/ForgeGUI/scripture_L06/spirit_v3/",
-        "paidTools": "none"
+        "paidTools": "none",
+        "perfNote": "original v3 player numbers included the game UI booting in the QA player; re-measured in spirit_v4/perf/benchmark_v3.csv"
+      },
+      "spiritVfxV4": {
+        "status": "isolated QA prototype for visual review (not approved_art, not integrated)",
+        "technology": "URP + Shuriken Particle System + Shader Graph + C# orchestration (no VFX Graph, no paid assets, no credits)",
+        "shaderGraphs": [
+          "Assets/Art/SonMon/VFX/L6/Shaders/SG_SpiritMist.shadergraph",
+          "Assets/Art/SonMon/VFX/L6/Shaders/SG_SpiritFormation.shadergraph",
+          "Assets/Art/SonMon/VFX/L6/Shaders/SG_ScriptureGlyph.shadergraph"
+        ],
+        "prefabs": "Assets/Resources/SonMon/VFX/L6/PS_*.prefab (7) with M_*.mat (7)",
+        "textures": "Assets/Art/SonMon/VFX/L6/Textures/ (5, procedural, Tools/ShaderGraph/vfx_textures.py)",
+        "orchestration": "Assets/Scripts/Presentation/SonMon/SonMonSpiritGatheringV4.cs",
+        "loopSeconds": 10,
+        "reports": "Reports/ForgeGUI/scripture_L06/spirit_v4/",
+        "paidTools": "none",
+        "creditsSpent": 0
       }
     },
     {

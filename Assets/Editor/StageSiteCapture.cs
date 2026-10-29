@@ -450,6 +450,9 @@ public static class StageSiteCapture
         sg4.Configure(pillars, V(a.ornament, 0), V(a.hallMin, 0), V(a.hallMax, 0),
             new Vector4(a.tier1[0], a.tier1[1], a.tier1[2], a.tier1[3]), new Vector4(a.tier2[0], a.tier2[1], a.tier2[2], a.tier2[3]),
             a.tier1[4], a.tier2[4], allowedLocal);
+        // The game's Game.Boot (AfterSceneLoad) starts the full port UI unless a FullPortView already exists. A disabled
+        // placeholder keeps the QA player isolated: no game UI, camera or server connection attempt, and no code change.
+        new GameObject("QA boot guard").AddComponent<FullPortView>().enabled = false;
         var camGo = new GameObject("Main Camera") { tag = "MainCamera" };
         var cam = camGo.AddComponent<Camera>();
         cam.fieldOfView = 42; cam.nearClipPlane = .1f; cam.farClipPlane = 400; cam.allowHDR = true;

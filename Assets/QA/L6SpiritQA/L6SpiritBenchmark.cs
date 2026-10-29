@@ -50,6 +50,7 @@ public sealed class L6SpiritBenchmark : MonoBehaviour
     {
         string outPath = Arg("-qaout") ?? Path.Combine(Application.persistentDataPath, "l6_spirit_benchmark.csv");
         string capDir = Arg("-qacapture");
+        Application.runInBackground = true;  // keep sampling when the QA window loses focus
         var cam = Camera.main;
         var sb = new StringBuilder("version,fps_target,mode,zoom,frames,mean_ms,p50_ms,p95_ms,p99_ms,max_ms,stdev_ms,frames_over_1_5x,cpu_ms_mean,gpu_ms_mean,draw_calls,batches,setpass,gc_collections,gc_alloc_bytes_per_frame,mono_used_mb,total_alloc_mb,gfx_driver_mb,texture_mb,particles\n");
         string ver = V4 ? "v4" : "v3";
