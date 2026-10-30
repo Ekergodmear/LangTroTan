@@ -35,7 +35,7 @@ $sha = (git -C $ProjectPath rev-parse HEAD).Trim()
 $result = [ordered]@{
     commit = $sha; mode = $Mode; unity = $UnityVersion; editor = ''; cacheReset = [bool]$ResetPackageCache; renderer = ''
     compile = 'NOT RUN'; checks = ''; shaderGraph = 'NOT RUN'; visual = 'NOT RUN'
-    screenshots = @(); gifs = @(); benchmarks = 'NOT RUN (player benchmark is not automated)'; errors = @()
+    screenshots = @(); gifs = @(); benchmarks = 'NOT RUN (player benchmark is not automated)'; errors = @(); warnings = @()
 }
 
 function Write-Summary {
@@ -52,6 +52,7 @@ function Write-Summary {
         '**Errors:**'
     )
     if ($result.errors.Count) { $md += ($result.errors | Select-Object -First 30 | ForEach-Object { "- $_" }) } else { $md += '- none' }
+    if ($result.warnings.Count) { $md += @('', '**Warnings:**') + ($result.warnings | Select-Object -First 10 | ForEach-Object { "- $_" }) }
     $text = $md -join "`n"
     Set-Content -Path (Join-Path $OutDir 'qa-summary.md') -Value $text -Encoding UTF8
     $result | ConvertTo-Json -Depth 4 | Set-Content -Path (Join-Path $OutDir 'qa-summary.json') -Encoding UTF8
@@ -140,8 +141,14 @@ function Invoke-Unity([string]$method, [string]$name, [int]$timeoutMin, [bool]$g
     if ($text -match 'No valid Unity Editor license|License is not active|Failed to activate|ULF license') {
         $result.errors += "${name}: Unity license problem (see logs/$name.key.log)"
     }
-    $cs = [regex]::Matches($text, '(?m)^.*error CS\d+.*$') | Select-Object -First 10 | ForEach-Object { $_.Value.Trim() }
-    foreach ($e in $cs) { $result.errors += "${name}: $e" }
+    # Compiler errors in project code always fail a step. Errors inside Library/PackageCache are logged by Unity 6.4
+    # while a fresh Library is first imported (CS0246 'GUID' in com.unity.shadergraph) even though the Editor then
+    # compiles, runs the method and exits 0; the step decides from its exit code and outputs, and they are listed.
+    $cs = @([regex]::Matches($text, '(?m)^.*error CS\d+.*$') | ForEach-Object { $_.Value.Trim() } | Select-Object -Unique)
+    $projectCs = @($cs | Where-Object { $_ -notmatch 'Library[\\/]PackageCache[\\/]' })
+    $packageCs = @($cs | Where-Object { $_ -match 'Library[\\/]PackageCache[\\/]' })
+    foreach ($e in ($projectCs | Select-Object -First 10)) { $result.errors += "${name}: $e" }
+    foreach ($e in ($packageCs | Select-Object -First 5)) { $result.warnings += "${name} (package, logged during import): $e" }
     if ($text -match 'Renderer:\s*(.+)') { $result.renderer = $Matches[1].Trim() }
     if (-not $graphics -and $result.renderer -match 'Null') { $result.renderer += ' (expected with -nographics)' }
     if ($text -match 'Unity Editor version:\s+(\S+)\s*\((\w+)\)') {
@@ -155,7 +162,7 @@ function Invoke-Unity([string]$method, [string]$name, [int]$timeoutMin, [bool]$g
         Get-ChildItem $pc -Directory | Where-Object { $_.Name -match 'shadergraph|render-pipelines|searcher' } |
             ForEach-Object { "$($_.Name)  $($_.LastWriteTime.ToString('s'))" } | Set-Content (Join-Path $OutDir "logs/packagecache.txt") -Encoding UTF8
     }
-    return @{ exit = $p.ExitCode; text = $text }
+    return @{ exit = $p.ExitCode; text = $text; projectCs = $projectCs.Count; packageCs = $packageCs.Count }
 }
 
 function Fresh([string]$rel, [datetime]$since) {
@@ -169,7 +176,7 @@ $failed = $false
 $t0 = Get-Date
 $r = Invoke-Unity 'ProjectBuild.RunChecks' 'checks' $StepTimeoutMin.checks $false
 $pass = ([regex]::Matches($r.text, '(?m)^PASS ')).Count
-if ($r.exit -eq 0 -and (Fresh 'Reports/Checks.txt' $t0) -and $r.text -notmatch 'error CS\d+') {
+if ($r.exit -eq 0 -and (Fresh 'Reports/Checks.txt' $t0) -and $r.projectCs -eq 0) {
     $result.compile = 'PASS'; $result.checks = "($pass PASS lines)"
     Copy-Item (Join-Path $ProjectPath 'Reports/Checks.txt') (Join-Path $OutDir 'Checks.txt')
 } else {
@@ -177,6 +184,7 @@ if ($r.exit -eq 0 -and (Fresh 'Reports/Checks.txt' $t0) -and $r.text -notmatch '
     $fail = [regex]::Match($r.text, 'FAIL: [^\r\n]+'); if ($fail.Success) { $result.errors += "checks: $($fail.Value)" }
     if ($r.exit -ne 0) { $result.errors += "checks: Unity exit code $($r.exit)" }
     if (-not (Fresh 'Reports/Checks.txt' $t0)) { $result.errors += 'checks: Reports/Checks.txt was not written' }
+    if ($r.packageCs) { $result.errors += "checks: $($r.packageCs) package compiler error(s), see Warnings" }
 }
 
 # ---------------------------------------------------------------- Shader Graph compile report
