@@ -3,7 +3,11 @@ Unity QA runner for the Windows self-hosted GitHub Actions runner (docs/UNITY_QA
 Runs only allowlisted, read-only QA editor methods in batchmode and writes a short summary plus selected outputs to
 -OutDir. Never builds a player, starts a server or touches a database. Windows PowerShell 5.1 compatible.
 
-  powershell -File Tools\QA\unity_qa.ps1 -Mode smoke|compile-shader|l6-visual [-OutDir <dir>] [-ProjectPath <dir>]
+  powershell -File Tools\QA\unity_qa.ps1 -Mode smoke|compile-shader|l6-visual [-OutDir <dir>] [-ProjectPath <dir>] [-ResetPackageCache]
+
+-ResetPackageCache deletes only Library/PackageCache, Library/ScriptAssemblies and Library/Bee (package sources and
+compile outputs, regenerated from the Editor install and registry on the next open). Imported assets
+(Library/Artifacts) are kept. Use it once when package compile errors suggest a stale or corrupt package copy.
 
 Modes:
   smoke           ProjectBuild.RunChecks (script compile + offline domain/save checks; -nographics)
@@ -14,7 +18,8 @@ Exit code: 0 all run steps passed, 1 a step failed, 2 setup error (Unity, licens
 param(
     [Parameter(Mandatory = $true)][ValidateSet('smoke', 'compile-shader', 'l6-visual')][string]$Mode,
     [string]$OutDir = (Join-Path $env:TEMP 'unity-qa'),
-    [string]$ProjectPath = $(if ($env:GITHUB_WORKSPACE) { $env:GITHUB_WORKSPACE } else { (Resolve-Path "$PSScriptRoot\..\..").Path })
+    [string]$ProjectPath = $(if ($env:GITHUB_WORKSPACE) { $env:GITHUB_WORKSPACE } else { (Resolve-Path "$PSScriptRoot\..\..").Path }),
+    [switch]$ResetPackageCache
 )
 $ErrorActionPreference = 'Stop'
 $UnityVersion = '6000.4.3f1'
@@ -28,7 +33,7 @@ if (Test-Path $OutDir) { Remove-Item $OutDir -Recurse -Force }
 New-Item -ItemType Directory -Force -Path (Join-Path $OutDir 'logs') | Out-Null
 $sha = (git -C $ProjectPath rev-parse HEAD).Trim()
 $result = [ordered]@{
-    commit = $sha; mode = $Mode; unity = $UnityVersion; renderer = ''
+    commit = $sha; mode = $Mode; unity = $UnityVersion; editor = ''; cacheReset = [bool]$ResetPackageCache; renderer = ''
     compile = 'NOT RUN'; checks = ''; shaderGraph = 'NOT RUN'; visual = 'NOT RUN'
     screenshots = @(); gifs = @(); benchmarks = 'NOT RUN (player benchmark is not automated)'; errors = @()
 }
@@ -38,6 +43,7 @@ function Write-Summary {
         "## Unity QA: $($result.mode)", '',
         "| | |", "|---|---|",
         "| Commit | ``$($result.commit)`` |", "| Mode | $($result.mode) |", "| Unity | $($result.unity) |",
+        "| Editor | $($result.editor) |", "| Package cache reset | $($result.cacheReset) |",
         "| GPU renderer | $($result.renderer) |",
         "| Compile + checks | $($result.compile) $($result.checks) |", "| Shader Graph | $($result.shaderGraph) |",
         "| Visual QA | $($result.visual) |", "| Benchmark | $($result.benchmarks) |", '',
@@ -62,6 +68,7 @@ function Stop-Setup([string]$message) {
 # ---------------------------------------------------------------- setup checks
 $pv = Get-Content (Join-Path $ProjectPath 'ProjectSettings/ProjectVersion.txt') -Raw
 if ($pv -notmatch "m_EditorVersion: $([regex]::Escape($UnityVersion))") { Stop-Setup "Project is not on Unity $UnityVersion" }
+$Revision = if ($pv -match 'm_EditorVersionWithRevision: \S+ \((\w+)\)') { $Matches[1] } else { '' }
 
 $unity = $env:UNITY_EDITOR_PATH
 if (-not $unity) {
@@ -70,7 +77,9 @@ if (-not $unity) {
 }
 if (-not $unity -or -not (Test-Path $unity)) { Stop-Setup "Unity $UnityVersion Editor not found (set UNITY_EDITOR_PATH on the runner)" }
 $ver = (Get-Item $unity).VersionInfo.ProductVersion
+$result.editor = "$unity ($(if ($ver) { $ver } else { 'no file version' }))"
 if ($ver -and $ver -notlike "$UnityVersion*") { Stop-Setup "Unity at $unity reports version $ver, expected $UnityVersion" }
+if ($ver -and $Revision -and $ver -notlike "*$Revision*") { Stop-Setup "Unity at $unity is $ver, expected revision $Revision" }
 
 # One Unity QA job per machine, and never a second Editor on this project.
 $mutex = New-Object System.Threading.Mutex($false, 'Global\LangTroTanUnityQA')
@@ -81,6 +90,12 @@ $open = Get-CimInstance Win32_Process -Filter "Name='Unity.exe'" | Where-Object 
 if ($open) { Stop-Setup "A Unity Editor already has this project open (PID $($open.ProcessId -join ', '))" }
 if (Test-Path (Join-Path $ProjectPath 'Temp/UnityLockfile')) {
     try { Remove-Item (Join-Path $ProjectPath 'Temp/UnityLockfile') -Force } catch { Stop-Setup 'Project lock file is held by another process' }
+}
+if ($ResetPackageCache) {
+    foreach ($rel in @('Library/PackageCache', 'Library/ScriptAssemblies', 'Library/Bee')) {
+        $dir = Join-Path $ProjectPath $rel
+        if (Test-Path $dir) { Write-Host "Removing $rel"; Remove-Item $dir -Recurse -Force }
+    }
 }
 
 # ---------------------------------------------------------------- Unity runner
@@ -102,8 +117,14 @@ function Invoke-Unity([string]$method, [string]$name, [int]$timeoutMin, [bool]$g
     if (Test-Path $log) {
         $lines = Get-Content $log
         $lines | Select-Object -Last 300 | Set-Content (Join-Path $OutDir "logs/$name.tail.log") -Encoding UTF8
-        $lines | Select-String -Pattern 'error CS\d+|Compilation failed|compiler errors|Exception|FAIL|SG_CHECK|STAGE_SITE|license|Licens|GfxDevice|Renderer:' |
-            Select-Object -First 200 | ForEach-Object { $_.Line } | Set-Content (Join-Path $OutDir "logs/$name.key.log") -Encoding UTF8
+        $lines | Select-String -Pattern 'Unity Editor version|Built from|Command line arguments|-nographics|Package Manager|Registered \d+ packages|PackageCache|BuiltInPackages|error CS\d+|Compilation failed|compiler errors|Exception|FAIL|SG_CHECK|STAGE_SITE|license|Licens|GfxDevice|Renderer:' |
+            Select-Object -First 300 | ForEach-Object { $_.Line } | Set-Content (Join-Path $OutDir "logs/$name.key.log") -Encoding UTF8
+        # The 40 lines before the first compiler error (package resolution and compile context).
+        $first = $lines | Select-String -Pattern 'error CS\d+' | Select-Object -First 1
+        if ($first) {
+            $from = [Math]::Max(0, $first.LineNumber - 41)
+            $lines[$from..($first.LineNumber - 1)] | Set-Content (Join-Path $OutDir "logs/$name.first-error.log") -Encoding UTF8
+        }
         Remove-Item $log -Force
     }
     if ($text -match 'No valid Unity Editor license|License is not active|Failed to activate|ULF license') {
@@ -112,6 +133,18 @@ function Invoke-Unity([string]$method, [string]$name, [int]$timeoutMin, [bool]$g
     $cs = [regex]::Matches($text, '(?m)^.*error CS\d+.*$') | Select-Object -First 10 | ForEach-Object { $_.Value.Trim() }
     foreach ($e in $cs) { $result.errors += "${name}: $e" }
     if ($text -match 'Renderer:\s*(.+)') { $result.renderer = $Matches[1].Trim() }
+    if (-not $graphics -and $result.renderer -match 'Null') { $result.renderer += ' (expected with -nographics)' }
+    if ($text -match 'Unity Editor version:\s+(\S+)\s*\((\w+)\)') {
+        if ($Matches[1] -ne $UnityVersion -or ($Revision -and $Matches[2] -ne $Revision)) {
+            $result.errors += "${name}: log reports Unity $($Matches[1]) ($($Matches[2])), project expects $UnityVersion ($Revision)"
+        }
+    }
+    # Which package copies were compiled (folder names only).
+    $pc = Join-Path $ProjectPath 'Library/PackageCache'
+    if (Test-Path $pc) {
+        Get-ChildItem $pc -Directory | Where-Object { $_.Name -match 'shadergraph|render-pipelines|searcher' } |
+            ForEach-Object { "$($_.Name)  $($_.LastWriteTime.ToString('s'))" } | Set-Content (Join-Path $OutDir "logs/packagecache.txt") -Encoding UTF8
+    }
     return @{ exit = $p.ExitCode; text = $text }
 }
 

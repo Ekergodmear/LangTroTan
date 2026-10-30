@@ -41,6 +41,9 @@ Leave the window open while QA is wanted; close it (Ctrl+C) when done. The runne
 3. Expect: job green, step summary `Compile + checks | PASS (N PASS lines)`, artifact `unity-qa-smoke-<n>`.
 4. Then run `compile-shader`, then `l6-visual`. Check that the summary's **GPU renderer** names the RX 6600M; a "Microsoft Basic Render Driver" means the session has no GPU and captures are invalid.
 5. Failure triage: open the artifact's `logs/*.key.log` first; exit code 2 = setup (Unity path, licence, lock), 1 = a QA step failed.
+   - `logs/checks.first-error.log` holds the 40 lines before the first compiler error; `logs/packagecache.txt` lists the compiled package copies; the summary's **Editor** row shows which `Unity.exe` ran.
+   - Compile errors inside `Library/PackageCache` (e.g. `CS0246 'GUID'` in `com.unity.shadergraph`) on an unchanged project point at the Editor install or a stale package copy, not the game code. Check the Editor row and the log's `Unity Editor version` line match 6000.4.3f1 (39d1a88d4dd1), then re-run once with **reset_package_cache** ticked. It deletes only `Library/PackageCache`, `Library/ScriptAssemblies` and `Library/Bee`; imported assets are kept. If it still fails, repair or reinstall 6000.4.3f1 in Unity Hub.
+   - `GPU renderer: Null Device` is expected in `smoke` (it runs with `-nographics`); only `compile-shader` and `l6-visual` must show the RX 6600M.
 
 ## Limitations
 - Only `main` can be tested (deliberate for the first rollout). Feature branches need a reviewed change to the job's `if:`.
