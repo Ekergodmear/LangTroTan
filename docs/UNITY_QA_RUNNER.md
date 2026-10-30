@@ -50,11 +50,11 @@ Leave the window open while QA is wanted; close it (Ctrl+C) when done. The runne
 ## Testing an isolated candidate before it reaches main (`l6-visual-v5`)
 Dispatch from `main` with mode `l6-visual-v5`, `qa_branch: qa/<name>` and `expected_sha: <full 40-hex qa commit>`. The workflow and every QA script stay `main`'s; the job fetches that exact commit and refuses it unless it differs from `main` **only** in:
 
-- `Assets/Scripts/Presentation/SonMon/*V5*`, `Assets/Editor/*V5*`
-- `Assets/Art/SonMon/VFX/L6v5/**`, `Assets/Resources/SonMon/VFX/L6v5/**`
-- `Tools/ShaderGraph/*v5*`, `Reports/ForgeGUI/scripture_L06/spirit_v5/**`
+- code only as `Assets/Scripts/Presentation/SonMon/*V5*.cs` and `Assets/Editor/*V5*.cs` (and their `.meta`)
+- `Assets/Art/SonMon/VFX/L6v5/**` and `Assets/Resources/SonMon/VFX/L6v5/**`: only `.png`, `.mat`, `.prefab`, `.asset` and `.meta` (no `.cs`, `.dll`, `.asmdef`, shaders)
+- `Tools/ShaderGraph/*v5*.py`, `Reports/ForgeGUI/scripture_L06/spirit_v5/**` (documents and images only)
 
-Only those files are overlaid; the working tree is reset after the job. The qa branch must contain current `main` (merge `main` into it when `main` moves). Previews go to `qa-results` under `v5/run-<n>/`, including `compare_v4_v5.jpg` (v4 full | v5 off | v5 full per camera).
+Matching is case-sensitive and rename detection is off, so a rename shows as a delete plus an add. Only added or modified regular files are accepted: deletions, symlinks, submodules and executable files reject the whole commit. Only those files are overlaid, using literal pathspecs. The job refuses to run a candidate if the runner account is an administrator, whether elevated or just in the Administrators group. Afterwards it removes git hooks, `core.hooksPath` and `core.fsmonitor` and resets the working tree. The qa branch must contain current `main` (merge `main` into it when `main` moves). Previews go to `qa-results` under `v5/run-<n>/`, including `compare_v4_v5.jpg` (v4 full | v5 off | v5 full per camera).
 
 Security: this runs the candidate's editor C# on the runner (that is the point of the test), but it can't change the workflow, the QA scripts, the runner's token (read-only) or anything outside the allowlist. Anyone who can push a `qa/*` branch and dispatch the workflow can use it; that is the same group that can already push workflow changes.
 

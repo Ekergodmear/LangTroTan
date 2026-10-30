@@ -86,25 +86,42 @@ jobs:
         shell: powershell
         run: |
           $ErrorActionPreference = 'Stop'
-          if ($env:QA_BRANCH -notmatch '^qa/[A-Za-z0-9._-]+$') { throw "qa_branch must be qa/<name>" }
-          if ($env:QA_EXPECTED_SHA -notmatch '^[0-9a-f]{40}$') { throw "qa_branch needs expected_sha as the full 40-hex commit" }
+          # Candidate code runs as the runner account: never as an administrator (elevated or a member of Administrators)
+          $id = [Security.Principal.WindowsIdentity]::GetCurrent()
+          $elevated = (New-Object Security.Principal.WindowsPrincipal $id).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+          $adminGroup = @($id.Groups | Where-Object { $_.Value -eq 'S-1-5-32-544' }).Count -gt 0
+          if ($elevated -or $adminGroup) { throw "Refusing to run qa_branch code as an administrator ($($id.Name)); use the non-admin runner account" }
+          if ($env:QA_BRANCH -cnotmatch '^qa/[A-Za-z0-9._-]+$') { throw "qa_branch must be qa/<name>" }
+          if ($env:QA_EXPECTED_SHA -cnotmatch '^[0-9a-f]{40}$') { throw "qa_branch needs expected_sha as the full 40-hex commit" }
           git fetch -q --no-tags --depth 1 origin "refs/heads/$($env:QA_BRANCH)"
           if ($LASTEXITCODE) { throw "Cannot fetch $env:QA_BRANCH" }
           $qa = (git rev-parse FETCH_HEAD).Trim()
           if ($qa -ne $env:QA_EXPECTED_SHA) { throw "$env:QA_BRANCH is at $qa, not $env:QA_EXPECTED_SHA" }
+          # Case-sensitive; code only as *V5*.cs scripts; L6v5 assets limited to data types Unity never executes
           $allow = @(
-            '^Assets/Scripts/Presentation/SonMon/[^/]*V5[^/]*$',
-            '^Assets/Editor/[^/]*V5[^/]*$',
-            '^Assets/(Art|Resources)/SonMon/VFX/L6v5(\.meta|/.+)$',
-            '^Tools/ShaderGraph/[^/]*v5[^/]*$',
-            '^Reports/ForgeGUI/scripture_L06/spirit_v5(\.meta|/.+)$'
+            '^Assets/Scripts/Presentation/SonMon/[A-Za-z0-9_]*V5[A-Za-z0-9_]*\.cs(\.meta)?$',
+            '^Assets/Editor/[A-Za-z0-9_]*V5[A-Za-z0-9_]*\.cs(\.meta)?$',
+            '^Assets/(Art|Resources)/SonMon/VFX/L6v5(/[A-Za-z0-9_-]+)*(\.meta|/[A-Za-z0-9_-]+\.(png|mat|prefab|asset)(\.meta)?)$',
+            '^Tools/ShaderGraph/[A-Za-z0-9_]*v5[A-Za-z0-9_]*\.py$',
+            '^Reports/ForgeGUI/scripture_L06/spirit_v5(/[A-Za-z0-9_-]+)*/[A-Za-z0-9_.-]+\.(md|png|jpg|gif|csv|json|txt)$'
           )
-          $changed = @(git diff --name-only HEAD $qa)
-          if (-not $changed.Count) { throw "$qa has no changes against main" }
-          $bad = @($changed | Where-Object { $p = $_; -not ($allow | Where-Object { $p -match $_ }) })
+          # --no-renames: a rename shows as delete + add, so a protected source path can't hide behind a v5 name.
+          # Only added or modified regular files (mode 100644): no deletions, symlinks, submodules or executables.
+          $raw = @(git -c core.quotePath=true diff --raw --no-renames HEAD $qa)
+          if ($LASTEXITCODE) { throw "git diff failed" }
+          if (-not $raw.Count) { throw "$qa has no changes against main" }
+          $files = @(); $bad = @()
+          foreach ($line in $raw) {
+            if ($line -cmatch '^:\d{6} (\d{6}) \S+ \S+ ([AM])\t(.+)$') {
+              $mode = $Matches[1]; $path = $Matches[3]
+              if ($mode -ne '100644') { $bad += "$path (mode $mode)" }
+              elseif (-not ($allow | Where-Object { $path -cmatch $_ })) { $bad += $path }
+              else { $files += $path }
+            } else { $bad += "$line (only added or modified files are allowed)" }
+          }
           if ($bad.Count) { throw "Not on the v5 allowlist (merge main into the qa branch if main moved): $($bad -join ', ')" }
-          $files = @(git diff --name-only --diff-filter=d HEAD $qa)
-          if ($files.Count) { git checkout -q $qa -- $files; if ($LASTEXITCODE) { throw "Overlay failed" } }
+          git --literal-pathspecs checkout -q $qa -- $files
+          if ($LASTEXITCODE) { throw "Overlay failed" }
           Write-Host "Overlaid $($files.Count) v5 file(s) from $env:QA_BRANCH @ $qa onto main $(git rev-parse --short HEAD):"
           $files | ForEach-Object { Write-Host "  $_" }
 
@@ -137,6 +154,10 @@ jobs:
         if: always()
         shell: powershell
         run: |
+          # Drop anything a candidate could leave for later git runs (hooks, hook path, fsmonitor command)
+          Get-ChildItem .git/hooks -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -notlike '*.sample' } | Remove-Item -Force
+          git config --local --unset-all core.hooksPath
+          git config --local --unset-all core.fsmonitor
           git reset --hard HEAD
           git clean -fd
 
