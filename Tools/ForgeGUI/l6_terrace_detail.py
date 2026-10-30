@@ -660,6 +660,19 @@ def c3(p):
     return [round(p[0] - cxm, 4), round(p[1] - cym, 4), round(p[2] - bz, 4)]
 
 
+# The upper tier is stepped: tier2 (the generated box, 2 x TIER) is the walkable height of the front strip, but the
+# hall's own plinth from the source model forms raised terraces either side of the hall. Probe their real top with
+# downward rays midway between the hall and the tier edge, at mid depth (QA probe in Unity measured 1.178 / 1.195).
+def surface_top(x, y):
+    hit, loc, *_ = scene.ray_cast(deps, Vector((x, y, rhi.z + 5)), Vector((0, 0, -1)))
+    return loc.z if hit else None
+
+
+mid_y = (t2[2] + t2[3]) / 2
+raised = [z for z in (surface_top((hlo.x + t2[0]) / 2, mid_y), surface_top((hhi.x + t2[1]) / 2, mid_y)) if z is not None]
+tier2_raised_top = round(max(raised) - bz, 4) if raised else None
+
+
 anchors = {
     "frame": "Blender centred on model bounds: x right, y back (+y away from the entrance), z up from the base; Unity local = (x, z, y)",
     "size": [round(v, 4) for v in rhi - rlo],
@@ -668,6 +681,8 @@ anchors = {
     "hallMin": c3(hlo), "hallMax": c3(hhi),
     "tier1": [round(t1[0] - cxm, 4), round(t1[1] - cxm, 4), round(t1[2] - cym, 4), round(t1[3] - cym, 4), TIER],
     "tier2": [round(t2[0] - cxm, 4), round(t2[1] - cxm, 4), round(t2[2] - cym, 4), round(t2[3] - cym, 4), 2 * TIER],
+    # new, separate field (tier2 keeps 2 x TIER for the front strip): top of the raised side terraces, or null
+    "tier2RaisedTop": tier2_raised_top,
 }
 json.dump(anchors, open(os.path.join(out, "VFX_ANCHORS.json"), "w"), indent=1)
 report["vfxAnchors"] = "VFX_ANCHORS.json"
