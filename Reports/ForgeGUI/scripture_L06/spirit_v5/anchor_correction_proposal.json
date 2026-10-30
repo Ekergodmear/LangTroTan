@@ -1,0 +1,27 @@
+{
+  "status": "proposal for review; not applied. The source anchors are ForgeGUI provenance and stay unchanged.",
+  "model": "ScripturePavilion_L06_v2 (Assets/ThirdParty/ForgeGUI/_Candidates/ScripturePavilion_L06_v2)",
+  "source_file": "Assets/ThirdParty/ForgeGUI/_Candidates/ScripturePavilion_L06_v2/VFX_ANCHORS_UNITY.json",
+  "generator": "Tools/ForgeGUI/l6_terrace_detail.py (writes VFX_ANCHORS.json)",
+  "units": "Unity local metres from the model's bottom centre, scale 0.999 (L6V2), entrance towards -Z",
+  "method": "QA-only probe in StageSiteCapture.RunL6SpiritV5: temporary in-memory MeshColliders on the model, downward raycasts, colliders removed afterwards. Runs 9 and 10 (Unity 6000.4.3f1, qa/l6-v5 4e2d7b5 and c924cb7) gave identical values.",
+  "probes": {
+    "upper_tier_mid_left":  {"local_xz": ["-sideX", "midZ2"], "measured": 1.178},
+    "upper_tier_mid_right": {"local_xz": ["+sideX", "midZ2"], "measured": 1.195},
+    "upper_tier_front_left":  {"local_xz": ["-sideX", "tier2.z+0.6"], "measured": 0.939},
+    "upper_tier_front_right": {"local_xz": ["+sideX", "tier2.z+0.6"], "measured": 0.939},
+    "lower_landing_x4": {"local_xz": ["+-2.6/+-1.4", "(tier1.z+tier2.z)/2"], "measured": 0.472}
+  },
+  "values": {
+    "tier1_top": {"current": 0.47, "measured": 0.472, "proposed": 0.47, "change": "none"},
+    "tier2_top": {"current": 0.94, "measured_front_strip": 0.939, "measured_raised_middle_back": [1.178, 1.195], "proposed": "keep 0.94 as tier2 front height; add tier2_raised_top = 1.19"}
+  },
+  "proposed_addition": {"tier2_raised_top": 1.19, "tier2_raised_from_z": "between tier2.z+0.6 and midZ2 (step not yet located; measure with a finer probe line before adopting)"},
+  "affected_systems": [
+    "SonMonSpiritGathering (v3): Configure(... tier2Height ...) - mist/stream heights",
+    "SonMonSpiritGatheringV4: SurfaceY() for mist and gold motes; release pulse height (tier2Top + 0.05) - the reason the v4 release was never visible",
+    "SonMonSpiritGatheringV5 (incl. V6 concept): SurfaceY(), release waves; QA passes measured values through SetSurfaceHeights()",
+    "StageSiteCapture.SpiritShotsV4/V5: clipping check (in2 uses tier2[4]) under-reports particles inside the raised terraces",
+    "StageSiteCapture.BuildL6SpiritQAPlayer: bakes the anchors into Assets/QA/L6SpiritQA/L6SpiritQA.unity (player benchmark scene)"
+  ]
+}
