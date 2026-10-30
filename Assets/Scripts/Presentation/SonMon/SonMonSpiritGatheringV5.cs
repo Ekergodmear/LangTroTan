@@ -64,6 +64,9 @@ namespace LangTroTan.Presentation
             tier1 = tier1XZ; tier2 = tier2XZ; tier1Top = tier1Height; tier2Top = tier2Height; allowed = allowedXZ;
         }
 
+        // Measured walkable surface heights (local), when the anchor tier heights sit below the real paving
+        public void SetSurfaceHeights(float lowerTop, float upperTop) { tier1Top = lowerTop; tier2Top = upperTop; }
+
         // ---------------------------------------------------------------- build
         // awaken: as v4, only right after a server-confirmed upgrade swap (never when a saved game is loaded).
         public bool Build(bool? awaken = null)
@@ -196,7 +199,7 @@ namespace LangTroTan.Presentation
         public static float LitK(float p) => Smooth(3f, 4f, p) * (1 - Smooth(8.4f, 9.8f, p));
         public static float ReleaseK(float p) => Smooth(8f, 8.4f, p) * (1 - Smooth(8.8f, 9.8f, p));
         public const float AwakenDuration = 2.4f;
-        public const float ReleaseAt = 8f, LowerWaveDelay = .18f;
+        public const float ReleaseAt = 8f, LowerWaveDelay = .18f, WaveLift = .06f;
 
         void UpdateCycle(float dt, SonMonSpiritGathering.Lod lod)
         {
@@ -212,20 +215,20 @@ namespace LangTroTan.Presentation
 
             // formation: activation front sweeps 3-6 s; the lit envelope hides the reset at the loop point
             float act = full ? Smooth(3f, 6.2f, p) * 1.05f : 0;
-            float lit = full ? 1.3f * LitK(p) * (1f + .7f * far01) : 0;
-            float baseL = (full ? .22f : .2f) + .3f * far01;
+            float lit = full ? 1.3f * LitK(p) * (1f + 1f * far01) : 0;
+            float baseL = (full ? .22f : .2f) + .4f * far01;
             SetFormation(band, act, lit, baseL * intro, bandTiling);
             SetFormation(seals, act, lit, baseL * intro, 1);
 
             // glows: pillars pulse gently (5 s, quarter-period stagger), the ornament halo swells in convergence and
             // flares softly at the release
-            float glowScale = Mathf.Lerp(1f, 3.2f, far01);
+            float glowScale = Mathf.Lerp(1f, 4.2f, far01);
             int n = pillarGlow.GetParticles(glowBuf);
             for (int i = 0; i < n; i++)
             {
                 float k = full ? .72f + .28f * Mathf.Sin(((float)time / 5f + i * .25f) * Mathf.PI * 2) : .55f;
                 glowBuf[i].startSize = (.5f + .1f * k) * glowScale;
-                glowBuf[i].startColor = new Color(1, 1, 1, Mathf.Min(1f, k * (1f + .25f * far01)) * Smooth(.3f + i * .25f, .7f + i * .25f, aw));
+                glowBuf[i].startColor = new Color(1, 1, 1, Mathf.Min(1f, k * (1f + .4f * far01)) * Smooth(.3f + i * .25f, .7f + i * .25f, aw));
             }
             pillarGlow.SetParticles(glowBuf, n);
             if (ornamentGlow != null)
@@ -234,7 +237,7 @@ namespace LangTroTan.Presentation
                 float c = ConvergeK(p), rel = ReleaseK(p);
                 for (int i = 0; i < n; i++)
                 {
-                    glowBuf[i].startSize = (.32f + .22f * c + .12f * rel) * (1f + 1.6f * far01);
+                    glowBuf[i].startSize = (.32f + .22f * c + .12f * rel) * (1f + 2.4f * far01);
                     glowBuf[i].startColor = new Color(1, 1, 1, Mathf.Min(1f, .18f + .32f * c + .25f * rel) * intro);
                 }
                 ornamentGlow.SetParticles(glowBuf, n);
@@ -278,9 +281,9 @@ namespace LangTroTan.Presentation
             float cz = (tier2.z + tier2.w) * .5f;
             float halfX = Mathf.Min(Mathf.Max(Mathf.Abs(tier2.x), Mathf.Abs(tier2.y)), Mathf.Min(ornament.x - allowed.x, allowed.y - ornament.x));
             float halfZ = Mathf.Min((tier2.w - tier2.z) * .5f + .25f, Mathf.Min(cz - allowed.z, allowed.w - cz));
-            EmitWave(new Vector3(ornament.x, tier2Top + .03f, cz), halfX * 2f * .98f, halfZ * 2f * .98f, 2.2f);
+            EmitWave(new Vector3(ornament.x, tier2Top + WaveLift, cz), halfX * 2f * .98f, halfZ * 2f * .98f, 2.2f);
             ep = default;
-            ep.position = new Vector3(ornament.x, tier1Top + .04f, (tier1.z + tier2.z) * .5f);
+            ep.position = new Vector3(ornament.x, tier1Top + WaveLift, (tier1.z + tier2.z) * .5f);
             ep.velocity = Vector3.zero;
             ep.startLifetime = 1.6f;
             ep.startSize = Mathf.Min(2.4f, (tier2.z - tier1.z) * 2.2f);
@@ -294,7 +297,7 @@ namespace LangTroTan.Presentation
             float cz = (tier1.z + tier1.w) * .5f;
             float halfX = Mathf.Min(Mathf.Max(Mathf.Abs(tier1.x), Mathf.Abs(tier1.y)) + .15f, Mathf.Min(ornament.x - allowed.x, allowed.y - ornament.x));
             float halfZ = Mathf.Min((tier1.w - tier1.z) * .5f + .15f, Mathf.Min(cz - allowed.z, allowed.w - cz));
-            EmitWave(new Vector3(ornament.x, tier1Top + .03f, cz), halfX * 2f * .98f, halfZ * 2f * .98f, 2f);
+            EmitWave(new Vector3(ornament.x, tier1Top + WaveLift, cz), halfX * 2f * .98f, halfZ * 2f * .98f, 2f);
         }
 
         void EmitWave(Vector3 at, float sizeX, float sizeZ, float life)

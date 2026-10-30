@@ -72,6 +72,27 @@ public static partial class StageSiteCapture
 
         var sg = fxGo.AddComponent<SonMonSpiritGatheringV5>();
         sg.Configure(pillars, orn, V(a.hallMin, 0), V(a.hallMax, 0), t1, t2, a.tier1[4] * k, a.tier2[4] * k, allowedLocal);
+
+        // Real walkable heights: the v4 anchors put the release under the paving. Probe the model with temporary,
+        // in-memory mesh colliders (removed again; nothing is saved) and hand the measured heights to v5.
+        var probeColliders = new List<MeshCollider>();
+        foreach (var mf in model.GetComponentsInChildren<MeshFilter>())
+            if (mf.sharedMesh != null) { var mc = mf.gameObject.AddComponent<MeshCollider>(); mc.sharedMesh = mf.sharedMesh; probeColliders.Add(mc); }
+        Physics.SyncTransforms();
+        float Probe(float lx, float lz)
+        {
+            var origin = fxGo.transform.TransformPoint(new Vector3(lx, 30f, lz));
+            return Physics.Raycast(origin, Vector3.down, out var hit, 60f) ? fxGo.transform.InverseTransformPoint(hit.point).y : float.NaN;
+        }
+        float hx = V(a.hallMax, 0).x, sideX = (hx + Mathf.Abs(t2.x)) * .5f, midZ2 = (t2.z + t2.w) * .5f;
+        var upper = new[] { Probe(-sideX, midZ2), Probe(sideX, midZ2), Probe(-sideX, t2.z + .6f), Probe(sideX, t2.z + .6f) };
+        float landZ = (t1.z + t2.z) * .5f;
+        var lower = new[] { Probe(-2.6f, landZ), Probe(2.6f, landZ), Probe(-1.4f, landZ), Probe(1.4f, landZ) };
+        foreach (var mc in probeColliders) UnityEngine.Object.DestroyImmediate(mc);
+        float Median(float[] v) { var s = v.Where(x => !float.IsNaN(x)).OrderBy(x => x).ToArray(); return s.Length == 0 ? float.NaN : s[s.Length / 2]; }
+        float upperTop = Median(upper), lowerTop = Median(lower);
+        report.Add($"v5,surface,anchorTier1,{a.tier1[4] * k:0.000},measuredLower,{lowerTop:0.000},anchorTier2,{a.tier2[4] * k:0.000},measuredUpper,{upperTop:0.000},probesUpper,{string.Join("/", upper.Select(x => x.ToString("0.000")))},probesLower,{string.Join("/", lower.Select(x => x.ToString("0.000")))}");
+        if (!float.IsNaN(upperTop) && !float.IsNaN(lowerTop)) sg.SetSurfaceHeights(lowerTop, upperTop);
         void Run(float seconds, Vector3 camPos) { for (float t = 0; t < seconds; t += dt) sg.Step(dt, camPos); }
         void RunTo(float phase, Vector3 camPos) { float wait = (phase - sg.Phase + SonMonSpiritGatheringV5.Cycle) % SonMonSpiritGatheringV5.Cycle; Run(wait < 2.5f ? wait + 10f : wait, camPos); }
         foreach (var mode in new[] { SonMonSpiritGathering.Mode.Off, SonMonSpiritGathering.Mode.Full, SonMonSpiritGathering.Mode.Reduced })
