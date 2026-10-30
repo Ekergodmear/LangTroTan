@@ -47,8 +47,19 @@ Leave the window open while QA is wanted; close it (Ctrl+C) when done. The runne
    - Compile errors inside `Library/PackageCache` (e.g. `CS0246 'GUID'` in `com.unity.shadergraph`) on an unchanged project point at the Editor install or a stale package copy, not the game code. Check the Editor row and the log's `Unity Editor version` line match 6000.4.3f1 (39d1a88d4dd1), then re-run once with **reset_package_cache** ticked. It deletes only `Library/PackageCache`, `Library/ScriptAssemblies` and `Library/Bee`; imported assets are kept. If it still fails, repair or reinstall 6000.4.3f1 in Unity Hub.
    - `GPU renderer: Null Device` is expected in `smoke` (it runs with `-nographics`); only `compile-shader` and `l6-visual` must show the RX 6600M.
 
+## Testing an isolated candidate before it reaches main (`l6-visual-v5`)
+Dispatch from `main` with mode `l6-visual-v5`, `qa_branch: qa/<name>` and `expected_sha: <full 40-hex qa commit>`. The workflow and every QA script stay `main`'s; the job fetches that exact commit and refuses it unless it differs from `main` **only** in:
+
+- code only as `Assets/Scripts/Presentation/SonMon/*V5*.cs` and `Assets/Editor/*V5*.cs` (and their `.meta`)
+- `Assets/Art/SonMon/VFX/L6v5/**` and `Assets/Resources/SonMon/VFX/L6v5/**`: only `.png`, `.mat`, `.prefab`, `.asset` and `.meta` (no `.cs`, `.dll`, `.asmdef`, shaders)
+- `Tools/ShaderGraph/*v5*.py`, `Reports/ForgeGUI/scripture_L06/spirit_v5/**` (documents and images only)
+
+Matching is case-sensitive and rename detection is off, so a rename shows as a delete plus an add. Only added or modified regular files are accepted: deletions, symlinks, submodules and executable files reject the whole commit. Only those files are overlaid, using literal pathspecs. The job refuses to run a candidate if the runner account is an administrator, whether elevated or just in the Administrators group. Afterwards it removes git hooks, `core.hooksPath` and `core.fsmonitor` and resets the working tree. The qa branch must contain current `main` (merge `main` into it when `main` moves). Previews go to `qa-results` under `v5/run-<n>/`, including `compare_v4_v5.jpg` (v4 full | v5 off | v5 full per camera).
+
+Security: this runs the candidate's editor C# on the runner (that is the point of the test), but it can't change the workflow, the QA scripts, the runner's token (read-only) or anything outside the allowlist. Anyone who can push a `qa/*` branch and dispatch the workflow can use it; that is the same group that can already push workflow changes.
+
 ## Limitations
-- Only `main` can be tested (deliberate for the first rollout). Feature branches need a reviewed change to the job's `if:`.
+- `main` is tested directly; other branches only through the `l6-visual-v5` overlay above.
 - `smoke` is also the compile check: if scripts don't compile, `RunChecks` cannot run and the job fails with the `error CS…` lines in the summary.
 - The capture path has not been tested as a Windows service (session 0 has no interactive desktop; Unity may fall back to a software renderer or fail). Run the runner interactively until a service run is proven with `l6-visual`.
 - Visual PASS means "captured and complete", not "approved": visual approval stays manual.

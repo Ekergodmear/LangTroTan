@@ -16,7 +16,7 @@ using Object = UnityEngine.Object;
 // identical lights and cameras. Candidate models are loaded from their converted folders with in-memory materials;
 // nothing is assigned to the kit, and no project scene, gameplay data, server or save is touched.
 // Run: Unity -batchmode -projectPath <p> -executeMethod StageSiteCapture.Run -quit   (needs graphics: no -nographics)
-public static class StageSiteCapture
+public static partial class StageSiteCapture
 {
     static string Out = "Reports/ForgeGUI/scripture_L03/unity";
     const string Snapshot = "Reports/WorldScale/site_plan/fresh_world_snapshot.json";
