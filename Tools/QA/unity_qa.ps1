@@ -234,6 +234,12 @@ if (-not $failed -and $Mode -like 'l6-visual*') {
         'off_gameplay_zoom30', 'reduced_gameplay_zoom30', 'full_gameplay_zoom30',
         'full_close_mist', 'full_close_formation', 'full_close_glyphs', 'full_close_ornament', 'full_close_pillar_formation') |
         ForEach-Object { "${Fx}_$_" }
+    # v5 also captures ambient (1.5 s) and release-peak (8.6 s) frames at every distance for the release comparison
+    if ($Fx -eq 'v5') {
+        foreach ($ph in 'ambient', 'release') {
+            foreach ($v in 'hero', 'gameplay_zoom10', 'gameplay_zoom21_default', 'gameplay_zoom30') { $shots += "v5_full_${ph}_$v" }
+        }
+    }
     $shotDir = Join-Path $OutDir 'screenshots'; New-Item -ItemType Directory -Force -Path $shotDir | Out-Null
     $missing = @()
     foreach ($s in $shots) {

@@ -12,6 +12,7 @@ Writes to <out dir> (a few MB in total):
   key/*.jpg           full-resolution JPEGs of the views needed for visual review
   cycle_stats.txt     frame-to-frame smoothness and loop seam (as Tools/ShaderGraph/cycle_report.py)
   compare_v4_v5.jpg   with --baseline: per view, v4 full | candidate off | candidate full (same cameras)
+  compare_release.jpg with --baseline: per distance, v4 at 8.8 s | candidate ambient 1.5 s | candidate release 8.6 s
 """
 import os
 import shutil
@@ -69,6 +70,17 @@ def compare_sheet(shots, baseline, prefix, out):
             else:
                 tiles.append(labelled(Image.new("RGB", THUMB, (32, 32, 32)), label + " (not captured)"))
     grid(tiles, 3).save(os.path.join(out, "compare_v4_v5.jpg"), quality=85)
+
+    tiles = []
+    for view in ("hero", "gameplay_zoom10", "gameplay_zoom21_default", "gameplay_zoom30"):
+        for path, label in ((os.path.join(baseline, f"v4_phase_{view}_8.8.png"), f"v4 8.8 s {view}"),
+                            (os.path.join(shots, f"{prefix}_full_ambient_{view}.png"), f"{prefix} ambient 1.5 s {view}"),
+                            (os.path.join(shots, f"{prefix}_full_release_{view}.png"), f"{prefix} release 8.6 s {view}")):
+            if os.path.exists(path):
+                tiles.append(labelled(Image.open(path), label))
+            else:
+                tiles.append(labelled(Image.new("RGB", THUMB, (32, 32, 32)), label + " (not captured)"))
+    grid(tiles, 3).save(os.path.join(out, "compare_release.jpg"), quality=85)
 
 
 def main():

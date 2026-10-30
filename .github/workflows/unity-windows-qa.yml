@@ -178,7 +178,7 @@ jobs:
           if [ ! -f previews/contact_sheet.jpg ]; then echo "No previews to publish"; exit 0; fi
           # Only the known preview files, flat names, size-capped
           mkdir -p stage/key
-          for f in contact_sheet.jpg compare_v4_v5.jpg cycle_phases.jpg cycle_10s.gif cycle_stats.txt measurements.csv; do
+          for f in contact_sheet.jpg compare_v4_v5.jpg compare_release.jpg cycle_phases.jpg cycle_10s.gif cycle_stats.txt measurements.csv; do
             if [ -f "previews/$f" ]; then cp "previews/$f" stage/; fi
           done
           find previews/key -maxdepth 1 -type f -name 'v[45]_*.jpg' -exec cp {} stage/key/ \;
