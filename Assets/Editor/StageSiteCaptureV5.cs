@@ -73,6 +73,11 @@ public static partial class StageSiteCapture
         };
         const float dt = 1f / 30f;
         var near = cams.Find(v => v.name == "gameplay_zoom10").from;
+        // Dedicated V6 QA hero camera: further back and higher than "hero" so the whole plume above the roof (to ~10 m)
+        // stays in frame. Used for the hero ambient / release frames and the 10 s cycle; the 7.0 s "hero" shot and all
+        // gameplay cameras are unchanged (like-for-like with v4 / v5).
+        (string name, Vector3 from, Vector3 at, float fov, bool ortho, float size) plumeCam =
+            ("hero_plume", o + new Vector3(7.5f, 6.5f, -14f), o + new Vector3(0, 5f, -.4f), 38, false, 0);
 
         var sg = fxGo.AddComponent<SonMonSpiritGatheringV5>();
         sg.Configure(pillars, orn, V(a.hallMin, 0), V(a.hallMax, 0), t1, t2, a.tier1[4] * k, a.tier2[4] * k, allowedLocal);
@@ -95,7 +100,7 @@ public static partial class StageSiteCapture
         foreach (var mc in probeColliders) UnityEngine.Object.DestroyImmediate(mc);
         float Median(float[] v) { var s = v.Where(x => !float.IsNaN(x)).OrderBy(x => x).ToArray(); return s.Length == 0 ? float.NaN : s[s.Length / 2]; }
         float upperTop = Median(new[] { upper[0], upper[1] }), upperFrontTop = Median(new[] { upper[2], upper[3] }), lowerTop = Median(lower);
-        report.Add($"v5,style,{sg.Style},note,V6 release concept captured under the v5 file names");
+        report.Add($"v5,style,{sg.Style},note,V6 release concept captured under the v5 file names; hero ambient/release and the cycle use the hero_plume camera");
         report.Add($"v5,surface,anchorTier1,{a.tier1[4] * k:0.000},measuredLower,{lowerTop:0.000},anchorTier2,{a.tier2[4] * k:0.000},measuredUpper,{upperTop:0.000},measuredUpperFront,{upperFrontTop:0.000},probesUpper,{string.Join("/", upper.Select(x => x.ToString("0.000")))},probesLower,{string.Join("/", lower.Select(x => x.ToString("0.000")))}");
         if (!float.IsNaN(upperTop) && !float.IsNaN(lowerTop) && !float.IsNaN(upperFrontTop)) sg.SetSurfaceHeights(lowerTop, upperTop, upperFrontTop);
         void Run(float seconds, Vector3 camPos) { for (float t = 0; t < seconds; t += dt) sg.Step(dt, camPos); }
@@ -121,7 +126,7 @@ public static partial class StageSiteCapture
             // ambient vs release peak at every distance (the release must read at gameplay zoom too)
             foreach (var name in new[] { "hero", "gameplay_zoom10", "gameplay_zoom21_default", "gameplay_zoom30" })
             {
-                var zv = cams.Find(v => v.name == name);
+                var zv = name == "hero" ? plumeCam : cams.Find(v => v.name == name);
                 RunTo(1.5f, zv.from);
                 Capture($"v5_full_ambient_{name}", zv.from, zv.at, zv.fov, false, 0);
                 RunTo(8.6f, zv.from);
@@ -129,7 +134,7 @@ public static partial class StageSiteCapture
                 Capture($"v5_full_release_{name}", zv.from, zv.at, zv.fov, false, 0);
             }
             // one complete 10 s loop at 10 fps from the hero camera (frame 100 = frame 0 + 10 s, to check the seam)
-            var hero = cams.Find(v => v.name == "hero");
+            var hero = plumeCam;  // the 10 s cycle uses the plume camera
             var z21 = cams.Find(v => v.name == "gameplay_zoom21_default");
             RunTo(0f, hero.from);
             Directory.CreateDirectory(Path.Combine(Out, "cycle"));
