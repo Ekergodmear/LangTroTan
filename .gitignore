@@ -21,3 +21,25 @@
 /Reports/**/cycle/
 /Reports/**/cycle_zoom21/
 /Reports/**/motion/
+
+# IDE, OS and tool caches
+/.idea/
+/.vscode/
+*.user
+*.suo
+*.tmp
+Thumbs.db
+.DS_Store
+__pycache__/
+node_modules/
+*.blend1
+sysinfo.txt
+crashlytics-build.properties
+
+# Local QA players, logs and scratch output (keep under work/ outside git)
+/work/
+/qa_builds/
+/*.log
+
+# Claude Code per-user settings
+/.claude/settings.local.json
