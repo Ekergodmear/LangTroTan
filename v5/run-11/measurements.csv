@@ -1,0 +1,40 @@
+model,doorSource,sourceHeight,scale,worldWidth,worldDepth,worldHeight,frontEdgeZ,insideStageI(7x5),insideStageII(9x7)
+L5,0.200,1.6002,2.600,4.57,4.93,4.16,4.00,True,True
+L6V2,0.520,4.6800,0.999,7.51,5.85,4.68,4.00,False,True
+v5,style,Plume,note,V6 release concept captured under the v5 file names
+v5,surface,anchorTier1,0.470,measuredLower,0.472,anchorTier2,0.939,measuredUpper,1.195,measuredUpperFront,0.939,probesUpper,1.178/1.195/0.939/0.939,probesLower,0.472/0.472/0.472/0.472
+v5,off,gameplay_zoom10,lod,Near,particles,0,activeRenderers,0,particleOverdraw,0.000,largestQuadScreenFraction,0.000
+v5,off,gameplay_zoom21_default,lod,Near,particles,0,activeRenderers,0,particleOverdraw,0.000,largestQuadScreenFraction,0.000
+v5,off,gameplay_zoom30,lod,Near,particles,0,activeRenderers,0,particleOverdraw,0.000,largestQuadScreenFraction,0.000
+v5,off,built,False,colliders,0,layers,0
+v5,full,gameplay_zoom10,lod,Near,particles,50,activeRenderers,8,particleOverdraw,0.011,largestQuadScreenFraction,0.001
+v5,full,gameplay_zoom21_default,lod,Mid,particles,28,activeRenderers,6,particleOverdraw,0.006,largestQuadScreenFraction,0.001
+v5,full,gameplay_zoom30,lod,Far,particles,14,activeRenderers,5,particleOverdraw,0.004,largestQuadScreenFraction,0.001
+v5,full,built,True,colliders,0,layers,2
+v5,release,hero,lod,Near,particles,85,particleOverdraw,0.200,largestQuadScreenFraction,0.019
+v5,release,gameplay_zoom10,lod,Near,particles,85,particleOverdraw,0.018,largestQuadScreenFraction,0.001
+v5,release,gameplay_zoom21_default,lod,Mid,particles,41,particleOverdraw,0.009,largestQuadScreenFraction,0.001
+v5,release,gameplay_zoom30,lod,Far,particles,17,particleOverdraw,0.006,largestQuadScreenFraction,0.001
+v5,cycle,heroFrames,101,fps,10,loopSeconds,10
+v5,footprint,insideStageIILot,False,vfxBoundsX,-13.08,-3.92,Z,3.61,10.83,Y,0.01,8.29,lotX,-13,-4,Z,4,11
+v5,clipping,particleSamplesInsideTerraceOrHall,6,of,798,maxParticlesNear,90
+v5,system,PS_SpiritMistV5,X,-12.56,-4.83,Y,0.35,2.53,Z,3.98,10.38,insideSolids,4,of,348
+v5,system,PS_PillarGlowV5,X,-12.41,-4.59,Y,1.83,2.52,Z,3.82,10.01,insideSolids,0,of,80
+v5,system,PS_JadeMotes,X,-12.20,-4.76,Y,1.50,2.87,Z,3.61,10.02,insideSolids,0,of,122
+v5,system,PS_GoldenMotes,X,-11.92,-5.72,Y,0.29,2.63,Z,4.53,10.83,insideSolids,2,of,195
+v5,system,PS_OrnamentHaloV5,X,-8.84,-8.17,Y,1.58,2.26,Z,6.23,6.91,insideSolids,0,of,20
+v5,system,PS_ScriptureGlyphsV5,X,-9.98,-6.81,Y,2.63,3.87,Z,4.35,5.06,insideSolids,0,of,133
+v5,system,PS_PlumeV5,X,-9.91,-7.30,Y,4.34,8.29,Z,6.44,8.27,insideSolids,0,of,39
+v5,system,PS_SwirlV5,X,-10.05,-7.47,Y,3.76,6.94,Z,6.14,8.96,insideSolids,0,of,61
+v5,strip,Formation band,X,-12.86,-4.14,Z,4.40,10.46
+v5,strip,Formation seals,X,-13.08,-3.92,Z,3.93,10.68
+v5,gc,bytesPer600Steps,lod,Near,0
+v5,gc,bytesPer600Steps,lod,Mid,0
+v5,gc,bytesPer600Steps,lod,Far,0
+v5,cpu,msPerStepEditorScriptOnly,0.0039
+v5,reduced,gameplay_zoom10,lod,Near,particles,7,activeRenderers,4,particleOverdraw,0.004,largestQuadScreenFraction,0.001
+v5,reduced,gameplay_zoom21_default,lod,Mid,particles,8,activeRenderers,4,particleOverdraw,0.004,largestQuadScreenFraction,0.001
+v5,reduced,gameplay_zoom30,lod,Far,particles,4,activeRenderers,3,particleOverdraw,0.003,largestQuadScreenFraction,0.001
+v5,reduced,built,True,colliders,0,layers,2
+v5,awakenOnPlainBuild,False
+v5,memory,materials,12,shaders,SonMon/Spirit/SG_SpiritFormation/SonMon/Spirit/SG_SpiritMist/SonMon/Spirit/SG_ScriptureGlyph
