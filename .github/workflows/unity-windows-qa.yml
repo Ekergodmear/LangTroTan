@@ -16,8 +16,9 @@ on:
           - smoke
           - compile-shader
           - l6-visual
+          - l6-visual-v5
       expected_sha:
-        description: "Optional commit SHA (7-40 hex) that main must be at"
+        description: "Commit SHA (7-40 hex) main must be at; with qa_branch: the full 40-hex qa commit to test"
         type: string
         required: false
         default: ""
@@ -26,6 +27,11 @@ on:
         type: boolean
         required: false
         default: false
+      qa_branch:
+        description: "l6-visual-v5 only: qa/* branch whose v5-only changes are overlaid on main (needs expected_sha)"
+        type: string
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -44,6 +50,7 @@ jobs:
       QA_MODE: ${{ inputs.mode }}
       QA_EXPECTED_SHA: ${{ inputs.expected_sha }}
       QA_RESET_PACKAGE_CACHE: ${{ inputs.reset_package_cache }}
+      QA_BRANCH: ${{ inputs.qa_branch }}
       QA_GITHUB_SHA: ${{ github.sha }}
     steps:
       - name: Checkout (keeps the ignored Library cache)
@@ -58,10 +65,11 @@ jobs:
         shell: powershell
         run: |
           $ErrorActionPreference = 'Stop'
-          if ($env:QA_MODE -notin @('smoke', 'compile-shader', 'l6-visual')) { throw "Unknown mode" }
+          if ($env:QA_MODE -notin @('smoke', 'compile-shader', 'l6-visual', 'l6-visual-v5')) { throw "Unknown mode" }
           $head = (git rev-parse HEAD).Trim()
           if ($head -ne $env:QA_GITHUB_SHA) { throw "Checked-out HEAD $head does not match $env:QA_GITHUB_SHA" }
-          if ($env:QA_EXPECTED_SHA) {
+          if ($env:QA_BRANCH -and $env:QA_MODE -ne 'l6-visual-v5') { throw "qa_branch is only allowed with l6-visual-v5" }
+          if ($env:QA_EXPECTED_SHA -and -not $env:QA_BRANCH) {
             if ($env:QA_EXPECTED_SHA -notmatch '^[0-9a-fA-F]{7,40}$') { throw "expected_sha must be 7-40 hex characters" }
             if (-not $head.StartsWith($env:QA_EXPECTED_SHA.ToLower())) { throw "main is at $head, not $env:QA_EXPECTED_SHA" }
           }
@@ -69,6 +77,36 @@ jobs:
           git reset --hard HEAD
           git clean -fd
           Write-Host "Validated $head ($env:QA_MODE)"
+
+      # Tests isolated v5 work before it reaches main, without running a branch's workflow or QA scripts: everything
+      # stays main's except files on the v5 allowlist, which are taken from one exact, pre-declared qa/* commit.
+      # The qa commit must equal main plus allowlisted changes (merge main into the qa branch when main moves).
+      - name: Overlay allowlisted v5 files from the qa branch
+        if: inputs.qa_branch != ''
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($env:QA_BRANCH -notmatch '^qa/[A-Za-z0-9._-]+$') { throw "qa_branch must be qa/<name>" }
+          if ($env:QA_EXPECTED_SHA -notmatch '^[0-9a-f]{40}$') { throw "qa_branch needs expected_sha as the full 40-hex commit" }
+          git fetch -q --no-tags --depth 1 origin "refs/heads/$($env:QA_BRANCH)"
+          if ($LASTEXITCODE) { throw "Cannot fetch $env:QA_BRANCH" }
+          $qa = (git rev-parse FETCH_HEAD).Trim()
+          if ($qa -ne $env:QA_EXPECTED_SHA) { throw "$env:QA_BRANCH is at $qa, not $env:QA_EXPECTED_SHA" }
+          $allow = @(
+            '^Assets/Scripts/Presentation/SonMon/[^/]*V5[^/]*$',
+            '^Assets/Editor/[^/]*V5[^/]*$',
+            '^Assets/(Art|Resources)/SonMon/VFX/L6v5(\.meta|/.+)$',
+            '^Tools/ShaderGraph/[^/]*v5[^/]*$',
+            '^Reports/ForgeGUI/scripture_L06/spirit_v5(\.meta|/.+)$'
+          )
+          $changed = @(git diff --name-only HEAD $qa)
+          if (-not $changed.Count) { throw "$qa has no changes against main" }
+          $bad = @($changed | Where-Object { $p = $_; -not ($allow | Where-Object { $p -match $_ }) })
+          if ($bad.Count) { throw "Not on the v5 allowlist (merge main into the qa branch if main moved): $($bad -join ', ')" }
+          $files = @(git diff --name-only --diff-filter=d HEAD $qa)
+          if ($files.Count) { git checkout -q $qa -- $files; if ($LASTEXITCODE) { throw "Overlay failed" } }
+          Write-Host "Overlaid $($files.Count) v5 file(s) from $env:QA_BRANCH @ $qa onto main $(git rev-parse --short HEAD):"
+          $files | ForEach-Object { Write-Host "  $_" }
 
       - name: Run Unity QA
         shell: powershell
@@ -87,7 +125,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Upload previews for publishing
-        if: always() && inputs.mode == 'l6-visual'
+        if: always() && startsWith(inputs.mode, 'l6-visual')
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
         with:
           name: qa-previews-${{ github.run_number }}
@@ -107,7 +145,7 @@ jobs:
   publish-previews:
     needs: unity-qa
     if: >-
-      always() && inputs.mode == 'l6-visual' && needs.unity-qa.result != 'skipped' &&
+      always() && startsWith(inputs.mode, 'l6-visual') && needs.unity-qa.result != 'skipped' &&
       github.repository == 'Ekergodmear/LangTroTan' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -131,16 +169,22 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           QA_SHA: ${{ github.sha }}
           QA_RESULT: ${{ needs.unity-qa.result }}
+          QA_MODE: ${{ inputs.mode }}
+          QA_BRANCH: ${{ inputs.qa_branch }}
+          QA_BRANCH_SHA: ${{ inputs.expected_sha }}
         shell: bash
         run: |
           set -euo pipefail
           if [ ! -f previews/contact_sheet.jpg ]; then echo "No previews to publish"; exit 0; fi
           # Only the known preview files, flat names, size-capped
           mkdir -p stage/key
-          for f in contact_sheet.jpg cycle_phases.jpg cycle_10s.gif cycle_stats.txt measurements.csv; do
+          for f in contact_sheet.jpg compare_v4_v5.jpg cycle_phases.jpg cycle_10s.gif cycle_stats.txt measurements.csv; do
             if [ -f "previews/$f" ]; then cp "previews/$f" stage/; fi
           done
-          find previews/key -maxdepth 1 -type f -name 'v4_*.jpg' -exec cp {} stage/key/ \;
+          find previews/key -maxdepth 1 -type f -name 'v[45]_*.jpg' -exec cp {} stage/key/ \;
+          # v4 runs replace latest/; each v5 run keeps its own folder so iterations can be compared
+          dest=latest
+          if [ "$QA_MODE" = "l6-visual-v5" ]; then dest="v5/run-${RUN_NUMBER}"; fi
           size=$(du -sk stage | cut -f1)
           if [ "$size" -gt 15360 ]; then echo "Previews are ${size} KB (limit 15 MB); not publishing"; exit 1; fi
           auth="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
@@ -154,17 +198,19 @@ jobs:
           else
             git checkout -q --orphan qa-results
           fi
-          rm -rf latest && cp -r ../stage latest
+          rm -rf "$dest" && mkdir -p "$(dirname "$dest")" && cp -r ../stage "$dest"
+          tested="main ${QA_SHA}"
+          if [ -n "$QA_BRANCH" ]; then tested="${QA_BRANCH} ${QA_BRANCH_SHA} (v5 files) on main ${QA_SHA}"; fi
           {
-            echo "# Unity QA previews (latest l6-visual run)"
+            echo "# Unity QA previews"
             echo
             echo "Generated by the Unity Windows QA workflow; not part of main. Do not merge this branch."
             echo
-            echo "- Run: [${RUN_NUMBER}](${RUN_URL}), job result: ${QA_RESULT}"
-            echo "- Commit: ${QA_SHA}"
-            echo "- Files: latest/contact_sheet.jpg, latest/cycle_phases.jpg, latest/cycle_10s.gif, latest/key/*.jpg"
+            echo "Latest run: [${RUN_NUMBER}](${RUN_URL}), ${QA_MODE}, job result: ${QA_RESULT}, tested: ${tested}, files: ${dest}/"
+            echo
+            echo "v4 previews: latest/. v5 iterations: v5/run-<n>/."
           } > README.md
-          git add -A latest README.md
-          git commit -q -m "QA previews: run ${RUN_NUMBER} (${QA_SHA:0:7}, l6-visual ${QA_RESULT})"
+          git add -A "$dest" README.md
+          git commit -q -m "QA previews: run ${RUN_NUMBER} (${QA_MODE} ${QA_RESULT}; ${tested})"
           git -c http.extraheader="$auth" push -q origin qa-results
           echo "Published to qa-results: run ${RUN_NUMBER}"

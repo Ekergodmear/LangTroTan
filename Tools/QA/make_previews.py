@@ -3,6 +3,7 @@
 Run by Tools/QA/unity_qa.ps1 (l6-visual) with the QA venv (numpy, Pillow; Tools/QA/requirements-qa.txt):
 
   python -I Tools/QA/make_previews.py <shots dir> <cycle frames dir> <out dir> [measurements.csv]
+                                      [--prefix v4|v5] [--baseline <v4 capture dir>]
 
 Writes to <out dir> (a few MB in total):
   contact_sheet.jpg   every captured view, labelled, 480x270 each
@@ -10,6 +11,7 @@ Writes to <out dir> (a few MB in total):
   cycle_10s.gif       the whole cycle at 5 fps, 400x225
   key/*.jpg           full-resolution JPEGs of the views needed for visual review
   cycle_stats.txt     frame-to-frame smoothness and loop seam (as Tools/ShaderGraph/cycle_report.py)
+  compare_v4_v5.jpg   with --baseline: per view, v4 full | candidate off | candidate full (same cameras)
 """
 import os
 import shutil
@@ -20,8 +22,10 @@ from PIL import Image, ImageDraw
 
 THUMB = (480, 270)
 GIF_SIZE = (400, 225)
-KEY_VIEWS = ["v4_full_hero", "v4_full_gameplay_zoom10", "v4_full_gameplay_zoom21_default",
-             "v4_full_close_mist", "v4_full_close_formation", "v4_full_close_ornament"]
+KEY_VIEWS = ["full_hero", "full_gameplay_zoom10", "full_gameplay_zoom21_default",
+             "full_close_mist", "full_close_formation", "full_close_ornament"]
+COMPARE_VIEWS = ["hero", "gameplay_zoom10", "gameplay_zoom21_default", "gameplay_zoom30",
+                 "close_mist", "close_formation", "close_ornament", "close_glyphs"]
 # cycle frames are captured at 10 FPS: frame index = seconds * 10
 PHASES = [(0.0, "0.0 s ambient"), (1.5, "1.5 s ambient"), (3.5, "3.5 s gathering"), (5.0, "5.0 s gathering"),
           (6.5, "6.5 s convergence"), (7.5, "7.5 s convergence"), (8.5, "8.5 s release"), (9.5, "9.5 s release")]
@@ -44,15 +48,41 @@ def grid(tiles, cols):
     return sheet
 
 
+def option(args, name, default=None):
+    if name in args:
+        i = args.index(name)
+        value = args[i + 1]
+        del args[i:i + 2]
+        return value
+    return default
+
+
+def compare_sheet(shots, baseline, prefix, out):
+    # rows: views; columns: v4 full (committed baseline) | candidate off | candidate full
+    tiles = []
+    for view in COMPARE_VIEWS:
+        for path, label in ((os.path.join(baseline, f"v4_full_{view}.png"), f"v4 full {view}"),
+                            (os.path.join(shots, f"{prefix}_off_{view}.png"), f"{prefix} off {view}"),
+                            (os.path.join(shots, f"{prefix}_full_{view}.png"), f"{prefix} full {view}")):
+            if os.path.exists(path):
+                tiles.append(labelled(Image.open(path), label))
+            else:
+                tiles.append(labelled(Image.new("RGB", THUMB, (32, 32, 32)), label + " (not captured)"))
+    grid(tiles, 3).save(os.path.join(out, "compare_v4_v5.jpg"), quality=85)
+
+
 def main():
-    shots, cycle, out = sys.argv[1], sys.argv[2], sys.argv[3]
-    measurements = sys.argv[4] if len(sys.argv) > 4 else None
+    args = sys.argv[1:]
+    prefix = option(args, "--prefix", "v4")
+    baseline = option(args, "--baseline")
+    shots, cycle, out = args[0], args[1], args[2]
+    measurements = args[3] if len(args) > 3 else None
     os.makedirs(os.path.join(out, "key"), exist_ok=True)
 
     names = sorted(f[:-4] for f in os.listdir(shots) if f.endswith(".png"))
     grid([labelled(Image.open(os.path.join(shots, n + ".png")), n) for n in names], 4).save(
         os.path.join(out, "contact_sheet.jpg"), quality=85)
-    for n in KEY_VIEWS:
+    for n in (f"{prefix}_{v}" for v in KEY_VIEWS):
         if n in names:
             Image.open(os.path.join(shots, n + ".png")).convert("RGB").save(os.path.join(out, "key", n + ".jpg"), quality=88)
 
@@ -75,6 +105,9 @@ def main():
             f.write(f"frames={len(frames)} step_median={median:.3f} step_max={max(steps):.3f} "
                     f"at_frame={int(np.argmax(steps))} max_over_median={max(steps) / max(median, 1e-6):.2f}\n")
             f.write(f"seam last_vs_first={float(np.abs(arrays[-1] - arrays[0]).mean()):.3f}\n")
+
+    if baseline and os.path.isdir(baseline):
+        compare_sheet(shots, baseline, prefix, out)
 
     if measurements and os.path.exists(measurements):
         shutil.copy(measurements, os.path.join(out, "measurements.csv"))

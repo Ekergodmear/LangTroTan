@@ -13,10 +13,12 @@ Modes:
   smoke           ProjectBuild.RunChecks (script compile + offline domain/save checks; -nographics)
   compile-shader  smoke + SpiritShaderGraphCheck.Run (Level 6 Shader Graph import/compile report)
   l6-visual       compile-shader + StageSiteCapture.RunL6SpiritV4 (needs a real GPU session)
+  l6-visual-v5    compile-shader + SpiritV5Builder.Build + StageSiteCapture.RunL6SpiritV5 (isolated v5 candidate;
+                  the workflow overlays its files from a qa/* branch), previews include a v4 vs v5 comparison
 Exit code: 0 all run steps passed, 1 a step failed, 2 setup error (Unity, license, lock).
 #>
 param(
-    [Parameter(Mandatory = $true)][ValidateSet('smoke', 'compile-shader', 'l6-visual')][string]$Mode,
+    [Parameter(Mandatory = $true)][ValidateSet('smoke', 'compile-shader', 'l6-visual', 'l6-visual-v5')][string]$Mode,
     [string]$OutDir = (Join-Path $env:TEMP 'unity-qa'),
     [string]$ProjectPath = $(if ($env:GITHUB_WORKSPACE) { $env:GITHUB_WORKSPACE } else { (Resolve-Path "$PSScriptRoot\..\..").Path }),
     [switch]$ResetPackageCache
@@ -25,8 +27,11 @@ $ErrorActionPreference = 'Stop'
 $UnityVersion = '6000.4.3f1'
 $StepTimeoutMin = @{ checks = 30; shader = 20; visual = 45 }
 # The only editor methods this runner may execute.
-$Allowed = @('ProjectBuild.RunChecks', 'SpiritShaderGraphCheck.Run', 'StageSiteCapture.RunL6SpiritV4')
+$Allowed = @('ProjectBuild.RunChecks', 'SpiritShaderGraphCheck.Run', 'StageSiteCapture.RunL6SpiritV4',
+    'SpiritV5Builder.Build', 'StageSiteCapture.RunL6SpiritV5')
 $V4Out = 'Reports/ForgeGUI/scripture_L06/spirit_v4/unity'
+$Fx = if ($Mode -eq 'l6-visual-v5') { 'v5' } else { 'v4' }
+$VisOut = "Reports/ForgeGUI/scripture_L06/spirit_$Fx/unity"
 
 $ProjectPath = (Resolve-Path $ProjectPath).Path
 if (Test-Path $OutDir) { Remove-Item $OutDir -Recurse -Force }
@@ -210,25 +215,35 @@ if (-not $failed -and $Mode -ne 'smoke') {
     }
 }
 
-# ---------------------------------------------------------------- Level 6 v4 visual capture
-if (-not $failed -and $Mode -eq 'l6-visual') {
+# ---------------------------------------------------------------- Level 6 visual capture (v4, or the v5 candidate)
+if (-not $failed -and $Mode -eq 'l6-visual-v5') {
+    # v5 particle prefabs and materials are generated, not committed: build them into the (restored) workspace first
+    $r = Invoke-Unity 'SpiritV5Builder.Build' 'v5build' $StepTimeoutMin.shader $true
+    if ($r.exit -ne 0 -or $r.text -notmatch 'SPIRIT_V5_BUILD_OK' -or $r.projectCs) {
+        $result.visual = 'FAIL'; $failed = $true
+        $result.errors += "v5build: SpiritV5Builder.Build failed (exit $($r.exit)); see logs/v5build.key.log"
+    }
+}
+if (-not $failed -and $Mode -like 'l6-visual*') {
     $t0 = Get-Date
-    $r = Invoke-Unity 'StageSiteCapture.RunL6SpiritV4' 'l6visual' $StepTimeoutMin.visual $true
-    $shots = @('v4_full_hero', 'v4_full_45', 'v4_full_front',
-        'v4_off_gameplay_zoom10', 'v4_reduced_gameplay_zoom10', 'v4_full_gameplay_zoom10',
-        'v4_off_gameplay_zoom21_default', 'v4_reduced_gameplay_zoom21_default', 'v4_full_gameplay_zoom21_default',
-        'v4_off_gameplay_zoom30', 'v4_reduced_gameplay_zoom30', 'v4_full_gameplay_zoom30',
-        'v4_full_close_mist', 'v4_full_close_formation', 'v4_full_close_glyphs', 'v4_full_close_ornament', 'v4_full_close_pillar_formation')
+    $method = if ($Fx -eq 'v5') { 'StageSiteCapture.RunL6SpiritV5' } else { 'StageSiteCapture.RunL6SpiritV4' }
+    $r = Invoke-Unity $method 'l6visual' $StepTimeoutMin.visual $true
+    $shots = @('full_hero', 'full_45', 'full_front',
+        'off_gameplay_zoom10', 'reduced_gameplay_zoom10', 'full_gameplay_zoom10',
+        'off_gameplay_zoom21_default', 'reduced_gameplay_zoom21_default', 'full_gameplay_zoom21_default',
+        'off_gameplay_zoom30', 'reduced_gameplay_zoom30', 'full_gameplay_zoom30',
+        'full_close_mist', 'full_close_formation', 'full_close_glyphs', 'full_close_ornament', 'full_close_pillar_formation') |
+        ForEach-Object { "${Fx}_$_" }
     $shotDir = Join-Path $OutDir 'screenshots'; New-Item -ItemType Directory -Force -Path $shotDir | Out-Null
     $missing = @()
     foreach ($s in $shots) {
-        if (Fresh "$V4Out/$s.png" $t0) { Copy-Item (Join-Path $ProjectPath "$V4Out/$s.png") $shotDir; $result.screenshots += "screenshots/$s.png" }
+        if (Fresh "$VisOut/$s.png" $t0) { Copy-Item (Join-Path $ProjectPath "$VisOut/$s.png") $shotDir; $result.screenshots += "screenshots/$s.png" }
         else { $missing += $s }
     }
-    $frames = @(Get-ChildItem (Join-Path $ProjectPath "$V4Out/cycle") -Filter 'frame_*.png' -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $t0 })
-    if (Fresh "$V4Out/measurements.csv" $t0) { Copy-Item (Join-Path $ProjectPath "$V4Out/measurements.csv") (Join-Path $OutDir 'measurements.csv') }
+    $frames = @(Get-ChildItem (Join-Path $ProjectPath "$VisOut/cycle") -Filter 'frame_*.png' -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $t0 })
+    if (Fresh "$VisOut/measurements.csv" $t0) { Copy-Item (Join-Path $ProjectPath "$VisOut/measurements.csv") (Join-Path $OutDir 'measurements.csv') }
     $done = $r.text -match 'STAGE_SITE_CUSTOM_DONE'
-    if ($r.exit -eq 0 -and $done -and $missing.Count -eq 0 -and $frames.Count -ge 100 -and (Fresh "$V4Out/measurements.csv" $t0)) {
+    if ($r.exit -eq 0 -and $done -and $missing.Count -eq 0 -and $frames.Count -ge 100 -and (Fresh "$VisOut/measurements.csv" $t0)) {
         $result.visual = 'PASS (captured; visual approval is manual)'
     } else {
         $result.visual = 'FAIL'; $failed = $true
@@ -261,8 +276,10 @@ if (-not $failed -and $Mode -eq 'l6-visual') {
             if (Test-Path $venvPy) {
                 & $venvPy -m pip install --disable-pip-version-check --no-input --require-hashes --only-binary=:all: `
                     -r (Join-Path $ProjectPath 'Tools/QA/requirements-qa.txt') 2>&1 | ForEach-Object { "$_" } | Add-Content $previewLog -Encoding UTF8
-                & $venvPy -I (Join-Path $ProjectPath 'Tools/QA/make_previews.py') $shotDir (Join-Path $ProjectPath "$V4Out/cycle") `
-                    $previewDir (Join-Path $OutDir 'measurements.csv') 2>&1 | ForEach-Object { "$_" } | Add-Content $previewLog -Encoding UTF8
+                $previewArgs = @('--prefix', $Fx)
+                if ($Fx -eq 'v5') { $previewArgs += @('--baseline', (Join-Path $ProjectPath $V4Out)) }
+                & $venvPy -I (Join-Path $ProjectPath 'Tools/QA/make_previews.py') $shotDir (Join-Path $ProjectPath "$VisOut/cycle") `
+                    $previewDir (Join-Path $OutDir 'measurements.csv') @previewArgs 2>&1 | ForEach-Object { "$_" } | Add-Content $previewLog -Encoding UTF8
             } else { 'Python not found on the runner' | Add-Content $previewLog -Encoding UTF8 }
         } catch { "$_" | Add-Content $previewLog -Encoding UTF8 }
         finally { $ErrorActionPreference = $eap }
