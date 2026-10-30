@@ -56,6 +56,7 @@ public static class SpiritV5Builder
         var runes = Tex($"{Art}/Textures/T_RuneStripV5.png", true, 1024);
         var glyphs = Tex($"{Art}/Textures/T_ScriptureGlyphsV5.png", false, 512);
         var halo = Tex($"{Art}/Textures/T_OrnamentHaloV5.png", false, 128);
+        var plumeTex = Tex($"{Art}/Textures/T_PlumeV5.png", false, 256);
         var mote = AssetDatabase.LoadAssetAtPath<Texture2D>($"{V4Art}/Textures/T_SpiritMote.png");
 
         var mistSg = AssetDatabase.LoadAssetAtPath<Shader>($"{Shaders}/SG_SpiritMist.shadergraph");
@@ -102,6 +103,18 @@ public static class SpiritV5Builder
         var mBloom = Mat("M_ReleaseGlowV5", mistSg, m =>
         {
             m.SetTexture("_MainTex", bloom); m.SetColor("_Tint", new Color(1f, 1f, 1f, .6f)); m.SetFloat("_EmissionBoost", .1f);
+            m.SetFloat("_DistortStrength", 0); m.SetFloat("_FlipbookTiles", 1); m.SetFloat("_EdgeSoftness", .45f);
+        });
+        // V6 plume: soft vertical wisps; the scrolling distortion keeps them moving like rising smoke, not a beam
+        var mPlume = Mat("M_PlumeV5", mistSg, m =>
+        {
+            m.SetTexture("_MainTex", plumeTex); m.SetColor("_Tint", new Color(1f, 1f, 1f, .7f)); m.SetFloat("_EmissionBoost", .3f);
+            m.SetFloat("_DistortStrength", .08f); m.SetFloat("_DistortScale", 3f); m.SetFloat("_ScrollSpeed", .35f);
+            m.SetFloat("_FlipbookTiles", 1); m.SetFloat("_EdgeSoftness", .12f);
+        });
+        var mSwirl = Mat("M_SwirlV5", mistSg, m =>
+        {
+            m.SetTexture("_MainTex", mote); m.SetColor("_Tint", new Color(1f, 1f, 1f, 1f)); m.SetFloat("_EmissionBoost", 1.1f);
             m.SetFloat("_DistortStrength", 0); m.SetFloat("_FlipbookTiles", 1); m.SetFloat("_EdgeSoftness", .45f);
         });
         Mat("M_FormationBandV5", formSg, m =>
@@ -153,6 +166,26 @@ public static class SpiritV5Builder
             r.maxParticleSize = 4f;
             Size(ps, .6f, 1.15f);
             Fade(ps, .15f, .45f);
+        });
+        // stretched along the (upward) velocity so each wisp is a soft vertical flame of mist
+        Prefab("PS_PlumeV5", mPlume, 24, ps =>
+        {
+            var r = ps.GetComponent<ParticleSystemRenderer>();
+            r.renderMode = ParticleSystemRenderMode.Stretch;
+            r.velocityScale = 0;
+            r.lengthScale = 2.4f;
+            r.maxParticleSize = 1f;
+            Noise(ps, .25f, .6f, .4f);
+            SizeCurve(ps, new Keyframe(0, .45f, 0, 1.8f), new Keyframe(.45f, 1f, .4f, .4f), new Keyframe(1, 1.35f, .2f, 0));
+            Fade(ps, .15f, .5f);
+        });
+        // motes that spiral up round the plume (orbital velocity about the system's vertical axis); also the seeds
+        Prefab("PS_SwirlV5", mSwirl, 40, ps =>
+        {
+            var v = ps.velocityOverLifetime; v.enabled = true; v.space = ParticleSystemSimulationSpace.Local;
+            v.orbitalX = 0; v.orbitalY = 2.6f; v.orbitalZ = 0;
+            Size(ps, 1f, .5f);
+            Fade(ps, .15f, .6f);
         });
         Prefab("PS_ScriptureGlyphsV5", mGlyph, 16, ps =>
         {

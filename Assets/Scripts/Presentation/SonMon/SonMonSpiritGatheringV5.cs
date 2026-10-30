@@ -17,8 +17,20 @@ namespace LangTroTan.Presentation
     //   ornament  a small halo (brighter rim, dim centre) instead of a cyan column
     //   glyphs    bolder curved characters, slightly larger
     // Assets: Resources/SonMon/VFX/L6v5 (built by SpiritV5Builder); motes reuse the v4 prefabs.
+    //
+    // V6 release concept (ReleaseStyle.Plume, the default): keeps every v5 change above but replaces the flat waves,
+    // which do not read at gameplay zoom, with a vertical release over the main pavilion:
+    //   7.4-8.3 s  spirit seeds drift in from a ring round the main roof towards its ridge (gathering)
+    //   8.0-9.3 s  a soft jade-gold plume of elongated, translucent wisps rises above the central roof, with a few
+    //              motes spiralling up round it (orbital velocity, no per-particle updates)
+    //   ~9.0 s     readable peak (plume ~4-5 units tall, scaled with camera distance), then it thins and dissolves
+    // No laser core: every plume particle is a soft, noisy, alpha-blended wisp that fades over its whole life.
+    // (V6 lives in the v5 files because the trusted QA overlay only accepts *V5* candidate paths.)
     public sealed class SonMonSpiritGatheringV5 : MonoBehaviour
     {
+        public enum ReleaseStyle { Waves, Plume }  // Waves = v5 iteration 3, Plume = V6 concept
+        public static ReleaseStyle? StyleOverride;  // QA only
+        public ReleaseStyle Style => StyleOverride ?? ReleaseStyle.Plume;
         public const float Cycle = 10f;
         public const float MidDistance = 42f, FarDistance = 70f;
         public static SonMonSpiritGathering.Mode? ModeOverride;  // QA only
@@ -42,7 +54,7 @@ namespace LangTroTan.Presentation
         public SonMonSpiritGathering.Lod ActiveLod { get; private set; } = SonMonSpiritGathering.Lod.Near;
         public float Phase => (float)(time % Cycle);
 
-        ParticleSystem mist, jade, gold, pillarGlow, ornamentGlow, wave, bloom, glyphs;
+        ParticleSystem mist, jade, gold, pillarGlow, ornamentGlow, wave, bloom, glyphs, plume, swirl;
         MeshRenderer band, seals;
         readonly List<Mesh> meshes = new List<Mesh>();
         readonly ParticleSystem.Particle[] glowBuf = new ParticleSystem.Particle[8];
@@ -51,7 +63,8 @@ namespace LangTroTan.Presentation
         MaterialPropertyBlock block;
         System.Random rng;
         double time;
-        float awakenT = -1, prevPhase, accMist, accGather, accJade, accGold, bandTiling, camDistance;
+        float awakenT = -1, prevPhase, accMist, accGather, accJade, accGold, accSeed, accPlume, accSwirl, bandTiling, camDistance;
+        Vector3 apex;
         Vector3 camLocal;
         bool built, lowerWavePending;
         static Camera cam;
@@ -95,6 +108,12 @@ namespace LangTroTan.Presentation
                 wave = Spawn(V5 + "PS_ReleaseWaveV5");
                 bloom = Spawn(V5 + "PS_ReleaseGlowV5");
                 glyphs = Spawn(V5 + "PS_ScriptureGlyphsV5");
+                // plume systems sit on the main roof's vertical axis so orbital velocity spirals round it
+                apex = new Vector3((hallMin.x + hallMax.x) * .5f, hallMax.y - .25f, (hallMin.z + hallMax.z) * .5f);
+                plume = Spawn(V5 + "PS_PlumeV5");
+                swirl = Spawn(V5 + "PS_SwirlV5");
+                plume.transform.localPosition = apex;
+                swirl.transform.localPosition = apex;
                 ConfigureGlyphs();
             }
             BuildMistRects();
@@ -137,7 +156,7 @@ namespace LangTroTan.Presentation
             for (int i = transform.childCount - 1; i >= 0; i--) Kill(transform.GetChild(i).gameObject);
             foreach (var m in meshes) Kill(m);
             meshes.Clear();
-            mist = jade = gold = pillarGlow = ornamentGlow = wave = bloom = glyphs = null;
+            mist = jade = gold = pillarGlow = ornamentGlow = wave = bloom = glyphs = plume = swirl = null;
             band = seals = null;
             built = false;
         }
@@ -246,13 +265,15 @@ namespace LangTroTan.Presentation
                 ornamentGlow.SetParticles(glowBuf, n);
             }
 
-            // release (all distances): upper-terrace wave and stair-foot bloom at 8 s, lower-landing wave just after
-            if (full)
+            // release (all distances)
+            if (full && Style == ReleaseStyle.Waves)
             {
+                // v5: upper-terrace waves and stair-foot bloom at 8 s, lower-landing wave just after
                 if (prevPhase < ReleaseAt && p >= ReleaseAt) { EmitUpperWave(); lowerWavePending = true; }
                 if (lowerWavePending && p >= ReleaseAt + LowerWaveDelay) { EmitLowerWave(); lowerWavePending = false; }
                 if (p < ReleaseAt) lowerWavePending = false;
             }
+            else if (full) UpdatePlume(dt, p, lod, far01);
 
             if (lod == SonMonSpiritGathering.Lod.Far) { prevPhase = p; return; }
             float g = GatherK(p);
@@ -276,6 +297,59 @@ namespace LangTroTan.Presentation
                 }
             }
             prevPhase = p;
+        }
+
+        // V6: seeds gather to the roof ridge, then a soft plume and a few spiralling motes rise above it. Emission
+        // windows are smooth in time and every particle fades in and out, so the start and end never pop.
+        void UpdatePlume(float dt, float p, SonMonSpiritGathering.Lod lod, float far01)
+        {
+            float grow = 1f + 1.3f * far01;  // plume stays readable when the building is small on screen
+            if (lod != SonMonSpiritGathering.Lod.Far)
+            {
+                accSeed += 11f * Smooth(7.3f, 7.7f, p) * (1 - Smooth(8f, 8.3f, p)) * dt;
+                while (accSeed >= 1) { accSeed -= 1; EmitSeed(); }
+                accSwirl += 15f * Smooth(8.05f, 8.3f, p) * (1 - Smooth(9f, 9.4f, p)) * dt;
+                while (accSwirl >= 1) { accSwirl -= 1; EmitSwirl(grow); }
+            }
+            accPlume += 11f * Smooth(7.95f, 8.2f, p) * (1 - Smooth(8.9f, 9.3f, p)) * dt;
+            while (accPlume >= 1) { accPlume -= 1; EmitPlume(grow); }
+        }
+
+        void EmitSeed()
+        {
+            float a = Rand(0, Mathf.PI * 2), rad = Rand(1.4f, 2f);
+            var local = new Vector3(Mathf.Cos(a) * rad, Rand(-.9f, -.4f), Mathf.Sin(a) * rad);
+            float life = Rand(.7f, .95f);
+            ep = default;
+            ep.position = local;
+            ep.velocity = -local * (.95f / life);
+            ep.startLifetime = life;
+            ep.startSize = Rand(.06f, .1f);
+            ep.startColor = rng.NextDouble() < .5 ? new Color(1f, .88f, .55f, .9f) : new Color(.6f, 1f, .85f, .9f);
+            swirl.Emit(ep, 1);
+        }
+
+        void EmitPlume(float grow)
+        {
+            ep = default;
+            ep.position = new Vector3(Rand(-.12f, .12f), Rand(0f, .15f), Rand(-.12f, .12f));
+            ep.velocity = new Vector3(Rand(-.05f, .05f), Rand(1.5f, 2.1f) * Mathf.Sqrt(grow), Rand(-.05f, .05f));
+            ep.startLifetime = Rand(1.5f, 1.9f);
+            ep.startSize = Rand(.8f, 1.05f) * grow;
+            ep.startColor = rng.NextDouble() < .6 ? new Color(.75f, 1f, .88f, .8f) : new Color(1f, .9f, .62f, .75f);
+            plume.Emit(ep, 1);
+        }
+
+        void EmitSwirl(float grow)
+        {
+            float a = Rand(0, Mathf.PI * 2), rad = Rand(.45f, .7f) * grow;
+            ep = default;
+            ep.position = new Vector3(Mathf.Cos(a) * rad, Rand(0f, .3f), Mathf.Sin(a) * rad);
+            ep.velocity = new Vector3(0, Rand(1.1f, 1.5f) * Mathf.Sqrt(grow), 0);
+            ep.startLifetime = Rand(1.4f, 1.8f);
+            ep.startSize = Rand(.07f, .11f) * grow;
+            ep.startColor = rng.NextDouble() < .5 ? new Color(1f, .86f, .5f, .95f) : new Color(.62f, 1f, .86f, .95f);
+            swirl.Emit(ep, 1);
         }
 
         // Flat waves over the upper tier, elliptical and kept inside the lot. The upper tier is not flat: its raised
@@ -457,6 +531,8 @@ namespace LangTroTan.Presentation
             Run(mist, lod != SonMonSpiritGathering.Lod.Far);
             Run(wave, true);
             Run(bloom, true);
+            Run(plume, true);
+            Run(swirl, lod != SonMonSpiritGathering.Lod.Far);
         }
 
         static void Run(ParticleSystem ps, bool on)

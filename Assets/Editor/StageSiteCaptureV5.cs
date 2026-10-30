@@ -18,9 +18,12 @@ public static partial class StageSiteCapture
         bool gate = SonMonTiers.Enabled;
         var reducedOverride = SonMonUpgradeFx.SessionOverride;
         var modeOverride = SonMonSpiritGatheringV5.ModeOverride;
+        var styleOverride = SonMonSpiritGatheringV5.StyleOverride;
         try
         {
             SonMonTiers.Enabled = true;
+            // V6 release concept (vertical plume); the v5 wave release is SonMonSpiritGatheringV5.ReleaseStyle.Waves
+            SonMonSpiritGatheringV5.StyleOverride = SonMonSpiritGatheringV5.ReleaseStyle.Plume;
             spiritTarget = L6V2;
             customShots = SpiritShotsV5;
             Capture(new[] { L5, L6V2 }, "Reports/ForgeGUI/scripture_L06/spirit_v5/unity");
@@ -30,6 +33,7 @@ public static partial class StageSiteCapture
             SonMonTiers.Enabled = gate;
             SonMonUpgradeFx.SessionOverride = reducedOverride;
             SonMonSpiritGatheringV5.ModeOverride = modeOverride;
+            SonMonSpiritGatheringV5.StyleOverride = styleOverride;
         }
     }
 
@@ -91,6 +95,7 @@ public static partial class StageSiteCapture
         foreach (var mc in probeColliders) UnityEngine.Object.DestroyImmediate(mc);
         float Median(float[] v) { var s = v.Where(x => !float.IsNaN(x)).OrderBy(x => x).ToArray(); return s.Length == 0 ? float.NaN : s[s.Length / 2]; }
         float upperTop = Median(new[] { upper[0], upper[1] }), upperFrontTop = Median(new[] { upper[2], upper[3] }), lowerTop = Median(lower);
+        report.Add($"v5,style,{sg.Style},note,V6 release concept captured under the v5 file names");
         report.Add($"v5,surface,anchorTier1,{a.tier1[4] * k:0.000},measuredLower,{lowerTop:0.000},anchorTier2,{a.tier2[4] * k:0.000},measuredUpper,{upperTop:0.000},measuredUpperFront,{upperFrontTop:0.000},probesUpper,{string.Join("/", upper.Select(x => x.ToString("0.000")))},probesLower,{string.Join("/", lower.Select(x => x.ToString("0.000")))}");
         if (!float.IsNaN(upperTop) && !float.IsNaN(lowerTop) && !float.IsNaN(upperFrontTop)) sg.SetSurfaceHeights(lowerTop, upperTop, upperFrontTop);
         void Run(float seconds, Vector3 camPos) { for (float t = 0; t < seconds; t += dt) sg.Step(dt, camPos); }
@@ -146,7 +151,9 @@ public static partial class StageSiteCapture
                 maxParticles = Mathf.Max(maxParticles, sg.ParticleCount());
                 foreach (var ps in fxGo.GetComponentsInChildren<ParticleSystem>())
                 {
-                    bool skipClip = ps.name == "PS_PillarGlowV5" || ps.name == "PS_OrnamentHaloV5" || ps.name == "PS_ReleaseWaveV5" || ps.name == "PS_ReleaseGlowV5";
+                    // glows and the release (waves, or the V6 plume and its spiral above the roof) are not terrace mist
+                    bool skipClip = ps.name == "PS_PillarGlowV5" || ps.name == "PS_OrnamentHaloV5" || ps.name == "PS_ReleaseWaveV5" || ps.name == "PS_ReleaseGlowV5"
+                        || ps.name == "PS_PlumeV5" || ps.name == "PS_SwirlV5";
                     int n = ps.GetParticles(buf);
                     for (int i = 0; i < n; i++)
                     {

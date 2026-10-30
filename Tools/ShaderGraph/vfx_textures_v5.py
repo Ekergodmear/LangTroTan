@@ -201,3 +201,19 @@ for k in range(n * n):
     a = a / max(a.max(), 1e-6) * (.75 + .15 * math.sin(t * 6.28))  # every cell equally present
     book[(k // n) * cell:(k // n + 1) * cell, (k % n) * cell:(k % n + 1) * cell] = a
 save("T_SpiritMistV5_Flipbook.png", book)
+
+# ---------------------------------------------------------------- V6 plume wisp (128 x 256, vertical)
+# A soft, rising flame of mist: jade core, warm gold rim, frayed by noise, tapering to nothing at both ends so the
+# shader's round edge fade never shows. Rendered as a stretched billboard along the upward velocity.
+w, h = 128, 256
+yy, xx = np.mgrid[0:h, 0:w]
+u, v = (xx + .5) / w - .5, 1 - (yy + .5) / h  # v = 0 bottom .. 1 top
+noise = fbm((h, w), 1301, octaves=4, base=3)
+sway = (fbm((h, 1), 1302, octaves=3, base=2)[:, 0][:, None] - .5) * .18  # gentle sideways drift up the wisp
+width = (.2 - .1 * v) * (.75 + .5 * noise)
+core = np.exp(-((u - sway) / np.maximum(width, 1e-3)) ** 2)
+taper = smooth(.02, .22, v) * smooth(.98, .6, v)
+alpha = core * taper * (.6 + .4 * fbm((h, w), 1303, octaves=3, base=6))
+edge = np.clip(np.abs(u - sway) / np.maximum(width, 1e-3), 0, 1)[..., None]
+rgb = np.array([.55, 1.0, .85]) * (1 - edge) + np.array([1.0, .85, .5]) * edge
+save("T_PlumeV5.png", alpha, rgb)
