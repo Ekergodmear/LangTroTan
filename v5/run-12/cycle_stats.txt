@@ -1,0 +1,2 @@
+frames=101 step_median=0.086 step_max=0.209 at_frame=91 max_over_median=2.44
+seam last_vs_first=0.429
