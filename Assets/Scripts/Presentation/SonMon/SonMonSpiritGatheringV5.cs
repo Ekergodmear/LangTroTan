@@ -303,7 +303,7 @@ namespace LangTroTan.Presentation
         // windows are smooth in time and every particle fades in and out, so the start and end never pop.
         void UpdatePlume(float dt, float p, SonMonSpiritGathering.Lod lod, float far01)
         {
-            float grow = 1f + 1.3f * far01;  // plume stays readable when the building is small on screen
+            float grow = 1f + 2f * far01;  // plume stays readable when the building is small on screen
             if (lod != SonMonSpiritGathering.Lod.Far)
             {
                 accSeed += 11f * Smooth(7.3f, 7.7f, p) * (1 - Smooth(8f, 8.3f, p)) * dt;
@@ -333,10 +333,10 @@ namespace LangTroTan.Presentation
         {
             ep = default;
             ep.position = new Vector3(Rand(-.12f, .12f), Rand(0f, .15f), Rand(-.12f, .12f));
-            ep.velocity = new Vector3(Rand(-.05f, .05f), Rand(1.5f, 2.1f) * Mathf.Sqrt(grow), Rand(-.05f, .05f));
-            ep.startLifetime = Rand(1.5f, 1.9f);
+            ep.velocity = new Vector3(Rand(-.05f, .05f), Rand(1.9f, 2.5f) * Mathf.Sqrt(grow), Rand(-.05f, .05f));
+            ep.startLifetime = Rand(1.8f, 2.3f);
             ep.startSize = Rand(.8f, 1.05f) * grow;
-            ep.startColor = rng.NextDouble() < .6 ? new Color(.75f, 1f, .88f, .8f) : new Color(1f, .9f, .62f, .75f);
+            ep.startColor = rng.NextDouble() < .55 ? new Color(.7f, 1f, .86f, .95f) : new Color(1f, .86f, .5f, .9f);
             plume.Emit(ep, 1);
         }
 

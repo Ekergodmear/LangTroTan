@@ -108,7 +108,7 @@ public static class SpiritV5Builder
         // V6 plume: soft vertical wisps; the scrolling distortion keeps them moving like rising smoke, not a beam
         var mPlume = Mat("M_PlumeV5", mistSg, m =>
         {
-            m.SetTexture("_MainTex", plumeTex); m.SetColor("_Tint", new Color(1f, 1f, 1f, .7f)); m.SetFloat("_EmissionBoost", .3f);
+            m.SetTexture("_MainTex", plumeTex); m.SetColor("_Tint", new Color(1f, 1f, 1f, .88f)); m.SetFloat("_EmissionBoost", .4f);
             m.SetFloat("_DistortStrength", .08f); m.SetFloat("_DistortScale", 3f); m.SetFloat("_ScrollSpeed", .35f);
             m.SetFloat("_FlipbookTiles", 1); m.SetFloat("_EdgeSoftness", .12f);
         });
