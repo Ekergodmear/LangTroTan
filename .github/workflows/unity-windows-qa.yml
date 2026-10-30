@@ -19,6 +19,11 @@ on:
         type: string
         required: false
         default: ""
+      reset_package_cache:
+        description: "Delete only Library/PackageCache, ScriptAssemblies and Bee before running (imported assets are kept)"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -36,6 +41,7 @@ jobs:
     env:
       QA_MODE: ${{ inputs.mode }}
       QA_EXPECTED_SHA: ${{ inputs.expected_sha }}
+      QA_RESET_PACKAGE_CACHE: ${{ inputs.reset_package_cache }}
       QA_GITHUB_SHA: ${{ github.sha }}
     steps:
       - name: Checkout (keeps the ignored Library cache)
@@ -65,7 +71,8 @@ jobs:
       - name: Run Unity QA
         shell: powershell
         run: |
-          & "$env:GITHUB_WORKSPACE\Tools\QA\unity_qa.ps1" -Mode $env:QA_MODE -OutDir "$env:RUNNER_TEMP\unity-qa"
+          $reset = $env:QA_RESET_PACKAGE_CACHE -eq 'true'
+          & "$env:GITHUB_WORKSPACE\Tools\QA\unity_qa.ps1" -Mode $env:QA_MODE -OutDir "$env:RUNNER_TEMP\unity-qa" -ResetPackageCache:$reset
           exit $LASTEXITCODE
 
       - name: Upload QA artifacts
