@@ -31,6 +31,11 @@ $V4Out = 'Reports/ForgeGUI/scripture_L06/spirit_v4/unity'
 $ProjectPath = (Resolve-Path $ProjectPath).Path
 if (Test-Path $OutDir) { Remove-Item $OutDir -Recurse -Force }
 New-Item -ItemType Directory -Force -Path (Join-Path $OutDir 'logs') | Out-Null
+# Full Unity logs stay outside the artifact folder: Unity's helper processes can keep them open after it exits.
+$FullLogDir = "$OutDir-full-logs"
+New-Item -ItemType Directory -Force -Path $FullLogDir | Out-Null
+Get-ChildItem $FullLogDir -File -ErrorAction SilentlyContinue | Remove-Item -Force -ErrorAction SilentlyContinue
+$RunStamp = Get-Date -Format 'yyyyMMdd-HHmmss'
 $sha = (git -C $ProjectPath rev-parse HEAD).Trim()
 $result = [ordered]@{
     commit = $sha; mode = $Mode; unity = $UnityVersion; editor = ''; cacheReset = [bool]$ResetPackageCache; renderer = ''
@@ -112,7 +117,7 @@ if ($ResetPackageCache) {
 # ---------------------------------------------------------------- Unity runner
 function Invoke-Unity([string]$method, [string]$name, [int]$timeoutMin, [bool]$graphics) {
     if ($Allowed -notcontains $method) { throw "Method $method is not allowlisted" }
-    $log = Join-Path $OutDir "logs/$name.full.log"
+    $log = Join-Path $FullLogDir "$name-$RunStamp.log"
     $unityArgs = @('-batchmode', '-quit', '-projectPath', "`"$ProjectPath`"", '-executeMethod', $method, '-logFile', "`"$log`"")
     if (-not $graphics) { $unityArgs += '-nographics' }
     Write-Host "Unity: $method ($name, timeout $timeoutMin min)"
@@ -124,7 +129,7 @@ function Invoke-Unity([string]$method, [string]$name, [int]$timeoutMin, [bool]$g
         return @{ exit = -1; log = $log; text = '' }
     }
     $text = if (Test-Path $log) { Get-Content $log -Raw } else { '' }
-    # Keep a 300-line tail and the key lines for the artifact, then delete the full log.
+    # Keep a 300-line tail and the key lines for the artifact; the full log stays in $FullLogDir on the runner.
     if (Test-Path $log) {
         $lines = Get-Content $log
         $lines | Select-Object -Last 300 | Set-Content (Join-Path $OutDir "logs/$name.tail.log") -Encoding UTF8
@@ -136,7 +141,6 @@ function Invoke-Unity([string]$method, [string]$name, [int]$timeoutMin, [bool]$g
             $from = [Math]::Max(0, $first.LineNumber - 41)
             $lines[$from..($first.LineNumber - 1)] | Set-Content (Join-Path $OutDir "logs/$name.first-error.log") -Encoding UTF8
         }
-        Remove-Item $log -Force
     }
     if ($text -match 'No valid Unity Editor license|License is not active|Failed to activate|ULF license') {
         $result.errors += "${name}: Unity license problem (see logs/$name.key.log)"
