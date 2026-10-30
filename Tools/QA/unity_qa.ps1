@@ -244,10 +244,20 @@ if (-not $failed -and $Mode -eq 'l6-visual') {
             $gif = Join-Path $OutDir 'cycle_10s_hero.gif'
             $pyArgs = @()
             if ($py.Name -like 'py*.exe' -and $py.Name -notlike 'python*') { $pyArgs += '-3' }
-            & $py.Source @pyArgs -I (Join-Path $ProjectPath 'Tools/ShaderGraph/cycle_report.py') (Join-Path $ProjectPath "$V4Out/cycle") $gif 10 seam 2>&1 |
-                Set-Content (Join-Path $OutDir 'logs/cycle_report.log') -Encoding UTF8
-            if (Test-Path $gif) { $result.gifs += 'cycle_10s_hero.gif' } else { $result.errors += 'gif: cycle_report.py did not produce a GIF (see logs/cycle_report.log)' }
-        } else { $result.errors += 'gif: Python not found on the runner; GIF skipped' }
+            # The GIF is optional: Python writing to stderr must not abort the run (PowerShell 5.1 turns redirected
+            # native stderr into terminating errors under ErrorActionPreference Stop).
+            $eap = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+            try {
+                & $py.Source @pyArgs -I (Join-Path $ProjectPath 'Tools/ShaderGraph/cycle_report.py') (Join-Path $ProjectPath "$V4Out/cycle") $gif 10 seam 2>&1 |
+                    ForEach-Object { "$_" } | Set-Content (Join-Path $OutDir 'logs/cycle_report.log') -Encoding UTF8
+            } catch { "$_" | Add-Content (Join-Path $OutDir 'logs/cycle_report.log') -Encoding UTF8 }
+            finally { $ErrorActionPreference = $eap }
+            if (Test-Path $gif) { $result.gifs += 'cycle_10s_hero.gif' }
+            else {
+                $last = Get-Content (Join-Path $OutDir 'logs/cycle_report.log') -ErrorAction SilentlyContinue | Where-Object { $_ -match '\S' } | Select-Object -Last 1
+                $result.warnings += "gif: cycle_report.py did not produce a GIF ($last); see logs/cycle_report.log"
+            }
+        } else { $result.warnings += 'gif: Python not found on the runner; GIF skipped' }
     }
 }
 
