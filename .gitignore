@@ -43,3 +43,6 @@ crashlytics-build.properties
 
 # Claude Code per-user settings
 /.claude/settings.local.json
+
+# Project-scoped Python venv for QA preview tools (Tools/QA/requirements-qa.txt)
+/Tools/QA/.venv/
