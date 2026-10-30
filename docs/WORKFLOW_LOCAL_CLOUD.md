@@ -59,4 +59,4 @@ Next action:
 ```
 
 ## Automation
-No self-hosted runners, cloud infrastructure, paid services or new dependencies without approval. Prefer the existing scripts above; propose any new automation with its setup and maintenance cost first.
+Remote Unity QA from Cloud: the manual **Unity Windows QA** workflow (modes `smoke`, `compile-shader`, `l6-visual`) on the Windows self-hosted runner, see `docs/UNITY_QA_RUNNER.md`. No other runners, cloud infrastructure, paid services or new dependencies without approval; propose any new automation with its setup and maintenance cost first.

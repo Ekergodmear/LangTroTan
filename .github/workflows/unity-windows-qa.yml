@@ -1,0 +1,85 @@
+# Manual Unity QA on the Windows self-hosted runner (see docs/UNITY_QA_RUNNER.md).
+# Runs only allowlisted, read-only QA editor methods through Tools/QA/unity_qa.ps1. No builds, servers or databases.
+name: Unity Windows QA
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "QA mode"
+        type: choice
+        required: true
+        default: smoke
+        options:
+          - smoke
+          - compile-shader
+          - l6-visual
+      expected_sha:
+        description: "Optional commit SHA (7-40 hex) that main must be at"
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unity-windows-qa
+  cancel-in-progress: false
+
+jobs:
+  unity-qa:
+    # Initial rollout: main of this repository only.
+    if: github.repository == 'Ekergodmear/LangTroTan' && github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, Windows, X64, unity-qa]
+    timeout-minutes: 90
+    env:
+      QA_MODE: ${{ inputs.mode }}
+      QA_EXPECTED_SHA: ${{ inputs.expected_sha }}
+      QA_GITHUB_SHA: ${{ github.sha }}
+    steps:
+      - name: Checkout (keeps the ignored Library cache)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          fetch-depth: 1
+          lfs: false
+          clean: false
+          persist-credentials: false
+
+      - name: Validate repository, branch, commit and mode
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($env:QA_MODE -notin @('smoke', 'compile-shader', 'l6-visual')) { throw "Unknown mode" }
+          $head = (git rev-parse HEAD).Trim()
+          if ($head -ne $env:QA_GITHUB_SHA) { throw "Checked-out HEAD $head does not match $env:QA_GITHUB_SHA" }
+          if ($env:QA_EXPECTED_SHA) {
+            if ($env:QA_EXPECTED_SHA -notmatch '^[0-9a-fA-F]{7,40}$') { throw "expected_sha must be 7-40 hex characters" }
+            if (-not $head.StartsWith($env:QA_EXPECTED_SHA.ToLower())) { throw "main is at $head, not $env:QA_EXPECTED_SHA" }
+          }
+          # Reset tracked files and remove untracked, non-ignored files (Library/ and other ignored caches stay).
+          git reset --hard HEAD
+          git clean -fd
+          Write-Host "Validated $head ($env:QA_MODE)"
+
+      - name: Run Unity QA
+        shell: powershell
+        run: |
+          & "$env:GITHUB_WORKSPACE\Tools\QA\unity_qa.ps1" -Mode $env:QA_MODE -OutDir "$env:RUNNER_TEMP\unity-qa"
+          exit $LASTEXITCODE
+
+      - name: Upload QA artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
+        with:
+          name: unity-qa-${{ inputs.mode }}-${{ github.run_number }}
+          path: ${{ runner.temp }}/unity-qa/
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Restore working tree
+        if: always()
+        shell: powershell
+        run: |
+          git reset --hard HEAD
+          git clean -fd
