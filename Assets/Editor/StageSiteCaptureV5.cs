@@ -90,9 +90,9 @@ public static partial class StageSiteCapture
         var lower = new[] { Probe(-2.6f, landZ), Probe(2.6f, landZ), Probe(-1.4f, landZ), Probe(1.4f, landZ) };
         foreach (var mc in probeColliders) UnityEngine.Object.DestroyImmediate(mc);
         float Median(float[] v) { var s = v.Where(x => !float.IsNaN(x)).OrderBy(x => x).ToArray(); return s.Length == 0 ? float.NaN : s[s.Length / 2]; }
-        float upperTop = Median(upper), lowerTop = Median(lower);
-        report.Add($"v5,surface,anchorTier1,{a.tier1[4] * k:0.000},measuredLower,{lowerTop:0.000},anchorTier2,{a.tier2[4] * k:0.000},measuredUpper,{upperTop:0.000},probesUpper,{string.Join("/", upper.Select(x => x.ToString("0.000")))},probesLower,{string.Join("/", lower.Select(x => x.ToString("0.000")))}");
-        if (!float.IsNaN(upperTop) && !float.IsNaN(lowerTop)) sg.SetSurfaceHeights(lowerTop, upperTop);
+        float upperTop = Median(new[] { upper[0], upper[1] }), upperFrontTop = Median(new[] { upper[2], upper[3] }), lowerTop = Median(lower);
+        report.Add($"v5,surface,anchorTier1,{a.tier1[4] * k:0.000},measuredLower,{lowerTop:0.000},anchorTier2,{a.tier2[4] * k:0.000},measuredUpper,{upperTop:0.000},measuredUpperFront,{upperFrontTop:0.000},probesUpper,{string.Join("/", upper.Select(x => x.ToString("0.000")))},probesLower,{string.Join("/", lower.Select(x => x.ToString("0.000")))}");
+        if (!float.IsNaN(upperTop) && !float.IsNaN(lowerTop) && !float.IsNaN(upperFrontTop)) sg.SetSurfaceHeights(lowerTop, upperTop, upperFrontTop);
         void Run(float seconds, Vector3 camPos) { for (float t = 0; t < seconds; t += dt) sg.Step(dt, camPos); }
         void RunTo(float phase, Vector3 camPos) { float wait = (phase - sg.Phase + SonMonSpiritGatheringV5.Cycle) % SonMonSpiritGatheringV5.Cycle; Run(wait < 2.5f ? wait + 10f : wait, camPos); }
         foreach (var mode in new[] { SonMonSpiritGathering.Mode.Off, SonMonSpiritGathering.Mode.Full, SonMonSpiritGathering.Mode.Reduced })

@@ -136,14 +136,15 @@ public static class SpiritV5Builder
         Prefab("PS_PillarGlowV5", mGlow, 8, ps => ps.GetComponent<ParticleSystemRenderer>().pivot = new Vector3(0, 0, .5f));
         Prefab("PS_OrnamentHaloV5", mHalo, 4, ps => ps.GetComponent<ParticleSystemRenderer>().pivot = new Vector3(0, 0, .4f));
         // flat release waves: fast early expansion, long readable hold, soft fade; 3D start size gives elliptical waves
-        Prefab("PS_ReleaseWaveV5", mWave, 4, ps =>
+        Prefab("PS_ReleaseWaveV5", mWave, 6, ps =>
         {
             var main = ps.main; main.startSize3D = true;
             var r = ps.GetComponent<ParticleSystemRenderer>();
             r.renderMode = ParticleSystemRenderMode.HorizontalBillboard;
             r.maxParticleSize = 4f;
-            SizeCurve(ps, new Keyframe(0, .22f, 0, 2.2f), new Keyframe(.55f, .88f, .6f, .6f), new Keyframe(1, 1f, .1f, 0));
-            Fade(ps, .1f, .62f);
+            // starts already around the hall (no hidden first half), holds full strength for most of its life
+            SizeCurve(ps, new Keyframe(0, .5f, 0, 1.4f), new Keyframe(.5f, .92f, .3f, .3f), new Keyframe(1, 1f, .1f, 0));
+            Fade(ps, .08f, .75f);
         });
         Prefab("PS_ReleaseGlowV5", mBloom, 2, ps =>
         {

@@ -36,7 +36,7 @@ namespace LangTroTan.Presentation
         [SerializeField] Vector3[] pillars = new Vector3[0];
         [SerializeField] Vector3 ornament, hallMin, hallMax;
         [SerializeField] Vector4 tier1, tier2, allowed = new Vector4(-1e3f, 1e3f, -1e3f, 1e3f);
-        [SerializeField] float tier1Top = .47f, tier2Top = .94f;
+        [SerializeField] float tier1Top = .47f, tier2Top = .94f, tier2FrontTop = .94f;
 
         public SonMonSpiritGathering.Mode ActiveMode { get; private set; } = SonMonSpiritGathering.Mode.Off;
         public SonMonSpiritGathering.Lod ActiveLod { get; private set; } = SonMonSpiritGathering.Lod.Near;
@@ -61,11 +61,14 @@ namespace LangTroTan.Presentation
             Vector4 tier1XZ, Vector4 tier2XZ, float tier1Height, float tier2Height, Vector4 allowedXZ)
         {
             pillars = pillarCrystals; ornament = ornamentLocal; hallMin = hallMinLocal; hallMax = hallMaxLocal;
-            tier1 = tier1XZ; tier2 = tier2XZ; tier1Top = tier1Height; tier2Top = tier2Height; allowed = allowedXZ;
+            tier1 = tier1XZ; tier2 = tier2XZ; tier1Top = tier1Height; tier2Top = tier2FrontTop = tier2Height; allowed = allowedXZ;
         }
 
         // Measured walkable surface heights (local), when the anchor tier heights sit below the real paving
-        public void SetSurfaceHeights(float lowerTop, float upperTop) { tier1Top = lowerTop; tier2Top = upperTop; }
+        public void SetSurfaceHeights(float lowerTop, float upperTop, float upperFrontTop)
+        {
+            tier1Top = lowerTop; tier2Top = upperTop; tier2FrontTop = upperFrontTop;
+        }
 
         // ---------------------------------------------------------------- build
         // awaken: as v4, only right after a server-confirmed upgrade swap (never when a saved game is loaded).
@@ -275,13 +278,19 @@ namespace LangTroTan.Presentation
             prevPhase = p;
         }
 
-        // Flat wave over the upper terrace, elliptical to the tier and kept inside the lot
+        // Flat waves over the upper tier, elliptical and kept inside the lot. The upper tier is not flat: its raised
+        // middle/back terraces and its lower front strip each get a wave at their own height (each is hidden where the
+        // other surface is higher), so no wave floats above the paving.
         void EmitUpperWave()
         {
-            float cz = (tier2.z + tier2.w) * .5f;
             float halfX = Mathf.Min(Mathf.Max(Mathf.Abs(tier2.x), Mathf.Abs(tier2.y)), Mathf.Min(ornament.x - allowed.x, allowed.y - ornament.x));
-            float halfZ = Mathf.Min((tier2.w - tier2.z) * .5f + .25f, Mathf.Min(cz - allowed.z, allowed.w - cz));
-            EmitWave(new Vector3(ornament.x, tier2Top + WaveLift, cz), halfX * 2f * .98f, halfZ * 2f * .98f, 2.2f);
+            float midZ = (tier2.z + tier2.w) * .5f;
+            float czBack = (midZ + tier2.w) * .5f;
+            float halfBack = Mathf.Min((tier2.w - midZ) * .5f + .6f, Mathf.Min(czBack - allowed.z, allowed.w - czBack));
+            EmitWave(new Vector3(ornament.x, tier2Top + WaveLift, czBack), halfX * 2f * .98f, halfBack * 2f * .98f, 2.2f);
+            float czFront = tier2.z + (midZ - tier2.z) * .5f;
+            float halfFront = Mathf.Min((midZ - tier2.z) * .5f + .3f, Mathf.Min(czFront - allowed.z, allowed.w - czFront));
+            EmitWave(new Vector3(ornament.x, tier2FrontTop + WaveLift, czFront), halfX * 2f * .98f, halfFront * 2f * .98f, 2.2f);
             ep = default;
             ep.position = new Vector3(ornament.x, tier1Top + WaveLift, (tier1.z + tier2.z) * .5f);
             ep.velocity = Vector3.zero;
