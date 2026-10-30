@@ -92,9 +92,19 @@ if (Test-Path (Join-Path $ProjectPath 'Temp/UnityLockfile')) {
     try { Remove-Item (Join-Path $ProjectPath 'Temp/UnityLockfile') -Force } catch { Stop-Setup 'Project lock file is held by another process' }
 }
 if ($ResetPackageCache) {
-    foreach ($rel in @('Library/PackageCache', 'Library/ScriptAssemblies', 'Library/Bee')) {
-        $dir = Join-Path $ProjectPath $rel
-        if (Test-Path $dir) { Write-Host "Removing $rel"; Remove-Item $dir -Recurse -Force }
+    # Only inside this project's Library, never through a junction or symlink (PowerShell 5.1 would delete the target).
+    $library = Join-Path $ProjectPath 'Library'
+    if ((Test-Path $library) -and ((Get-Item $library -Force).Attributes -band [IO.FileAttributes]::ReparsePoint)) { Stop-Setup 'Library is a link; refusing to reset it' }
+    foreach ($name in @('PackageCache', 'ScriptAssemblies', 'Bee')) {
+        $dir = Join-Path $library $name
+        if (-not (Test-Path $dir)) { continue }
+        $item = Get-Item $dir -Force
+        if (-not $item.FullName.StartsWith("$ProjectPath\Library\", [StringComparison]::OrdinalIgnoreCase)) { Stop-Setup "Refusing to delete $($item.FullName)" }
+        if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) { Stop-Setup "Library/$name is a link; refusing to delete it" }
+        $links = @(Get-ChildItem $dir -Recurse -Force -Attributes ReparsePoint -ErrorAction SilentlyContinue)
+        if ($links.Count) { Stop-Setup "Library/$name contains links ($($links[0].FullName)); refusing to delete it" }
+        Write-Host "Removing Library/$name"
+        Remove-Item $dir -Recurse -Force
     }
 }
 
