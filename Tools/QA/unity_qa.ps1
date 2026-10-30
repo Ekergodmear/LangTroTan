@@ -40,7 +40,7 @@ $sha = (git -C $ProjectPath rev-parse HEAD).Trim()
 $result = [ordered]@{
     commit = $sha; mode = $Mode; unity = $UnityVersion; editor = ''; cacheReset = [bool]$ResetPackageCache; renderer = ''
     compile = 'NOT RUN'; checks = ''; shaderGraph = 'NOT RUN'; visual = 'NOT RUN'
-    screenshots = @(); gifs = @(); benchmarks = 'NOT RUN (player benchmark is not automated)'; errors = @(); warnings = @()
+    screenshots = @(); gifs = @(); previews = 'none'; benchmarks = 'NOT RUN (player benchmark is not automated)'; errors = @(); warnings = @()
 }
 
 function Write-Summary {
@@ -54,6 +54,7 @@ function Write-Summary {
         "| Visual QA | $($result.visual) |", "| Benchmark | $($result.benchmarks) |", '',
         "**Screenshots:** $(if ($result.screenshots.Count) { ($result.screenshots -join ', ') } else { 'none' })", '',
         "**GIF:** $(if ($result.gifs.Count) { ($result.gifs -join ', ') } else { 'none' })", '',
+        "**Previews:** $($result.previews)", '',
         '**Errors:**'
     )
     if ($result.errors.Count) { $md += ($result.errors | Select-Object -First 30 | ForEach-Object { "- $_" }) } else { $md += '- none' }
@@ -240,28 +241,38 @@ if (-not $failed -and $Mode -eq 'l6-visual') {
         $result.errors += "l6visual: software renderer ($($result.renderer)); captures are not representative"
         $result.visual += ' (software renderer)'
     }
-    # 10 s loop GIF from the cycle frames via the existing script, when Python with numpy/Pillow is on the runner.
+    # Compact previews (contact sheet, cycle phases, 10 s GIF, key JPEGs) for review without the full artifact; the
+    # workflow publishes them to the qa-results branch. numpy/Pillow come from a project-scoped venv
+    # (Tools/QA/.venv, git-ignored) with hash-pinned binary wheels only. Optional: failures are warnings, and Python
+    # writing to stderr must not abort the run (PowerShell 5.1 + ErrorActionPreference Stop).
     if ($frames.Count -ge 100) {
-        $py = Get-Command py -ErrorAction SilentlyContinue
-        if (-not $py) { $py = Get-Command python -ErrorAction SilentlyContinue }
-        if ($py) {
-            $gif = Join-Path $OutDir 'cycle_10s_hero.gif'
-            $pyArgs = @()
-            if ($py.Name -like 'py*.exe' -and $py.Name -notlike 'python*') { $pyArgs += '-3' }
-            # The GIF is optional: Python writing to stderr must not abort the run (PowerShell 5.1 turns redirected
-            # native stderr into terminating errors under ErrorActionPreference Stop).
-            $eap = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
-            try {
-                & $py.Source @pyArgs -I (Join-Path $ProjectPath 'Tools/ShaderGraph/cycle_report.py') (Join-Path $ProjectPath "$V4Out/cycle") $gif 10 seam 2>&1 |
-                    ForEach-Object { "$_" } | Set-Content (Join-Path $OutDir 'logs/cycle_report.log') -Encoding UTF8
-            } catch { "$_" | Add-Content (Join-Path $OutDir 'logs/cycle_report.log') -Encoding UTF8 }
-            finally { $ErrorActionPreference = $eap }
-            if (Test-Path $gif) { $result.gifs += 'cycle_10s_hero.gif' }
-            else {
-                $last = Get-Content (Join-Path $OutDir 'logs/cycle_report.log') -ErrorAction SilentlyContinue | Where-Object { $_ -match '\S' } | Select-Object -Last 1
-                $result.warnings += "gif: cycle_report.py did not produce a GIF ($last); see logs/cycle_report.log"
+        $previewDir = Join-Path $OutDir 'previews'
+        $previewLog = Join-Path $OutDir 'logs/previews.log'
+        $venv = Join-Path $ProjectPath 'Tools/QA/.venv'
+        $venvPy = Join-Path $venv 'Scripts/python.exe'
+        $eap = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+        try {
+            if (-not (Test-Path $venvPy)) {
+                $py = Get-Command py -ErrorAction SilentlyContinue
+                $pyArgs = @('-3')
+                if (-not $py) { $py = Get-Command python -ErrorAction SilentlyContinue; $pyArgs = @() }
+                if ($py) { & $py.Source @pyArgs -m venv $venv 2>&1 | ForEach-Object { "$_" } | Add-Content $previewLog -Encoding UTF8 }
             }
-        } else { $result.warnings += 'gif: Python not found on the runner; GIF skipped' }
+            if (Test-Path $venvPy) {
+                & $venvPy -m pip install --disable-pip-version-check --no-input --require-hashes --only-binary=:all: `
+                    -r (Join-Path $ProjectPath 'Tools/QA/requirements-qa.txt') 2>&1 | ForEach-Object { "$_" } | Add-Content $previewLog -Encoding UTF8
+                & $venvPy -I (Join-Path $ProjectPath 'Tools/QA/make_previews.py') $shotDir (Join-Path $ProjectPath "$V4Out/cycle") `
+                    $previewDir (Join-Path $OutDir 'measurements.csv') 2>&1 | ForEach-Object { "$_" } | Add-Content $previewLog -Encoding UTF8
+            } else { 'Python not found on the runner' | Add-Content $previewLog -Encoding UTF8 }
+        } catch { "$_" | Add-Content $previewLog -Encoding UTF8 }
+        finally { $ErrorActionPreference = $eap }
+        if ((Test-Path (Join-Path $previewDir 'contact_sheet.jpg')) -and (Test-Path (Join-Path $previewDir 'cycle_10s.gif'))) {
+            $result.gifs += 'previews/cycle_10s.gif'
+            $result.previews = 'previews/ (contact_sheet.jpg, cycle_phases.jpg, cycle_10s.gif, key/*.jpg, cycle_stats.txt)'
+        } else {
+            $last = Get-Content $previewLog -ErrorAction SilentlyContinue | Where-Object { $_ -match '\S' } | Select-Object -Last 1
+            $result.warnings += "previews: not generated ($last); see logs/previews.log"
+        }
     }
 }
 

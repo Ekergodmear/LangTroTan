@@ -1,0 +1,29 @@
+# QA preview tools (Tools/QA/make_previews.py), installed by Tools/QA/unity_qa.ps1 into Tools/QA/.venv on the
+# Windows runner with --require-hashes --only-binary=:all:. Hashes: win_amd64 wheels from PyPI. Python 3.10-3.14.
+# numpy 2.2.6: cp310 cp311 cp312 cp313 pp310
+numpy==2.2.6 ; python_version >= "3.10" and python_version < "3.11" \
+    --hash=sha256:f0fd6321b839904e15c46e0d257fdd101dd7f530fe03fd6359c1ea63738703f3 \
+    --hash=sha256:e8213002e427c69c45a52bbd94163084025f533a55a59d6f9c5b820774ef3303 \
+    --hash=sha256:c1f9540be57940698ed329904db803cf7a402f3fc200bfe599334c9bd84a40b2 \
+    --hash=sha256:6031dd6dfecc0cf9f668681a37648373bddd6421fff6c66ec1624eed0180ee06 \
+    --hash=sha256:b0544343a702fa80c95ad5d3d608ea3599dd54d4632df855e4c8d24eb6ecfa1c \
+    --hash=sha256:d042d24c90c41b54fd506da306759e06e568864df8ec17ccc17e9e884634fd00
+# numpy 2.3.3: cp311 cp312 cp313 cp314 pp311
+numpy==2.3.3 ; python_version >= "3.11" \
+    --hash=sha256:ec9d249840f6a565f58d8f913bccac2444235025bbb13e9a4681783572ee3caa \
+    --hash=sha256:497d7cad08e7092dba36e3d296fe4c97708c93daf26643a1ae4b03f6294d30eb \
+    --hash=sha256:4384a169c4d8f97195980815d6fcad04933a7e1ab3b530921c3fef7a1c63426d \
+    --hash=sha256:f0dadeb302887f07431910f67a14d57209ed91130be0adea2f9793f1a4f817cf \
+    --hash=sha256:b37a0b2e5935409daebe82c1e42274d30d9dd355852529eab91dab8dcca7419f \
+    --hash=sha256:691808c2b26b0f002a032c73255d0bd89751425f379f7bcd22d140db593a96e8 \
+    --hash=sha256:2e267c7da5bf7309670523896df97f93f6e469fb931161f483cd6882b3b1a5dc
+# pillow 12.0.0: cp310 cp311 cp312 cp313 cp314 pp311
+pillow==12.0.0 ; python_version >= "3.10" \
+    --hash=sha256:455247ac8a4cfb7b9bc45b7e432d10421aea9fc2e74d285ba4072688a74c2e9d \
+    --hash=sha256:b583dc9070312190192631373c6c8ed277254aa6e6084b74bdd0a6d3b221608e \
+    --hash=sha256:9fe611163f6303d1619bbcb653540a4d60f9e55e622d60a3108be0d5b441017a \
+    --hash=sha256:2c54c1a783d6d60595d3514f0efe9b37c8808746a66920315bfd34a938d7994b \
+    --hash=sha256:4cf7fed4b4580601c4345ceb5d4cbf5a980d030fd5ad07c4d2ec589f95f09905 \
+    --hash=sha256:905b0365b210c73afb0ebe9101a32572152dfd1c144c7e28968a331b9217b94a \
+    --hash=sha256:8dc232e39d409036af549c86f24aed8273a40ffa459981146829a324e0848b4b \
+    --hash=sha256:b290fd8aa38422444d4b50d579de197557f182ef1068b75f5aa8558638b8d0a5
